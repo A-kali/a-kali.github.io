@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="​    MMDetection是商汤科技开源的用于深度学习目标检测的库，而SIIM-ACR Pneumothorax Segmentation（以下简称SIIM）是发布于Kaggle平台的一个分割气胸所在位置的计算机视觉类竞赛。以下我将以SIIM比赛为例，介绍如何使用MMDetection进行语义分割。 一、安装MMDetection​    安装过程可能会有更新，以官方为准： ​    htt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-05T09:00:19.209Z">
+<meta property="og:updated_time" content="2019-08-05T13:48:25.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用MMDetection进行语义分割">
 <meta name="twitter:description" content="​    MMDetection是商汤科技开源的用于深度学习目标检测的库，而SIIM-ACR Pneumothorax Segmentation（以下简称SIIM）是发布于Kaggle平台的一个分割气胸所在位置的计算机视觉类竞赛。以下我将以SIIM比赛为例，介绍如何使用MMDetection进行语义分割。 一、安装MMDetection​    安装过程可能会有更新，以官方为准： ​    htt">
@@ -365,7 +365,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4.5k
+                  4.6k
                 </span>
               
 
@@ -510,6 +510,15 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./tools/dist_test.sh configs/cascade_mask_rcnn_x101_64x4d_fpn_1x.py work_dirs/cascade_mask_rcnn_x101_64x4d_fpn_1x/epoch_50.pth 4 --<span class="built_in">eval</span> segm</span><br></pre></td></tr></table></figure>
 
 <p>由于指定了 –eval 为 segm，最终的预测结果会输出到result.pkl.segm.json文件里。</p>
+<p>：<br>参考文献：</p>
+<ul>
+<li>MMDetection官方文档：<a href="https://github.com/open-mmlab/mmdetection" target="_blank" rel="noopener">https://github.com/open-mmlab/mmdetection</a></li>
+<li>COCO官方：<a href="http://cocodataset.org/#format-data" target="_blank" rel="noopener">http://cocodataset.org/#format-data</a></li>
+<li>COCO数据集的标注格式：<a href="https://zhuanlan.zhihu.com/p/29393415" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/29393415</a></li>
+<li>mmdetection训练自己的数据：<a href="https://blog.csdn.net/qq_36302589/article/details/86149293" target="_blank" rel="noopener">https://blog.csdn.net/qq_36302589/article/details/86149293</a></li>
+<li>mmdetection的configs中的各项参数具体解释：<a href="https://blog.csdn.net/hajlyx/article/details/85991400" target="_blank" rel="noopener">https://blog.csdn.net/hajlyx/article/details/85991400</a></li>
+<li>以及各路大佬的答疑解惑</li>
+</ul>
 
       
     </div>
@@ -774,7 +783,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">4.5k</span>
+    <span title="Site words total count">4.6k</span>
   
 </div>
 
