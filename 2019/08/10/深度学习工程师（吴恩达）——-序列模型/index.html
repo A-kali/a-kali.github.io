@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eOZuwV.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eO1htI.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/19/mlQIqs.png">
-<meta property="og:updated_time" content="2019-08-18T16:18:19.997Z">
+<meta property="og:updated_time" content="2019-08-19T11:39:19.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习工程师（吴恩达）——  序列模型">
 <meta name="twitter:description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义$$x^{} \Rightarrow 序列中的第n个符号所对应的向量$$ 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x&amp;lt;2&amp;gt;的信息时，它也会按照一定权重输入一些来">
@@ -370,7 +370,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  569
+                  727
                 </span>
               
 
@@ -423,6 +423,14 @@
 </ul>
 <p><img src="https://s2.ax1x.com/2019/08/19/mlQIqs.png" alt="mlQIqs.png"></p>
 <h2 id="1-6-语言模型和序列生成"><a href="#1-6-语言模型和序列生成" class="headerlink" title="1.6 语言模型和序列生成"></a>1.6 语言模型和序列生成</h2><p>​    语言模型的训练集由一个巨大的语料库组成，句子中的每个词向量都对应着字典中其所在的位置，句末由&lt;EOS&gt;来表示句子的结束。语料中没有的词向量以&lt;UNK&gt;表示。</p>
+<h2 id="1-7-对新序列采样"><a href="#1-7-对新序列采样" class="headerlink" title="1.7 对新序列采样"></a>1.7 对新序列采样</h2><p>暂时没看懂</p>
+<h2 id="1-8-RNN的梯度消失"><a href="#1-8-RNN的梯度消失" class="headerlink" title="1.8 RNN的梯度消失"></a>1.8 RNN的梯度消失</h2><p>示例：</p>
+<ul>
+<li>The <strong>cat</strong>, which already ate …… <strong>was</strong> full.</li>
+<li>The <strong>cats</strong>, which already ate …… <strong>were</strong> full.</li>
+</ul>
+<p>在这两个句子中，cat的单复数直接决定了后面的谓语使用was还是were。但由于主语和谓语的距离太远，时间的反向传播很难从谓语传播到主语，导致梯度消失，因此网络很难调整前面的计算。</p>
+<h2 id="1-9-Gated-Recurrent-Unit-GRU"><a href="#1-9-Gated-Recurrent-Unit-GRU" class="headerlink" title="1.9 Gated Recurrent Unit (GRU)"></a>1.9 Gated Recurrent Unit (GRU)</h2><p><strong>门控循环单元（GRU）</strong>改变了RNN的隐藏层，使得RNN能更好地捕捉深层次的连接，并改善了梯度消失问题。</p>
 
       
     </div>
@@ -494,6 +502,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/19/《C-Primer》-第1章-开始/" rel="prev" title="《C++ Primer》 第1章 开始">
+                《C++ Primer》 第1章 开始 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -572,7 +584,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -583,7 +595,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -594,7 +606,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -656,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、循环序列模型"><span class="nav-number">1.</span> <span class="nav-text">一、循环序列模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-为什么选择序列模型"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 为什么选择序列模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-数学符号定义"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 数学符号定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-循环神经网络模型（RNN）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 循环神经网络模型（RNN）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-通过时间的反向传播"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 通过时间的反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-不同类型的循环神经网络"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 不同类型的循环神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-语言模型和序列生成"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 语言模型和序列生成</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、循环序列模型"><span class="nav-number">1.</span> <span class="nav-text">一、循环序列模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-为什么选择序列模型"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 为什么选择序列模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-数学符号定义"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 数学符号定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-循环神经网络模型（RNN）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 循环神经网络模型（RNN）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-通过时间的反向传播"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 通过时间的反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-不同类型的循环神经网络"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 不同类型的循环神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-语言模型和序列生成"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 语言模型和序列生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-对新序列采样"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 对新序列采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-RNN的梯度消失"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 RNN的梯度消失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-Gated-Recurrent-Unit-GRU"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 Gated Recurrent Unit (GRU)</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -699,7 +711,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.2k</span>
+    <span title="Site words total count">6.2k</span>
   
 </div>
 
