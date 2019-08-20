@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://a-kali.github.io/"/>
-  <updated>2019-08-19T15:34:41.869Z</updated>
+  <updated>2019-08-20T16:19:10.745Z</updated>
   <id>http://a-kali.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《C++ Primer》 第2章 变量和基本类型</title>
+    <link href="http://a-kali.github.io/2019/08/20/%E3%80%8AC-Primer%E3%80%8B-%E7%AC%AC2%E7%AB%A0-%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://a-kali.github.io/2019/08/20/《C-Primer》-第2章-变量和基本类型/</id>
+    <published>2019-08-20T12:41:12.000Z</published>
+    <updated>2019-08-20T16:19:10.745Z</updated>
+    
+    <content type="html"><![CDATA[<p>数据类型决定了程序中数据和操作的意义。</p><h1 id="2-1-基本内置类型"><a href="#2-1-基本内置类型" class="headerlink" title="2.1 基本内置类型"></a>2.1 基本内置类型</h1><h2 id="2-1-1-算术类型"><a href="#2-1-1-算术类型" class="headerlink" title="2.1.1 算术类型"></a>2.1.1 算术类型</h2><p>​    算术类型分为两类：<strong>整型</strong>（包括字符和布尔型在内）和<strong>浮点型</strong>。</p><h3 id="带符号类型和无符号类型"><a href="#带符号类型和无符号类型" class="headerlink" title="带符号类型和无符号类型"></a>带符号类型和无符号类型</h3><p>​    除去布尔型和扩展的字符型之外，其他整形可以划分为<strong>带符号的</strong>（signed）和<strong>无符号的</strong>（unsigned）。带符号类型可以表示正数、负数或0，而无符号类型则仅能表示大于等于0的值。</p><p>​    类型 int、short、long 和 long long 都是带符号的，通过在这些类型名前添加<strong>unsigned</strong> 就可以得到无符号类型。其中 unsigned int 可以缩写为 unsigned。</p><p>​    与其他整型不同，<strong>字符型</strong>被分为了三种：char、signed char 和 unsigned char。但字符型的表现形式只有两种：带符号型和无符号型，char 的实际表现为哪种又编译器决定。</p><p>​    无符号类型中所有的比特都用来存储值。</p><h2 id="2-1-2-类型转换"><a href="#2-1-2-类型转换" class="headerlink" title="2.1.2 类型转换"></a>2.1.2 类型转换</h2><p>类型所能表示的值的范围决定了转换的过程：</p><ul><li>非布尔 → 布尔：除 0 以外均为 true。</li><li>布尔 → 非布尔：false → 0，true → 1。</li><li>浮点数 → 整数：保留小数点前的部分。</li><li>给无符号数赋值超范围：结果为取模后的余数。</li></ul><h3 id="含有无符号类型的表达式"><a href="#含有无符号类型的表达式" class="headerlink" title="含有无符号类型的表达式"></a>含有无符号类型的表达式</h3><p>​    当一个表达式中既有无符号数又有 int 值时，那个 int 值就会转换成无符号数。若 int 值为负数，则相当于将负数赋值给一个无符号数并运算，会产生意料之外的结果。</p><h2 id="2-1-3-字面值常量"><a href="#2-1-3-字面值常量" class="headerlink" title="2.1.3 字面值常量"></a>2.1.3 字面值常量</h2><p>​    每个字面值常量都对应着一种数据类型，字面值常量的形式和值决定了它的数据类型。</p><h3 id="整型和浮点型字面值"><a href="#整型和浮点型字面值" class="headerlink" title="整型和浮点型字面值"></a>整型和浮点型字面值</h3><p>​    我们可以将<strong>整型字面值</strong>写作十进制数、八进制数和十六进制数的形式。以 0 开头的整数代表八进制数，以 0x 或0X 开头的代表十六进制数。</p><p>​    整型字面值具体的数据类型由它的值和符号决定。默认情况下，十进制字面值的类型是能容纳当前值的最小带符号数类型，而八进制和十六进制字面值既可能是带符号的也可能是无符号的。</p><p>​    <strong>浮点型字面值</strong>表现为一个小数或以科学记数法表示的指数，默认类型为double。</p><h3 id="字符和字符串字面值"><a href="#字符和字符串字面值" class="headerlink" title="字符和字符串字面值"></a>字符和字符串字面值</h3><p>​    由单引号括起来的一个字符称为<strong>字符型字面值</strong>，双引号括起来的零个或多个字符则构成<strong>字符串型字面值</strong>。</p><p>​    字符串字面值的类型实际上是由常量字符构成的数组，编译器在每个字符串的结尾添加一个空字符（’\0’），因此字面值实际长度比它的内容多 1。</p><h3 id="布尔字面值和指针字面值"><a href="#布尔字面值和指针字面值" class="headerlink" title="布尔字面值和指针字面值"></a>布尔字面值和指针字面值</h3><p>​    true 和 false 是<strong>布尔类型的字面值</strong>。</p><h1 id="2-2-变量"><a href="#2-2-变量" class="headerlink" title="2.2 变量"></a>2.2 变量</h1><p>​    <strong>变量</strong>提供一个具名的、可供程序操作的存储空间。C++ 中每个变量都有其数据类型，数据类型决定变量所占内存空间的大小和布局方式等。对 C++ 程序员来说，“变量”和“对象”一般可以互换使用。</p><h2 id="2-2-1-变量定义"><a href="#2-2-1-变量定义" class="headerlink" title="2.2.1 变量定义"></a>2.2.1 变量定义</h2><h3 id="初始值"><a href="#初始值" class="headerlink" title="初始值"></a>初始值</h3><p>​    当对象在创建时获得了一个特定的值，我们说这个对象被<strong>初始化</strong>了。初始化不等同于赋值，赋值的含义是把对象的当前值擦除，以一个新的值替代。</p><h3 id="列表初始化"><a href="#列表初始化" class="headerlink" title="列表初始化"></a>列表初始化</h3><p>初始化问题复杂性，e.g. 定义一个名为 sold 的 int 变量并初始化为 0，以下代码均可实现：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sold = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> sold = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> sold&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sold</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br></pre></td></tr></table></figure><p>用花括号来初始化变量的形式被称为<strong>列表初始化</strong>。</p><h2 id="2-2-2-变量声明和定义的关系"><a href="#2-2-2-变量声明和定义的关系" class="headerlink" title="2.2.2 变量声明和定义的关系"></a>2.2.2 变量声明和定义的关系</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;数据类型决定了程序中数据和操作的意义。&lt;/p&gt;
+&lt;h1 id=&quot;2-1-基本内置类型&quot;&gt;&lt;a href=&quot;#2-1-基本内置类型&quot; class=&quot;headerlink&quot; title=&quot;2.1 基本内置类型&quot;&gt;&lt;/a&gt;2.1 基本内置类型&lt;/h1&gt;&lt;h2 id=&quot;2-1-1-
+      
+    
+    </summary>
+    
+      <category term="C++" scheme="http://a-kali.github.io/categories/C/"/>
+    
+    
+      <category term="C++" scheme="http://a-kali.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>《C++ Primer》 第1章 开始</title>

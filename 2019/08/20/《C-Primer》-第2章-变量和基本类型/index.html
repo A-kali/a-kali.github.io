@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="深度学习,吴恩达,序列模型,自然语言处理,笔记,">
+  <meta name="keywords" content="C++,">
 
 
 
@@ -88,23 +88,18 @@
 
 
 
-<meta name="description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义$$x^{} \Rightarrow 序列中的第n个符号所对应的向量$$ 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x&amp;lt;2&amp;gt;的信息时，它也会按照一定权重输入一些来">
-<meta name="keywords" content="深度学习,吴恩达,序列模型,自然语言处理,笔记">
+<meta name="description" content="数据类型决定了程序中数据和操作的意义。 2.1 基本内置类型2.1.1 算术类型​    算术类型分为两类：整型（包括字符和布尔型在内）和浮点型。 带符号类型和无符号类型​    除去布尔型和扩展的字符型之外，其他整形可以划分为带符号的（signed）和无符号的（unsigned）。带符号类型可以表示正数、负数或0，而无符号类型则仅能表示大于等于0的值。 ​    类型 int、short、lon">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度学习工程师（吴恩达）——  序列模型">
-<meta property="og:url" content="http://a-kali.github.io/2019/08/10/深度学习工程师（吴恩达）——-序列模型/index.html">
+<meta property="og:title" content="《C++ Primer》 第2章 变量和基本类型">
+<meta property="og:url" content="http://a-kali.github.io/2019/08/20/《C-Primer》-第2章-变量和基本类型/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义$$x^{} \Rightarrow 序列中的第n个符号所对应的向量$$ 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x&amp;lt;2&amp;gt;的信息时，它也会按照一定权重输入一些来">
+<meta property="og:description" content="数据类型决定了程序中数据和操作的意义。 2.1 基本内置类型2.1.1 算术类型​    算术类型分为两类：整型（包括字符和布尔型在内）和浮点型。 带符号类型和无符号类型​    除去布尔型和扩展的字符型之外，其他整形可以划分为带符号的（signed）和无符号的（unsigned）。带符号类型可以表示正数、负数或0，而无符号类型则仅能表示大于等于0的值。 ​    类型 int、short、lon">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eOFH3R.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eOZuwV.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eO1htI.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/19/mlQIqs.png">
-<meta property="og:updated_time" content="2019-08-19T11:39:19.305Z">
+<meta property="og:updated_time" content="2019-08-20T16:19:10.745Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深度学习工程师（吴恩达）——  序列模型">
-<meta name="twitter:description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义$$x^{} \Rightarrow 序列中的第n个符号所对应的向量$$ 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x&amp;lt;2&amp;gt;的信息时，它也会按照一定权重输入一些来">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/08/10/eOFH3R.png">
+<meta name="twitter:title" content="《C++ Primer》 第2章 变量和基本类型">
+<meta name="twitter:description" content="数据类型决定了程序中数据和操作的意义。 2.1 基本内置类型2.1.1 算术类型​    算术类型分为两类：整型（包括字符和布尔型在内）和浮点型。 带符号类型和无符号类型​    除去布尔型和扩展的字符型之外，其他整形可以划分为带符号的（signed）和无符号的（unsigned）。带符号类型可以表示正数、负数或0，而无符号类型则仅能表示大于等于0的值。 ​    类型 int、short、lon">
 
 
 
@@ -134,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://a-kali.github.io/2019/08/10/深度学习工程师（吴恩达）——-序列模型/">
+  <link rel="canonical" href="http://a-kali.github.io/2019/08/20/《C-Primer》-第2章-变量和基本类型/">
 
 
 
 
 
-  <title>深度学习工程师（吴恩达）——  序列模型 | 某科学のBLOG</title>
+  <title>《C++ Primer》 第2章 变量和基本类型 | 某科学のBLOG</title>
   
 
 
@@ -287,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2019/08/10/深度学习工程师（吴恩达）——-序列模型/">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2019/08/20/《C-Primer》-第2章-变量和基本类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hsaki">
@@ -304,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深度学习工程师（吴恩达）——  序列模型</h1>
+          <h1 class="post-title" itemprop="name headline">《C++ Primer》 第2章 变量和基本类型</h1>
         
 
         <div class="post-meta">
@@ -316,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-10T14:02:58+08:00">
-                2019-08-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T20:41:12+08:00">
+                2019-08-20
               </time>
             
 
@@ -339,8 +334,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/深度学习/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
 
@@ -370,7 +365,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  727
+                  1k
                 </span>
               
 
@@ -386,7 +381,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -407,31 +402,34 @@
       
 
       
-        <h1 id="一、循环序列模型"><a href="#一、循环序列模型" class="headerlink" title="一、循环序列模型"></a>一、循环序列模型</h1><h2 id="1-1-为什么选择序列模型"><a href="#1-1-为什么选择序列模型" class="headerlink" title="1.1 为什么选择序列模型"></a>1.1 为什么选择序列模型</h2><p><img src="https://s2.ax1x.com/2019/08/10/eOFH3R.png" alt="序列模型举例"></p>
-<h2 id="1-2-数学符号定义"><a href="#1-2-数学符号定义" class="headerlink" title="1.2 数学符号定义"></a>1.2 数学符号定义</h2><p>$$<br>x^{<n>} \Rightarrow 序列中的第n个符号所对应的向量<br>$$<br><img src="https://s2.ax1x.com/2019/08/10/eOZuwV.png" alt></n></p>
-<h2 id="1-3-循环神经网络模型（RNN）"><a href="#1-3-循环神经网络模型（RNN）" class="headerlink" title="1.3 循环神经网络模型（RNN）"></a>1.3 循环神经网络模型（RNN）</h2><p>​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。</p>
-<p><img src="https://s2.ax1x.com/2019/08/10/eO1htI.png" alt="eO1htI.png"></p>
-<p>​    循环神经网络每次输入一个词向量，当神经网络读取到x<sup>&lt;2&gt;</sup>的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a<sup>&lt;1&gt;</sup>；读取x<sup>&lt;3&gt;</sup>时则会输入来自时间步1和2的信息，以此类推。而读取x<sup>&lt;1&gt;</sup>时则需要输入一个自定义的激活值a<sup>&lt;0&gt;</sup>，这个值通常为0。w和b分别表示权重和偏置，为每个时间步所共享。<br>$$<br>a^{<t>} = g(w_{aa}a^{<t-1>}+w_{ax}x^{<t>}+b_a)\<br>\hat y^{<t>} = g(w_{ya}a^{<t>}+b_y)<br>$$<br>​    g(x)为激活函数，通常为tanh，最后得出输出值的激活函数可以为sigmod。</t></t></t></t-1></t></p>
-<p>​    简化方程如下：<br>$$<br>a^{<t>} = g(w_{a}[a^{<t-1>},x^{<t>}])\<br>其中w_a为w_{aa}和w_{ax}的横向拼接，[a^{<t-1>},x^{<t>}]表示a^{<t-1>}和x^{<t>}纵向拼接。<br>$$<br>​    RNN的一个缺点是其只能使用当前输入之前的信息，而没有使用到之后的信息。后续将提到的BRNN将解决这个问题。</t></t-1></t></t-1></t></t-1></t></p>
-<h2 id="1-4-通过时间的反向传播"><a href="#1-4-通过时间的反向传播" class="headerlink" title="1.4 通过时间的反向传播"></a>1.4 通过时间的反向传播</h2><p>$$<br>损失函数：L^{<t>}(\hat y^{<t>},y^{<t>}) = -y^{<t>}\log \hat y^{<t>}-(1-y^{<t>})\log (1-y^{<t>})\<br>L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})<br>$$</t></t></t></t></t></t></t></t></t></t></t></t></p>
-<p>即总损失为各时间损失之和。</p>
-<h2 id="1-5-不同类型的循环神经网络"><a href="#1-5-不同类型的循环神经网络" class="headerlink" title="1.5 不同类型的循环神经网络"></a>1.5 不同类型的循环神经网络</h2><ul>
-<li>等长多输入多输出结构，如找出句子中的人名</li>
-<li>多输入单输出结构，如情感分类</li>
-<li>单输入多输出结构，如音乐生成</li>
-<li>非等长多输入多输出结构，如语言翻译</li>
-</ul>
-<p><img src="https://s2.ax1x.com/2019/08/19/mlQIqs.png" alt="mlQIqs.png"></p>
-<h2 id="1-6-语言模型和序列生成"><a href="#1-6-语言模型和序列生成" class="headerlink" title="1.6 语言模型和序列生成"></a>1.6 语言模型和序列生成</h2><p>​    语言模型的训练集由一个巨大的语料库组成，句子中的每个词向量都对应着字典中其所在的位置，句末由&lt;EOS&gt;来表示句子的结束。语料中没有的词向量以&lt;UNK&gt;表示。</p>
-<h2 id="1-7-对新序列采样"><a href="#1-7-对新序列采样" class="headerlink" title="1.7 对新序列采样"></a>1.7 对新序列采样</h2><p>暂时没看懂</p>
-<h2 id="1-8-RNN的梯度消失"><a href="#1-8-RNN的梯度消失" class="headerlink" title="1.8 RNN的梯度消失"></a>1.8 RNN的梯度消失</h2><p>示例：</p>
+        <p>数据类型决定了程序中数据和操作的意义。</p>
+<h1 id="2-1-基本内置类型"><a href="#2-1-基本内置类型" class="headerlink" title="2.1 基本内置类型"></a>2.1 基本内置类型</h1><h2 id="2-1-1-算术类型"><a href="#2-1-1-算术类型" class="headerlink" title="2.1.1 算术类型"></a>2.1.1 算术类型</h2><p>​    算术类型分为两类：<strong>整型</strong>（包括字符和布尔型在内）和<strong>浮点型</strong>。</p>
+<h3 id="带符号类型和无符号类型"><a href="#带符号类型和无符号类型" class="headerlink" title="带符号类型和无符号类型"></a>带符号类型和无符号类型</h3><p>​    除去布尔型和扩展的字符型之外，其他整形可以划分为<strong>带符号的</strong>（signed）和<strong>无符号的</strong>（unsigned）。带符号类型可以表示正数、负数或0，而无符号类型则仅能表示大于等于0的值。</p>
+<p>​    类型 int、short、long 和 long long 都是带符号的，通过在这些类型名前添加<strong>unsigned</strong> 就可以得到无符号类型。其中 unsigned int 可以缩写为 unsigned。</p>
+<p>​    与其他整型不同，<strong>字符型</strong>被分为了三种：char、signed char 和 unsigned char。但字符型的表现形式只有两种：带符号型和无符号型，char 的实际表现为哪种又编译器决定。</p>
+<p>​    无符号类型中所有的比特都用来存储值。</p>
+<h2 id="2-1-2-类型转换"><a href="#2-1-2-类型转换" class="headerlink" title="2.1.2 类型转换"></a>2.1.2 类型转换</h2><p>类型所能表示的值的范围决定了转换的过程：</p>
 <ul>
-<li>The <strong>cat</strong>, which already ate …… <strong>was</strong> full.</li>
-<li>The <strong>cats</strong>, which already ate …… <strong>were</strong> full.</li>
+<li>非布尔 → 布尔：除 0 以外均为 true。</li>
+<li>布尔 → 非布尔：false → 0，true → 1。</li>
+<li>浮点数 → 整数：保留小数点前的部分。</li>
+<li>给无符号数赋值超范围：结果为取模后的余数。</li>
 </ul>
-<p>在这两个句子中，cat的单复数直接决定了后面的谓语使用was还是were。但由于主语和谓语的距离太远，时间的反向传播很难从谓语传播到主语，导致梯度消失，因此网络很难调整前面的计算。</p>
-<h2 id="1-9-Gated-Recurrent-Unit-GRU"><a href="#1-9-Gated-Recurrent-Unit-GRU" class="headerlink" title="1.9 Gated Recurrent Unit (GRU)"></a>1.9 Gated Recurrent Unit (GRU)</h2><p><strong>门控循环单元（GRU）</strong>改变了RNN的隐藏层，使得RNN能更好地捕捉深层次的连接，并改善了梯度消失问题。</p>
+<h3 id="含有无符号类型的表达式"><a href="#含有无符号类型的表达式" class="headerlink" title="含有无符号类型的表达式"></a>含有无符号类型的表达式</h3><p>​    当一个表达式中既有无符号数又有 int 值时，那个 int 值就会转换成无符号数。若 int 值为负数，则相当于将负数赋值给一个无符号数并运算，会产生意料之外的结果。</p>
+<h2 id="2-1-3-字面值常量"><a href="#2-1-3-字面值常量" class="headerlink" title="2.1.3 字面值常量"></a>2.1.3 字面值常量</h2><p>​    每个字面值常量都对应着一种数据类型，字面值常量的形式和值决定了它的数据类型。</p>
+<h3 id="整型和浮点型字面值"><a href="#整型和浮点型字面值" class="headerlink" title="整型和浮点型字面值"></a>整型和浮点型字面值</h3><p>​    我们可以将<strong>整型字面值</strong>写作十进制数、八进制数和十六进制数的形式。以 0 开头的整数代表八进制数，以 0x 或0X 开头的代表十六进制数。</p>
+<p>​    整型字面值具体的数据类型由它的值和符号决定。默认情况下，十进制字面值的类型是能容纳当前值的最小带符号数类型，而八进制和十六进制字面值既可能是带符号的也可能是无符号的。</p>
+<p>​    <strong>浮点型字面值</strong>表现为一个小数或以科学记数法表示的指数，默认类型为double。</p>
+<h3 id="字符和字符串字面值"><a href="#字符和字符串字面值" class="headerlink" title="字符和字符串字面值"></a>字符和字符串字面值</h3><p>​    由单引号括起来的一个字符称为<strong>字符型字面值</strong>，双引号括起来的零个或多个字符则构成<strong>字符串型字面值</strong>。</p>
+<p>​    字符串字面值的类型实际上是由常量字符构成的数组，编译器在每个字符串的结尾添加一个空字符（’\0’），因此字面值实际长度比它的内容多 1。</p>
+<h3 id="布尔字面值和指针字面值"><a href="#布尔字面值和指针字面值" class="headerlink" title="布尔字面值和指针字面值"></a>布尔字面值和指针字面值</h3><p>​    true 和 false 是<strong>布尔类型的字面值</strong>。</p>
+<h1 id="2-2-变量"><a href="#2-2-变量" class="headerlink" title="2.2 变量"></a>2.2 变量</h1><p>​    <strong>变量</strong>提供一个具名的、可供程序操作的存储空间。C++ 中每个变量都有其数据类型，数据类型决定变量所占内存空间的大小和布局方式等。对 C++ 程序员来说，“变量”和“对象”一般可以互换使用。</p>
+<h2 id="2-2-1-变量定义"><a href="#2-2-1-变量定义" class="headerlink" title="2.2.1 变量定义"></a>2.2.1 变量定义</h2><h3 id="初始值"><a href="#初始值" class="headerlink" title="初始值"></a>初始值</h3><p>​    当对象在创建时获得了一个特定的值，我们说这个对象被<strong>初始化</strong>了。初始化不等同于赋值，赋值的含义是把对象的当前值擦除，以一个新的值替代。</p>
+<h3 id="列表初始化"><a href="#列表初始化" class="headerlink" title="列表初始化"></a>列表初始化</h3><p>初始化问题复杂性，e.g. 定义一个名为 sold 的 int 变量并初始化为 0，以下代码均可实现：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sold = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> sold = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> sold&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sold</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 
+<p>用花括号来初始化变量的形式被称为<strong>列表初始化</strong>。</p>
+<h2 id="2-2-2-变量声明和定义的关系"><a href="#2-2-2-变量声明和定义的关系" class="headerlink" title="2.2.2 变量声明和定义的关系"></a>2.2.2 变量声明和定义的关系</h2>
       
     </div>
     
@@ -457,15 +455,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
-          
-            <a href="/tags/吴恩达/" rel="tag"><i class="fa fa-tag"></i> 吴恩达</a>
-          
-            <a href="/tags/序列模型/" rel="tag"><i class="fa fa-tag"></i> 序列模型</a>
-          
-            <a href="/tags/自然语言处理/" rel="tag"><i class="fa fa-tag"></i> 自然语言处理</a>
-          
-            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
           
         </div>
       
@@ -493,8 +483,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/04/使用MMDetection进行语义分割/" rel="next" title="使用MMDetection进行语义分割">
-                <i class="fa fa-chevron-left"></i> 使用MMDetection进行语义分割
+              <a href="/2019/08/19/《C-Primer》-第1章-开始/" rel="next" title="《C++ Primer》 第1章 开始">
+                <i class="fa fa-chevron-left"></i> 《C++ Primer》 第1章 开始
               </a>
             
           </div>
@@ -502,10 +492,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/19/《C-Primer》-第1章-开始/" rel="prev" title="《C++ Primer》 第1章 开始">
-                《C++ Primer》 第1章 开始 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -668,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、循环序列模型"><span class="nav-number">1.</span> <span class="nav-text">一、循环序列模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-为什么选择序列模型"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 为什么选择序列模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-数学符号定义"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 数学符号定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-循环神经网络模型（RNN）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 循环神经网络模型（RNN）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-通过时间的反向传播"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 通过时间的反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-不同类型的循环神经网络"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 不同类型的循环神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-语言模型和序列生成"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 语言模型和序列生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-对新序列采样"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 对新序列采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-RNN的梯度消失"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 RNN的梯度消失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-Gated-Recurrent-Unit-GRU"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 Gated Recurrent Unit (GRU)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-基本内置类型"><span class="nav-number">1.</span> <span class="nav-text">2.1 基本内置类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-1-算术类型"><span class="nav-number">1.1.</span> <span class="nav-text">2.1.1 算术类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#带符号类型和无符号类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">带符号类型和无符号类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-2-类型转换"><span class="nav-number">1.2.</span> <span class="nav-text">2.1.2 类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#含有无符号类型的表达式"><span class="nav-number">1.2.1.</span> <span class="nav-text">含有无符号类型的表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-3-字面值常量"><span class="nav-number">1.3.</span> <span class="nav-text">2.1.3 字面值常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整型和浮点型字面值"><span class="nav-number">1.3.1.</span> <span class="nav-text">整型和浮点型字面值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符和字符串字面值"><span class="nav-number">1.3.2.</span> <span class="nav-text">字符和字符串字面值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔字面值和指针字面值"><span class="nav-number">1.3.3.</span> <span class="nav-text">布尔字面值和指针字面值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-变量"><span class="nav-number">2.</span> <span class="nav-text">2.2 变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-1-变量定义"><span class="nav-number">2.1.</span> <span class="nav-text">2.2.1 变量定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始值"><span class="nav-number">2.1.1.</span> <span class="nav-text">初始值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表初始化"><span class="nav-number">2.1.2.</span> <span class="nav-text">列表初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2-变量声明和定义的关系"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.2 变量声明和定义的关系</span></a></li></ol></li></ol></div>
             
 
           </div>
