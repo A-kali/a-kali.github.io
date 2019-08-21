@@ -363,7 +363,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  
+                  1.5k
                 </span>
               
 
@@ -379,7 +379,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  
+                  5分钟
                 </span>
               
             </div>
@@ -425,21 +425,17 @@
 <h2 id="2-2-1-变量定义"><a href="#2-2-1-变量定义" class="headerlink" title="2.2.1 变量定义"></a>2.2.1 变量定义</h2><h3 id="初始值"><a href="#初始值" class="headerlink" title="初始值"></a>初始值</h3><p>​    当对象在创建时获得了一个特定的值，我们说这个对象被<strong>初始化</strong>了。初始化不等同于赋值，赋值的含义是把对象的当前值擦除，以一个新的值替代。</p>
 <h3 id="列表初始化"><a href="#列表初始化" class="headerlink" title="列表初始化"></a>列表初始化</h3><p>初始化问题复杂性，e.g. 定义一个名为 sold 的 int 变量并初始化为 0，以下代码均可实现：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sold = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> sold = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> sold&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sold</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <p>用花括号来初始化变量的形式被称为<strong>列表初始化</strong>。</p>
 <h2 id="2-2-2-变量声明和定义的关系"><a href="#2-2-2-变量声明和定义的关系" class="headerlink" title="2.2.2 变量声明和定义的关系"></a>2.2.2 变量声明和定义的关系</h2><p>​    为了允许把程序拆分成多个逻辑部分来编写，C++语言支持<strong>分离式编译</strong>机制，该机制允许将程序分割为若干个文件，每个文件可被独立编译。</p>
 <p>​    为了支持分离式编译，C++将声明和定义区分开来。<strong>声明</strong>使得名字为程序所知，<font color="red">一个文件如果想使用别处定义的名字则必须包含对那个名字的声明</font>。而<strong>定义</strong>负责创建与名字关联的实体。声明和定义都规定了变量的类型和名字，而并以还包括了申请空间，也可能会为变量赋予初始值。</p>
 <p>​    如果想声明一个变量而非定义，就在变量名前添加<strong>关键字extern</strong>，而且不要显示地初始化变量：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i; <span class="comment">// 声明i而非定义i</span></span><br><span class="line"><span class="keyword">int</span> j;        <span class="comment">// 声明并定义j</span></span><br></pre></td></tr></table></figure>
-
 <p>​    变量只能被定义一次，但可以被多次声明。如果要在多个文件中使用同一个变量，就必须将声明和定义分离。此时变量的定义必须且只能出现在一个文件中，而其他用到该变量的文件必须且只能对其声明。</p>
 <h1 id="2-3-复合类型"><a href="#2-3-复合类型" class="headerlink" title="2.3 复合类型"></a>2.3 复合类型</h1><p>​    <strong>复合类型</strong>是指基于其他类型定义的类型，其中两种为引用和指针。</p>
 <h2 id="2-3-1-引用"><a href="#2-3-1-引用" class="headerlink" title="2.3.1 引用"></a>2.3.1 引用</h2><p>​    <strong>引用</strong>为对象起了另一个名字，引用类型引用另外一种类型。通过将声明符写成&amp;d的形式来定义引用类型，其中d是声明时的变量名：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ival = <span class="number">1024</span>;     <span class="comment">// 声明了变量名为ival</span></span><br><span class="line"><span class="keyword">int</span> &amp;refVal = ival;  <span class="comment">// 此时refVal成了该变量的第二个名字</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="2-3-2-指针"><a href="#2-3-2-指针" class="headerlink" title="2.3.2 指针"></a>2.3.2 指针</h2><p>​    <strong>指针</strong>时“指向”另外一种类型的复合类型。定义指针类型的方法将声明符写成 *d 的形式，其中 d 是变量名。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ip1, *ip2; <span class="comment">//ip1是int型对象，ip2是指向一个int型对象的指针</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="获取对象的地址"><a href="#获取对象的地址" class="headerlink" title="获取对象的地址"></a>获取对象的地址</h3><p>​    指针存放某个对象的地址，要想获取该地址，需要使用<strong>取地址符&amp;</strong></p>
 
       
@@ -706,7 +702,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count"></span>
+    <span title="Site words total count">7.7k</span>
   
 </div>
 
