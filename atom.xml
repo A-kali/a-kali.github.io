@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://a-kali.github.io/"/>
-  <updated>2019-08-21T14:23:24.534Z</updated>
+  <updated>2019-08-21T14:24:36.145Z</updated>
   <id>http://a-kali.github.io/</id>
   
   <author>
@@ -21,12 +21,20 @@
     <link href="http://a-kali.github.io/2019/08/21/SIIM%E6%AF%94%E8%B5%9B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86%E7%9B%B2%E5%8C%BA/"/>
     <id>http://a-kali.github.io/2019/08/21/SIIM比赛中遇到的知识盲区/</id>
     <published>2019-08-21T14:23:24.000Z</published>
-    <updated>2019-08-21T14:23:24.534Z</updated>
+    <updated>2019-08-21T14:24:36.145Z</updated>
     
     <summary type="html">
     
     </summary>
     
+      <category term="计算机视觉" scheme="http://a-kali.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+      <category term="计算机视觉" scheme="http://a-kali.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+      <category term="语义分割" scheme="http://a-kali.github.io/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/"/>
+    
+      <category term="kaggle" scheme="http://a-kali.github.io/tags/kaggle/"/>
     
   </entry>
   
