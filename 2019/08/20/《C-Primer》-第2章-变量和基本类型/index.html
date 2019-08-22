@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="数据类型决定了程序中数据和操作的意义。 2.1 基本内置类型2.1.1 算术类型​    算术类型分为两类：整型（包括字符和布尔型在内）和浮点型。 带符号类型和无符号类型​    除去布尔型和扩展的字符型之外，其他整形可以划分为带符号的（signed）和无符号的（unsigned）。带符号类型可以表示正数、负数或0，而无符号类型则仅能表示大于等于0的值。 ​    类型 int、short、lon">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-21T14:22:08.852Z">
+<meta property="og:updated_time" content="2019-08-22T16:01:05.877Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《C++ Primer》 第2章 变量和基本类型">
 <meta name="twitter:description" content="数据类型决定了程序中数据和操作的意义。 2.1 基本内置类型2.1.1 算术类型​    算术类型分为两类：整型（包括字符和布尔型在内）和浮点型。 带符号类型和无符号类型​    除去布尔型和扩展的字符型之外，其他整形可以划分为带符号的（signed）和无符号的（unsigned）。带符号类型可以表示正数、负数或0，而无符号类型则仅能表示大于等于0的值。 ​    类型 int、short、lon">
@@ -357,7 +357,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.5k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 2k字</span>
 
           
 
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.5k
+                  2k
                 </span>
               
 
@@ -388,7 +388,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5分钟
+                  7分钟
                 </span>
               
             </div>
@@ -449,7 +449,24 @@
 <h2 id="2-3-2-指针"><a href="#2-3-2-指针" class="headerlink" title="2.3.2 指针"></a>2.3.2 指针</h2><p>​    <strong>指针</strong>时“指向”另外一种类型的复合类型。定义指针类型的方法将声明符写成 *d 的形式，其中 d 是变量名。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ip1, *ip2; <span class="comment">//ip1是int型对象，ip2是指向一个int型对象的指针</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="获取对象的地址"><a href="#获取对象的地址" class="headerlink" title="获取对象的地址"></a>获取对象的地址</h3><p>​    指针存放某个对象的地址，要想获取该地址，需要使用<strong>取地址符&amp;</strong></p>
+<h3 id="获取对象的地址"><a href="#获取对象的地址" class="headerlink" title="获取对象的地址"></a>获取对象的地址</h3><p>​    指针存放某个对象的地址，要想获取该地址，需要使用<strong>取地址符（&amp;）</strong>。</p>
+<h3 id="利用指针访问对象"><a href="#利用指针访问对象" class="headerlink" title="利用指针访问对象"></a>利用指针访问对象</h3><p>​    如果指针指向了一个对象，则允许使用<strong>解引用符（*）</strong>来访问该对象。</p>
+<hr>
+<p>Note：引用声明符&amp;、指针声明符*、取地址操作符&amp;、解引用符* 所代表的含义各不相同。</p>
+<hr>
+<h3 id="空指针"><a href="#空指针" class="headerlink" title="空指针"></a>空指针</h3><p>​    <strong>空指针</strong>不指向任何对象，在试图使用一个空指针之前代码可以首先检查它是否为空。以下是三种等价的生成空指针的方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p1 = <span class="literal">nullptr</span>;</span><br><span class="line"><span class="keyword">int</span> *p2 = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *p3 = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="void-指针"><a href="#void-指针" class="headerlink" title="void* 指针"></a>void* 指针</h3><p>​    <strong>void*</strong>指针可用于存放任意对象的地址。但由于我们并不知道这个对象到底是什么类型，也就无法确定能在这个对象上做哪些操作，故不能直接操作void*指针所指的对象。</p>
+<h2 id="2-3-3-理解复合类型的声明"><a href="#2-3-3-理解复合类型的声明" class="headerlink" title="2.3.3 理解复合类型的声明"></a>2.3.3 理解复合类型的声明</h2><p>​    类型修饰符仅仅只是在声明时修饰了变量，并不能作为类型的一部分，且对与该声明语句中的其他变量不产生任何作用。</p>
+<p>​    声明语句中的修饰符没有个数限制。</p>
+<h1 id="2-4-const-限定符"><a href="#2-4-const-限定符" class="headerlink" title="2.4 const 限定符"></a>2.4 const 限定符</h1><p>​    关键字<strong>const</strong>可以对变量的类型加以限定，使得被限定的变量的值在定义之后不能再改变。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> bufSize = <span class="number">512</span></span><br></pre></td></tr></table></figure>
+
+<p>因为const对象一旦创建后其值就不能再改变，所以const对象必须被初始化。</p>
+<pre><code>### 对const的引用可能引用一个并非const的对象</code></pre><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;r1 = i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r2 = i;</span><br><span class="line">r1 = <span class="number">0</span>;  <span class="comment">// 可以通过r1修改i的值</span></span><br><span class="line">r2 = <span class="number">0</span>;  <span class="comment">// 错误；不能通过r2修改i的值</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-3-顶层const"><a href="#2-4-3-顶层const" class="headerlink" title="2.4.3 顶层const"></a>2.4.3 顶层const</h2><p>​    用名词<strong>顶层const</strong>表示指针本身是个常量，而<strong>底层const</strong>表示指针所指的对象是一个常量。</p>
 
       
     </div>
@@ -672,7 +689,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-基本内置类型"><span class="nav-number">1.</span> <span class="nav-text">2.1 基本内置类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-1-算术类型"><span class="nav-number">1.1.</span> <span class="nav-text">2.1.1 算术类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#带符号类型和无符号类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">带符号类型和无符号类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-2-类型转换"><span class="nav-number">1.2.</span> <span class="nav-text">2.1.2 类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#含有无符号类型的表达式"><span class="nav-number">1.2.1.</span> <span class="nav-text">含有无符号类型的表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-3-字面值常量"><span class="nav-number">1.3.</span> <span class="nav-text">2.1.3 字面值常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整型和浮点型字面值"><span class="nav-number">1.3.1.</span> <span class="nav-text">整型和浮点型字面值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符和字符串字面值"><span class="nav-number">1.3.2.</span> <span class="nav-text">字符和字符串字面值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔字面值和指针字面值"><span class="nav-number">1.3.3.</span> <span class="nav-text">布尔字面值和指针字面值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-变量"><span class="nav-number">2.</span> <span class="nav-text">2.2 变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-1-变量定义"><span class="nav-number">2.1.</span> <span class="nav-text">2.2.1 变量定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始值"><span class="nav-number">2.1.1.</span> <span class="nav-text">初始值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表初始化"><span class="nav-number">2.1.2.</span> <span class="nav-text">列表初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2-变量声明和定义的关系"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.2 变量声明和定义的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-3-复合类型"><span class="nav-number">3.</span> <span class="nav-text">2.3 复合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-1-引用"><span class="nav-number">3.1.</span> <span class="nav-text">2.3.1 引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-2-指针"><span class="nav-number">3.2.</span> <span class="nav-text">2.3.2 指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取对象的地址"><span class="nav-number">3.2.1.</span> <span class="nav-text">获取对象的地址</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-基本内置类型"><span class="nav-number">1.</span> <span class="nav-text">2.1 基本内置类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-1-算术类型"><span class="nav-number">1.1.</span> <span class="nav-text">2.1.1 算术类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#带符号类型和无符号类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">带符号类型和无符号类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-2-类型转换"><span class="nav-number">1.2.</span> <span class="nav-text">2.1.2 类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#含有无符号类型的表达式"><span class="nav-number">1.2.1.</span> <span class="nav-text">含有无符号类型的表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-3-字面值常量"><span class="nav-number">1.3.</span> <span class="nav-text">2.1.3 字面值常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整型和浮点型字面值"><span class="nav-number">1.3.1.</span> <span class="nav-text">整型和浮点型字面值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符和字符串字面值"><span class="nav-number">1.3.2.</span> <span class="nav-text">字符和字符串字面值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔字面值和指针字面值"><span class="nav-number">1.3.3.</span> <span class="nav-text">布尔字面值和指针字面值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-变量"><span class="nav-number">2.</span> <span class="nav-text">2.2 变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-1-变量定义"><span class="nav-number">2.1.</span> <span class="nav-text">2.2.1 变量定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始值"><span class="nav-number">2.1.1.</span> <span class="nav-text">初始值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表初始化"><span class="nav-number">2.1.2.</span> <span class="nav-text">列表初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2-变量声明和定义的关系"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.2 变量声明和定义的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-3-复合类型"><span class="nav-number">3.</span> <span class="nav-text">2.3 复合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-1-引用"><span class="nav-number">3.1.</span> <span class="nav-text">2.3.1 引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-2-指针"><span class="nav-number">3.2.</span> <span class="nav-text">2.3.2 指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取对象的地址"><span class="nav-number">3.2.1.</span> <span class="nav-text">获取对象的地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用指针访问对象"><span class="nav-number">3.2.2.</span> <span class="nav-text">利用指针访问对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空指针"><span class="nav-number">3.2.3.</span> <span class="nav-text">空指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#void-指针"><span class="nav-number">3.2.4.</span> <span class="nav-text">void* 指针</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-3-理解复合类型的声明"><span class="nav-number">3.3.</span> <span class="nav-text">2.3.3 理解复合类型的声明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-4-const-限定符"><span class="nav-number">4.</span> <span class="nav-text">2.4 const 限定符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-3-顶层const"><span class="nav-number">4.1.</span> <span class="nav-text">2.4.3 顶层const</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -715,7 +732,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7.7k</span>
+    <span title="Site words total count">8.2k</span>
   
 </div>
 
