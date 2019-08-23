@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现">
+<meta name="description" content="盲区FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现 efficientNet原理 疑问有无">
 <meta name="keywords" content="kaggle,计算机视觉,语义分割">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SIIM比赛中遇到的知识盲区">
+<meta property="og:title" content="SIIM比赛中遇到的知识盲区及可改进的地方">
 <meta property="og:url" content="http://a-kali.github.io/2019/08/21/SIIM比赛中遇到的知识盲区/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现">
+<meta property="og:description" content="盲区FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现 efficientNet原理 疑问有无">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-22T14:36:43.748Z">
+<meta property="og:updated_time" content="2019-08-23T14:34:27.275Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SIIM比赛中遇到的知识盲区">
-<meta name="twitter:description" content="FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现">
+<meta name="twitter:title" content="SIIM比赛中遇到的知识盲区及可改进的地方">
+<meta name="twitter:description" content="盲区FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现 efficientNet原理 疑问有无">
 
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <title>SIIM比赛中遇到的知识盲区 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>SIIM比赛中遇到的知识盲区及可改进的地方 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -297,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SIIM比赛中遇到的知识盲区</h1>
+          <h1 class="post-title" itemprop="name headline">SIIM比赛中遇到的知识盲区及可改进的地方</h1>
         
 
         <div class="post-meta">
@@ -357,7 +357,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 69字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 176字</span>
 
           
 
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  69
+                  176
                 </span>
               
 
@@ -409,12 +409,21 @@
       
 
       
-        <p>FocalLoss和diceLoss的实现细节和应用场景</p>
+        <h2 id="盲区"><a href="#盲区" class="headerlink" title="盲区"></a>盲区</h2><p>FocalLoss和diceLoss的实现细节和应用场景</p>
 <p>Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节</p>
 <p>学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up</p>
 <p>threshold的调整策略</p>
 <p>PyTorch实战经验不足，baseline的自主编写</p>
 <p>新兴模型复现</p>
+<p>efficientNet原理</p>
+<h2 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h2><p>有无mask的训练集对半开为什么能提高分数</p>
+<p>iscrowd这个参数到底意味着什么</p>
+<h2 id="可改进点"><a href="#可改进点" class="headerlink" title="可改进点"></a>可改进点</h2><p>efficientNet专注二分类，后融合到分割结果上</p>
+<p>五折交叉验证的训练集也改为对半开</p>
+<p>每次五折验证的选择是否相同</p>
+<p>在512上训练然后fine-tune到1024上</p>
+<p>似乎有额外的数据集？</p>
+<p>尝试unet++</p>
 
       
     </div>
@@ -533,8 +542,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -619,6 +637,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#盲区"><span class="nav-number">1.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问"><span class="nav-number">2.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可改进点"><span class="nav-number">3.</span> <span class="nav-text">可改进点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -655,7 +689,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.2k</span>
+    <span title="Site words total count">8.3k</span>
   
 </div>
 
