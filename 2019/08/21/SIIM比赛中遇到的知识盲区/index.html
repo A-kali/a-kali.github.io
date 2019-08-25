@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="盲区FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现 efficientNet原理 疑问有无">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-23T14:34:27.275Z">
+<meta property="og:updated_time" content="2019-08-25T15:38:08.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SIIM比赛中遇到的知识盲区及可改进的地方">
 <meta name="twitter:description" content="盲区FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现 efficientNet原理 疑问有无">
@@ -357,7 +357,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 176字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 196字</span>
 
           
 
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  176
+                  196
                 </span>
               
 
@@ -424,6 +424,17 @@
 <p>在512上训练然后fine-tune到1024上</p>
 <p>似乎有额外的数据集？</p>
 <p>尝试unet++</p>
+<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1：</p>
+<ul>
+<li>resnet34五折</li>
+<li>efficientUnet单折</li>
+<li>SeNet154单折</li>
+</ul>
+<p>2:</p>
+<ul>
+<li>Se-ReNeXt101 Unet++单折</li>
+<li>SeNet154 Unet++ 单折</li>
+</ul>
 
       
     </div>
@@ -646,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#盲区"><span class="nav-number">1.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问"><span class="nav-number">2.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可改进点"><span class="nav-number">3.</span> <span class="nav-text">可改进点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#盲区"><span class="nav-number">1.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问"><span class="nav-number">2.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可改进点"><span class="nav-number">3.</span> <span class="nav-text">可改进点</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Note"><span class="nav-number"></span> <span class="nav-text">Note</span></a></li></div>
             
 
           </div>
