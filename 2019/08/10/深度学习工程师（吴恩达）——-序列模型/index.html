@@ -86,13 +86,13 @@
 
 
 
-<meta name="description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义$$x^{} \Rightarrow 序列中的第n个符号所对应的向量$$ 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x&amp;lt;2&amp;gt;的信息时，它也会按照一定权重输入一些来">
+<meta name="description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义 x^{} \Rightarrow 序列中的第n个符号所对应的向量 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a">
 <meta name="keywords" content="深度学习,吴恩达,序列模型,自然语言处理,笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度学习工程师（吴恩达）——  序列模型">
 <meta property="og:url" content="http://a-kali.github.io/2019/08/10/深度学习工程师（吴恩达）——-序列模型/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义$$x^{} \Rightarrow 序列中的第n个符号所对应的向量$$ 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x&amp;lt;2&amp;gt;的信息时，它也会按照一定权重输入一些来">
+<meta property="og:description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义 x^{} \Rightarrow 序列中的第n个符号所对应的向量 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eOFH3R.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eOZuwV.png">
@@ -101,7 +101,7 @@
 <meta property="og:updated_time" content="2019-08-21T15:50:16.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习工程师（吴恩达）——  序列模型">
-<meta name="twitter:description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义$$x^{} \Rightarrow 序列中的第n个符号所对应的向量$$ 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x&amp;lt;2&amp;gt;的信息时，它也会按照一定权重输入一些来">
+<meta name="twitter:description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义 x^{} \Rightarrow 序列中的第n个符号所对应的向量 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/08/10/eOFH3R.png">
 
 
@@ -362,7 +362,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 727字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 704字</span>
 
           
 
@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  727
+                  704
                 </span>
               
 
@@ -415,13 +415,21 @@
 
       
         <h1 id="一、循环序列模型"><a href="#一、循环序列模型" class="headerlink" title="一、循环序列模型"></a>一、循环序列模型</h1><h2 id="1-1-为什么选择序列模型"><a href="#1-1-为什么选择序列模型" class="headerlink" title="1.1 为什么选择序列模型"></a>1.1 为什么选择序列模型</h2><p><img src="https://s2.ax1x.com/2019/08/10/eOFH3R.png" alt="序列模型举例"></p>
-<h2 id="1-2-数学符号定义"><a href="#1-2-数学符号定义" class="headerlink" title="1.2 数学符号定义"></a>1.2 数学符号定义</h2><p>$$<br>x^{<n>} \Rightarrow 序列中的第n个符号所对应的向量<br>$$<br><img src="https://s2.ax1x.com/2019/08/10/eOZuwV.png" alt></n></p>
+<h2 id="1-2-数学符号定义"><a href="#1-2-数学符号定义" class="headerlink" title="1.2 数学符号定义"></a>1.2 数学符号定义</h2><script type="math/tex; mode=display">
+x^{<n>} \Rightarrow 序列中的第n个符号所对应的向量</script><p><img src="https://s2.ax1x.com/2019/08/10/eOZuwV.png" alt></p>
 <h2 id="1-3-循环神经网络模型（RNN）"><a href="#1-3-循环神经网络模型（RNN）" class="headerlink" title="1.3 循环神经网络模型（RNN）"></a>1.3 循环神经网络模型（RNN）</h2><p>​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。</p>
 <p><img src="https://s2.ax1x.com/2019/08/10/eO1htI.png" alt="eO1htI.png"></p>
-<p>​    循环神经网络每次输入一个词向量，当神经网络读取到x<sup>&lt;2&gt;</sup>的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a<sup>&lt;1&gt;</sup>；读取x<sup>&lt;3&gt;</sup>时则会输入来自时间步1和2的信息，以此类推。而读取x<sup>&lt;1&gt;</sup>时则需要输入一个自定义的激活值a<sup>&lt;0&gt;</sup>，这个值通常为0。w和b分别表示权重和偏置，为每个时间步所共享。<br>$$<br>a^{<t>} = g(w_{aa}a^{<t-1>}+w_{ax}x^{<t>}+b_a)\<br>\hat y^{<t>} = g(w_{ya}a^{<t>}+b_y)<br>$$<br>​    g(x)为激活函数，通常为tanh，最后得出输出值的激活函数可以为sigmod。</t></t></t></t-1></t></p>
-<p>​    简化方程如下：<br>$$<br>a^{<t>} = g(w_{a}[a^{<t-1>},x^{<t>}])\<br>其中w_a为w_{aa}和w_{ax}的横向拼接，[a^{<t-1>},x^{<t>}]表示a^{<t-1>}和x^{<t>}纵向拼接。<br>$$<br>​    RNN的一个缺点是其只能使用当前输入之前的信息，而没有使用到之后的信息。后续将提到的BRNN将解决这个问题。</t></t-1></t></t-1></t></t-1></t></p>
-<h2 id="1-4-通过时间的反向传播"><a href="#1-4-通过时间的反向传播" class="headerlink" title="1.4 通过时间的反向传播"></a>1.4 通过时间的反向传播</h2><p>$$<br>损失函数：L^{<t>}(\hat y^{<t>},y^{<t>}) = -y^{<t>}\log \hat y^{<t>}-(1-y^{<t>})\log (1-y^{<t>})\<br>L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})<br>$$</t></t></t></t></t></t></t></t></t></t></t></t></p>
-<p>即总损失为各时间损失之和。</p>
+<p>​    循环神经网络每次输入一个词向量，当神经网络读取到x<sup><2></2></sup>的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a<sup><1></1></sup>；读取x<sup><3></3></sup>时则会输入来自时间步1和2的信息，以此类推。而读取x<sup><1></1></sup>时则需要输入一个自定义的激活值a<sup><0></0></sup>，这个值通常为0。w和b分别表示权重和偏置，为每个时间步所共享。</p>
+<script type="math/tex; mode=display">
+a^{<t>} = g(w_{aa}a^{<t-1>}+w_{ax}x^{<t>}+b_a)\\
+\hat y^{<t>} = g(w_{ya}a^{<t>}+b_y)</script><p>​    g(x)为激活函数，通常为tanh，最后得出输出值的激活函数可以为sigmod。</p>
+<p>​    简化方程如下：</p>
+<script type="math/tex; mode=display">
+a^{<t>} = g(w_{a}[a^{<t-1>},x^{<t>}])\\
+其中w_a为w_{aa}和w_{ax}的横向拼接，[a^{<t-1>},x^{<t>}]表示a^{<t-1>}和x^{<t>}纵向拼接。</script><p>​    RNN的一个缺点是其只能使用当前输入之前的信息，而没有使用到之后的信息。后续将提到的BRNN将解决这个问题。</p>
+<h2 id="1-4-通过时间的反向传播"><a href="#1-4-通过时间的反向传播" class="headerlink" title="1.4 通过时间的反向传播"></a>1.4 通过时间的反向传播</h2><script type="math/tex; mode=display">
+损失函数：L^{<t>}(\hat y^{<t>},y^{<t>}) = -y^{<t>}\log \hat y^{<t>}-(1-y^{<t>})\log (1-y^{<t>})\\
+L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})</script><p>即总损失为各时间损失之和。</p>
 <h2 id="1-5-不同类型的循环神经网络"><a href="#1-5-不同类型的循环神经网络" class="headerlink" title="1.5 不同类型的循环神经网络"></a>1.5 不同类型的循环神经网络</h2><ul>
 <li>等长多输入多输出结构，如找出句子中的人名</li>
 <li>多输入单输出结构，如情感分类</li>
@@ -429,7 +437,7 @@
 <li>非等长多输入多输出结构，如语言翻译</li>
 </ul>
 <p><img src="https://s2.ax1x.com/2019/08/19/mlQIqs.png" alt="mlQIqs.png"></p>
-<h2 id="1-6-语言模型和序列生成"><a href="#1-6-语言模型和序列生成" class="headerlink" title="1.6 语言模型和序列生成"></a>1.6 语言模型和序列生成</h2><p>​    语言模型的训练集由一个巨大的语料库组成，句子中的每个词向量都对应着字典中其所在的位置，句末由&lt;EOS&gt;来表示句子的结束。语料中没有的词向量以&lt;UNK&gt;表示。</p>
+<h2 id="1-6-语言模型和序列生成"><a href="#1-6-语言模型和序列生成" class="headerlink" title="1.6 语言模型和序列生成"></a>1.6 语言模型和序列生成</h2><p>​    语言模型的训练集由一个巨大的语料库组成，句子中的每个词向量都对应着字典中其所在的位置，句末由\<eos>来表示句子的结束。语料中没有的词向量以\<unk>表示。</unk></eos></p>
 <h2 id="1-7-对新序列采样"><a href="#1-7-对新序列采样" class="headerlink" title="1.7 对新序列采样"></a>1.7 对新序列采样</h2><p>暂时没看懂</p>
 <h2 id="1-8-RNN的梯度消失"><a href="#1-8-RNN的梯度消失" class="headerlink" title="1.8 RNN的梯度消失"></a>1.8 RNN的梯度消失</h2><p>示例：</p>
 <ul>
@@ -591,7 +599,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -613,7 +621,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -711,7 +719,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.6k</span>
+    <span title="Site words total count">9.6k</span>
   
 </div>
 
