@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="盲区FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现 efficientNet原理 疑问有无">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-25T17:30:40.254Z">
+<meta property="og:updated_time" content="2019-08-26T04:35:30.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SIIM比赛中遇到的知识盲区及可改进的地方">
 <meta name="twitter:description" content="盲区FocalLoss和diceLoss的实现细节和应用场景 Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet的技术细节 学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up threshold的调整策略 PyTorch实战经验不足，baseline的自主编写 新兴模型复现 efficientNet原理 疑问有无">
@@ -357,7 +357,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 196字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 216字</span>
 
           
 
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  196
+                  216
                 </span>
               
 
@@ -418,6 +418,7 @@
 <p>efficientNet原理</p>
 <h2 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h2><p>有无mask的训练集对半开为什么能提高分数</p>
 <p>iscrowd这个参数到底意味着什么</p>
+<p>最佳模型的评判标准为什么不是iOU而是loss？</p>
 <h2 id="可改进点"><a href="#可改进点" class="headerlink" title="可改进点"></a>可改进点</h2><p>efficientNet专注二分类，后融合到分割结果上</p>
 <p>五折交叉验证的训练集也改为对半开</p>
 <p>每次五折验证的选择是否相同</p>
@@ -427,13 +428,14 @@
 <h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1：</p>
 <ul>
 <li>resnet34五折</li>
-<li>efficientUnet单折</li>
+<li>efficientUnet_b5单折</li>
 <li>SeNet154单折</li>
 </ul>
 <p>2:</p>
 <ul>
 <li>Se-ReNeXt101 Unet++单折</li>
 <li>SeNet154 Unet++ 单折</li>
+<li>EfficientUnet_b5 五折</li>
 </ul>
 
       
@@ -704,7 +706,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">9.6k</span>
+    <span title="Site words total count">9.7k</span>
   
 </div>
 
