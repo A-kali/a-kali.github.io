@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="3.1 命名空间的 using 声明​    域操作符（::）的含义是：编译器应从操作符左侧名字所示作用域中寻找右侧那个名字。因此，std::cin 的意思就是要使用命名空间 std 中的名字 cin。而使用 using 声明后则无需专门的前缀也能使用所需的名字了。 123using std::cin;int i;cin &amp;gt;&amp;gt; i; 更方便的方法： 1using namespace s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-25T19:36:18.787Z">
+<meta property="og:updated_time" content="2019-08-27T16:14:38.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《C++ Primer》 第3章 字符串、向量和数组">
 <meta name="twitter:description" content="3.1 命名空间的 using 声明​    域操作符（::）的含义是：编译器应从操作符左侧名字所示作用域中寻找右侧那个名字。因此，std::cin 的意思就是要使用命名空间 std 中的名字 cin。而使用 using 声明后则无需专门的前缀也能使用所需的名字了。 123using std::cin;int i;cin &amp;gt;&amp;gt; i; 更方便的方法： 1using namespace s">
@@ -357,7 +357,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 541字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 788字</span>
 
           
 
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  541
+                  788
                 </span>
               
 
@@ -388,7 +388,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  3分钟
                 </span>
               
             </div>
@@ -423,7 +423,14 @@
 <h2 id="3-2-3-处理-string-对象中的字符"><a href="#3-2-3-处理-string-对象中的字符" class="headerlink" title="3.2.3 处理 string 对象中的字符"></a>3.2.3 处理 string 对象中的字符</h2><p>​    <strong>cctype头文件</strong>中定义了一组标准库函数来处理 string 对象中的字符。比如判断字符是否为数字、字母、控制字符、可打印字符、大写、小写、标点等，以及大小写转换。（p82）</p>
 <h3 id="基于范围的-for-语句"><a href="#基于范围的-for-语句" class="headerlink" title="基于范围的 for 语句"></a>基于范围的 for 语句</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (declaration: expression)  <span class="comment">// 跟python中 for declaration in expresson 类似</span></span><br><span class="line">    statement</span><br><span class="line"><span class="comment">// 举例    </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> c : str)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="使用范围-for-语句改变字符串中的字符"><a href="#使用范围-for-语句改变字符串中的字符" class="headerlink" title="使用范围 for 语句改变字符串中的字符"></a>使用范围 for 语句改变字符串中的字符</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> &amp;c : str)  <span class="comment">// c是一个引用，故赋值语句将改变s中字符的值</span></span><br><span class="line">    c = <span class="built_in">toupper</span>(c);</span><br></pre></td></tr></table></figure>
-<h3 id="使用下标迭代（p85）"><a href="#使用下标迭代（p85）" class="headerlink" title="使用下标迭代（p85）"></a>使用下标迭代（p85）</h3>
+<h1 id="3-3-标准库类型-vector"><a href="#3-3-标准库类型-vector" class="headerlink" title="3.3 标准库类型 vector"></a>3.3 标准库类型 vector</h1><p>​    标准库类型 <strong>vector</strong> 表示对象的集合，其中所有对象的类型都相同。集合中每个对象都有一个与之对应的索引，索引用于访问对象。因为 vectot 容纳着其他对象，所以它也常被称作<strong>容器</strong>。</p>
+<p>​    使用 vector：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec;  <span class="comment">// 定义一个能容纳int类型集合的对象</span></span><br><span class="line"><span class="built_in">vector</span>&lt;Sales_item&gt; Sales_vec;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; file;</span><br></pre></td></tr></table></figure>
+<p>vector 能容纳绝大多数类型的对象作为其元素。</p>
+<h2 id="3-3-1-定义和初始化-vector-对象"><a href="#3-3-1-定义和初始化-vector-对象" class="headerlink" title="3.3.1 定义和初始化 vector 对象"></a>3.3.1 定义和初始化 vector 对象</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;T&gt; v1;</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v2(v1);</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v3 = v1;</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v4(n, val);</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v5(n);</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v6&#123;a,b,c...&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v7 = &#123;a,b,c...&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-2-向-vector-对象中添加元素"><a href="#3-3-2-向-vector-对象中添加元素" class="headerlink" title="3.3.2 向 vector 对象中添加元素"></a>3.3.2 向 vector 对象中添加元素</h2><p>​    vector 的成员函数 <strong>push_back()</strong> 能将一个元素添加到 vector 的尾端。</p>
+<h2 id="3-3-3-其他-vector-操作"><a href="#3-3-3-其他-vector-操作" class="headerlink" title="3.3.3 其他 vector 操作"></a>3.3.3 其他 vector 操作</h2><p>​    跟 string 差不多。</p>
+<h1 id="3-4-迭代器介绍（p95）"><a href="#3-4-迭代器介绍（p95）" class="headerlink" title="3.4 迭代器介绍（p95）"></a>3.4 迭代器介绍（p95）</h1>
       
     </div>
     
@@ -641,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-1-命名空间的-using-声明"><span class="nav-number">1.</span> <span class="nav-text">3.1 命名空间的 using 声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-2-标准库类型-string"><span class="nav-number">2.</span> <span class="nav-text">3.2 标准库类型 string</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-1-定义和初始化-string-对象"><span class="nav-number">2.1.</span> <span class="nav-text">3.2.1 定义和初始化 string 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-2-string-对象上的操作"><span class="nav-number">2.2.</span> <span class="nav-text">3.2.2 string 对象上的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读写-string-对象"><span class="nav-number">2.2.1.</span> <span class="nav-text">读写 string 对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-3-处理-string-对象中的字符"><span class="nav-number">2.3.</span> <span class="nav-text">3.2.3 处理 string 对象中的字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于范围的-for-语句"><span class="nav-number">2.3.1.</span> <span class="nav-text">基于范围的 for 语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用范围-for-语句改变字符串中的字符"><span class="nav-number">2.3.2.</span> <span class="nav-text">使用范围 for 语句改变字符串中的字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用下标迭代（p85）"><span class="nav-number">2.3.3.</span> <span class="nav-text">使用下标迭代（p85）</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-1-命名空间的-using-声明"><span class="nav-number">1.</span> <span class="nav-text">3.1 命名空间的 using 声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-2-标准库类型-string"><span class="nav-number">2.</span> <span class="nav-text">3.2 标准库类型 string</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-1-定义和初始化-string-对象"><span class="nav-number">2.1.</span> <span class="nav-text">3.2.1 定义和初始化 string 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-2-string-对象上的操作"><span class="nav-number">2.2.</span> <span class="nav-text">3.2.2 string 对象上的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读写-string-对象"><span class="nav-number">2.2.1.</span> <span class="nav-text">读写 string 对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-3-处理-string-对象中的字符"><span class="nav-number">2.3.</span> <span class="nav-text">3.2.3 处理 string 对象中的字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于范围的-for-语句"><span class="nav-number">2.3.1.</span> <span class="nav-text">基于范围的 for 语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用范围-for-语句改变字符串中的字符"><span class="nav-number">2.3.2.</span> <span class="nav-text">使用范围 for 语句改变字符串中的字符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-3-标准库类型-vector"><span class="nav-number">3.</span> <span class="nav-text">3.3 标准库类型 vector</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-1-定义和初始化-vector-对象"><span class="nav-number">3.1.</span> <span class="nav-text">3.3.1 定义和初始化 vector 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-2-向-vector-对象中添加元素"><span class="nav-number">3.2.</span> <span class="nav-text">3.3.2 向 vector 对象中添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-3-其他-vector-操作"><span class="nav-number">3.3.</span> <span class="nav-text">3.3.3 其他 vector 操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-4-迭代器介绍（p95）"><span class="nav-number">4.</span> <span class="nav-text">3.4 迭代器介绍（p95）</span></a></li></ol></div>
             
 
           </div>
@@ -684,7 +691,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">9.7k</span>
+    <span title="Site words total count">10k</span>
   
 </div>
 
