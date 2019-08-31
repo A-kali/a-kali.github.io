@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="记事​    随着 Kaggle: SIIM-ACR Pneumothorax Segmentation 接近尾声，我感觉有必要写一篇 blog 来记录一下这两个月的比赛经历，顺便总结一下经验。 ​    刚开始的时候想着这不过是一场普通CV类的比赛而已，肝一肝就能上金牌。但现实狠狠地打了我的脸。最初三天看了看比赛规则，了解了下RLE等语义分割的基本概念，看了看各路大佬的EDA，算是入了个小门。随">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T16:00:57.110Z">
+<meta property="og:updated_time" content="2019-08-31T06:39:40.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaggle 比赛记录之 SIIM-ACR Pneumothorax Segmentation">
 <meta name="twitter:description" content="记事​    随着 Kaggle: SIIM-ACR Pneumothorax Segmentation 接近尾声，我感觉有必要写一篇 blog 来记录一下这两个月的比赛经历，顺便总结一下经验。 ​    刚开始的时候想着这不过是一场普通CV类的比赛而已，肝一肝就能上金牌。但现实狠狠地打了我的脸。最初三天看了看比赛规则，了解了下RLE等语义分割的基本概念，看了看各路大佬的EDA，算是入了个小门。随">
@@ -441,6 +441,7 @@
 <p>​    对 EfficientUNet_B5、ResNet34、SENet154、SE_ReNeXt101 四模型按 3:2:3:2 的比例进行融合，min_size == 3000，分数提高到 0.8694。</p>
 <p>​    与此同时的另一边，将二分类的正样本对应的三模型预测样本的min_size调整到2500，其余保持3000，也得到了 0.8694 的分数。</p>
 <p>​    可是离金牌还有 0.01 分的差距，光是这样调参怕是很难上金牌&#x1F62A;  —— 2019.8.28</p>
+<p>​    比赛进入第二阶段，更换了测试集。以新测试集的 1% 数据的成绩作为公榜成绩，剩下 99% 作为最终成绩。—— 2019.8.31</p>
 <h1 id="盲区"><a href="#盲区" class="headerlink" title="盲区"></a>盲区</h1><p>FocalLoss和diceLoss的实现细节和应用场景</p>
 <p>Unet、Unet++、FastRCNN、MaskRCNN、FPN、DCN、Cascade、SENet、efficientNet的技术细节</p>
 <p>学习率的相关优化算法及应用场景，如ReduceLROnPlateau、warm up</p>
@@ -455,18 +456,6 @@
 <h1 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h1><p>下次比赛一定要记录每个模型提交的参数、文件和分数啊啊啊啊，不然最后多模型融合的时候不知道如何分配权重</p>
 <p>通过对比两份分数的高低和csv的差别，是否能确定哪些预测是对的（好像有点场外）</p>
 <p>下次比赛要从头跟到尾，这样能尝试到更多的tips和参数</p>
-<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1：</p>
-<ul>
-<li>resnet34五折</li>
-<li>efficientUnet_b5单折</li>
-<li>SeNet154单折</li>
-</ul>
-<p>2:</p>
-<ul>
-<li>Se-ReNeXt101 Unet++单折</li>
-<li>SeNet154 Unet++ 单折</li>
-<li>EfficientUnet_b5 五折</li>
-</ul>
 
       
     </div>
@@ -695,7 +684,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记事"><span class="nav-number">1.</span> <span class="nav-text">记事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盲区"><span class="nav-number">2.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Note"><span class="nav-number">5.</span> <span class="nav-text">Note</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记事"><span class="nav-number">1.</span> <span class="nav-text">记事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盲区"><span class="nav-number">2.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li></ol></div>
             
 
           </div>
