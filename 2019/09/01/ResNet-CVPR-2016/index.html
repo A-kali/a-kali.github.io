@@ -95,7 +95,8 @@
 <meta property="og:description" content="文章：Deep Residual Learning for Image Recognition 作者：Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun 摘要​    越深的神经网络越难训练。对于那些明显比我们过去使用的神经网络要深得多得网络，我们提出了一种残差学习框架来简化训练其训练过程。我们提供了全面的实验性证据表明这些残差网络更容易优化，并且一">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/01/nS6Rc8.png">
-<meta property="og:updated_time" content="2019-09-01T15:50:46.964Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20171218163309386?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvUXVpbmN1bnRpYWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-09-02T08:45:14.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ResNet (CVPR, 2016)">
 <meta name="twitter:description" content="文章：Deep Residual Learning for Image Recognition 作者：Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun 摘要​    越深的神经网络越难训练。对于那些明显比我们过去使用的神经网络要深得多得网络，我们提出了一种残差学习框架来简化训练其训练过程。我们提供了全面的实验性证据表明这些残差网络更容易优化，并且一">
@@ -337,7 +338,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.2k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.3k字</span>
 
           
 
@@ -352,7 +353,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  1.3k
                 </span>
               
 
@@ -407,7 +408,13 @@ F=W_2 \sigma(W_1x)</script><p>其中 σ 表示 ReLU，为了简化写法忽略�
 <p>​    第一条方程式中的 F 和 x 的维度必须是相等的。如果不是这种情况（比如当改变输入输出通道时），<strong>我们可以添加系数矩阵 $W_s$ 来使得 F 和 x 维度相等</strong>。</p>
 <script type="math/tex; mode=display">
 y=F(x,W_i)+W_sx</script><p>​    <strong>残差函数 F 的形式时可变的。本文的实验中包含了两层和三层的结构，当然更多层也是可以的，甚至可以用于卷积层。</strong></p>
-<h2 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h2><p>暂时pass</p>
+<h2 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h2><p><img src="https://img-blog.csdn.net/20171218163309386?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvUXVpbmN1bnRpYWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt></p>
+<h1 id="ResNet-的意义"><a href="#ResNet-的意义" class="headerlink" title="ResNet 的意义"></a>ResNet 的意义</h1><p>​    从关联性的角度来看，残差结构使得深层网络和浅层网络的关联性更强，输出端的损失能更加有效地调整到浅层网络的参数。当网络层数过深时，优化器会调低网络权重，使得反向传播“选择性地”使用捷径。</p>
+<p>​    从函数角度来看，残差结构直接构建了一个更接近”绝对不比浅层网络差“的结构。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="[https://hellozhaozheng.github.io/z_post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89-ResNet-CVPR2016/](https://hellozhaozheng.github.io/z_post/计算机视觉-ResNet-CVPR2016/">从零开始的BLOG</a>)</p>
+<p><a href="https://blog.csdn.net/Quincuntial/article/details/77263562?locationNum=6" target="_blank" rel="noopener">ResNet 论文翻译</a></p>
+<p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a></p>
+<p>恺明大佬牛逼！</p>
 
       
     </div>
@@ -636,7 +643,7 @@ y=F(x,W_i)+W_sx</script><p>​    <strong>残差函数 F 的形式时可变的�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">2.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深度残差学习"><span class="nav-number">3.</span> <span class="nav-text">深度残差学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#残差学习"><span class="nav-number">3.1.</span> <span class="nav-text">残差学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷恒等映射"><span class="nav-number">3.2.</span> <span class="nav-text">快捷恒等映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络架构"><span class="nav-number">3.3.</span> <span class="nav-text">网络架构</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">2.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深度残差学习"><span class="nav-number">3.</span> <span class="nav-text">深度残差学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#残差学习"><span class="nav-number">3.1.</span> <span class="nav-text">残差学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷恒等映射"><span class="nav-number">3.2.</span> <span class="nav-text">快捷恒等映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络架构"><span class="nav-number">3.3.</span> <span class="nav-text">网络架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ResNet-的意义"><span class="nav-number">4.</span> <span class="nav-text">ResNet 的意义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -679,7 +686,7 @@ y=F(x,W_i)+W_sx</script><p>​    <strong>残差函数 F 的形式时可变的�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.5k</span>
+    <span title="Site words total count">14.7k</span>
   
 </div>
 
