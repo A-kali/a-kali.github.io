@@ -86,18 +86,23 @@
 
 
 
-<meta name="description" content="$b_2$">
+<meta name="description" content="基本概念混淆矩阵   - Positive Predictions Negative Predictions    Positive Label TP (True Positive) FN   Negative Label FP TN   Accuracy（ACC，准确率）$$ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}$$ Precis">
 <meta name="keywords" content="机器学习,评价指标">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习中的评价指标">
 <meta property="og:url" content="http://a-kali.github.io/2019/09/03/机器学习中的评价指标/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="$b_2$">
+<meta property="og:description" content="基本概念混淆矩阵   - Positive Predictions Negative Predictions    Positive Label TP (True Positive) FN   Negative Label FP TN   Accuracy（ACC，准确率）$$ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}$$ Precis">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-03T08:53:21.634Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nkRp6J.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nk7o59.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nkLzOP.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nkOQkF.jpg">
+<meta property="og:updated_time" content="2019-09-03T12:04:24.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习中的评价指标">
-<meta name="twitter:description" content="$b_2$">
+<meta name="twitter:description" content="基本概念混淆矩阵   - Positive Predictions Negative Predictions    Positive Label TP (True Positive) FN   Negative Label FP TN   Accuracy（ACC，准确率）$$ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}$$ Precis">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/03/nkRp6J.jpg">
 
 
 
@@ -357,7 +362,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.2k字</span>
 
           
 
@@ -372,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1
+                  1.2k
                 </span>
               
 
@@ -388,7 +393,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  4分钟
                 </span>
               
             </div>
@@ -409,7 +414,56 @@
       
 
       
-        <p>$b_2$</p>
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><table>
+<thead>
+<tr>
+<th align="center">-</th>
+<th align="center">Positive Predictions</th>
+<th align="center">Negative Predictions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Positive Label</td>
+<td align="center">TP (True Positive)</td>
+<td align="center">FN</td>
+</tr>
+<tr>
+<td align="center">Negative Label</td>
+<td align="center">FP</td>
+<td align="center">TN</td>
+</tr>
+</tbody></table>
+<h2 id="Accuracy（ACC，准确率）"><a href="#Accuracy（ACC，准确率）" class="headerlink" title="Accuracy（ACC，准确率）"></a>Accuracy（ACC，准确率）</h2><p>$$<br>ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}<br>$$</p>
+<h2 id="Precision（PRE，精度、查准率）"><a href="#Precision（PRE，精度、查准率）" class="headerlink" title="Precision（PRE，精度、查准率）"></a>Precision（PRE，精度、查准率）</h2><p>$$<br>PRE=\frac{TP}{TP+FP}=\frac{预测正确的正样本数}{所有预测为正的样本数}<br>$$</p>
+<h2 id="True-Positive-Rate（TPR，召回率、查全率）"><a href="#True-Positive-Rate（TPR，召回率、查全率）" class="headerlink" title="True Positive Rate（TPR，召回率、查全率）"></a>True Positive Rate（TPR，召回率、查全率）</h2><p>$$<br>TPR=\frac{TP}{TP+FN}= \frac{预测正确的正样本数}{总正样本数}<br>$$</p>
+<h2 id="False-Positive-Rate（FPR，误报率）"><a href="#False-Positive-Rate（FPR，误报率）" class="headerlink" title="False Positive Rate（FPR，误报率）"></a>False Positive Rate（FPR，误报率）</h2><p>$$<br>FPR=\frac{FP}{TN+FP}=\frac{预测为正的负样本数}{总负样本数}<br>$$</p>
+<h2 id="False-Negative-Rate（FNR，漏报率）"><a href="#False-Negative-Rate（FNR，漏报率）" class="headerlink" title="False Negative Rate（FNR，漏报率）"></a>False Negative Rate（FNR，漏报率）</h2><p>$$<br>FNR=\frac{FN}{TN+FN}=\frac{预测为负的正样本数}{预测成负样本的总数量}<br>$$</p>
+<h1 id="评估曲线"><a href="#评估曲线" class="headerlink" title="评估曲线"></a>评估曲线</h1><h2 id="PR-曲线"><a href="#PR-曲线" class="headerlink" title="PR 曲线"></a>PR 曲线</h2><p>精度又名查准率, 关心的是 “查出的所有正例中, 哪些正例是查对的”<br>召回率又名查全率, 关心的是 “对于所有的正例, 正确查出了多少个”</p>
+<p>这二者是一对矛盾的度量, 因为我们很容易知道:</p>
+<ul>
+<li>如果我们希望查准率高, 那么可以认为是 “只有当十成把握认为其是正例时, 才将其挑出”。</li>
+<li>而如果我们希望召回率高, 那么可以认为是 “宁错杀一百, 不放过一个”. 查准率和查全率的曲线又叫 PR 曲线, 如下图所示：</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/09/03/nkRp6J.jpg" alt="nkRp6J.jpg"></p>
+<p>通常情况下, 如果一个学习器的 PR 曲线被另一个学习器 <strong>完全包住</strong>. 那么我们就认为后者的性能优于前者. 当二者存在交叉时, 我们可以通过四种方式来确定学习器的优劣：</p>
+<ol>
+<li><p>计算 PR 曲线与横纵坐标轴围成的面积, 面积越大越好；</p>
+</li>
+<li><p>利用平衡点 (BEP, 查准率=查全率), BEP 越大越好；</p>
+</li>
+<li><p>利用$F_\beta$度量, 当 $\beta&lt;1$ 时， 查准率(精度)权重更大, 当$\beta&gt;1$时， 查全率(召回率)权重更大。$F__\beta$的计算公式来自于加权调和平均数：<br>$$<br>\frac{1}{F_\beta}=\frac{1}{1+β^2}(\frac{1}{P}+\frac{β^2}{R})\F_β=\frac{(1+β^2)×P×R}{β^2×P+R}<br>$$</p>
+</li>
+</ol>
+<h2 id="ROC-曲线"><a href="#ROC-曲线" class="headerlink" title="ROC 曲线"></a>ROC 曲线</h2><p>​    很多学习器是为测试样本产生一个实值或概率预测，然后将这个预测值与一个分类阈值进行比较，若大于阈值分为正例，否则分为负例，因此分类过程可以看做是选取一个合适的截断点。那么到底什么样的截断点更合适呢？ ROC 正是从这个角度来研究学习器好坏的工具。</p>
+<p>​    ROC 曲线的纵坐标和横坐标分别是召回率和误诊率，下图为 ROC 曲线图，实际任务中会利用有限个测试样本来绘制 ROC 图，所以产生的大多不是平滑的曲线。</p>
+<p><img src="https://s2.ax1x.com/2019/09/03/nk7o59.jpg" alt="nk7o59.jpg"></p>
+<h3 id="绘制-ROC-曲线"><a href="#绘制-ROC-曲线" class="headerlink" title="绘制 ROC 曲线"></a>绘制 ROC 曲线</h3><p>​    假设已经得出一系列样本被划分为正类的概率，然后按照大小排序，下图是一个示例，图中共有20个测试样本，”Class” 一栏表示每个测试样本真正的标签（p表示正样本，n表示负样本），”Score” 表示每个测试样本属于正样本的概率。</p>
+<p><img src="https://s2.ax1x.com/2019/09/03/nkLzOP.jpg" alt="nkLzOP.jpg"></p>
+<p>​    接下来，我们从高到低，依次将“Score”值作为阈值threshold，当测试样本属于正样本的概率大于或等于这个threshold时，我们认为它为正样本，否则为负样本。举例来说，对于图中的第4个样本，其“Score”值为0.6，那么样本1，2，3，4都被认为是正样本，因为它们的“Score”值都大于等于0.6，而其他样本则都认为是负样本。每次选取一个不同的threshold，我们就可以得到一组FPR和TPR，即ROC曲线上的一点。这样一来，我们一共得到了20组FPR和TPR的值，将它们画在ROC曲线的结果如下图：</p>
+<p><img src="https://s2.ax1x.com/2019/09/03/nkOQkF.jpg" alt="nkOQkF.jpg"></p>
+<h3 id="ROC-曲线的意义"><a href="#ROC-曲线的意义" class="headerlink" title="ROC 曲线的意义"></a>ROC 曲线的意义</h3><p>​    有助于选择最佳的阈值。ROC曲线越靠近左上角，模型的准确性就越高。最靠近左上角的ROC曲线上的点是分类错误最少的最好阈值，其假正例和假反例总数最少。</p>
+<h2 id="AUC-的含义及计算"><a href="#AUC-的含义及计算" class="headerlink" title="AUC 的含义及计算"></a>AUC 的含义及计算</h2><p>​    <strong>AUC</strong>（Area Under Curve）被定义为ROC曲线下与坐标轴围成的面积，显然这个面积的数值不会大于1。又由于ROC曲线一般都处于y=x这条直线的上方，所以AUC的取值范围在0.5和1之间。</p>
+<p>​    在进行学习器的比较时，若一个学习器的ROC曲线被另一个学习器的曲线完全“包住”，则可断言后者的性能优于前者；若两个学习器的ROC曲线发生交叉，则难以一般性的断言两者孰优孰劣。此时如果一定要进行比较，则比较合理的判断依据是比较AUC，AUC大的学习器通常性能更好。</p>
 
       
     </div>
@@ -526,8 +580,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -612,6 +675,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#混淆矩阵"><span class="nav-number">1.1.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accuracy（ACC，准确率）"><span class="nav-number">1.2.</span> <span class="nav-text">Accuracy（ACC，准确率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision（PRE，精度、查准率）"><span class="nav-number">1.3.</span> <span class="nav-text">Precision（PRE，精度、查准率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#True-Positive-Rate（TPR，召回率、查全率）"><span class="nav-number">1.4.</span> <span class="nav-text">True Positive Rate（TPR，召回率、查全率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#False-Positive-Rate（FPR，误报率）"><span class="nav-number">1.5.</span> <span class="nav-text">False Positive Rate（FPR，误报率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#False-Negative-Rate（FNR，漏报率）"><span class="nav-number">1.6.</span> <span class="nav-text">False Negative Rate（FNR，漏报率）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评估曲线"><span class="nav-number">2.</span> <span class="nav-text">评估曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PR-曲线"><span class="nav-number">2.1.</span> <span class="nav-text">PR 曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROC-曲线"><span class="nav-number">2.2.</span> <span class="nav-text">ROC 曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制-ROC-曲线"><span class="nav-number">2.2.1.</span> <span class="nav-text">绘制 ROC 曲线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC-曲线的意义"><span class="nav-number">2.2.2.</span> <span class="nav-text">ROC 曲线的意义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUC-的含义及计算"><span class="nav-number">2.3.</span> <span class="nav-text">AUC 的含义及计算</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -648,7 +727,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.2k</span>
+    <span title="Site words total count">15.5k</span>
   
 </div>
 
