@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nk7o59.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nkLzOP.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nkOQkF.jpg">
-<meta property="og:updated_time" content="2019-09-03T12:04:24.317Z">
+<meta property="og:updated_time" content="2019-09-03T12:34:40.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习中的评价指标">
 <meta name="twitter:description" content="基本概念混淆矩阵   - Positive Predictions Negative Predictions    Positive Label TP (True Positive) FN   Negative Label FP TN   Accuracy（ACC，准确率）$$ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}$$ Precis">
@@ -362,7 +362,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.2k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.3k字</span>
 
           
 
@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  1.3k
                 </span>
               
 
@@ -464,6 +464,10 @@
 <h3 id="ROC-曲线的意义"><a href="#ROC-曲线的意义" class="headerlink" title="ROC 曲线的意义"></a>ROC 曲线的意义</h3><p>​    有助于选择最佳的阈值。ROC曲线越靠近左上角，模型的准确性就越高。最靠近左上角的ROC曲线上的点是分类错误最少的最好阈值，其假正例和假反例总数最少。</p>
 <h2 id="AUC-的含义及计算"><a href="#AUC-的含义及计算" class="headerlink" title="AUC 的含义及计算"></a>AUC 的含义及计算</h2><p>​    <strong>AUC</strong>（Area Under Curve）被定义为ROC曲线下与坐标轴围成的面积，显然这个面积的数值不会大于1。又由于ROC曲线一般都处于y=x这条直线的上方，所以AUC的取值范围在0.5和1之间。</p>
 <p>​    在进行学习器的比较时，若一个学习器的ROC曲线被另一个学习器的曲线完全“包住”，则可断言后者的性能优于前者；若两个学习器的ROC曲线发生交叉，则难以一般性的断言两者孰优孰劣。此时如果一定要进行比较，则比较合理的判断依据是比较AUC，AUC大的学习器通常性能更好。</p>
+<h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p><a href="https://hellozhaozheng.github.io/z_post/计算机视觉-计算机视觉知识点总结/" target="_blank" rel="noopener">计算机视觉知识总结</a></p>
+<p><a href="https://baike.baidu.com/item/AUC/19282953?fr=aladdin" target="_blank" rel="noopener">AUC 百度百科</a></p>
+<p><a href="https://zdkswd.github.io/2018/11/20/精确率、召回率、真正类率（TPR）、假正类率（FPR）ROC曲线/" target="_blank" rel="noopener">精确率、召回率、真正类率（TPR）、假正类率（FPR）ROC曲线</a></p>
+<p><a href="https://blog.csdn.net/Libo_Learner/article/details/83615715" target="_blank" rel="noopener">机器学习笔记~F-score beta衡量precision和recall之间重要性</a></p>
 
       
     </div>
@@ -684,7 +688,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#混淆矩阵"><span class="nav-number">1.1.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accuracy（ACC，准确率）"><span class="nav-number">1.2.</span> <span class="nav-text">Accuracy（ACC，准确率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision（PRE，精度、查准率）"><span class="nav-number">1.3.</span> <span class="nav-text">Precision（PRE，精度、查准率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#True-Positive-Rate（TPR，召回率、查全率）"><span class="nav-number">1.4.</span> <span class="nav-text">True Positive Rate（TPR，召回率、查全率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#False-Positive-Rate（FPR，误报率）"><span class="nav-number">1.5.</span> <span class="nav-text">False Positive Rate（FPR，误报率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#False-Negative-Rate（FNR，漏报率）"><span class="nav-number">1.6.</span> <span class="nav-text">False Negative Rate（FNR，漏报率）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评估曲线"><span class="nav-number">2.</span> <span class="nav-text">评估曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PR-曲线"><span class="nav-number">2.1.</span> <span class="nav-text">PR 曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROC-曲线"><span class="nav-number">2.2.</span> <span class="nav-text">ROC 曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制-ROC-曲线"><span class="nav-number">2.2.1.</span> <span class="nav-text">绘制 ROC 曲线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC-曲线的意义"><span class="nav-number">2.2.2.</span> <span class="nav-text">ROC 曲线的意义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUC-的含义及计算"><span class="nav-number">2.3.</span> <span class="nav-text">AUC 的含义及计算</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#混淆矩阵"><span class="nav-number">1.1.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accuracy（ACC，准确率）"><span class="nav-number">1.2.</span> <span class="nav-text">Accuracy（ACC，准确率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision（PRE，精度、查准率）"><span class="nav-number">1.3.</span> <span class="nav-text">Precision（PRE，精度、查准率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#True-Positive-Rate（TPR，召回率、查全率）"><span class="nav-number">1.4.</span> <span class="nav-text">True Positive Rate（TPR，召回率、查全率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#False-Positive-Rate（FPR，误报率）"><span class="nav-number">1.5.</span> <span class="nav-text">False Positive Rate（FPR，误报率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#False-Negative-Rate（FNR，漏报率）"><span class="nav-number">1.6.</span> <span class="nav-text">False Negative Rate（FNR，漏报率）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评估曲线"><span class="nav-number">2.</span> <span class="nav-text">评估曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PR-曲线"><span class="nav-number">2.1.</span> <span class="nav-text">PR 曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROC-曲线"><span class="nav-number">2.2.</span> <span class="nav-text">ROC 曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制-ROC-曲线"><span class="nav-number">2.2.1.</span> <span class="nav-text">绘制 ROC 曲线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC-曲线的意义"><span class="nav-number">2.2.2.</span> <span class="nav-text">ROC 曲线的意义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUC-的含义及计算"><span class="nav-number">2.3.</span> <span class="nav-text">AUC 的含义及计算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献："><span class="nav-number">3.</span> <span class="nav-text">参考文献：</span></a></li></ol></div>
             
 
           </div>
