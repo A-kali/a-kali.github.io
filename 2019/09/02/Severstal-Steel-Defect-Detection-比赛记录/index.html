@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Kaggle,计算机视觉,语义分割,">
 
 
 
@@ -86,17 +86,18 @@
 
 
 
-<meta name="description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：  Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}用于比较两字符串的相似度，大概就">
+<meta name="description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：$$Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}$$用于比较两字符串的相似度，大">
+<meta name="keywords" content="Kaggle,计算机视觉,语义分割">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Severstal: Steel Defect Detection 比赛记录">
+<meta property="og:title" content="Kaggle 比赛记录之 Severstal: Steel Defect Detection">
 <meta property="og:url" content="http://a-kali.github.io/2019/09/02/Severstal-Steel-Defect-Detection-比赛记录/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：  Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}用于比较两字符串的相似度，大概就">
+<meta property="og:description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：$$Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}$$用于比较两字符串的相似度，大">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-02T02:21:30.050Z">
+<meta property="og:updated_time" content="2019-09-04T07:04:31.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Severstal: Steel Defect Detection 比赛记录">
-<meta name="twitter:description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：  Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}用于比较两字符串的相似度，大概就">
+<meta name="twitter:title" content="Kaggle 比赛记录之 Severstal: Steel Defect Detection">
+<meta name="twitter:description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：$$Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}$$用于比较两字符串的相似度，大">
 
 
 
@@ -132,7 +133,7 @@
 
 
 
-  <title>Severstal: Steel Defect Detection 比赛记录 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Kaggle 比赛记录之 Severstal: Steel Defect Detection | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -296,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Severstal: Steel Defect Detection 比赛记录</h1>
+          <h1 class="post-title" itemprop="name headline">Kaggle 比赛记录之 Severstal: Steel Defect Detection</h1>
         
 
         <div class="post-meta">
@@ -319,6 +320,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机视觉/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机视觉</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -334,7 +357,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 446字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 722字</span>
 
           
 
@@ -349,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  446
+                  722
                 </span>
               
 
@@ -365,7 +388,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -388,16 +411,15 @@
       
         <p>​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。</p>
 <h1 id="比赛概览"><a href="#比赛概览" class="headerlink" title="比赛概览"></a>比赛概览</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。</p>
-<h2 id="成绩评价指标"><a href="#成绩评价指标" class="headerlink" title="成绩评价指标"></a>成绩评价指标</h2><p>​    <strong>Dice系数：</strong></p>
-<script type="math/tex; mode=display">
-Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符串的相似度，大概就是两字符串相同字符的个数乘2比上长度之和。这里应该是用来比较 RLE 编码的相似度。</p>
+<h2 id="成绩评价指标"><a href="#成绩评价指标" class="headerlink" title="成绩评价指标"></a>成绩评价指标</h2><p>​    <strong>Dice系数：</strong><br>$$<br>Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}<br>$$<br>用于比较两字符串的相似度，大概就是两字符串相同字符的个数乘2比上长度之和。这里应该是用来比较 RLE 编码的相似度。</p>
 <p>​    提交的数据的三分之一用于公榜展示，剩下的三分之二作为最终成绩。这意味着可能比赛结束成绩就出来了。</p>
 <h2 id="比赛时间"><a href="#比赛时间" class="headerlink" title="比赛时间"></a>比赛时间</h2><ul>
 <li><p>2019.10.17 加入比赛、数据公开和组队的截止日期。</p>
 </li>
 <li><p>2019.10.24 提交最终成绩。</p>
 </li>
-<li>2019.11.10 高效奖争夺最终提交。（该比赛的前 50 可以进入高效奖的争夺）</li>
+<li><p>2019.11.10 高效奖争夺最终提交。（该比赛的前 50 可以进入高效奖的争夺）</p>
+</li>
 </ul>
 <h2 id="这是一个-Kernels-only-比赛"><a href="#这是一个-Kernels-only-比赛" class="headerlink" title="这是一个 Kernels-only 比赛"></a>这是一个 Kernels-only 比赛</h2><p>​    最终的提交文件必须在 kernel 上生成，比赛者需要上传模型并在 kernel 上进行最后的测试。并需要满足以下条件：</p>
 <ul>
@@ -405,10 +427,28 @@ Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符�
 <li>断网。</li>
 </ul>
 <h1 id="比赛数据"><a href="#比赛数据" class="headerlink" title="比赛数据"></a>比赛数据</h1><p>​    训练图集、测试图集、训练样本数据和提交样本。每张图占4行csv，分别表示其4种损坏的RLE码。</p>
-<h1 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h1><p>先说说自己对数据的想法：</p>
+<h1 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h1><p>在做EDA之前先说说自己对数据的想法：</p>
 <ul>
 <li>既然每个样本有 4 种损坏类型，那是不是每种损坏可以单独用一个模型来训练。</li>
-<li>扁钢损坏率似乎不大，这意味着每块扁钢或许只有1-2种损坏。</li>
+<li>扁钢损坏率似乎不大，这意味着大多数扁钢或许只有1-2种损坏。</li>
+</ul>
+<p>以上有待EDA考究。</p>
+<p>让我们来找一篇<a href="https://www.kaggle.com/go1dfish/clear-mask-visualization-and-simple-eda" target="_blank" rel="noopener">点赞数最多的 EDA</a> 瞅一瞅，得出以下信息：</p>
+<ul>
+<li>训练样本数为 12568，其中有损坏的样本数为 5902，接近一半</li>
+<li>测试样本数为1801</li>
+<li>图片长宽为 (1600, 256)</li>
+<li>四类损坏的数量：{1: 897, 2: 247, 3: 5150, 4: 801}，可见绝大部分损坏都包含第三类损坏</li>
+<li>每个样本具有损坏的种类：{0: 5902, 1: 6239, 2: 425, 3: 2}</li>
+<li>第一类损坏呈密集斑点（猜想）和小矩形状</li>
+<li>第二类损坏呈长条矩形状，似乎是刮损裂纹。竖直长度通常大于横向长度（猜想），一张图只有一个损坏（猜想）</li>
+<li>第三类损坏十分不规则，似乎是酸液腐蚀</li>
+<li>第四类损坏扁钢有明显不规则突起</li>
+</ul>
+<h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><ul>
+<li>那个网状的钢是什么？有没有其他形状的？</li>
+<li>有没有哪些易于被混淆的损坏和普通纹路？如果有可以进行可视化来找出原因。</li>
+<li>根据类型比例来设定阈值</li>
 </ul>
 
       
@@ -433,6 +473,16 @@ Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符�
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kaggle/" rel="tag"><i class="fa fa-tag"></i> Kaggle</a>
+          
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+          
+            <a href="/tags/语义分割/" rel="tag"><i class="fa fa-tag"></i> 语义分割</a>
+          
+        </div>
       
 
       
@@ -467,6 +517,10 @@ Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/03/机器学习中的评价指标/" rel="prev" title="机器学习中的评价指标">
+                机器学习中的评价指标 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -545,7 +599,7 @@ Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -556,7 +610,7 @@ Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -567,7 +621,7 @@ Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -622,7 +676,7 @@ Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#比赛概览"><span class="nav-number">1.</span> <span class="nav-text">比赛概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成绩评价指标"><span class="nav-number">1.2.</span> <span class="nav-text">成绩评价指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比赛时间"><span class="nav-number">1.3.</span> <span class="nav-text">比赛时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这是一个-Kernels-only-比赛"><span class="nav-number">1.4.</span> <span class="nav-text">这是一个 Kernels-only 比赛</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比赛数据"><span class="nav-number">2.</span> <span class="nav-text">比赛数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EDA"><span class="nav-number">3.</span> <span class="nav-text">EDA</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#比赛概览"><span class="nav-number">1.</span> <span class="nav-text">比赛概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成绩评价指标"><span class="nav-number">1.2.</span> <span class="nav-text">成绩评价指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比赛时间"><span class="nav-number">1.3.</span> <span class="nav-text">比赛时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这是一个-Kernels-only-比赛"><span class="nav-number">1.4.</span> <span class="nav-text">这是一个 Kernels-only 比赛</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比赛数据"><span class="nav-number">2.</span> <span class="nav-text">比赛数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EDA"><span class="nav-number">3.</span> <span class="nav-text">EDA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">4.</span> <span class="nav-text">疑问</span></a></li></ol></div>
             
 
           </div>
@@ -665,7 +719,7 @@ Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.7k</span>
+    <span title="Site words total count">16.3k</span>
   
 </div>
 
@@ -895,11 +949,31 @@ Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}</script><p>用于比较两字符�
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
