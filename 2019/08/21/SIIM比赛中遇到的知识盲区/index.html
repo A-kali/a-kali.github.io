@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="记事​    随着 Kaggle: SIIM-ACR Pneumothorax Segmentation 接近尾声，我感觉有必要写一篇 blog 来记录一下这两个月的比赛经历，顺便总结一下经验。 ​    刚开始的时候想着这不过是一场普通CV类的比赛而已，肝一肝就能上金牌。但现实狠狠地打了我的脸。最初三天看了看比赛规则，了解了下RLE等语义分割的基本概念，看了看各路大佬的EDA，算是入了个小门。随">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-31T06:39:40.142Z">
+<meta property="og:updated_time" content="2019-09-05T01:03:31.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaggle 比赛记录之 SIIM-ACR Pneumothorax Segmentation">
 <meta name="twitter:description" content="记事​    随着 Kaggle: SIIM-ACR Pneumothorax Segmentation 接近尾声，我感觉有必要写一篇 blog 来记录一下这两个月的比赛经历，顺便总结一下经验。 ​    刚开始的时候想着这不过是一场普通CV类的比赛而已，肝一肝就能上金牌。但现实狠狠地打了我的脸。最初三天看了看比赛规则，了解了下RLE等语义分割的基本概念，看了看各路大佬的EDA，算是入了个小门。随">
@@ -357,7 +357,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.2k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.3k字</span>
 
           
 
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  1.3k
                 </span>
               
 
@@ -448,15 +448,25 @@
 <p>threshold的调整策略</p>
 <p>PyTorch实战经验不足，baseline的自主编写</p>
 <p>新兴模型复现</p>
-<h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><p>Q：有无mask的训练集对半开为什么能提高分数？</p>
+<h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><ul>
+<li><p>Q：有无mask的训练集对半开为什么能提高分数？</p>
 <p>A：为了避免模型预测的类别倾向某一方。（但为啥不把所有训练集投进去呢？这样不是更能反应真实的类别比例吗？）</p>
-<p>Q：iscrowd这个参数到底意味着什么</p>
-<p>Q：最佳模型的评判标准为什么不是iOU而是loss？</p>
-<p>Q：每次五折验证的选择是否相同</p>
+</li>
+</ul>
+<ul>
+<li><p>Q：iscrowd这个参数到底意味着什么</p>
+</li>
+<li><p>Q：最佳模型的评判标准为什么不是iOU而是loss？</p>
+<p>A：因为比赛最终评判标准是Dice Loss</p>
+</li>
+<li><p>Q：每次五折验证的选择是否相同</p>
+<p>A：是</p>
+</li>
+</ul>
 <h1 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h1><p>下次比赛一定要记录每个模型提交的参数、文件和分数啊啊啊啊，不然最后多模型融合的时候不知道如何分配权重</p>
 <p>通过对比两份分数的高低和csv的差别，是否能确定哪些预测是对的（好像有点场外）</p>
 <p>下次比赛要从头跟到尾，这样能尝试到更多的tips和参数</p>
-
+<h1 id="高分-Solution"><a href="#高分-Solution" class="headerlink" title="高分 Solution"></a>高分 Solution</h1><h2 id="9th-place-solution"><a href="#9th-place-solution" class="headerlink" title="9th place solution"></a>9th place solution</h2>
       
     </div>
     
@@ -684,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记事"><span class="nav-number">1.</span> <span class="nav-text">记事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盲区"><span class="nav-number">2.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记事"><span class="nav-number">1.</span> <span class="nav-text">记事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盲区"><span class="nav-number">2.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高分-Solution"><span class="nav-number">5.</span> <span class="nav-text">高分 Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9th-place-solution"><span class="nav-number">5.1.</span> <span class="nav-text">9th place solution</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -727,7 +737,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.8k</span>
+    <span title="Site words total count">16.9k</span>
   
 </div>
 

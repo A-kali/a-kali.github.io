@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：$$Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}$$用于比较两字符串的相似度，大">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-04T07:04:31.796Z">
+<meta property="og:updated_time" content="2019-09-05T14:27:39.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaggle 比赛记录之 Severstal: Steel Defect Detection">
 <meta name="twitter:description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：$$Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}$$用于比较两字符串的相似度，大">
@@ -357,7 +357,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 722字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 802字</span>
 
           
 
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  722
+                  802
                 </span>
               
 
@@ -441,14 +441,17 @@
 <li>四类损坏的数量：{1: 897, 2: 247, 3: 5150, 4: 801}，可见绝大部分损坏都包含第三类损坏</li>
 <li>每个样本具有损坏的种类：{0: 5902, 1: 6239, 2: 425, 3: 2}</li>
 <li>第一类损坏呈密集斑点（猜想）和小矩形状</li>
-<li>第二类损坏呈长条矩形状，似乎是刮损裂纹。竖直长度通常大于横向长度（猜想），一张图只有一个损坏（猜想）</li>
-<li>第三类损坏十分不规则，似乎是酸液腐蚀</li>
-<li>第四类损坏扁钢有明显不规则突起</li>
+<li>第二类损坏呈长条矩形状，似乎是刮损裂纹。竖直长度通常大于横向长度，一张图只有少数损坏。常伴生第一类损坏。</li>
+<li>第三类损坏常呈现大块状，边缘较直，出现概率很高</li>
+<li>第四类损坏扁钢有明显不规则突起，形状十分不规则，常伴生第三类损坏</li>
 </ul>
 <h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><ul>
 <li>那个网状的钢是什么？有没有其他形状的？</li>
 <li>有没有哪些易于被混淆的损坏和普通纹路？如果有可以进行可视化来找出原因。</li>
 <li>根据类型比例来设定阈值</li>
+<li>统计各类损坏的密集程度、长宽最大值和最小值以及比例、mask size</li>
+<li>统计两类损坏之间有没有伴生现象</li>
+<li>不同的类型可以使用不同的minsize和阈值</li>
 </ul>
 
       
@@ -719,7 +722,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.8k</span>
+    <span title="Site words total count">16.9k</span>
   
 </div>
 
