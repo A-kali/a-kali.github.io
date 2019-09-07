@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="记事​    随着 Kaggle: SIIM-ACR Pneumothorax Segmentation 接近尾声，我感觉有必要写一篇 blog 来记录一下这两个月的比赛经历，顺便总结一下经验。 ​    刚开始的时候想着这不过是一场普通CV类的比赛而已，肝一肝就能上金牌。但现实狠狠地打了我的脸。最初三天看了看比赛规则，了解了下RLE等语义分割的基本概念，看了看各路大佬的EDA，算是入了个小门。随">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-05T01:03:31.619Z">
+<meta property="og:updated_time" content="2019-09-07T14:26:58.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaggle 比赛记录之 SIIM-ACR Pneumothorax Segmentation">
 <meta name="twitter:description" content="记事​    随着 Kaggle: SIIM-ACR Pneumothorax Segmentation 接近尾声，我感觉有必要写一篇 blog 来记录一下这两个月的比赛经历，顺便总结一下经验。 ​    刚开始的时候想着这不过是一场普通CV类的比赛而已，肝一肝就能上金牌。但现实狠狠地打了我的脸。最初三天看了看比赛规则，了解了下RLE等语义分割的基本概念，看了看各路大佬的EDA，算是入了个小门。随">
@@ -359,7 +359,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.3k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.7k字</span>
 
           
 
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.3k
+                  1.7k
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  6分钟
                 </span>
               
             </div>
@@ -441,7 +441,7 @@
 <p>​    对 EfficientUNet_B5、ResNet34、SENet154 三模型进行等比例融合、min_size == 3000，分数提高到 0.869。同时 EfficientUNet_B5、SENet154 双模型 、min_size == 2800，分数提高到 0.868。</p>
 <p>​    使用 EfficientNet 单独进行二分类，将二分类中的负样本对应的预测样本替换成负样本，结果不理想，大概多模型融合后的分类能力已经很强了。</p>
 <p>​    对 EfficientUNet_B5、ResNet34、SENet154、SE_ReNeXt101 四模型按 3:2:3:2 的比例进行融合，min_size == 3000，分数提高到 0.8694。</p>
-<p>​    与此同时的另一边，将二分类的正样本对应的三模型预测样本的min_size调整到2500，其余保持3000，也得到了 0.8694 的分数。</p>
+<p>​    与此同时的另一边使用了 chexnet 进行二分类，将二分类的正样本对应的三模型预测样本的min_size降低到2500，负样本保持3000，将三模型的分数也提升到了 0.8694 。在 public leaderboard 排行60名，位于银牌区。</p>
 <p>​    可是离金牌还有 0.01 分的差距，光是这样调参怕是很难上金牌&#x1F62A;  —— 2019.8.28</p>
 <p>​    比赛进入第二阶段，更换了测试集。以新测试集的 1% 数据的成绩作为公榜成绩，剩下 99% 作为最终成绩。—— 2019.8.31</p>
 <h1 id="盲区"><a href="#盲区" class="headerlink" title="盲区"></a>盲区</h1><p>FocalLoss和diceLoss的实现细节和应用场景</p>
@@ -451,24 +451,74 @@
 <p>PyTorch实战经验不足，baseline的自主编写</p>
 <p>新兴模型复现</p>
 <h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><ul>
-<li><p>Q：有无mask的训练集对半开为什么能提高分数？</p>
-<p>A：为了避免模型预测的类别倾向某一方。（但为啥不把所有训练集投进去呢？这样不是更能反应真实的类别比例吗？）</p>
+<li><p>Q：为什么将训练集中的正负样本划为1：1能提高分数？</p>
+<p>A：能避免模型分类时倾向某一方，减少在分类时出现的错误。</p>
 </li>
-</ul>
-<ul>
-<li><p>Q：iscrowd这个参数到底意味着什么</p>
+<li><p>Q：代码中最佳模型的评判标准为什么不是iOU而是loss？</p>
+<p>A：因为比赛分数的评判标准是Dice Loss</p>
 </li>
-<li><p>Q：最佳模型的评判标准为什么不是iOU而是loss？</p>
-<p>A：因为比赛最终评判标准是Dice Loss</p>
-</li>
-<li><p>Q：每次五折验证的选择是否相同</p>
-<p>A：是</p>
+<li><p>Q：每次五折验证的选择是否相同？</p>
+<p>A：是。StratifiedKFold在随机种子不变的情况下，每次五折交叉验证选择的样本都是相同的。</p>
 </li>
 </ul>
 <h1 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h1><p>下次比赛一定要记录每个模型提交的参数、文件和分数啊啊啊啊，不然最后多模型融合的时候不知道如何分配权重</p>
 <p>通过对比两份分数的高低和csv的差别，是否能确定哪些预测是对的（好像有点场外）</p>
 <p>下次比赛要从头跟到尾，这样能尝试到更多的tips和参数</p>
-<h1 id="高分-Solution"><a href="#高分-Solution" class="headerlink" title="高分 Solution"></a>高分 Solution</h1><h2 id="9th-place-solution"><a href="#9th-place-solution" class="headerlink" title="9th place solution"></a>9th place solution</h2>
+<h1 id="高分-Solution"><a href="#高分-Solution" class="headerlink" title="高分 Solution"></a>高分 Solution</h1><h2 id="1st-place-solution"><a href="#1st-place-solution" class="headerlink" title="1st place solution"></a>1st place solution</h2><h2 id="5th-place-solution"><a href="#5th-place-solution" class="headerlink" title="5th place solution"></a><a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation/discussion/107603#latest-620358" target="_blank" rel="noopener">5th place solution</a></h2><ul>
+<li>基于半监督学习，在网络添加了二分类器。</li>
+<li>网络模型：带有 ASPP 结构的 UNet（ASPP 为 DeepLabV3+中的一种结构）</li>
+<li>Backbone：se50 &amp; se101</li>
+<li>图片尺寸：1024*1024</li>
+<li>优化器：Adam</li>
+<li>损失函数：1024 * BCE(results, masks) + BCE(cls, cls_target)</li>
+<li>半监督学习：mean-teacher[1-2] with NIH Dataset </li>
+</ul>
+<p>mean-teacher 参考资料：</p>
+<p>[1] <a href="https://github.com/CuriousAI/mean-teacher" target="_blank" rel="noopener">https://github.com/CuriousAI/mean-teacher</a><br>[2] <a href="https://arxiv.org/pdf/1703.01780.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1703.01780.pdf</a></p>
+<h2 id="6th-place-solution"><a href="#6th-place-solution" class="headerlink" title="6th place solution"></a><a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation/discussion/107743#latest-620263" target="_blank" rel="noopener">6th place solution</a></h2><ul>
+<li>网络模型<ul>
+<li>EncodingNet (ResNets, 512 and 1024 size)</li>
+<li>UNet (EfficientNet4, se-resnext50, SENet154 with 512, 640 and 1024 sizes)</li>
+</ul>
+</li>
+<li>数据增强：Crops 和 Rotations 类型的增强</li>
+<li>损失函数：BCE + Dice （表示FocalLoss不太好用）</li>
+<li>比起原始尺寸的图像，小尺寸图像会少很多分</li>
+<li>Tricks：<ul>
+<li>在 EncodingNet 使用了 11 种 TTA</li>
+<li>删除了预测结果种面积小的mask</li>
+</ul>
+</li>
+</ul>
+<h2 id="8th-place-solution"><a href="#8th-place-solution" class="headerlink" title="8th place solution"></a><a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation/discussion/107522#latest-619268" target="_blank" rel="noopener">8th place solution</a></h2><ul>
+<li>数据分割：10%分出来用于融合(ensemble)，在剩下90%的数据里进行十折交叉验证</li>
+<li>模型架构：DeepLabV3</li>
+<li>Backbone：使用了组归一化的ResNet50/101 和 ResNeXt50/101</li>
+<li>损失函数：BCE（在所有图像上训练）或者 Dice（只在正样本上训练）</li>
+<li>优化器：Vanilla SGD, momentum 0.9</li>
+<li>训练：<ul>
+<li>batch size 4, 1024 x 1024</li>
+<li>batch size 1, 1280 x 1280</li>
+</ul>
+</li>
+<li>学习率策略：余弦退火，LR 0.01-0.0001</li>
+<li>模型融合：<ul>
+<li>4 个模型使用 Dice 损失函数，在正样本上训练</li>
+<li>8 个模型使用 BCE 损失函数，在所有样本上训练。其中四个作为分类器使用</li>
+<li>Max pixel value was taken as classification score, averaged across 4 models</li>
+<li>Multiplied pixel-level scores from 4 models trained on positives only by this classification score, then averaged</li>
+<li>Final ensemble: multiplied score as above averaged with pixel-level scores based on other 4/8 models trained on all images</li>
+</ul>
+</li>
+<li>TTA：Hflip</li>
+<li>后处理：删除了大小小于2048像素的mask（stage2），stage1中为4096像素</li>
+</ul>
+<p>没起到效果的工作：</p>
+<ul>
+<li>使用了Unet, LinkNet, PSPNet, EncNet, HRNet等架构，但效果没有DeepLab好</li>
+<li>SGD 的效果比 Adam, Adabound 优化器的效果更好</li>
+</ul>
+
       
     </div>
     
@@ -703,7 +753,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记事"><span class="nav-number">1.</span> <span class="nav-text">记事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盲区"><span class="nav-number">2.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高分-Solution"><span class="nav-number">5.</span> <span class="nav-text">高分 Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9th-place-solution"><span class="nav-number">5.1.</span> <span class="nav-text">9th place solution</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记事"><span class="nav-number">1.</span> <span class="nav-text">记事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盲区"><span class="nav-number">2.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高分-Solution"><span class="nav-number">5.</span> <span class="nav-text">高分 Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1st-place-solution"><span class="nav-number">5.1.</span> <span class="nav-text">1st place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5th-place-solution"><span class="nav-number">5.2.</span> <span class="nav-text">5th place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6th-place-solution"><span class="nav-number">5.3.</span> <span class="nav-text">6th place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8th-place-solution"><span class="nav-number">5.4.</span> <span class="nav-text">8th place solution</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -746,7 +796,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.9k</span>
+    <span title="Site words total count">17.4k</span>
   
 </div>
 
