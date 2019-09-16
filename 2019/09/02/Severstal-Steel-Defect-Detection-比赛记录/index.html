@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="计算机视觉,Kaggle,语义分割,">
+  <meta name="keywords" content="计算机视觉,语义分割,Kaggle,">
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：$$Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}$$用于比较两字符串的相似度，大">
-<meta name="keywords" content="计算机视觉,Kaggle,语义分割">
+<meta name="description" content="The article has been encrypted, please enter your password to view.">
+<meta name="keywords" content="计算机视觉,语义分割,Kaggle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kaggle 比赛记录之 Severstal: Steel Defect Detection">
 <meta property="og:url" content="http://a-kali.github.io/2019/09/02/Severstal-Steel-Defect-Detection-比赛记录/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：$$Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}$$用于比较两字符串的相似度，大">
+<meta property="og:description" content="The article has been encrypted, please enter your password to view.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-09-05T14:32:20.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaggle 比赛记录之 Severstal: Steel Defect Detection">
-<meta name="twitter:description" content="​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。 比赛概览描述​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。 成绩评价指标​    Dice系数：$$Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}$$用于比较两字符串的相似度，大">
+<meta name="twitter:description" content="The article has been encrypted, please enter your password to view.">
 
 
 
@@ -359,7 +359,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 802字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 345字</span>
 
           
 
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  802
+                  345
                 </span>
               
 
@@ -411,51 +411,19 @@
       
 
       
-        <p>​    看论文看腻了，正好抽空看看隔壁的 Severstal 比赛。希望能吸取一点之前的教训，在这场比赛上好好发挥。</p>
-<h1 id="比赛概览"><a href="#比赛概览" class="headerlink" title="比赛概览"></a>比赛概览</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>​    大概就是一家中国企业为了提高扁钢的生产质量而希望使用计算机视觉来检测扁钢损坏而发布的一场比赛。</p>
-<h2 id="成绩评价指标"><a href="#成绩评价指标" class="headerlink" title="成绩评价指标"></a>成绩评价指标</h2><p>​    <strong>Dice系数：</strong><br>$$<br>Dice(s_1, s_2)=2*\frac{s_1\cap s_2}{s_1+ s_2}<br>$$<br>用于比较两字符串的相似度，大概就是两字符串相同字符的个数乘2比上长度之和。这里应该是用来比较 RLE 编码的相似度。</p>
-<p>​    提交的数据的三分之一用于公榜展示，剩下的三分之二作为最终成绩。这意味着可能比赛结束成绩就出来了。</p>
-<h2 id="比赛时间"><a href="#比赛时间" class="headerlink" title="比赛时间"></a>比赛时间</h2><ul>
-<li><p>2019.10.17 加入比赛、数据公开和组队的截止日期。</p>
-</li>
-<li><p>2019.10.24 提交最终成绩。</p>
-</li>
-<li><p>2019.11.10 高效奖争夺最终提交。（该比赛的前 50 可以进入高效奖的争夺）</p>
-</li>
-</ul>
-<h2 id="这是一个-Kernels-only-比赛"><a href="#这是一个-Kernels-only-比赛" class="headerlink" title="这是一个 Kernels-only 比赛"></a>这是一个 Kernels-only 比赛</h2><p>​    最终的提交文件必须在 kernel 上生成，比赛者需要上传模型并在 kernel 上进行最后的测试。并需要满足以下条件：</p>
-<ul>
-<li>单 GPU 情况下运行时间不超过<strong>一小时</strong>。</li>
-<li>断网。</li>
-</ul>
-<h1 id="比赛数据"><a href="#比赛数据" class="headerlink" title="比赛数据"></a>比赛数据</h1><p>​    训练图集、测试图集、训练样本数据和提交样本。每张图占4行csv，分别表示其4种损坏的RLE码。</p>
-<h1 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h1><p>在做EDA之前先说说自己对数据的想法：</p>
-<ul>
-<li>既然每个样本有 4 种损坏类型，那是不是每种损坏可以单独用一个模型来训练。</li>
-<li>扁钢损坏率似乎不大，这意味着大多数扁钢或许只有1-2种损坏。</li>
-</ul>
-<p>以上有待EDA考究。</p>
-<p>让我们来找一篇<a href="https://www.kaggle.com/go1dfish/clear-mask-visualization-and-simple-eda" target="_blank" rel="noopener">点赞数最多的 EDA</a> 瞅一瞅，得出以下信息：</p>
-<ul>
-<li>训练样本数为 12568，其中有损坏的样本数为 5902，接近一半</li>
-<li>测试样本数为1801</li>
-<li>图片长宽为 (1600, 256)</li>
-<li>四类损坏的数量：{1: 897, 2: 247, 3: 5150, 4: 801}，可见绝大部分损坏都包含第三类损坏</li>
-<li>每个样本具有损坏的种类：{0: 5902, 1: 6239, 2: 425, 3: 2}</li>
-<li>第一类损坏呈密集斑点（猜想）和小矩形状</li>
-<li>第二类损坏呈长条矩形状，似乎是刮损裂纹。竖直长度通常大于横向长度，一张图只有少数损坏。常伴生第一类损坏。</li>
-<li>第三类损坏常呈现大块状，边缘较直，出现概率很高</li>
-<li>第四类损坏扁钢有明显不规则突起，形状十分不规则，常伴生第三类损坏</li>
-</ul>
-<h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><ul>
-<li>那个网状的钢是什么？有没有其他形状的？</li>
-<li>有没有哪些易于被混淆的损坏和普通纹路？如果有可以进行可视化来找出原因。</li>
-<li>根据类型比例来设定阈值</li>
-<li>统计各类损坏的密集程度、长宽最大值和最小值以及比例、mask size</li>
-<li>统计两类损坏之间有没有伴生现象</li>
-<li>不同的类型可以使用不同的minsize和阈值</li>
-</ul>
-
+        <div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog.">
+    <label for="pass">Please enter the password to read the blog.</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+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
+</div>
+<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
     </div>
     
@@ -483,9 +451,9 @@
           
             <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
           
-            <a href="/tags/Kaggle/" rel="tag"><i class="fa fa-tag"></i> Kaggle</a>
-          
             <a href="/tags/语义分割/" rel="tag"><i class="fa fa-tag"></i> 语义分割</a>
+          
+            <a href="/tags/Kaggle/" rel="tag"><i class="fa fa-tag"></i> Kaggle</a>
           
         </div>
       
@@ -577,17 +545,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -604,7 +563,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -679,22 +638,6 @@
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#比赛概览"><span class="nav-number">1.</span> <span class="nav-text">比赛概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成绩评价指标"><span class="nav-number">1.2.</span> <span class="nav-text">成绩评价指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比赛时间"><span class="nav-number">1.3.</span> <span class="nav-text">比赛时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这是一个-Kernels-only-比赛"><span class="nav-number">1.4.</span> <span class="nav-text">这是一个 Kernels-only 比赛</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比赛数据"><span class="nav-number">2.</span> <span class="nav-text">比赛数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EDA"><span class="nav-number">3.</span> <span class="nav-text">EDA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">4.</span> <span class="nav-text">疑问</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
         <div class="back-to-top">
@@ -731,7 +674,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">17.4k</span>
+    <span title="Site words total count">17.5k</span>
   
 </div>
 
