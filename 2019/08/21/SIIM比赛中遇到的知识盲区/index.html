@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="记事​    随着 Kaggle: SIIM-ACR Pneumothorax Segmentation 接近尾声，我感觉有必要写一篇 blog 来记录一下这两个月的比赛经历，顺便总结一下经验。 ​    刚开始的时候想着这不过是一场普通CV类的比赛而已，肝一肝就能上金牌。但现实狠狠地打了我的脸。最初三天看了看比赛规则，了解了下RLE等语义分割的基本概念，看了看各路大佬的EDA，算是入了个小门。随">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-07T14:26:58.420Z">
+<meta property="og:updated_time" content="2019-09-12T12:35:10.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaggle 比赛记录之 SIIM-ACR Pneumothorax Segmentation">
 <meta name="twitter:description" content="记事​    随着 Kaggle: SIIM-ACR Pneumothorax Segmentation 接近尾声，我感觉有必要写一篇 blog 来记录一下这两个月的比赛经历，顺便总结一下经验。 ​    刚开始的时候想着这不过是一场普通CV类的比赛而已，肝一肝就能上金牌。但现实狠狠地打了我的脸。最初三天看了看比赛规则，了解了下RLE等语义分割的基本概念，看了看各路大佬的EDA，算是入了个小门。随">
@@ -359,7 +359,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.7k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.8k字</span>
 
           
 
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.7k
+                  1.8k
                 </span>
               
 
@@ -464,7 +464,7 @@
 <h1 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h1><p>下次比赛一定要记录每个模型提交的参数、文件和分数啊啊啊啊，不然最后多模型融合的时候不知道如何分配权重</p>
 <p>通过对比两份分数的高低和csv的差别，是否能确定哪些预测是对的（好像有点场外）</p>
 <p>下次比赛要从头跟到尾，这样能尝试到更多的tips和参数</p>
-<h1 id="高分-Solution"><a href="#高分-Solution" class="headerlink" title="高分 Solution"></a>高分 Solution</h1><h2 id="1st-place-solution"><a href="#1st-place-solution" class="headerlink" title="1st place solution"></a>1st place solution</h2><h2 id="5th-place-solution"><a href="#5th-place-solution" class="headerlink" title="5th place solution"></a><a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation/discussion/107603#latest-620358" target="_blank" rel="noopener">5th place solution</a></h2><ul>
+<h1 id="高分-Solution"><a href="#高分-Solution" class="headerlink" title="高分 Solution"></a>高分 Solution</h1><h2 id="1st-place-solution"><a href="#1st-place-solution" class="headerlink" title="1st place solution"></a><a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation/discussion/107824" target="_blank" rel="noopener">1st place solution</a></h2><h2 id="2rd-place-solution"><a href="#2rd-place-solution" class="headerlink" title="2rd place solution"></a><a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation/discussion/108009#latest-622580" target="_blank" rel="noopener">2rd place solution</a></h2><h2 id="3rd-place-solution"><a href="#3rd-place-solution" class="headerlink" title="3rd place solution"></a><a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation/discussion/108009#latest-622580" target="_blank" rel="noopener">3rd place solution</a></h2><h2 id="4th-place-solution"><a href="#4th-place-solution" class="headerlink" title="4th place solution"></a><a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation/discussion/108397#latest-624615" target="_blank" rel="noopener">4th place solution</a></h2><h2 id="5th-place-solution"><a href="#5th-place-solution" class="headerlink" title="5th place solution"></a><a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation/discussion/107603#latest-620358" target="_blank" rel="noopener">5th place solution</a></h2><ul>
 <li>基于半监督学习，在网络添加了二分类器。</li>
 <li>网络模型：带有 ASPP 结构的 UNet（ASPP 为 DeepLabV3+中的一种结构）</li>
 <li>Backbone：se50 &amp; se101</li>
@@ -753,7 +753,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记事"><span class="nav-number">1.</span> <span class="nav-text">记事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盲区"><span class="nav-number">2.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高分-Solution"><span class="nav-number">5.</span> <span class="nav-text">高分 Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1st-place-solution"><span class="nav-number">5.1.</span> <span class="nav-text">1st place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5th-place-solution"><span class="nav-number">5.2.</span> <span class="nav-text">5th place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6th-place-solution"><span class="nav-number">5.3.</span> <span class="nav-text">6th place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8th-place-solution"><span class="nav-number">5.4.</span> <span class="nav-text">8th place solution</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记事"><span class="nav-number">1.</span> <span class="nav-text">记事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盲区"><span class="nav-number">2.</span> <span class="nav-text">盲区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高分-Solution"><span class="nav-number">5.</span> <span class="nav-text">高分 Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1st-place-solution"><span class="nav-number">5.1.</span> <span class="nav-text">1st place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2rd-place-solution"><span class="nav-number">5.2.</span> <span class="nav-text">2rd place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3rd-place-solution"><span class="nav-number">5.3.</span> <span class="nav-text">3rd place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4th-place-solution"><span class="nav-number">5.4.</span> <span class="nav-text">4th place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5th-place-solution"><span class="nav-number">5.5.</span> <span class="nav-text">5th place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6th-place-solution"><span class="nav-number">5.6.</span> <span class="nav-text">6th place solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8th-place-solution"><span class="nav-number">5.7.</span> <span class="nav-text">8th place solution</span></a></li></ol></li></ol></div>
             
 
           </div>
