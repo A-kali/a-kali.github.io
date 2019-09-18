@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nk7o59.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nkLzOP.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nkOQkF.jpg">
-<meta property="og:updated_time" content="2019-09-03T12:34:40.563Z">
+<meta property="og:updated_time" content="2019-09-18T07:01:26.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习中的评价指标">
 <meta name="twitter:description" content="基本概念混淆矩阵   - Positive Predictions Negative Predictions    Positive Label TP (True Positive) FN   Negative Label FP TN   Accuracy（ACC，准确率）$$ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}$$ Precis">
@@ -453,10 +453,10 @@
 </li>
 <li><p>利用平衡点 (BEP, 查准率=查全率), BEP 越大越好；</p>
 </li>
-<li><p>利用$F_\beta$度量, 当 $\beta&lt;1$ 时， 查准率(精度)权重更大, 当$\beta&gt;1$时， 查全率(召回率)权重更大。$F__\beta$的计算公式来自于加权调和平均数：<br>$$<br>\frac{1}{F_\beta}=\frac{1}{1+β^2}(\frac{1}{P}+\frac{β^2}{R})\F_β=\frac{(1+β^2)×P×R}{β^2×P+R}<br>$$</p>
+<li><p>利用$F_\beta$度量, 当 $\beta&lt;1$ 时， 查准率(精度)权重更大, 当$\beta&gt;1$时， 查全率(召回率)权重更大。$F_\beta$的计算公式来自于加权调和平均数：<br>$$<br>\frac{1}{F_\beta}=\frac{1}{1+β^2}(\frac{1}{P}+\frac{β^2}{R})<br>$$<br>$$<br>F_β=\frac{(1+β^2)×P×R}{β^2×P+R}<br>$$</p>
 </li>
 </ol>
-<h2 id="ROC-曲线"><a href="#ROC-曲线" class="headerlink" title="ROC 曲线"></a>ROC 曲线</h2><p>​    很多学习器是为测试样本产生一个实值或概率预测，然后将这个预测值与一个分类阈值进行比较，若大于阈值分为正例，否则分为负例，因此分类过程可以看做是选取一个合适的截断点。那么到底什么样的截断点更合适呢？ ROC 正是从这个角度来研究学习器好坏的工具。</p>
+<h2 id="ROC-曲线"><a href="#ROC-曲线" class="headerlink" title="ROC 曲线"></a>ROC 曲线</h2><p>​    很多学习器是为测试样本产生一个实值或概率预测，然后将这个预测值与一个分类阈值进行比较，若大于阈值分为正例，否则分为负例，因此<strong>分类过程可以看做是选取一个合适的截断点</strong>。那么到底什么样的截断点更合适呢？ ROC 正是从这个角度来研究学习器好坏的工具。</p>
 <p>​    ROC 曲线的纵坐标和横坐标分别是召回率和误诊率，下图为 ROC 曲线图，实际任务中会利用有限个测试样本来绘制 ROC 图，所以产生的大多不是平滑的曲线。</p>
 <p><img src="https://s2.ax1x.com/2019/09/03/nk7o59.jpg" alt="nk7o59.jpg"></p>
 <h3 id="绘制-ROC-曲线"><a href="#绘制-ROC-曲线" class="headerlink" title="绘制 ROC 曲线"></a>绘制 ROC 曲线</h3><p>​    假设已经得出一系列样本被划分为正类的概率，然后按照大小排序，下图是一个示例，图中共有20个测试样本，”Class” 一栏表示每个测试样本真正的标签（p表示正样本，n表示负样本），”Score” 表示每个测试样本属于正样本的概率。</p>
@@ -744,7 +744,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">17.5k</span>
+    <span title="Site words total count">17.6k</span>
   
 </div>
 
