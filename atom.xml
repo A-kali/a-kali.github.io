@@ -82,16 +82,15 @@
     <link href="http://a-kali.github.io/2019/09/04/Inception-v1-v4/"/>
     <id>http://a-kali.github.io/2019/09/04/Inception-v1-v4/</id>
     <published>2019-09-04T09:57:36.000Z</published>
-    <updated>2019-09-26T09:23:24.463Z</updated>
+    <updated>2019-10-04T09:04:45.862Z</updated>
     
-    <content type="html"><![CDATA[<p>这篇文章写得太好了，以至于我都不知道自己怎么写了</p><p><a href="http://baijiahao.baidu.com/s?id=1601882944953788623&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">http://baijiahao.baidu.com/s?id=1601882944953788623&amp;wfr=spider&amp;for=pc</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Inception-V1"><a href="#Inception-V1" class="headerlink" title="Inception V1"></a>Inception V1</h1><p>论文地址：<a href="https://arxiv.org/pdf/1409.4842v1.pdf" target="_blank" rel="noopener">Going deeper with convolutions</a></p><h2 id="动机与深层思考"><a href="#动机与深层思考" class="headerlink" title="动机与深层思考"></a>动机与深层思考</h2><p>直接提升神经网络性能的方法是提升网络的深度和宽度。然而，更深的网络意味着其参数的大幅增加，从而导致计算量爆炸。因此，作者希望能在计算资源消耗恒定不变的条件下，提升网络性能。</p><p>降低计算资源消耗的一个方法是使用<a href="https://baike.baidu.com/item/稀疏连接/22764619?fr=aladdin" target="_blank" rel="noopener">稀疏连接</a>结构，但不均匀的稀疏数值运算在当前适合密集运算的硬件条件下运行十分低效。作者希望将稀疏连接结构运用于卷积层，并以此解决稀疏连接在密集运算条件下效率低下的问题。于是Inception便应运而生。</p><h2 id="架构细节"><a href="#架构细节" class="headerlink" title="架构细节"></a>架构细节</h2><p> <img src="https://s2.ax1x.com/2019/10/04/uDtGDI.png" alt="uDtGDI.png"></p><p>作者希望“找到最优的局部结构，并在空间上重复它”，如上的Inception模块便是作者找到的最优局部结构。该结构有四个通道，同时使用了1×1、3×3、5×5的卷积核。作者表示“卷积核的大小并没有什么特殊含义，其便利性大于必要性”，在padding=0，1，2的时候特征图大小相同，方便对齐。</p><p>随着网路层数的加深，其特征图的抽象程度变高，空间集中程度下降。这意味着5×5卷积核占比应逐渐增加。然而在具有大量滤波器的卷积层，5×5卷积核运算量太大。这催生了对Inception的第二个改进：在计算量要求较多的地方使用1×1卷积核进行降维。于是便诞生了完整版的Inception V1模块：</p><p><img src="https://s2.ax1x.com/2019/10/04/uDB4kn.png" alt="uDB4kn.png"></p><h2 id="GoogLeNet"><a href="#GoogLeNet" class="headerlink" title="GoogLeNet"></a>GoogLeNet</h2><p>GoogLeNet是一个大量使用了Inception模块堆叠的一个神经网络，其结构如下（图太大了，这里就不放完整图片了）：</p><p><img src="https://s2.ax1x.com/2019/10/04/uDrWin.png" alt="#uDrWin.png"></p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ul><li>很多文章中都有提到，Inception结构使用不同大小的卷积核能够适应不同尺度的特征。虽然并没有在原论文中看见相关阐述，但我觉得有点道理。</li><li>作者并没有在原论文中提到Inception结构起作用的原因，但我认为Inception结构和ResNet的残差结构有异曲同工之妙（虽然ResNet的诞生在GoogLeNet之后）。残差结构能让神经网络自己通过调整参数来选择是否趋近于恒等映射，而Inception能让神经网络自己选择卷积核大小（3×3、5×5 convolutions），或是将这层作为全连接（1×1 convolutions，Inception结构最左边的那个1×1卷积核作用相当于全连接），抑或是池化（3×3 Max Pooling）。</li></ul><h1 id="Inception-V2"><a href="#Inception-V2" class="headerlink" title="Inception V2"></a>Inception V2</h1><p>论文链接：<a href="https://arxiv.org/pdf/1502.03167.pdf" target="_blank" rel="noopener">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;这篇文章写得太好了，以至于我都不知道自己怎么写了&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://baijiahao.baidu.com/s?id=1601882944953788623&amp;amp;wfr=spider&amp;amp;for=pc&quot; target=&quot;_blank&quot; r
+        &lt;h1 id=&quot;Inception-V1&quot;&gt;&lt;a href=&quot;#Inception-V1&quot; class=&quot;headerlink&quot; title=&quot;Inception V1&quot;&gt;&lt;/a&gt;Inception V1&lt;/h1&gt;&lt;p&gt;论文地址：&lt;a href=&quot;https://arxiv.or
       
     
     </summary>
