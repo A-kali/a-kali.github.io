@@ -104,7 +104,11 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/07/uRCVIA.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/07/uRkv3n.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/07/uRVxgA.png">
-<meta property="og:updated_time" content="2019-10-07T09:32:45.129Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/08/uhaJjs.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2018102913400312.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/08/uhwGmn.md.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181029135504384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-10-08T13:35:10.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Inception v1-v4 论文解读">
 <meta name="twitter:description" content="Inception V1论文地址：Going deeper with convolutions 动机与深层思考直接提升神经网络性能的方法是提升网络的深度和宽度。然而，更深的网络意味着其参数的大幅增加，从而导致计算量爆炸。因此，作者希望能在计算资源消耗恒定不变的条件下，提升网络性能。 降低计算资源消耗的一个方法是使用稀疏连接结构，但不均匀的稀疏数值运算在当前适合密集运算的硬件条件下运行十分低效。作者">
@@ -368,7 +372,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.5k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.8k字</span>
 
           
 
@@ -383,7 +387,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.5k
+                  1.8k
                 </span>
               
 
@@ -399,7 +403,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5分钟
+                  6分钟
                 </span>
               
             </div>
@@ -461,14 +465,28 @@
 <p><img src="https://s2.ax1x.com/2019/10/07/uRkv3n.png" alt="uRkv3n.png"></p>
 <p>该结构在增加特征维度、减少特征图尺寸的同时避免了表征性瓶颈和计算量过大的问题。</p>
 <h2 id="Inception-v2"><a href="#Inception-v2" class="headerlink" title="Inception-v2"></a>Inception-v2</h2><p><img src="https://s2.ax1x.com/2019/10/07/uRVxgA.png" alt="uRVxgA.png"></p>
-<p>其中使用了三种Inception模块（图中红框处），包括3个传统模块和5个不对称分解堆叠模块以及2个不对称分解扩展模块。值得一提的是原网络中的7×7卷积被分解成了3个3×3卷积。</p>
+<p>其中使用了三种Inception模块（图中红框处），包括3个普通分解模块和5个不对称分解堆叠模块以及2个不对称分解扩展模块。值得一提的是原网络中的7×7卷积被分解成了3个3×3卷积。</p>
 <h2 id="Inception-v3"><a href="#Inception-v3" class="headerlink" title="Inception-v3"></a>Inception-v3</h2><p>在论文的后续中，作者对Inception v2进行了如下改进：</p>
 <ul>
 <li>使用RMSProp优化器</li>
 <li>辅助分类器使用了BatchNorm</li>
 <li>标签平滑（正则化）</li>
 </ul>
-<h1 id="Inception-V4"><a href="#Inception-V4" class="headerlink" title="Inception V4"></a>Inception V4</h1><p>论文地址：<a href="https://arxiv.org/pdf/1602.07261.pdf" target="_blank" rel="noopener">Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning</a></p>
+<h1 id="Inception-V4-amp-Inception-Resnet"><a href="#Inception-V4-amp-Inception-Resnet" class="headerlink" title="Inception V4 &amp; Inception-Resnet"></a>Inception V4 &amp; Inception-Resnet</h1><p>论文地址：<a href="https://arxiv.org/pdf/1602.07261.pdf" target="_blank" rel="noopener">Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning</a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>随着 ResNet 网络的出现及其在主流数据集上的良好表现，作者想将残差结构引入到 Inception 网络中，看看网络是否会有更好的表现；同时注意到Inception-v3的部分结构有不必要的复杂性，于是尝试在不引入残差结构的情况下改进原本的Inception结构，并将改进后的Inception结构命名为Inception-v4。</p>
+<p>我感觉这篇论文的知识量不大，整篇论文一半都是图，看看了解下就行。</p>
+<h2 id="Inception-v4"><a href="#Inception-v4" class="headerlink" title="Inception-v4"></a>Inception-v4</h2><p><img src="https://s2.ax1x.com/2019/10/08/uhaJjs.png" alt="uhaJjs.png"></p>
+<p>图中是v4使用的三个Inception模块。分别命名为Inception-A、Inception-B、Inception-</p>
+<p>C。除了所有的池化层都使用了<strong>Avg Pooling</strong>以外，没有什么特别的变动。另外网络整体结构也发生了一些改变，这里直接用网图了：</p>
+<p><img src="https://img-blog.csdnimg.cn/2018102913400312.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70" alt></p>
+<h2 id="Inception-Resnet"><a href="#Inception-Resnet" class="headerlink" title="Inception-Resnet"></a>Inception-Resnet</h2><p><a href="https://imgchr.com/i/uhwGmn" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/10/08/uhwGmn.md.png" alt="uhwGmn.md.png"></a></p>
+<p><img src="https://img-blog.csdnimg.cn/20181029135504384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70" alt></p>
+<p>上图是 Inception-Resnet-v1 的模块和结构， Inception-Resnet-v2只是在v1的基础上使用了Inception-v4的stem结构。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="http://baijiahao.baidu.com/s?id=1601882944953788623&wfr=spider&for=pc" target="_blank" rel="noopener">一文概览Inception家族的「奋斗史」</a></p>
+<p><a href="https://blog.csdn.net/zzc15806/article/details/83504130" target="_blank" rel="noopener">【深度学习】GoogLeNet系列解读 —— Inception v4</a></p>
+<p><a href="https://blog.csdn.net/weixin_39953502/article/details/80966046" target="_blank" rel="noopener">inception-v1,v2,v3,v4—-论文笔记</a></p>
+<p>以及文中所述的论文链接。</p>
+<p>作者：黄凯</p>
 
       
     </div>
@@ -704,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Inception-V1"><span class="nav-number">1.</span> <span class="nav-text">Inception V1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机与深层思考"><span class="nav-number">1.1.</span> <span class="nav-text">动机与深层思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构细节"><span class="nav-number">1.2.</span> <span class="nav-text">架构细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GoogLeNet"><span class="nav-number">1.3.</span> <span class="nav-text">GoogLeNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">1.4.</span> <span class="nav-text">后记</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Inception-V2-amp-V3"><span class="nav-number">2.</span> <span class="nav-text">Inception V2&amp;V3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通用设计准则"><span class="nav-number">2.1.</span> <span class="nav-text">通用设计准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分解（Factorization）大尺寸卷积"><span class="nav-number">2.2.</span> <span class="nav-text">分解（Factorization）大尺寸卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分解为不对称的卷积"><span class="nav-number">2.3.</span> <span class="nav-text">分解为不对称的卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少特征图尺寸"><span class="nav-number">2.4.</span> <span class="nav-text">减少特征图尺寸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inception-v2"><span class="nav-number">2.5.</span> <span class="nav-text">Inception-v2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inception-v3"><span class="nav-number">2.6.</span> <span class="nav-text">Inception-v3</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Inception-V4"><span class="nav-number">3.</span> <span class="nav-text">Inception V4</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Inception-V1"><span class="nav-number">1.</span> <span class="nav-text">Inception V1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机与深层思考"><span class="nav-number">1.1.</span> <span class="nav-text">动机与深层思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构细节"><span class="nav-number">1.2.</span> <span class="nav-text">架构细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GoogLeNet"><span class="nav-number">1.3.</span> <span class="nav-text">GoogLeNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">1.4.</span> <span class="nav-text">后记</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Inception-V2-amp-V3"><span class="nav-number">2.</span> <span class="nav-text">Inception V2&amp;V3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通用设计准则"><span class="nav-number">2.1.</span> <span class="nav-text">通用设计准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分解（Factorization）大尺寸卷积"><span class="nav-number">2.2.</span> <span class="nav-text">分解（Factorization）大尺寸卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分解为不对称的卷积"><span class="nav-number">2.3.</span> <span class="nav-text">分解为不对称的卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少特征图尺寸"><span class="nav-number">2.4.</span> <span class="nav-text">减少特征图尺寸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inception-v2"><span class="nav-number">2.5.</span> <span class="nav-text">Inception-v2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inception-v3"><span class="nav-number">2.6.</span> <span class="nav-text">Inception-v3</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Inception-V4-amp-Inception-Resnet"><span class="nav-number">3.</span> <span class="nav-text">Inception V4 &amp; Inception-Resnet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inception-v4"><span class="nav-number">3.2.</span> <span class="nav-text">Inception-v4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inception-Resnet"><span class="nav-number">3.3.</span> <span class="nav-text">Inception-Resnet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -747,7 +765,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">19k</span>
+    <span title="Site words total count">19.2k</span>
   
 </div>
 
