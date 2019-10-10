@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="论文解读,计算机视觉,R-CNN,目标检测,语义分割,深度学习,">
 
 
 
@@ -88,16 +88,20 @@
 
 
 
-<meta name="description" content="橘猫最爱的煎饼狗子!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="某科学のBLOG">
-<meta property="og:url" content="http://a-kali.github.io/tags/评价指标/index.html">
+<meta name="description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 正文伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
+<meta name="keywords" content="论文解读,计算机视觉,R-CNN,目标检测,语义分割,深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读">
+<meta property="og:url" content="http://a-kali.github.io/2019/10/10/R-CNN-Fast-R-CNN-Faster-R-CNN-Mask-R-CNN-论文解读/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="橘猫最爱的煎饼狗子!">
+<meta property="og:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 正文伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181210155342586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JyaWJsdWU=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-10-10T13:18:32.657Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="某科学のBLOG">
-<meta name="twitter:description" content="橘猫最爱的煎饼狗子!">
+<meta name="twitter:title" content="R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读">
+<meta name="twitter:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 正文伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181210155342586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JyaWJsdWU=,size_16,color_FFFFFF,t_70">
 
 
 
@@ -127,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://a-kali.github.io/tags/评价指标/">
+  <link rel="canonical" href="http://a-kali.github.io/2019/10/10/R-CNN-Fast-R-CNN-Faster-R-CNN-Mask-R-CNN-论文解读/">
 
 
 
 
 
-  <title>标签: 评价指标 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -152,7 +156,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href="https://github.com/A-kali/a-kali.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,52 +270,263 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>评价指标<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2019/10/10/R-CNN-Fast-R-CNN-Faster-R-CNN-Mask-R-CNN-论文解读/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hsaki">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某科学のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/09/03/机器学习中的评价指标/" itemprop="url">
-              
-                <span itemprop="name">机器学习中的评价指标</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-03T16:52:16+08:00" content="2019-09-03">
-          09-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-10T17:21:36+08:00">
+                2019-10-10
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机视觉/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机视觉</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+			
+			<span class="post-meta-divider">|</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 444字</span>
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  444
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a>R-CNN</h1><p>论文地址：<a href="https://arxiv.org/pdf/1311.2524.pdf" target="_blank" rel="noopener">Rich feature hierarchies for accurate object detection and semantic segmentation</a></p>
+<p>发布时间：2014.10.22</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。其成绩对卷积神经网络在目标检测的运用产生了深远的影响。</p>
+<p>但在这之前，需要解决两个主要的问题：</p>
+<ol>
+<li>与图片分类不同，目标检测需要在图片上定位目标的位置。那么如何利用深度的神经网络去做目标的定位？</li>
+<li>如何在一个小规模的数据集上训练能力强劲的网络模型？</li>
+</ol>
+<p>R-CNN全称为Regions with CNN features，其名字来源于其主要使用的两项技术：卷积神经网络（CNN）和<strong>区域推荐</strong>（Region Proposals），而区域推荐正是第一个问题的解决方法。R-CNN整体过程如下：</p>
+<ol>
+<li>给定一张输入图片，从图片中提取 2000 个类别独立的候选区域，区域推荐算法为 selective search。</li>
+<li>对于每个区域利用 CNN 抽取一个固定长度的特征向量。</li>
+<li>使用各个类别的SVM对特征向量进行二分类，之后对每个类别的窗口进行极大值抑制。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20181210155342586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JyaWJsdWU=,size_16,color_FFFFFF,t_70" alt></p>
+<p>对于第二个问题，作者给出的解决方法是：在大型图片分类数据集ILSVRC上预训练卷积神经网络，并微调（fine-tuning）到小型目标检测数据集PASCAL上，这使得mAP上升了8个百分点。</p>
+<p>R-CNN高效的原因：</p>
+<ol>
+<li>所有类别共享CNN参数</li>
+<li>特征维度相对较小</li>
+</ol>
 
       
     </div>
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
 
+  
+</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/论文解读/" rel="tag"><i class="fa fa-tag"></i> 论文解读</a>
+          
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+          
+            <a href="/tags/R-CNN/" rel="tag"><i class="fa fa-tag"></i> R-CNN</a>
+          
+            <a href="/tags/目标检测/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
+          
+            <a href="/tags/语义分割/" rel="tag"><i class="fa fa-tag"></i> 语义分割</a>
+          
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/05/计算机视觉算法岗面试归纳/" rel="next" title="计算机视觉算法岗面试归纳">
+                <i class="fa fa-chevron-left"></i> 计算机视觉算法岗面试归纳
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -319,6 +534,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -339,8 +558,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -431,6 +659,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#R-CNN"><span class="nav-number">1.</span> <span class="nav-text">R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">1.1.</span> <span class="nav-text">正文</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -617,6 +861,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -694,31 +942,11 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
