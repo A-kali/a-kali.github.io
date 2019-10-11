@@ -97,7 +97,7 @@
 <meta property="og:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 正文伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20181210155342586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JyaWJsdWU=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-10-10T13:18:32.657Z">
+<meta property="og:updated_time" content="2019-10-10T13:33:55.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读">
 <meta name="twitter:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 正文伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
@@ -361,7 +361,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 444字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 469字</span>
 
           
 
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  444
+                  469
                 </span>
               
 
@@ -423,9 +423,9 @@
 </ol>
 <p>R-CNN全称为Regions with CNN features，其名字来源于其主要使用的两项技术：卷积神经网络（CNN）和<strong>区域推荐</strong>（Region Proposals），而区域推荐正是第一个问题的解决方法。R-CNN整体过程如下：</p>
 <ol>
-<li>给定一张输入图片，从图片中提取 2000 个类别独立的候选区域，区域推荐算法为 selective search。</li>
-<li>对于每个区域利用 CNN 抽取一个固定长度的特征向量。</li>
-<li>使用各个类别的SVM对特征向量进行二分类，之后对每个类别的窗口进行极大值抑制。</li>
+<li>给定一张输入图片，使用区域推荐算法selective search从图片中提取 2000 个类别独立的候选区域。</li>
+<li>将每个候选区域缩放到227×227，输入到 CNN中抽取一个固定长度的特征向量。</li>
+<li>使用各个类别对应的SVM对特征向量进行二分类，判断该候选区域是否包含该类别，之后对每个类别的窗口进行极大值抑制。</li>
 </ol>
 <p><img src="https://img-blog.csdnimg.cn/20181210155342586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JyaWJsdWU=,size_16,color_FFFFFF,t_70" alt></p>
 <p>对于第二个问题，作者给出的解决方法是：在大型图片分类数据集ILSVRC上预训练卷积神经网络，并微调（fine-tuning）到小型目标检测数据集PASCAL上，这使得mAP上升了8个百分点。</p>
@@ -712,7 +712,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">19.6k</span>
+    <span title="Site words total count">19.7k</span>
   
 </div>
 
