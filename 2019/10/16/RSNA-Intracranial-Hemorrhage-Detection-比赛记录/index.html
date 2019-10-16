@@ -88,21 +88,18 @@
 
 
 
-<meta name="description" content="比赛链接：RSNA Intracranial Hemorrhage Detection 经过闭关一个月补习机器学习和计算机视觉之后，某凯再度重出江湖。世事变迁，沧海桑田。Kaggle平台亦是发生了翻天覆地的变化，更新了整整！……1个比赛！让我们看看是哪场比赛这么幸运得我恩宠。  首先映入眼帘的是……一堆脑阔（真 · 头像），看起来又又又又又又双双叒叕是个医学图像类比赛。翻译标题，RSNA估计是某个">
+<meta name="description" content="The article has been encrypted, please enter your password to view.">
 <meta name="keywords" content="计算机视觉,Kaggle,深度学习,图片分类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RSNA Intracranial Hemorrhage Detection 比赛记录">
 <meta property="og:url" content="http://a-kali.github.io/2019/10/16/RSNA-Intracranial-Hemorrhage-Detection-比赛记录/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="比赛链接：RSNA Intracranial Hemorrhage Detection 经过闭关一个月补习机器学习和计算机视觉之后，某凯再度重出江湖。世事变迁，沧海桑田。Kaggle平台亦是发生了翻天覆地的变化，更新了整整！……1个比赛！让我们看看是哪场比赛这么幸运得我恩宠。  首先映入眼帘的是……一堆脑阔（真 · 头像），看起来又又又又又又双双叒叕是个医学图像类比赛。翻译标题，RSNA估计是某个">
+<meta property="og:description" content="The article has been encrypted, please enter your password to view.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/10/16/Kivg4f.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/10/16/KFikTJ.png">
-<meta property="og:updated_time" content="2019-10-16T15:05:37.644Z">
+<meta property="og:updated_time" content="2019-10-16T15:09:26.087Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RSNA Intracranial Hemorrhage Detection 比赛记录">
-<meta name="twitter:description" content="比赛链接：RSNA Intracranial Hemorrhage Detection 经过闭关一个月补习机器学习和计算机视觉之后，某凯再度重出江湖。世事变迁，沧海桑田。Kaggle平台亦是发生了翻天覆地的变化，更新了整整！……1个比赛！让我们看看是哪场比赛这么幸运得我恩宠。  首先映入眼帘的是……一堆脑阔（真 · 头像），看起来又又又又又又双双叒叕是个医学图像类比赛。翻译标题，RSNA估计是某个">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/10/16/Kivg4f.png">
+<meta name="twitter:description" content="The article has been encrypted, please enter your password to view.">
 
 
 
@@ -340,7 +337,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 480字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 256字</span>
 
           
 
@@ -355,7 +352,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  480
+                  256
                 </span>
               
 
@@ -392,23 +389,19 @@
       
 
       
-        <p>比赛链接：<a href="https://www.kaggle.com/c/rsna-intracranial-hemorrhage-detection/overview" target="_blank" rel="noopener">RSNA Intracranial Hemorrhage Detection</a></p>
-<p>经过闭关一个月补习机器学习和计算机视觉之后，某凯再度重出江湖。世事变迁，沧海桑田。Kaggle平台亦是发生了翻天覆地的变化，更新了整整！……1个比赛！让我们看看是哪场比赛这么幸运得我恩宠。</p>
-<p><img src="https://s2.ax1x.com/2019/10/16/Kivg4f.png" alt="Kivg4f.png"></p>
-<p>首先映入眼帘的是……一堆脑阔（真 · 头像），看起来又又又又又又双双叒叕是个医学图像类比赛。翻译标题，RSNA估计是某个学会的名字，Intracranial Hemorrhage 则是<del>“颅内的番茄汁（误）”</del>“颅内出血”，最后一个词则是大家熟知的“检测”；副标题为“<strong>确定急性颅内出血及其亚型</strong>”。<del>从标题可以初步猜测出这是个出血区域的检测任务</del>（并不）。</p>
-<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>大意就是，在美国，颅内出血是导致死亡的主要因素之一。希望广大学者建立一个算法帮助检测并定位颅内出血。</p>
-<h2 id="Hemorrhage-Types"><a href="#Hemorrhage-Types" class="headerlink" title="Hemorrhage Types"></a>Hemorrhage Types</h2><p><img src="https://s2.ax1x.com/2019/10/16/KFikTJ.png" alt="KFikTJ.png"></p>
-<h2 id="Evalution"><a href="#Evalution" class="headerlink" title="Evalution"></a>Evalution</h2><p>首先看下提交文件的格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Id,Label</span><br><span class="line">1_epidural,0</span><br><span class="line">1_intraparenchymal,0</span><br><span class="line">1_intraventricular,0</span><br><span class="line">1_subarachnoid,0.6</span><br><span class="line">1_subdural,0</span><br><span class="line">1_any,0.9</span><br><span class="line">2_epidural,0</span><br><span class="line">etc.</span><br></pre></td></tr></table></figure>
-
-<p>每张图片有如上 Id 字段下的六个子类型，前五种分别对应上图中的五种出血类型，最后的 any 类型则代表着存在任意一种子类型的可能性；Label 字段则表示该子类型存在的概率。由此可以看出这是个<strong>回归问题</strong>，但和常规图片分类的思想差别不大。</p>
-<p>评估指标为<strong>加权多标签对数损失</strong>，即对每个id的每个子类型的对数损失加权平均。然后取所有id损失的平均值作为最终分数。</p>
-<h2 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h2><ul>
-<li>2019.10.28 - 报名截止&amp;组队截止</li>
-<li>2019.11.4 - 阶段一结束，阶段二于次日开始。关于双阶段比赛：<a href="https://www.kaggle.com/two-stage-frequently-asked-questions" target="_blank" rel="noopener">two-stage FAQs</a></li>
-<li>2019.11.11 - 阶段二结束</li>
-</ul>
-<h1 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h1>
+        <div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog.">
+    <label for="pass">Please enter the password to read the blog.</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+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
+</div>
+<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
     </div>
     
@@ -528,17 +521,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -630,22 +614,6 @@
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hemorrhage-Types"><span class="nav-number">1.2.</span> <span class="nav-text">Hemorrhage Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Evalution"><span class="nav-number">1.3.</span> <span class="nav-text">Evalution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Timeline"><span class="nav-number">1.4.</span> <span class="nav-text">Timeline</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EDA"><span class="nav-number">2.</span> <span class="nav-text">EDA</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
         <div class="back-to-top">
@@ -682,7 +650,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">20.1k</span>
+    <span title="Site words total count">19.7k</span>
   
 </div>
 
