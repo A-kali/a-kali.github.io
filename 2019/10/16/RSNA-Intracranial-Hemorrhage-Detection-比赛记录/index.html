@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="计算机视觉,Kaggle,深度学习,图片分类,">
 
 
 
@@ -88,17 +88,21 @@
 
 
 
-<meta name="description" content="橘猫最爱的煎饼狗子!">
+<meta name="description" content="比赛链接：RSNA Intracranial Hemorrhage Detection 经过闭关一个月补习机器学习和计算机视觉之后，某凯再度重出江湖。世事变迁，沧海桑田。Kaggle平台亦是发生了翻天覆地的变化，更新了整整！……1个比赛！让我们看看是哪场比赛这么幸运得我恩宠。  首先映入眼帘的是……一堆脑阔（真 · 头像），看起来又又又又又又双双叒叕是个医学图像类比赛。翻译标题，RSNA估计是某个">
+<meta name="keywords" content="计算机视觉,Kaggle,深度学习,图片分类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RSNA Intracranial Hemorrhage Detection 比赛记录">
 <meta property="og:url" content="http://a-kali.github.io/2019/10/16/RSNA-Intracranial-Hemorrhage-Detection-比赛记录/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="橘猫最爱的煎饼狗子!">
+<meta property="og:description" content="比赛链接：RSNA Intracranial Hemorrhage Detection 经过闭关一个月补习机器学习和计算机视觉之后，某凯再度重出江湖。世事变迁，沧海桑田。Kaggle平台亦是发生了翻天覆地的变化，更新了整整！……1个比赛！让我们看看是哪场比赛这么幸运得我恩宠。  首先映入眼帘的是……一堆脑阔（真 · 头像），看起来又又又又又又双双叒叕是个医学图像类比赛。翻译标题，RSNA估计是某个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-16T07:24:54.345Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/16/Kivg4f.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/16/KFikTJ.png">
+<meta property="og:updated_time" content="2019-10-16T15:05:37.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RSNA Intracranial Hemorrhage Detection 比赛记录">
-<meta name="twitter:description" content="橘猫最爱的煎饼狗子!">
+<meta name="twitter:description" content="比赛链接：RSNA Intracranial Hemorrhage Detection 经过闭关一个月补习机器学习和计算机视觉之后，某凯再度重出江湖。世事变迁，沧海桑田。Kaggle平台亦是发生了翻天覆地的变化，更新了整整！……1个比赛！让我们看看是哪场比赛这么幸运得我恩宠。  首先映入眼帘的是……一堆脑阔（真 · 头像），看起来又又又又又又双双叒叕是个医学图像类比赛。翻译标题，RSNA估计是某个">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/10/16/Kivg4f.png">
 
 
 
@@ -336,7 +340,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 0字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 480字</span>
 
           
 
@@ -351,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  480
                 </span>
               
 
@@ -388,7 +392,23 @@
       
 
       
-        
+        <p>比赛链接：<a href="https://www.kaggle.com/c/rsna-intracranial-hemorrhage-detection/overview" target="_blank" rel="noopener">RSNA Intracranial Hemorrhage Detection</a></p>
+<p>经过闭关一个月补习机器学习和计算机视觉之后，某凯再度重出江湖。世事变迁，沧海桑田。Kaggle平台亦是发生了翻天覆地的变化，更新了整整！……1个比赛！让我们看看是哪场比赛这么幸运得我恩宠。</p>
+<p><img src="https://s2.ax1x.com/2019/10/16/Kivg4f.png" alt="Kivg4f.png"></p>
+<p>首先映入眼帘的是……一堆脑阔（真 · 头像），看起来又又又又又又双双叒叕是个医学图像类比赛。翻译标题，RSNA估计是某个学会的名字，Intracranial Hemorrhage 则是<del>“颅内的番茄汁（误）”</del>“颅内出血”，最后一个词则是大家熟知的“检测”；副标题为“<strong>确定急性颅内出血及其亚型</strong>”。<del>从标题可以初步猜测出这是个出血区域的检测任务</del>（并不）。</p>
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>大意就是，在美国，颅内出血是导致死亡的主要因素之一。希望广大学者建立一个算法帮助检测并定位颅内出血。</p>
+<h2 id="Hemorrhage-Types"><a href="#Hemorrhage-Types" class="headerlink" title="Hemorrhage Types"></a>Hemorrhage Types</h2><p><img src="https://s2.ax1x.com/2019/10/16/KFikTJ.png" alt="KFikTJ.png"></p>
+<h2 id="Evalution"><a href="#Evalution" class="headerlink" title="Evalution"></a>Evalution</h2><p>首先看下提交文件的格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Id,Label</span><br><span class="line">1_epidural,0</span><br><span class="line">1_intraparenchymal,0</span><br><span class="line">1_intraventricular,0</span><br><span class="line">1_subarachnoid,0.6</span><br><span class="line">1_subdural,0</span><br><span class="line">1_any,0.9</span><br><span class="line">2_epidural,0</span><br><span class="line">etc.</span><br></pre></td></tr></table></figure>
+
+<p>每张图片有如上 Id 字段下的六个子类型，前五种分别对应上图中的五种出血类型，最后的 any 类型则代表着存在任意一种子类型的可能性；Label 字段则表示该子类型存在的概率。由此可以看出这是个<strong>回归问题</strong>，但和常规图片分类的思想差别不大。</p>
+<p>评估指标为<strong>加权多标签对数损失</strong>，即对每个id的每个子类型的对数损失加权平均。然后取所有id损失的平均值作为最终分数。</p>
+<h2 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h2><ul>
+<li>2019.10.28 - 报名截止&amp;组队截止</li>
+<li>2019.11.4 - 阶段一结束，阶段二于次日开始。关于双阶段比赛：<a href="https://www.kaggle.com/two-stage-frequently-asked-questions" target="_blank" rel="noopener">two-stage FAQs</a></li>
+<li>2019.11.11 - 阶段二结束</li>
+</ul>
+<h1 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h1>
       
     </div>
     
@@ -411,6 +431,18 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+          
+            <a href="/tags/Kaggle/" rel="tag"><i class="fa fa-tag"></i> Kaggle</a>
+          
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
+            <a href="/tags/图片分类/" rel="tag"><i class="fa fa-tag"></i> 图片分类</a>
+          
+        </div>
       
 
       
@@ -496,8 +528,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -536,7 +577,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -589,6 +630,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hemorrhage-Types"><span class="nav-number">1.2.</span> <span class="nav-text">Hemorrhage Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Evalution"><span class="nav-number">1.3.</span> <span class="nav-text">Evalution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Timeline"><span class="nav-number">1.4.</span> <span class="nav-text">Timeline</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EDA"><span class="nav-number">2.</span> <span class="nav-text">EDA</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -625,7 +682,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">19.6k</span>
+    <span title="Site words total count">20.1k</span>
   
 </div>
 

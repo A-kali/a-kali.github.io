@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://a-kali.github.io/"/>
-  <updated>2019-10-16T07:24:54.345Z</updated>
+  <updated>2019-10-16T15:05:37.644Z</updated>
   <id>http://a-kali.github.io/</id>
   
   <author>
@@ -21,12 +21,27 @@
     <link href="http://a-kali.github.io/2019/10/16/RSNA-Intracranial-Hemorrhage-Detection-%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/"/>
     <id>http://a-kali.github.io/2019/10/16/RSNA-Intracranial-Hemorrhage-Detection-比赛记录/</id>
     <published>2019-10-16T07:24:54.000Z</published>
-    <updated>2019-10-16T07:24:54.345Z</updated>
+    <updated>2019-10-16T15:05:37.644Z</updated>
+    
+    <content type="html"><![CDATA[<p>比赛链接：<a href="https://www.kaggle.com/c/rsna-intracranial-hemorrhage-detection/overview" target="_blank" rel="noopener">RSNA Intracranial Hemorrhage Detection</a></p><p>经过闭关一个月补习机器学习和计算机视觉之后，某凯再度重出江湖。世事变迁，沧海桑田。Kaggle平台亦是发生了翻天覆地的变化，更新了整整！……1个比赛！让我们看看是哪场比赛这么幸运得我恩宠。</p><p><img src="https://s2.ax1x.com/2019/10/16/Kivg4f.png" alt="Kivg4f.png"></p><p>首先映入眼帘的是……一堆脑阔（真 · 头像），看起来又又又又又又双双叒叕是个医学图像类比赛。翻译标题，RSNA估计是某个学会的名字，Intracranial Hemorrhage 则是<del>“颅内的番茄汁（误）”</del>“颅内出血”，最后一个词则是大家熟知的“检测”；副标题为“<strong>确定急性颅内出血及其亚型</strong>”。<del>从标题可以初步猜测出这是个出血区域的检测任务</del>（并不）。</p><h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>大意就是，在美国，颅内出血是导致死亡的主要因素之一。希望广大学者建立一个算法帮助检测并定位颅内出血。</p><h2 id="Hemorrhage-Types"><a href="#Hemorrhage-Types" class="headerlink" title="Hemorrhage Types"></a>Hemorrhage Types</h2><p><img src="https://s2.ax1x.com/2019/10/16/KFikTJ.png" alt="KFikTJ.png"></p><h2 id="Evalution"><a href="#Evalution" class="headerlink" title="Evalution"></a>Evalution</h2><p>首先看下提交文件的格式：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Id,Label</span><br><span class="line">1_epidural,0</span><br><span class="line">1_intraparenchymal,0</span><br><span class="line">1_intraventricular,0</span><br><span class="line">1_subarachnoid,0.6</span><br><span class="line">1_subdural,0</span><br><span class="line">1_any,0.9</span><br><span class="line">2_epidural,0</span><br><span class="line">etc.</span><br></pre></td></tr></table></figure><p>每张图片有如上 Id 字段下的六个子类型，前五种分别对应上图中的五种出血类型，最后的 any 类型则代表着存在任意一种子类型的可能性；Label 字段则表示该子类型存在的概率。由此可以看出这是个<strong>回归问题</strong>，但和常规图片分类的思想差别不大。</p><p>评估指标为<strong>加权多标签对数损失</strong>，即对每个id的每个子类型的对数损失加权平均。然后取所有id损失的平均值作为最终分数。</p><h2 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h2><ul><li>2019.10.28 - 报名截止&amp;组队截止</li><li>2019.11.4 - 阶段一结束，阶段二于次日开始。关于双阶段比赛：<a href="https://www.kaggle.com/two-stage-frequently-asked-questions" target="_blank" rel="noopener">two-stage FAQs</a></li><li>2019.11.11 - 阶段二结束</li></ul><h1 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h1>]]></content>
     
     <summary type="html">
     
+      
+      
+        &lt;p&gt;比赛链接：&lt;a href=&quot;https://www.kaggle.com/c/rsna-intracranial-hemorrhage-detection/overview&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;RSNA Intracranial 
+      
+    
     </summary>
     
+    
+      <category term="计算机视觉" scheme="http://a-kali.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+      <category term="Kaggle" scheme="http://a-kali.github.io/tags/Kaggle/"/>
+    
+      <category term="深度学习" scheme="http://a-kali.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="图片分类" scheme="http://a-kali.github.io/tags/%E5%9B%BE%E7%89%87%E5%88%86%E7%B1%BB/"/>
     
   </entry>
   
