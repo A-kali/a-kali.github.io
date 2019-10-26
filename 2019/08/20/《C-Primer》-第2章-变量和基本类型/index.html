@@ -436,21 +436,17 @@
 <h2 id="2-2-1-变量定义"><a href="#2-2-1-变量定义" class="headerlink" title="2.2.1 变量定义"></a>2.2.1 变量定义</h2><h3 id="初始值"><a href="#初始值" class="headerlink" title="初始值"></a>初始值</h3><p>​    当对象在创建时获得了一个特定的值，我们说这个对象被<strong>初始化</strong>了。初始化不等同于赋值，赋值的含义是把对象的当前值擦除，以一个新的值替代。</p>
 <h3 id="列表初始化"><a href="#列表初始化" class="headerlink" title="列表初始化"></a>列表初始化</h3><p>初始化问题复杂性，e.g. 定义一个名为 sold 的 int 变量并初始化为 0，以下代码均可实现：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sold = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> sold = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> sold&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sold</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <p>用花括号来初始化变量的形式被称为<strong>列表初始化</strong>。</p>
 <h2 id="2-2-2-变量声明和定义的关系"><a href="#2-2-2-变量声明和定义的关系" class="headerlink" title="2.2.2 变量声明和定义的关系"></a>2.2.2 变量声明和定义的关系</h2><p>​    为了允许把程序拆分成多个逻辑部分来编写，C++语言支持<strong>分离式编译</strong>机制，该机制允许将程序分割为若干个文件，每个文件可被独立编译。</p>
 <p>​    为了支持分离式编译，C++将声明和定义区分开来。<strong>声明</strong>使得名字为程序所知，<font color="red">一个文件如果想使用别处定义的名字则必须包含对那个名字的声明</font>。而<strong>定义</strong>负责创建与名字关联的实体。声明和定义都规定了变量的类型和名字，而并以还包括了申请空间，也可能会为变量赋予初始值。</p>
 <p>​    如果想声明一个变量而非定义，就在变量名前添加<strong>关键字extern</strong>，而且不要显示地初始化变量：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i; <span class="comment">// 声明i而非定义i</span></span><br><span class="line"><span class="keyword">int</span> j;        <span class="comment">// 声明并定义j</span></span><br></pre></td></tr></table></figure>
-
 <p>​    变量只能被定义一次，但可以被多次声明。如果要在多个文件中使用同一个变量，就必须将声明和定义分离。此时变量的定义必须且只能出现在一个文件中，而其他用到该变量的文件必须且只能对其声明。</p>
 <h1 id="2-3-复合类型"><a href="#2-3-复合类型" class="headerlink" title="2.3 复合类型"></a>2.3 复合类型</h1><p>​    <strong>复合类型</strong>是指基于其他类型定义的类型，其中两种为引用和指针。</p>
 <h2 id="2-3-1-引用"><a href="#2-3-1-引用" class="headerlink" title="2.3.1 引用"></a>2.3.1 引用</h2><p>​    <strong>引用</strong>为对象起了另一个名字，引用类型引用另外一种类型。通过将声明符写成&amp;d的形式来定义引用类型，其中d是声明时的变量名：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ival = <span class="number">1024</span>;     <span class="comment">// 声明了变量名为ival</span></span><br><span class="line"><span class="keyword">int</span> &amp;refVal = ival;  <span class="comment">// 此时refVal成了该变量的第二个名字</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="2-3-2-指针"><a href="#2-3-2-指针" class="headerlink" title="2.3.2 指针"></a>2.3.2 指针</h2><p>​    <strong>指针</strong>时“指向”另外一种类型的复合类型。定义指针类型的方法将声明符写成 *d 的形式，其中 d 是变量名。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ip1, *ip2; <span class="comment">//ip1是int型对象，ip2是指向一个int型对象的指针</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="获取对象的地址"><a href="#获取对象的地址" class="headerlink" title="获取对象的地址"></a>获取对象的地址</h3><p>​    指针存放某个对象的地址，要想获取该地址，需要使用<strong>取地址符（&amp;）</strong>。</p>
 <h3 id="利用指针访问对象"><a href="#利用指针访问对象" class="headerlink" title="利用指针访问对象"></a>利用指针访问对象</h3><p>​    如果指针指向了一个对象，则允许使用<strong>解引用符（*）</strong>来访问该对象。</p>
 <hr>
@@ -458,43 +454,32 @@
 <hr>
 <h3 id="空指针"><a href="#空指针" class="headerlink" title="空指针"></a>空指针</h3><p>​    <strong>空指针</strong>不指向任何对象，在试图使用一个空指针之前代码可以首先检查它是否为空。以下是三种等价的生成空指针的方法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p1 = <span class="literal">nullptr</span>;</span><br><span class="line"><span class="keyword">int</span> *p2 = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *p3 = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
-
 <h3 id="void-指针"><a href="#void-指针" class="headerlink" title="void* 指针"></a>void* 指针</h3><p>​    <strong>void*</strong>指针可用于存放任意对象的地址。但由于我们并不知道这个对象到底是什么类型，也就无法确定能在这个对象上做哪些操作，故不能直接操作void*指针所指的对象。</p>
 <h2 id="2-3-3-理解复合类型的声明"><a href="#2-3-3-理解复合类型的声明" class="headerlink" title="2.3.3 理解复合类型的声明"></a>2.3.3 理解复合类型的声明</h2><p>​    类型修饰符仅仅只是在声明时修饰了变量，并不能作为类型的一部分，且对与该声明语句中的其他变量不产生任何作用。</p>
 <p>​    声明语句中的修饰符没有个数限制。</p>
 <h1 id="2-4-const-限定符"><a href="#2-4-const-限定符" class="headerlink" title="2.4 const 限定符"></a>2.4 const 限定符</h1><p>​    关键字<strong>const</strong>可以对变量的类型加以限定，使得被限定的变量的值在定义之后不能再改变。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> bufSize = <span class="number">512</span></span><br></pre></td></tr></table></figure>
-
 <p>因为const对象一旦创建后其值就不能再改变，所以const对象必须被初始化。</p>
 <h3 id="对const的引用可能引用一个并非const的对象"><a href="#对const的引用可能引用一个并非const的对象" class="headerlink" title="对const的引用可能引用一个并非const的对象"></a>对const的引用可能引用一个并非const的对象</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;r1 = i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r2 = i;</span><br><span class="line">r1 = <span class="number">0</span>;  <span class="comment">// 可以通过r1修改i的值</span></span><br><span class="line">r2 = <span class="number">0</span>;  <span class="comment">// 错误；不能通过r2修改i的值</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="2-4-3-顶层const"><a href="#2-4-3-顶层const" class="headerlink" title="2.4.3 顶层const"></a>2.4.3 顶层const</h2><p>​    用名词<strong>顶层const</strong>表示指针本身是个常量，而<strong>底层const</strong>表示指针所指的对象是一个常量。当执行对象的拷贝操作时，拷入和拷出的对象必须具有相同的底层const资格，或者两个对象的数据类型必须能够转换。（待考究，p58）</p>
 <h2 id="2-4-4-constexpr-和常量表达式"><a href="#2-4-4-constexpr-和常量表达式" class="headerlink" title="2.4.4 constexpr 和常量表达式"></a>2.4.4 constexpr 和常量表达式</h2><p>​    <strong>常量表达式</strong>是指值不会改变并且在编译过程就能得到计算结果的表达式。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> max_files = <span class="number">20</span>; <span class="comment">// 常量表达式</span></span><br><span class="line"><span class="keyword">int</span> staff_size = <span class="number">28</span>; <span class="comment">// 不是常量表达式</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> sz = get_size(); <span class="comment">// 不是常量表达式，因为要在运行时才能获取到</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="constexpr-变量"><a href="#constexpr-变量" class="headerlink" title="constexpr 变量"></a>constexpr 变量</h3><p>​    C++11 新标准规定，允许将变量声明为<strong>constexpr</strong>类型以便由编译器来验证变量的值是否是一个常量表达式。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> sz = size(); <span class="comment">// 只有当size()是一个constexpr函数时才是一条正确的语句</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="字面值类型"><a href="#字面值类型" class="headerlink" title="字面值类型"></a>字面值类型</h3><h1 id="2-5-处理类型"><a href="#2-5-处理类型" class="headerlink" title="2.5 处理类型"></a>2.5 处理类型</h1><h2 id="2-5-1-类型别名"><a href="#2-5-1-类型别名" class="headerlink" title="2.5.1 类型别名"></a>2.5.1 类型别名</h2><p>​    <strong>类型别名</strong>是一个名字，它是某种类型的同义词。使用类型别名能让复杂的类型名变得简单明了、易于理解和使用。</p>
 <p>​    有两种方法可用于定义类型别名。分别是是使用<strong>关键字 typedef</strong>和<strong>别名声明using</strong>：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> wage;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> SI = Sale_item;</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-5-2-auto-类型说明符"><a href="#2-5-2-auto-类型说明符" class="headerlink" title="2.5.2 auto 类型说明符"></a>2.5.2 auto 类型说明符</h2><p>​    <strong>auto</strong>类型说明符能让编译器替我们去分析表达式所属的类型。</p>
 <h2 id="2-5-3-decltype-类型指示符"><a href="#2-5-3-decltype-类型指示符" class="headerlink" title="2.5.3 decltype 类型指示符"></a>2.5.3 decltype 类型指示符</h2><p>​    类型说明符<strong>decltype</strong>能从表达式的类型推断出要定义的变量的类型，但不使用该表达式的值初始化变量。其作用是选择并返回操作数的数据类型。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">decltype</span>(f()) sum = x; <span class="comment">// 使用f()的返回类型初始化sum变量，而不使用f()的值</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="2-6-自定义数据结构"><a href="#2-6-自定义数据结构" class="headerlink" title="2.6 自定义数据结构"></a>2.6 自定义数据结构</h1><h2 id="2-6-1-定义-Sales-data-类型"><a href="#2-6-1-定义-Sales-data-类型" class="headerlink" title="2.6.1 定义 Sales_data 类型"></a>2.6.1 定义 Sales_data 类型</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sales_data</span> &#123;</span>          <span class="comment">// 关键字struct + 类名</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> bookNo;      <span class="comment">// 数据成员</span></span><br><span class="line">    <span class="keyword">unsigned</span> units_sold = <span class="number">0</span>; <span class="comment">// 类内初始值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-6-2-使用-Sales-data-类"><a href="#2-6-2-使用-Sales-data-类" class="headerlink" title="2.6.2 使用 Sales_data 类"></a>2.6.2 使用 Sales_data 类</h2><h3 id="添加-Sales-data-对象"><a href="#添加-Sales-data-对象" class="headerlink" title="添加 Sales_data 对象"></a>添加 Sales_data 对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sales_data data1;</span><br></pre></td></tr></table></figure>
-
 <h3 id="Sales-data-对象读入数据"><a href="#Sales-data-对象读入数据" class="headerlink" title="Sales_data 对象读入数据"></a>Sales_data 对象读入数据</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; data1.bookNO &gt;&gt; data1.units_sold &gt;&gt; price;</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-6-3-编写自己的头文件"><a href="#2-6-3-编写自己的头文件" class="headerlink" title="2.6.3 编写自己的头文件"></a>2.6.3 编写自己的头文件</h2><p>​    为了确保哥哥文件中类的定义一致，类通常被定义在头文件中，而且类所在头文件的名字应与类的名字一样。头文件通常包含那些被定义一次的实体，如类、const 和 constexpr 变量。</p>
 <h3 id="预处理器概述"><a href="#预处理器概述" class="headerlink" title="预处理器概述"></a>预处理器概述</h3><p>​    <strong>预处理器</strong>是在编译之前执行的一段程序，可以部分地改变我们所写的程序。能确保头文件多次包含仍能安全工作。之前用到的一项预处理器功能是#include。</p>
 <p>​    C++用到的另一项与处理功能是<strong>头文件保护符</strong>，头文件保护符依赖于<strong>预处理变量</strong>。预处理变量有两种状态：已定义和未定义。<strong>#define</strong> 指令把一个名字设定为预处理变量，<strong>#ifdef</strong> 当且仅当变量已经定义是为真，<strong>#ifndef</strong> 仅当变量未定义时为真。检查结果为真时，执行后续操作直至遇到<strong>#endif</strong> 指令为止。</p>
 <p>​    以下代码说明了这些功能如何有效防止重复包含：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> SALES_DATA_H  <span class="comment">// 如果没有定义SALES_DATA_H预处理变量，则执行以下语句</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SALES_DATA_H  <span class="comment">// 定义SALES_DATA_H预处理变量</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> Sales_data</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sales_data</span> &#123;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> bookNo;</span><br><span class="line">    <span class="keyword">unsigned</span> units_sold = <span class="number">0</span>; </span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
 <p>第一次包含该文件时，SALES_DATA_H 未定义，预处理器顺序执行代码。再次被包含时 SALES_DATA_H 已定义，<code>#ifndef SALES_DATA_H</code> 检查结果为假，编译器将跳过中间语句。</p>
 
       
@@ -641,7 +626,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -768,7 +753,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.6k</span>
+    <span title="Site words total count">22.4k</span>
   
 </div>
 

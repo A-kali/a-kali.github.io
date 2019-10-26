@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="计算机视觉,论文解读,语义分割,R-CNN,目标检测,深度学习,">
+  <meta name="keywords" content="论文解读,计算机视觉,语义分割,深度学习,R-CNN,目标检测,">
 
 
 
@@ -88,24 +88,29 @@
 
 
 
-<meta name="description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 正文伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
-<meta name="keywords" content="计算机视觉,论文解读,语义分割,R-CNN,目标检测,深度学习">
+<meta name="description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 背景伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
+<meta name="keywords" content="论文解读,计算机视觉,语义分割,深度学习,R-CNN,目标检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读">
 <meta property="og:url" content="http://a-kali.github.io/2019/10/10/R-CNN-Fast-R-CNN-Faster-R-CNN-Mask-R-CNN-论文解读/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 正文伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
+<meta property="og:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 背景伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/25/KwZVHS.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20181210155342586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JyaWJsdWU=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/22/K8nKrd.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/22/KGQ98P.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/22/KG6IIA.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/23/KtoCi6.png">
-<meta property="og:updated_time" content="2019-10-23T16:59:02.834Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/25/KdqldS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/25/KdIwZQ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/25/KwJZQS.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/75922/201803/75922-20180306112242001-1446513216.png">
+<meta property="og:updated_time" content="2019-10-26T02:05:18.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读">
-<meta name="twitter:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 正文伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181210155342586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JyaWJsdWU=,size_16,color_FFFFFF,t_70">
+<meta name="twitter:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 背景伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/10/25/KwZVHS.png">
 
 
 
@@ -365,7 +370,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.3k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 2.1k字</span>
 
           
 
@@ -380,7 +385,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.3k
+                  2.1k
                 </span>
               
 
@@ -396,7 +401,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  7分钟
                 </span>
               
             </div>
@@ -419,17 +424,20 @@
       
         <h1 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a>R-CNN</h1><p>论文地址：<a href="https://arxiv.org/pdf/1311.2524.pdf" target="_blank" rel="noopener">Rich feature hierarchies for accurate object detection and semantic segmentation</a></p>
 <p>发布时间：2014.10.22</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。其成绩对卷积神经网络在目标检测的运用产生了深远的影响。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。其成绩对卷积神经网络在目标检测的运用产生了深远的影响。</p>
 <p>但在这之前，需要解决两个主要的问题：</p>
 <ol>
 <li>与图片分类不同，目标检测需要在图片上定位目标的位置。那么如何利用深度的神经网络去做目标的定位？</li>
 <li>如何在一个小规模的数据集上训练能力强劲的网络模型？</li>
 </ol>
-<p>R-CNN全称为Regions with CNN features，其名字来源于其主要使用的两项技术：卷积神经网络（CNN）和<strong>区域推荐</strong>（Region Proposals），而区域推荐正是第一个问题的解决方法。R-CNN整体过程如下：</p>
+<p>R-CNN全称为Regions with CNN features，其名字来源于其主要使用的两项技术：卷积神经网络（CNN）和<strong>区域推荐</strong>（Region Proposals），而区域推荐正是第一个问题的解决方法。当时已有许多现成的区域推荐算法，本文作者使用的是<strong>选择性搜索(selective search)算法</strong>。</p>
+<h2 id="选择性搜索"><a href="#选择性搜索" class="headerlink" title="选择性搜索"></a>选择性搜索</h2><p><img src="https://s2.ax1x.com/2019/10/25/KwZVHS.png" alt="KwZVHS.png"></p>
+<p>大概就是根据临近颜色的相似度将左边的原图变成像右边由色块组成的图片，然后根据色块选出候选框。这样可以减少对一些不必要的区域进行卷积运算，比如左图左上角那个框。该算法被后续几代网络沿用，直到 Faster R-CNN 使用神经网络进行区域推荐。</p>
+<h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p>R-CNN整体过程如下：</p>
 <ol>
-<li>给定一张输入图片，使用区域推荐算法selective search从图片中提取 2000 个类别独立的候选区域。</li>
+<li>给定一张输入图片，使用selective search从图片中提取 2000 个类别独立的候选区域。</li>
 <li>将每个候选区域缩放到227×227，输入到 CNN中抽取一个固定长度的特征向量。</li>
-<li>使用各个类别对应的SVM对特征向量进行二分类，判断该候选区域是否包含该类别，之后对每个类别的窗口进行极大值抑制。</li>
+<li>使用<strong>各个类别对应的SVM对特征向量进行二分类</strong>，判断该候选区域是否包含该类别，之后对每个类别的窗口进行极大值抑制。</li>
 </ol>
 <p><img src="https://img-blog.csdnimg.cn/20181210155342586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JyaWJsdWU=,size_16,color_FFFFFF,t_70" alt></p>
 <p>对于第二个问题，作者给出的解决方法是：在大型图片分类数据集ILSVRC上预训练卷积神经网络，并微调（fine-tuning）到小型目标检测数据集PASCAL上，这使得mAP上升了8个百分点。</p>
@@ -440,18 +448,18 @@
 </ol>
 <h1 id="SPP-Net"><a href="#SPP-Net" class="headerlink" title="SPP-Net"></a>SPP-Net</h1><p>论文地址：<a href="https://arxiv.org/abs/1406.4729" target="_blank" rel="noopener">Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition</a></p>
 <p>发布时间：2015.4.23</p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>由于 CNN 需要固定大小的输入，在将图片输入到神经网络之前需要对图片进行缩放(warp)或裁剪(crop)。缩放会造成图片几何失真，而裁剪则可能损失部分目标物像素，这将会对图片识别精确度有所影响。</p>
+<h2 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h2><p>由于 CNN 需要固定大小的输入，在将图片输入到神经网络之前需要对图片进行缩放(warp)或裁剪(crop)。缩放会造成图片几何失真，而裁剪则可能损失部分目标物像素，这将会对图片识别精确度有所影响。</p>
 <p><img src="https://s2.ax1x.com/2019/10/22/K8nKrd.png" alt="K8nKrd.png"></p>
 <p>CNN 只能接收固定尺寸图片的原因是其全连接层节点数目固定，而其卷积层是可以接收不同尺寸的图片的。于是作者设计了用于神经网络中的 <strong>SPP</strong> (spatial pytamid pooling, 空间金字塔池化) 模块，位于卷积层和全连接层之间，用于<strong>接收任意尺寸的图片、提取其特征并产生固定大小的输出</strong>。而且实验表明，训练时使用不同尺寸的输入，可以提高测试精度。</p>
 <h2 id="空间金字塔池化层"><a href="#空间金字塔池化层" class="headerlink" title="空间金字塔池化层"></a>空间金字塔池化层</h2><p><img src="https://s2.ax1x.com/2019/10/22/KGQ98P.png" alt="KGQ98P.png"></p>
 <p>作者将 CNN 中的最后一个池化层用 SPP 替代。如图所示，<strong>SPP 将最后一层卷积层输出的特征图分割成不同尺寸的网格，分别为4×4、2×2、1×1，然后对每个小格进行max pooling，再将池化后的结果连接起来，就能得到（16+4+1）× 256 的固定长度的输出</strong>（这里的256为256个channel）。</p>
 <h2 id="SPP-在目标检测中的应用"><a href="#SPP-在目标检测中的应用" class="headerlink" title="SPP 在目标检测中的应用"></a>SPP 在目标检测中的应用</h2><p>前面提到，R-CNN 在图像中选出2000个候选窗口，并将每个窗口缩放后输入到神经网络中，这样对一张图片反复使用深度卷积网络十分耗时。测试时，特征提取是其主要的时间瓶颈。</p>
-<p>论文中提到，特征图的ROI与原图中的目标物在同一位置，如下图：</p>
+<p>论文中提到，特征图的ROI与原图中的目标物的位置存在一定的映射关系，如下图：</p>
 <p><img src="https://s2.ax1x.com/2019/10/22/KG6IIA.png" alt="KG6IIA.png"></p>
 <p>于是<strong>对于一张图片，只需要提取一次特征，然后将特征图的2000个候选区域输入 SPP 模块就能得到固定长度的表示。由于只需要进行一次卷积操作，节省了大量候选区域通过神经网络的时间。</strong></p>
 <h1 id="Fast-R-CNN"><a href="#Fast-R-CNN" class="headerlink" title="Fast R-CNN"></a>Fast R-CNN</h1><p>论文地址：<a href="https://arxiv.org/abs/1504.08083" target="_blank" rel="noopener">Fast R-CNN</a></p>
 <p>发布时间：2015.9.27</p>
-<h2 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h2><p>SPPnet 虽然对R-CNN进行了一些改进，但仍然存在许多问题：</p>
+<h2 id="背景-2"><a href="#背景-2" class="headerlink" title="背景"></a>背景</h2><p>SPPnet 虽然对R-CNN进行了一些改进，但仍然存在许多问题：</p>
 <ul>
 <li>需要大量产生候选框</li>
 <li>对目标的定位只能靠候选框来粗略定位</li>
@@ -469,10 +477,43 @@
 <p>从上图直观上来看，Fast R-CNN 与 SPPnet 的结构有两个区别：</p>
 <ol>
 <li>SPP模块被换成了RoI池化层</li>
-<li>网络末端有两个输出，分别用于图像分类和边框回归。分类器被换成了softmax</li>
+<li>网络末端有两个输出，分别用于图像分类和边框回归。分类器被换成了softmax。使用softmax的好处在于不用单独训练一个SVM分类器；缺点在于对于一个候选框最多只能分出一类物体，即使一个候选框包含了多个类别的目标（大概）。</li>
 </ol>
+<p>另外值得一提的是，Fast R-CNN 采用的是固定大小的输入，而不像SPPnet使用任意大小的输入。</p>
 <h3 id="RoI-池化层"><a href="#RoI-池化层" class="headerlink" title="RoI 池化层"></a>RoI 池化层</h3><p>RoI 池化层实质上就是单层的 SPP 模块。其将一个候选窗口划分为 H×W 的网格，对每个网格内进行最大池化，最后输出一个长度为 H×W 的特征。超参数 H 和 W 视具体网络结构而定。</p>
-<h3 id="多任务损失"><a href="#多任务损失" class="headerlink" title="多任务损失"></a>多任务损失</h3>
+<h3 id="多任务损失"><a href="#多任务损失" class="headerlink" title="多任务损失"></a>多任务损失</h3><p>多任务损失由分类任务损失和边框回归任务损失线性组合而成：</p>
+<script type="math/tex; mode=display">
+L=L_{cls}(p,u)+\lambda [u\geq 1]L_{loc}(t^u,v)\\</script><p>其中：</p>
+<script type="math/tex; mode=display">
+L_{cls}(p,u)=-\log p_u\\
+L_{loc}(t^u,v)=\sum smooth_{L_1}(t^u_i-v_i)</script><h3 id="Mini-batch-sampling"><a href="#Mini-batch-sampling" class="headerlink" title="Mini-batch sampling"></a>Mini-batch sampling</h3><p>（其实这一段我没看太懂，以下仅作参考）</p>
+<p>在调优(fine tuning)训练时，每个mini-batch中首先加入 N 张完整图片，从 N 张图片中选出一共 R 个 IoU&gt;0.5 的候选区域，然后将这 R 个候选区域作为训练样本放入网络训练。</p>
+<h1 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h1><p>论文地址：<a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</a></p>
+<p>发布时间：2016.1.6</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>性能优越的目标检测网络都依赖区域推荐(region proposal)算法来假定目标位置，比如R-CNN中的选择搜索(search selective)算法，而这些区域推荐的计算消耗正是整个网络性能的瓶颈。本文作者引入了<strong>区域推荐网络(Region Proposal Network, RPN)</strong>，尝试使用神经网络来进行区域提取。并将 RPN 和 Fast R-CNN 融合在一起，共享卷积特征，成为一个端到端的神经网络。</p>
+<h2 id="架构概览"><a href="#架构概览" class="headerlink" title="架构概览"></a>架构概览</h2><p><img src="https://s2.ax1x.com/2019/10/25/KdqldS.png" alt="KdqldS.png"></p>
+<p>Fast R-CNN 大致结构如图。可以看出，网络由四步组成：</p>
+<ol>
+<li>输入的图片经过卷积层输出一张特征图</li>
+<li>将特征图输入 RPN，得到候选区域</li>
+<li>将特征图上候选区域的对应位置输入到 RoI 池化层</li>
+<li>输入到分类器得出分类结果</li>
+</ol>
+<p>那么 RPN 具体是怎样的呢？</p>
+<h2 id="RPN"><a href="#RPN" class="headerlink" title="RPN"></a>RPN</h2><p><img src="https://s2.ax1x.com/2019/10/25/KdIwZQ.png" alt="KdIwZQ.png"></p>
+<p>从上图中Faster R-CNN更具体的结构，包括左下方的RPN模块。RPN具体流程如下：</p>
+<ol>
+<li><p>使用<strong>滑动窗口(slide window)</strong>遍历整个特征图(feature map)，遍历过程中以window中心产生9个预设<strong>锚框(anchor)</strong>，9个锚框分别对应3种尺寸和3种长宽比。</p>
+<p><img src="https://s2.ax1x.com/2019/10/25/KwJZQS.png" alt="KwJZQS.png"></p>
+</li>
+<li><p>将锚框分别输入到<strong>线性分类层(cls layer)</strong>和<strong>边框回归层(reg layer)</strong>中，初步判断该锚框里是否包含目标物以及进一步修正锚框，使锚框定位更精确。</p>
+<p><img src="https://images2018.cnblogs.com/blog/75922/201803/75922-20180306112242001-1446513216.png" alt></p>
+</li>
+</ol>
+<ol>
+<li>将筛选、修正后的锚框映射到特征图上，输入到ROI池化层。后续操作和Fast R-CNN一样。</li>
+</ol>
+
       
     </div>
     
@@ -498,17 +539,17 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
-          
             <a href="/tags/论文解读/" rel="tag"><i class="fa fa-tag"></i> 论文解读</a>
           
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+          
             <a href="/tags/语义分割/" rel="tag"><i class="fa fa-tag"></i> 语义分割</a>
+          
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
           
             <a href="/tags/R-CNN/" rel="tag"><i class="fa fa-tag"></i> R-CNN</a>
           
             <a href="/tags/目标检测/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
-          
-            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
           
         </div>
       
@@ -627,7 +668,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -711,7 +752,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#R-CNN"><span class="nav-number">1.</span> <span class="nav-text">R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">1.1.</span> <span class="nav-text">正文</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SPP-Net"><span class="nav-number">2.</span> <span class="nav-text">SPP-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间金字塔池化层"><span class="nav-number">2.2.</span> <span class="nav-text">空间金字塔池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-在目标检测中的应用"><span class="nav-number">2.3.</span> <span class="nav-text">SPP 在目标检测中的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fast-R-CNN"><span class="nav-number">3.</span> <span class="nav-text">Fast R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-1"><span class="nav-number">3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构细节和模型训练"><span class="nav-number">3.2.</span> <span class="nav-text">架构细节和模型训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RoI-池化层"><span class="nav-number">3.2.1.</span> <span class="nav-text">RoI 池化层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多任务损失"><span class="nav-number">3.2.2.</span> <span class="nav-text">多任务损失</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#R-CNN"><span class="nav-number">1.</span> <span class="nav-text">R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择性搜索"><span class="nav-number">1.2.</span> <span class="nav-text">选择性搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体架构"><span class="nav-number">1.3.</span> <span class="nav-text">整体架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SPP-Net"><span class="nav-number">2.</span> <span class="nav-text">SPP-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-1"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间金字塔池化层"><span class="nav-number">2.2.</span> <span class="nav-text">空间金字塔池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-在目标检测中的应用"><span class="nav-number">2.3.</span> <span class="nav-text">SPP 在目标检测中的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fast-R-CNN"><span class="nav-number">3.</span> <span class="nav-text">Fast R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-2"><span class="nav-number">3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构细节和模型训练"><span class="nav-number">3.2.</span> <span class="nav-text">架构细节和模型训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RoI-池化层"><span class="nav-number">3.2.1.</span> <span class="nav-text">RoI 池化层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多任务损失"><span class="nav-number">3.2.2.</span> <span class="nav-text">多任务损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-batch-sampling"><span class="nav-number">3.2.3.</span> <span class="nav-text">Mini-batch sampling</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Faster-R-CNN"><span class="nav-number">4.</span> <span class="nav-text">Faster R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构概览"><span class="nav-number">4.2.</span> <span class="nav-text">架构概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPN"><span class="nav-number">4.3.</span> <span class="nav-text">RPN</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -754,7 +795,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.6k</span>
+    <span title="Site words total count">22.4k</span>
   
 </div>
 
@@ -984,11 +1025,31 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
