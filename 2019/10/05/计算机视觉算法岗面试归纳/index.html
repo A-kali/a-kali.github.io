@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="机器学习,计算机视觉,神经网络,语义分割,目标检测,面试,SLAM,图像处理,">
 
 
 
@@ -88,17 +88,18 @@
 
 
 
-<meta name="description" content="橘猫最爱的煎饼狗子!">
+<meta name="description" content="ML 介绍一下调参的经验 Softmax的公式和伪代码 分类常见的指标有什么，如何理解AUC？ 介绍决策树、RF、XGBoost、GBDT和 LightGBM XGboost的loss函数的推导（mse以及非mse形式），以及求解推导。 使用O(N)复杂度完成GBDT分裂 介绍 F1-score，AUC，交叉熵，ROC 介绍 Adboost，GBDT，XGBoost 介绍不同的聚类算法：K-Mea">
+<meta name="keywords" content="机器学习,计算机视觉,神经网络,语义分割,目标检测,面试,SLAM,图像处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机视觉算法岗面试归纳">
 <meta property="og:url" content="http://a-kali.github.io/2019/10/05/计算机视觉算法岗面试归纳/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="橘猫最爱的煎饼狗子!">
+<meta property="og:description" content="ML 介绍一下调参的经验 Softmax的公式和伪代码 分类常见的指标有什么，如何理解AUC？ 介绍决策树、RF、XGBoost、GBDT和 LightGBM XGboost的loss函数的推导（mse以及非mse形式），以及求解推导。 使用O(N)复杂度完成GBDT分裂 介绍 F1-score，AUC，交叉熵，ROC 介绍 Adboost，GBDT，XGBoost 介绍不同的聚类算法：K-Mea">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-05T01:32:59.249Z">
+<meta property="og:updated_time" content="2019-10-28T14:12:55.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机视觉算法岗面试归纳">
-<meta name="twitter:description" content="橘猫最爱的煎饼狗子!">
+<meta name="twitter:description" content="ML 介绍一下调参的经验 Softmax的公式和伪代码 分类常见的指标有什么，如何理解AUC？ 介绍决策树、RF、XGBoost、GBDT和 LightGBM XGboost的loss函数的推导（mse以及非mse形式），以及求解推导。 使用O(N)复杂度完成GBDT分裂 介绍 F1-score，AUC，交叉熵，ROC 介绍 Adboost，GBDT，XGBoost 介绍不同的聚类算法：K-Mea">
 
 
 
@@ -336,7 +337,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 0字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 3k字</span>
 
           
 
@@ -351,7 +352,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  3k
                 </span>
               
 
@@ -367,7 +368,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  10分钟
                 </span>
               
             </div>
@@ -388,7 +389,220 @@
       
 
       
-        
+        <h1 id="ML"><a href="#ML" class="headerlink" title="ML"></a>ML</h1><ul>
+<li>介绍一下调参的经验</li>
+<li>Softmax的公式和伪代码</li>
+<li>分类常见的指标有什么，如何理解AUC？</li>
+<li>介绍决策树、RF、XGBoost、GBDT和 LightGBM</li>
+<li>XGboost的loss函数的推导（mse以及非mse形式），以及求解推导。</li>
+<li>使用O(N)复杂度完成GBDT分裂</li>
+<li>介绍 F1-score，AUC，交叉熵，ROC</li>
+<li>介绍 Adboost，GBDT，XGBoost</li>
+<li>介绍不同的聚类算法：K-Means、GMM、DBSCAN等</li>
+<li>CCA和PCA的区别</li>
+<li>牛顿法能用于非凸函数吗？</li>
+<li>XGBoost里处理缺失值的方法</li>
+<li>样本不平衡对 SVM 的影响</li>
+<li>KNN和Kmeans的算法中K的含义，K对算法的影响，怎么选择K</li>
+<li>LR的全过程，从train到inference，损失函数</li>
+<li>介绍常见的集成方法</li>
+<li>LR + softmax做多分类和LR + multiLoss 做多分类区别在哪里</li>
+<li>LR为什么用交叉熵作为loss函数</li>
+<li>Kmeans的缺点？如何改善？</li>
+<li>讲一下K-means算法的过程以及原理</li>
+<li>为什么Bagging降方差，Boosting降偏差？</li>
+<li>介绍XGBoost对GBDT的提升，LightGBM对XGBoost的提升</li>
+<li>为什么要对连续型数值进行离散化，这样做有什么优势</li>
+<li>LR 为什么用sigmoid函数？</li>
+<li>怎么解决样本不均衡（重点考核损失函数优化）</li>
+<li>HMM 和 CRF的区别</li>
+<li>XGBoost 如何处理缺失数据？</li>
+<li>写一下 LR 和 SVM 的损失函数</li>
+<li>正负样本不均衡时的解决方案</li>
+<li>知道哪些降维的方法，具体讲讲</li>
+<li>线性模型和非线性模型都有哪些？</li>
+<li>手写AUC的计算（小矩形积分得到总面积即可）</li>
+<li>决策树分支的原理</li>
+<li>offerpolicy 和 onpolicy 的区别</li>
+<li>为什么随机森林的树比 GBDT 的深一点？</li>
+<li>逻辑回归的目标函数(损失函数)是凸函数吗？</li>
+<li>完全二叉树的概念</li>
+<li>朴素贝叶斯与贝叶斯有什么区别？</li>
+<li>SVM 为什么变成对偶问题来求解？</li>
+<li>缺失值如何处理，什么情况下均值、众数，什么情况下丢弃特征。</li>
+<li>诸如ID类的特征如何处理，编码方式one-hot还是其他的，高维时？什么样才算高维，有没有界定？</li>
+<li>聚类的算法有哪些？评价方法？优化算法？</li>
+<li>解释几何间隔和函数间隔</li>
+<li>描述决策树，如何选特征，怎么划分，怎么剪枝，介绍信息增益</li>
+<li>K-Means 聚类这种方法一定会收敛嘛？如果不收敛，怎么办？</li>
+<li>SVM 的目标函数，为什么能用拉格朗日乘子法讲原始最优化问题转化为极大极小问题，数学原理是什么</li>
+<li>介绍SVM，其中的软间隔是什么意思？</li>
+<li>使用线性回归的时候什么时候会需要用L2？</li>
+<li>如果F1已经趋于平稳，如何在保持F1稳定的前提下提高precision，降低recall；</li>
+<li>LR 为什么不用 MSE，SVM 为什么用hinge不用logloss</li>
+<li>XGBoost 怎么解决过拟合？怎么剪枝？怎么选择特征？怎么处理缺失值？</li>
+<li>XGBoost 的默认深度</li>
+<li>各种决策树模型的优劣（从最简单的ID3到最后的LGB）</li>
+<li>SVM 核函数哪些是高维空间维度已知，哪些是未知的？</li>
+<li>LR介绍、LR对特征需要做什么特殊处理吗？类别特征、连续特征</li>
+<li>损失函数正则项的本质是什么? </li>
+<li>SVM 有哪些核函数？</li>
+<li>L1 正则化为什么能使特征稀疏？</li>
+<li>Stacking原理，还有怎么调优？</li>
+<li>XGBoost怎么调参？用了多少棵树？</li>
+<li>各种决策树模型的优劣（从最简单的ID3到最后的LGB）</li>
+<li>ID3 C4.5 CART的区别</li>
+<li>手推 SVM, GBDT, XGBoost</li>
+<li>CRF 怎么训练的（传统+深度学习）</li>
+<li>得到AUC的两种计算方法</li>
+<li>树的分裂方式（id3,gini,gdbt,xgboost）</li>
+<li>监督学习的概念？什么是随机森林，随机森林的优点？</li>
+<li>LR和SVM区别（计算复杂度）</li>
+<li>Adam优化器的迭代公式</li>
+<li>SGD每步做什么，为什么能online learning</li>
+<li>L1 L2正则化区别</li>
+<li>PCA原理和执行步骤</li>
+<li>特征工程知道吗？举几个特征归一化的例子</li>
+<li>SVM为什么可以处理非线性问题</li>
+<li>L1正则化的先验分布？</li>
+<li>L1的不知道，L2的先验分布知道吧？</li>
+<li>多标签分类问题怎么解决，从损失函数角度考虑</li>
+</ul>
+<h1 id="NN"><a href="#NN" class="headerlink" title="NN"></a>NN</h1><ul>
+<li>激活函数 除了 Sigmoid tanh ReLU 还有什么介绍一下？</li>
+<li>BFE 和 Dropout的关系</li>
+<li>Dropout是失活神经元还是失活连接</li>
+<li>手推梯度反向传播</li>
+<li>介绍 Leaky Relu 并写公式</li>
+<li>分类网络样本不均衡怎么办？</li>
+<li>dropout层作用，如何实现有什么作用？</li>
+<li>Dropout 前向和反向的处理</li>
+<li>神经网络如果没有激活函数还能解决线性不可分问题吗？</li>
+<li>Tensorflow的动态图和静态图有什么区别</li>
+<li>GN，BN，LN，IN 它们的共性和特性</li>
+<li>为什么BN有泛化能力的改善. 什么场景用什么normalization方法，效果如何.</li>
+<li>Dropout为什么能防止过拟合？具体实现</li>
+<li>dropout在训练和测试时不同，怎么保证测试结果稳定</li>
+<li>如何计算神经网络的 FLOPS？</li>
+<li>梯度下降陷入局部最优有什么解决办法</li>
+</ul>
+<h1 id="图像处理"><a href="#图像处理" class="headerlink" title="图像处理"></a>图像处理</h1><ul>
+<li>手写灰度直方图代码</li>
+<li>介绍一下开运算和闭运算</li>
+<li>介绍双目相机识别目标深度的原理</li>
+<li>单目视觉如何测量深度？</li>
+<li>介绍常见的边缘检测算法</li>
+<li>SIFT 特征是如何保持旋转不变性的？</li>
+<li>如何快速判断图中有环？</li>
+<li>介绍常见的边缘检测算子</li>
+<li>Hough 变换原理（直线和圆检测）</li>
+<li>为什么 Sobel 算子中间是2，两边是1</li>
+<li>算法题：实现 OpenCV中的图像缩放，包括实现双线性插值</li>
+<li>输入图像灰度值对模型的影响，为什么要把0-255转化成0-1？</li>
+<li>介绍 RANSAC</li>
+<li>介绍一阶二阶边缘检测算子一阶二阶边缘检测算子</li>
+<li>OpenCV里面findcontour函数的原理是什么？</li>
+<li>相机里面的标定参数有哪些？是怎么计算这些参数的？</li>
+<li>如何求边缘，45°边缘，高斯滤波和双边滤波</li>
+<li>代码题：手撕实现图像的resize和rotate90度</li>
+<li>手写中值滤波</li>
+<li>介绍一下高斯滤波，均值滤波，中值滤波</li>
+<li>SIFT特征提取怎么做的，具备什么性质，为什么</li>
+<li>讲一下CTC的原理</li>
+<li>夜间拍照的多图对齐和融合</li>
+</ul>
+<h1 id="CV"><a href="#CV" class="headerlink" title="CV"></a>CV</h1><ul>
+<li>介绍你读到的19年 Anchor-free 目标检测论文</li>
+<li>简单介绍Fast RCNN -&gt; Faster RCNN -&gt; mask RCNN (这个真的好高频)</li>
+<li>256×256×3 -&gt; 128×128×64的卷积，stride，padding和待优化的参数有多少</li>
+<li>手撕 SoftNMS代码</li>
+<li>CNN反向传播公式推导；参数共享指的是？</li>
+<li>介绍熟悉的NAS网络</li>
+<li>介绍目标检测中的多尺度训练/测试？</li>
+<li>为什么 DenseNet 比 ResNet 更耗显存？</li>
+<li>为什么深度学习中的图像分割要先编码再解码？</li>
+<li>1*1 卷积有什么作用？</li>
+<li>如何计算语义分割的 mIoU（写伪代码）</li>
+<li>原始图片中的 RoI 如何映射到 feature map ?</li>
+<li>PyTorch的高效convolution实现</li>
+<li>PyTorch 不用库函数如何实现多机多卡</li>
+<li>哪些情况用 MaxPool比AveragePool效果好？原因</li>
+<li>介绍Anchor based 和Anchor free目标检测网络的优缺点</li>
+<li>YOLOv3在小缺陷检测上也很好，RPN上和two-stage的有什么区别</li>
+<li>MobileNetV2 module的参数量和FLOPs计算</li>
+<li>CNN 的感受野受什么影响</li>
+<li>CNN 如何保持平移方向不变性</li>
+<li>如果分类的数据图像每一类只有几张，你会用什么方法？</li>
+<li>RPN怎么计算 box 的实际坐标</li>
+<li>介绍常见的 Anchor free 目标检测算法</li>
+<li>算法题：编程实现目标检测中的 IoU 计算</li>
+<li>公式及讲解soft attention，hard attention，multi head attention</li>
+<li>卷积操作是线性的吗？CNN是线性的吗？为什么？（激活函数）常用的激活函数？</li>
+<li>3×3 卷积核 与 5×5 卷积核相比的优点</li>
+<li>CNN Maxpooling 怎么反向传播？</li>
+<li>Inception（V1-V4）网络结构以及优缺点</li>
+<li>写出 YOLOv3 的损失函数</li>
+<li>YOLOV1~V3系列介绍，以及每一版的改进，优缺点介绍</li>
+<li>介绍金字塔池化，ASPP，深度可分，带孔卷积</li>
+<li>VGG网络什么特点，用到了哪几种卷积核？</li>
+<li>介绍 anchor-based和anchor-free两者的优缺点</li>
+<li>PyTorch 多gpu训练机制的原理，优化器以及网络参数保存机制</li>
+<li>讲下faster-rcnn？Faster-rcnn里面的NMS的算法原理是什么？</li>
+<li>Mask R-CNN 如何提高mask的分辨率？</li>
+<li>普通卷积、DW+PW卷积计算量推导</li>
+<li>MobileNet V2中的Residual结构最先是哪个网络提出来的</li>
+<li>CornerNet介绍，CornerPooling是怎么做的，怎么解决cornernet检测物体合并为一个框的问题</li>
+<li>GoogLeNet中为什么采用小的卷积核？</li>
+<li>说一下UNet的结构</li>
+<li>熟悉deeplab吗，aspp是怎样的，与其他的state-of-art的模型对比，deeplab还可以做哪些改进？</li>
+<li>retinanet的focal loss是解决的什么问题</li>
+<li>CRF后处理的目的</li>
+<li>介绍deeplabv3，画出backbone（串联和并联），论文中认为这两种哪种方式更好？如何避免friding efect、deeplabv3的损失函数</li>
+</ul>
+<h1 id="SLAM"><a href="#SLAM" class="headerlink" title="SLAM"></a>SLAM</h1><ul>
+<li>PnP求解最少需要几个点？</li>
+<li>ORBSLAM的哪个部分最耗时？</li>
+<li>ORBSLAM怎么克服尺度漂移问题？</li>
+<li>回环原理讲一下，要估计哪些量？</li>
+<li>后端BA中，如何存在outlier一般怎么解决？</li>
+<li>BA中，海塞矩阵的求逆有哪些可以加速的方法？</li>
+<li>单应矩阵(homography)为什么只有8个自由度？</li>
+<li>如何设计一个视觉+IMU+RTK+Lidar的定位系统？</li>
+<li>对于光照明暗变化、动态场景，视觉SLAM如何去解决？</li>
+<li>ROS中，node属于多进程，如何把两个node放在一个进程中？</li>
+<li>ORBSLAM 后端H矩阵求解的算法复杂度是多少？如何去加速后端求解？</li>
+<li>ORB-SLAM的初始化步骤</li>
+<li>介绍 Bundle Adjustment</li>
+<li>机器人学中表示旋转的方式有哪些？区别是什么？</li>
+<li>检测圆的方法有哪些？</li>
+<li>霍夫圆变换的原理是什么？</li>
+<li>你知道哪些点云匹配的算法？原理是什么？</li>
+<li>ROS里面的一些基本操作怎么实现？</li>
+<li>怎么估计3D姿态？用什么表示姿态？</li>
+<li>相机标定方法与流程，内外参矩阵求解</li>
+<li>什么是闭环检测？常用的方法有哪些？你用的哪种方法？有没有创新？</li>
+<li>解释一下Gauss-Netwon和LM算法。</li>
+<li>熟悉Ceres优化库吗？说一下。</li>
+<li>描述（扩展）卡尔曼滤波与粒子滤波，你自己在用卡尔曼滤波时遇到什么问题没有？</li>
+<li>除了视觉传感，还用过其他传感吗？比如GPS，激光雷达。。。</li>
+</ul>
+<h1 id="反向面试"><a href="#反向面试" class="headerlink" title="反向面试"></a>反向面试</h1><p>再也不用担心面试官灵魂拷问：你有什么要问我的么？</p>
+<p>下面列表里的问题对于参加技术面试的人来说很有用：</p>
+<ul>
+<li>我的日常工作是什么？</li>
+<li>入职培训会是什么样的？</li>
+<li>你们怎么使用源码控制系统？</li>
+<li>团队内/团队间的交流通常是怎样的？</li>
+<li>有标准的开发环境吗？是强制的吗？</li>
+<li>我可以为开源项目做贡献吗？是否需要审批？</li>
+<li>团队里面初级和高级工程师的比例是多少？</li>
+<li>晋升流程是怎样的？要求/预期是怎样沟通的？</li>
+<li>我入职的岗位是新增还是接替之前离职的同事？</li>
+<li>入职之后在哪个项目组，项目是新成立还是已有的？b公司是否有技术分享交流活动？有的话，多久一次呢？</li>
+<li>更多提问可以在 <a href="https://github.com/yifeikong/reverse-interview-zh" target="_blank" rel="noopener">https://github.com/yifeikong/reverse-interview-zh</a> 找到</li>
+</ul>
+<p>出了以上几种类型的题目，还常见编程算法题、C++语言细节、Python语言细节、英语题、数学题、项目、计算机网络和操作系统</p>
+
       
     </div>
     
@@ -411,6 +625,26 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+          
+            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+          
+            <a href="/tags/语义分割/" rel="tag"><i class="fa fa-tag"></i> 语义分割</a>
+          
+            <a href="/tags/目标检测/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
+          
+            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          
+            <a href="/tags/SLAM/" rel="tag"><i class="fa fa-tag"></i> SLAM</a>
+          
+            <a href="/tags/图像处理/" rel="tag"><i class="fa fa-tag"></i> 图像处理</a>
+          
+        </div>
       
 
       
@@ -500,8 +734,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -540,7 +783,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -593,6 +836,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ML"><span class="nav-number">1.</span> <span class="nav-text">ML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NN"><span class="nav-number">2.</span> <span class="nav-text">NN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图像处理"><span class="nav-number">3.</span> <span class="nav-text">图像处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CV"><span class="nav-number">4.</span> <span class="nav-text">CV</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SLAM"><span class="nav-number">5.</span> <span class="nav-text">SLAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反向面试"><span class="nav-number">6.</span> <span class="nav-text">反向面试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -629,7 +888,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.4k</span>
+    <span title="Site words total count">25.3k</span>
   
 </div>
 
