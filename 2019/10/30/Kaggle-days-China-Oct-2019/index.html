@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="深度学习,吴恩达,序列模型,自然语言处理,笔记,">
+  <meta name="keywords" content="kaggle days,kaggle,深度学习,">
 
 
 
@@ -88,23 +88,18 @@
 
 
 
-<meta name="description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义 x^{} \Rightarrow 序列中的第n个符号所对应的向量 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a">
-<meta name="keywords" content="深度学习,吴恩达,序列模型,自然语言处理,笔记">
+<meta name="description" content="最重要：高质量的baseline top15 pipeline 重复利用 batchnorm问题，基线很难高分的一个原因，关注神经网络细节 融合技巧很重要，stacking 伪标签：测试集、外部数据。注意不要overfit伪标签 数据技巧可能比任务技巧更重要 实验效率，总结每一次实验经验，不管是成功还是失败。2块gpu kernel only：模型蒸馏、加速 找到任务实质相关的论文 计算机视觉各个">
+<meta name="keywords" content="kaggle days,kaggle,深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度学习工程师（吴恩达）——  序列模型">
-<meta property="og:url" content="http://a-kali.github.io/2019/08/10/深度学习工程师（吴恩达）——-序列模型/index.html">
+<meta property="og:title" content="Kaggle days China, Oct 2019">
+<meta property="og:url" content="http://a-kali.github.io/2019/10/30/Kaggle-days-China-Oct-2019/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义 x^{} \Rightarrow 序列中的第n个符号所对应的向量 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a">
+<meta property="og:description" content="最重要：高质量的baseline top15 pipeline 重复利用 batchnorm问题，基线很难高分的一个原因，关注神经网络细节 融合技巧很重要，stacking 伪标签：测试集、外部数据。注意不要overfit伪标签 数据技巧可能比任务技巧更重要 实验效率，总结每一次实验经验，不管是成功还是失败。2块gpu kernel only：模型蒸馏、加速 找到任务实质相关的论文 计算机视觉各个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eOFH3R.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eOZuwV.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/10/eO1htI.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/19/mlQIqs.png">
-<meta property="og:updated_time" content="2019-08-21T15:50:16.284Z">
+<meta property="og:updated_time" content="2019-10-30T12:36:08.535Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深度学习工程师（吴恩达）——  序列模型">
-<meta name="twitter:description" content="一、循环序列模型1.1 为什么选择序列模型 1.2 数学符号定义 x^{} \Rightarrow 序列中的第n个符号所对应的向量 1.3 循环神经网络模型（RNN）​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。  ​    循环神经网络每次输入一个词向量，当神经网络读取到x的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/08/10/eOFH3R.png">
+<meta name="twitter:title" content="Kaggle days China, Oct 2019">
+<meta name="twitter:description" content="最重要：高质量的baseline top15 pipeline 重复利用 batchnorm问题，基线很难高分的一个原因，关注神经网络细节 融合技巧很重要，stacking 伪标签：测试集、外部数据。注意不要overfit伪标签 数据技巧可能比任务技巧更重要 实验效率，总结每一次实验经验，不管是成功还是失败。2块gpu kernel only：模型蒸馏、加速 找到任务实质相关的论文 计算机视觉各个">
 
 
 
@@ -134,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://a-kali.github.io/2019/08/10/深度学习工程师（吴恩达）——-序列模型/">
+  <link rel="canonical" href="http://a-kali.github.io/2019/10/30/Kaggle-days-China-Oct-2019/">
 
 
 
 
 
-  <title>深度学习工程师（吴恩达）——  序列模型 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Kaggle days China, Oct 2019 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -287,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2019/08/10/深度学习工程师（吴恩达）——-序列模型/">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2019/10/30/Kaggle-days-China-Oct-2019/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hsaki">
@@ -304,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深度学习工程师（吴恩达）——  序列模型</h1>
+          <h1 class="post-title" itemprop="name headline">Kaggle days China, Oct 2019</h1>
         
 
         <div class="post-meta">
@@ -316,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-10T14:02:58+08:00">
-                2019-08-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-30T20:17:30+08:00">
+                2019-10-30
               </time>
             
 
@@ -326,28 +321,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/深度学习/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -364,7 +337,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 704字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 499字</span>
 
           
 
@@ -379,7 +352,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  704
+                  499
                 </span>
               
 
@@ -395,7 +368,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  1分钟
                 </span>
               
             </div>
@@ -416,38 +389,39 @@
       
 
       
-        <h1 id="一、循环序列模型"><a href="#一、循环序列模型" class="headerlink" title="一、循环序列模型"></a>一、循环序列模型</h1><h2 id="1-1-为什么选择序列模型"><a href="#1-1-为什么选择序列模型" class="headerlink" title="1.1 为什么选择序列模型"></a>1.1 为什么选择序列模型</h2><p><img src="https://s2.ax1x.com/2019/08/10/eOFH3R.png" alt="序列模型举例"></p>
-<h2 id="1-2-数学符号定义"><a href="#1-2-数学符号定义" class="headerlink" title="1.2 数学符号定义"></a>1.2 数学符号定义</h2><script type="math/tex; mode=display">
-x^{<n>} \Rightarrow 序列中的第n个符号所对应的向量</script><p><img src="https://s2.ax1x.com/2019/08/10/eOZuwV.png" alt></p>
-<h2 id="1-3-循环神经网络模型（RNN）"><a href="#1-3-循环神经网络模型（RNN）" class="headerlink" title="1.3 循环神经网络模型（RNN）"></a>1.3 循环神经网络模型（RNN）</h2><p>​    由于序列数据每次输入长度相差较大的特性，使其无法适应常规神经网络模型，于是便有了循环神经网络模型。</p>
-<p><img src="https://s2.ax1x.com/2019/08/10/eO1htI.png" alt="eO1htI.png"></p>
-<p>​    循环神经网络每次输入一个词向量，当神经网络读取到x<sup><2></2></sup>的信息时，它也会按照一定权重输入一些来自时间步1的信息，称为a<sup><1></1></sup>；读取x<sup><3></3></sup>时则会输入来自时间步1和2的信息，以此类推。而读取x<sup><1></1></sup>时则需要输入一个自定义的激活值a<sup><0></0></sup>，这个值通常为0。w和b分别表示权重和偏置，为每个时间步所共享。</p>
-<script type="math/tex; mode=display">
-a^{<t>} = g(w_{aa}a^{<t-1>}+w_{ax}x^{<t>}+b_a)\\
-\hat y^{<t>} = g(w_{ya}a^{<t>}+b_y)</script><p>​    g(x)为激活函数，通常为tanh，最后得出输出值的激活函数可以为sigmod。</p>
-<p>​    简化方程如下：</p>
-<script type="math/tex; mode=display">
-a^{<t>} = g(w_{a}[a^{<t-1>},x^{<t>}])\\
-其中w_a为w_{aa}和w_{ax}的横向拼接，[a^{<t-1>},x^{<t>}]表示a^{<t-1>}和x^{<t>}纵向拼接。</script><p>​    RNN的一个缺点是其只能使用当前输入之前的信息，而没有使用到之后的信息。后续将提到的BRNN将解决这个问题。</p>
-<h2 id="1-4-通过时间的反向传播"><a href="#1-4-通过时间的反向传播" class="headerlink" title="1.4 通过时间的反向传播"></a>1.4 通过时间的反向传播</h2><script type="math/tex; mode=display">
-损失函数：L^{<t>}(\hat y^{<t>},y^{<t>}) = -y^{<t>}\log \hat y^{<t>}-(1-y^{<t>})\log (1-y^{<t>})\\
-L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})</script><p>即总损失为各时间损失之和。</p>
-<h2 id="1-5-不同类型的循环神经网络"><a href="#1-5-不同类型的循环神经网络" class="headerlink" title="1.5 不同类型的循环神经网络"></a>1.5 不同类型的循环神经网络</h2><ul>
-<li>等长多输入多输出结构，如找出句子中的人名</li>
-<li>多输入单输出结构，如情感分类</li>
-<li>单输入多输出结构，如音乐生成</li>
-<li>非等长多输入多输出结构，如语言翻译</li>
-</ul>
-<p><img src="https://s2.ax1x.com/2019/08/19/mlQIqs.png" alt="mlQIqs.png"></p>
-<h2 id="1-6-语言模型和序列生成"><a href="#1-6-语言模型和序列生成" class="headerlink" title="1.6 语言模型和序列生成"></a>1.6 语言模型和序列生成</h2><p>​    语言模型的训练集由一个巨大的语料库组成，句子中的每个词向量都对应着字典中其所在的位置，句末由\<eos>来表示句子的结束。语料中没有的词向量以\<unk>表示。</unk></eos></p>
-<h2 id="1-7-对新序列采样"><a href="#1-7-对新序列采样" class="headerlink" title="1.7 对新序列采样"></a>1.7 对新序列采样</h2><p>暂时没看懂</p>
-<h2 id="1-8-RNN的梯度消失"><a href="#1-8-RNN的梯度消失" class="headerlink" title="1.8 RNN的梯度消失"></a>1.8 RNN的梯度消失</h2><p>示例：</p>
-<ul>
-<li>The <strong>cat</strong>, which already ate …… <strong>was</strong> full.</li>
-<li>The <strong>cats</strong>, which already ate …… <strong>were</strong> full.</li>
-</ul>
-<p>在这两个句子中，cat的单复数直接决定了后面的谓语使用was还是were。但由于主语和谓语的距离太远，时间的反向传播很难从谓语传播到主语，导致梯度消失，因此网络很难调整前面的计算。</p>
-<h2 id="1-9-Gated-Recurrent-Unit-GRU"><a href="#1-9-Gated-Recurrent-Unit-GRU" class="headerlink" title="1.9 Gated Recurrent Unit (GRU)"></a>1.9 Gated Recurrent Unit (GRU)</h2><p><strong>门控循环单元（GRU）</strong>改变了RNN的隐藏层，使得RNN能更好地捕捉深层次的连接，并改善了梯度消失问题。</p>
+        <p>最重要：高质量的baseline top15 pipeline 重复利用</p>
+<p>batchnorm问题，基线很难高分的一个原因，关注神经网络细节</p>
+<p>融合技巧很重要，stacking</p>
+<p>伪标签：测试集、外部数据。注意不要overfit伪标签</p>
+<p>数据技巧可能比任务技巧更重要</p>
+<p>实验效率，总结每一次实验经验，不管是成功还是失败。2块gpu</p>
+<p>kernel only：模型蒸馏、加速</p>
+<p>找到任务实质相关的论文</p>
+<p>计算机视觉各个分支的论文，read everyday。很可能会在之前相关的论文上找到thick</p>
+<p>高质量的local validation可以用来验证所有thick</p>
+<p>多类别分类（一个样本属于一个类别） vs 多标签分类（一个样本属于多个类别）</p>
+<p>找到之前相似的比赛，观察高分solution</p>
+<p>将数据增强后的图片可视化查看效果，根据任务选择增强方法</p>
+<p>医疗影像预训练数据：MedicalNet。目前没开源2d数据</p>
+<p>cycle learning rate：减少调参，更快收敛</p>
+<p>多类别：交叉熵损失；多标签：二值交叉熵损失</p>
+<p>mixup：一种数据增强的方法。将两张图片及其标签按一定比例进行融合</p>
+<p>apex：基于pytorch的低精度运算（32位或16位）。减少显存占用，增加训练速度。pure float可能会导致精度损失和溢出。解决方案：混合精度训练。（设成O1就行了）</p>
+<p>梯度累加（batch accumulation）：增大batch的方法，（多累积几步再更新梯度？）</p>
+<p>伪标签：数据少或有大量额外数据且没有标签的情况下</p>
+<ol>
+<li>训练集训练模型</li>
+<li>测试数据</li>
+<li>将置信度较高的数据放入训练集（0.95、0，98）</li>
+<li>再训练</li>
+</ol>
+<p>数据蒸馏（knowledge distillation）：使用小模型（student）来获取大模型（teacher）中的核心知识</p>
+<ol>
+<li>将数据集分为k折</li>
+<li>k折交叉验证训练teacher model</li>
+<li>预测out-of-fold的标签</li>
+<li>在out-of-fold训练student model</li>
+</ol>
 
       
     </div>
@@ -474,15 +448,11 @@ L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})</scrip
       
         <div class="post-tags">
           
+            <a href="/tags/kaggle-days/" rel="tag"><i class="fa fa-tag"></i> kaggle days</a>
+          
+            <a href="/tags/kaggle/" rel="tag"><i class="fa fa-tag"></i> kaggle</a>
+          
             <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
-          
-            <a href="/tags/吴恩达/" rel="tag"><i class="fa fa-tag"></i> 吴恩达</a>
-          
-            <a href="/tags/序列模型/" rel="tag"><i class="fa fa-tag"></i> 序列模型</a>
-          
-            <a href="/tags/自然语言处理/" rel="tag"><i class="fa fa-tag"></i> 自然语言处理</a>
-          
-            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
           
         </div>
       
@@ -510,8 +480,8 @@ L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})</scrip
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/04/使用MMDetection进行语义分割/" rel="next" title="使用MMDetection进行语义分割">
-                <i class="fa fa-chevron-left"></i> 使用MMDetection进行语义分割
+              <a href="/2019/10/26/FCN论文解读/" rel="next" title="FCN论文解读">
+                <i class="fa fa-chevron-left"></i> FCN论文解读
               </a>
             
           </div>
@@ -519,10 +489,6 @@ L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})</scrip
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/19/《C-Primer》-第1章-开始/" rel="prev" title="《C++ Primer》 第1章 开始">
-                《C++ Primer》 第1章 开始 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,17 +540,8 @@ L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})</scrip
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -675,22 +632,6 @@ L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})</scrip
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、循环序列模型"><span class="nav-number">1.</span> <span class="nav-text">一、循环序列模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-为什么选择序列模型"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 为什么选择序列模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-数学符号定义"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 数学符号定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-循环神经网络模型（RNN）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 循环神经网络模型（RNN）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-通过时间的反向传播"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 通过时间的反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-不同类型的循环神经网络"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 不同类型的循环神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-语言模型和序列生成"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 语言模型和序列生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-对新序列采样"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 对新序列采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-RNN的梯度消失"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 RNN的梯度消失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-Gated-Recurrent-Unit-GRU"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 Gated Recurrent Unit (GRU)</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -958,31 +899,11 @@ L^(\hat y^{<t>},y^{<t>}) = \sum_{t=1}^{T_y} L^{<t>}(\hat y^{<t>},y^{<t>})</scrip
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
