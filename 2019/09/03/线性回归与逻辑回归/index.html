@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="线性回归​    线性回归通常是解决连续数值预测问题, 利用数理统计的回归分析, 来确定变量之间的相互依赖关系. 其公式通常表示如下:  h_\theta(x)=\theta_0 +\theta_1x_1+\theta_2x_2+……+\theta_nx_n=θ^Tx逻辑回归​    逻辑（Logistic，又称 Sigmoid）回归常用于解决二分类问题，用于估算某种事物的可能性。Sigmoid">
+<meta name="description" content="线性回归​    线性回归通常是解决连续数值预测问题, 利用数理统计的回归分析, 来确定变量之间的相互依赖关系. 其公式通常表示如下:$$h_\theta(x)=\theta_0 +\theta_1x_1+\theta_2x_2+……+\theta_nx_n=θ^Tx$$ 逻辑回归​    逻辑（Logistic，又称 Sigmoid）回归常用于解决二分类问题，用于估算某种事物的可能性。Sigmo">
 <meta name="keywords" content="机器学习,线性回归,逻辑回归">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线性回归与逻辑回归">
 <meta property="og:url" content="http://a-kali.github.io/2019/09/03/线性回归与逻辑回归/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="线性回归​    线性回归通常是解决连续数值预测问题, 利用数理统计的回归分析, 来确定变量之间的相互依赖关系. 其公式通常表示如下:  h_\theta(x)=\theta_0 +\theta_1x_1+\theta_2x_2+……+\theta_nx_n=θ^Tx逻辑回归​    逻辑（Logistic，又称 Sigmoid）回归常用于解决二分类问题，用于估算某种事物的可能性。Sigmoid">
+<meta property="og:description" content="线性回归​    线性回归通常是解决连续数值预测问题, 利用数理统计的回归分析, 来确定变量之间的相互依赖关系. 其公式通常表示如下:$$h_\theta(x)=\theta_0 +\theta_1x_1+\theta_2x_2+……+\theta_nx_n=θ^Tx$$ 逻辑回归​    逻辑（Logistic，又称 Sigmoid）回归常用于解决二分类问题，用于估算某种事物的可能性。Sigmo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-09-04T09:56:45.073Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性回归与逻辑回归">
-<meta name="twitter:description" content="线性回归​    线性回归通常是解决连续数值预测问题, 利用数理统计的回归分析, 来确定变量之间的相互依赖关系. 其公式通常表示如下:  h_\theta(x)=\theta_0 +\theta_1x_1+\theta_2x_2+……+\theta_nx_n=θ^Tx逻辑回归​    逻辑（Logistic，又称 Sigmoid）回归常用于解决二分类问题，用于估算某种事物的可能性。Sigmoid">
+<meta name="twitter:description" content="线性回归​    线性回归通常是解决连续数值预测问题, 利用数理统计的回归分析, 来确定变量之间的相互依赖关系. 其公式通常表示如下:$$h_\theta(x)=\theta_0 +\theta_1x_1+\theta_2x_2+……+\theta_nx_n=θ^Tx$$ 逻辑回归​    逻辑（Logistic，又称 Sigmoid）回归常用于解决二分类问题，用于估算某种事物的可能性。Sigmo">
 
 
 
@@ -411,13 +411,9 @@
       
 
       
-        <h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p>​    <strong>线性回归</strong>通常是解决连续数值预测问题, 利用数理统计的回归分析, 来确定变量之间的相互依赖关系. 其公式通常表示如下:</p>
-<script type="math/tex; mode=display">
-h_\theta(x)=\theta_0 +\theta_1x_1+\theta_2x_2+……+\theta_nx_n=θ^Tx</script><h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>​    <strong>逻辑（Logistic，又称 Sigmoid）回归</strong>常用于解决二分类问题，用于估算某种事物的可能性。Sigmoid 函数公式如下：</p>
-<script type="math/tex; mode=display">
-g(z)=\frac{1}{1+e^{-z}}</script><p>该函数的值域为 (0, 1)，其值的意义为输入特征被分到 1 类的概率。逻辑回归的本质是在线性回归之后加了一层函数映射。将线性回归方程带入到逻辑回归方程中，得到逻辑回归表达式：</p>
-<script type="math/tex; mode=display">
-h_\theta(x) = g(\theta^Tx)=\frac{1}{1+e^{-\theta^Tx}}</script>
+        <h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p>​    <strong>线性回归</strong>通常是解决连续数值预测问题, 利用数理统计的回归分析, 来确定变量之间的相互依赖关系. 其公式通常表示如下:<br>$$<br>h_\theta(x)=\theta_0 +\theta_1x_1+\theta_2x_2+……+\theta_nx_n=θ^Tx<br>$$</p>
+<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>​    <strong>逻辑（Logistic，又称 Sigmoid）回归</strong>常用于解决二分类问题，用于估算某种事物的可能性。Sigmoid 函数公式如下：<br>$$<br>g(z)=\frac{1}{1+e^{-z}}<br>$$<br>该函数的值域为 (0, 1)，其值的意义为输入特征被分到 1 类的概率。逻辑回归的本质是在线性回归之后加了一层函数映射。将线性回归方程带入到逻辑回归方程中，得到逻辑回归表达式：<br>$$<br>h_\theta(x) = g(\theta^Tx)=\frac{1}{1+e^{-\theta^Tx}}<br>$$</p>
+
       
     </div>
     
@@ -566,7 +562,7 @@ h_\theta(x) = g(\theta^Tx)=\frac{1}{1+e^{-\theta^Tx}}</script>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,7 +584,7 @@ h_\theta(x) = g(\theta^Tx)=\frac{1}{1+e^{-\theta^Tx}}</script>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -693,7 +689,7 @@ h_\theta(x) = g(\theta^Tx)=\frac{1}{1+e^{-\theta^Tx}}</script>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.8k</span>
+    <span title="Site words total count">26.2k</span>
   
 </div>
 
