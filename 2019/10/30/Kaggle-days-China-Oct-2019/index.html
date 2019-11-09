@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="kaggle days,kaggle,深度学习,">
+  <meta name="keywords" content="计算机视觉,深度学习,kaggle days,kaggle,图像分类,比赛技巧,优化器,学习率,数据蒸馏,伪标签,">
 
 
 
@@ -88,18 +88,22 @@
 
 
 
-<meta name="description" content="最重要：高质量的baseline top15 pipeline 重复利用 batchnorm问题，基线很难高分的一个原因，关注神经网络细节 融合技巧很重要，stacking 伪标签：测试集、外部数据。注意不要overfit伪标签 数据技巧可能比任务技巧更重要 实验效率，总结每一次实验经验，不管是成功还是失败。2块gpu kernel only：模型蒸馏、加速 找到任务实质相关的论文 计算机视觉各个">
-<meta name="keywords" content="kaggle days,kaggle,深度学习">
+<meta name="description" content="Winning competitions with deep learning skills — SeuTao Prepare for a DL competition GPUs 是基础&amp;amp;必要条件，但不是获得金牌的决定性条件。有着9块金牌的涛神在2019年也才只有2块1080ti而已。 多读 paper 是获得 idea 的关键，在很多 paper 中能找到相似问题的解决方案。 多读别人的">
+<meta name="keywords" content="计算机视觉,深度学习,kaggle days,kaggle,图像分类,比赛技巧,优化器,学习率,数据蒸馏,伪标签">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kaggle days China, Oct 2019">
 <meta property="og:url" content="http://a-kali.github.io/2019/10/30/Kaggle-days-China-Oct-2019/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="最重要：高质量的baseline top15 pipeline 重复利用 batchnorm问题，基线很难高分的一个原因，关注神经网络细节 融合技巧很重要，stacking 伪标签：测试集、外部数据。注意不要overfit伪标签 数据技巧可能比任务技巧更重要 实验效率，总结每一次实验经验，不管是成功还是失败。2块gpu kernel only：模型蒸馏、加速 找到任务实质相关的论文 计算机视觉各个">
+<meta property="og:description" content="Winning competitions with deep learning skills — SeuTao Prepare for a DL competition GPUs 是基础&amp;amp;必要条件，但不是获得金牌的决定性条件。有着9块金牌的涛神在2019年也才只有2块1080ti而已。 多读 paper 是获得 idea 的关键，在很多 paper 中能找到相似问题的解决方案。 多读别人的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-30T12:36:08.535Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/09/Mnu7rQ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/09/Mn3W5j.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/09/Mn82y6.png">
+<meta property="og:updated_time" content="2019-11-09T15:43:20.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaggle days China, Oct 2019">
-<meta name="twitter:description" content="最重要：高质量的baseline top15 pipeline 重复利用 batchnorm问题，基线很难高分的一个原因，关注神经网络细节 融合技巧很重要，stacking 伪标签：测试集、外部数据。注意不要overfit伪标签 数据技巧可能比任务技巧更重要 实验效率，总结每一次实验经验，不管是成功还是失败。2块gpu kernel only：模型蒸馏、加速 找到任务实质相关的论文 计算机视觉各个">
+<meta name="twitter:description" content="Winning competitions with deep learning skills — SeuTao Prepare for a DL competition GPUs 是基础&amp;amp;必要条件，但不是获得金牌的决定性条件。有着9块金牌的涛神在2019年也才只有2块1080ti而已。 多读 paper 是获得 idea 的关键，在很多 paper 中能找到相似问题的解决方案。 多读别人的">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/11/09/Mnu7rQ.png">
 
 
 
@@ -337,7 +341,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 499字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 4k字</span>
 
           
 
@@ -352,7 +356,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  499
+                  4k
                 </span>
               
 
@@ -368,7 +372,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  14分钟
                 </span>
               
             </div>
@@ -389,39 +393,130 @@
       
 
       
-        <p>最重要：高质量的baseline top15 pipeline 重复利用</p>
-<p>batchnorm问题，基线很难高分的一个原因，关注神经网络细节</p>
-<p>融合技巧很重要，stacking</p>
-<p>伪标签：测试集、外部数据。注意不要overfit伪标签</p>
-<p>数据技巧可能比任务技巧更重要</p>
-<p>实验效率，总结每一次实验经验，不管是成功还是失败。2块gpu</p>
-<p>kernel only：模型蒸馏、加速</p>
-<p>找到任务实质相关的论文</p>
-<p>计算机视觉各个分支的论文，read everyday。很可能会在之前相关的论文上找到thick</p>
-<p>高质量的local validation可以用来验证所有thick</p>
-<p>多类别分类（一个样本属于一个类别） vs 多标签分类（一个样本属于多个类别）</p>
-<p>找到之前相似的比赛，观察高分solution</p>
-<p>将数据增强后的图片可视化查看效果，根据任务选择增强方法</p>
-<p>医疗影像预训练数据：MedicalNet。目前没开源2d数据</p>
-<p>cycle learning rate：减少调参，更快收敛</p>
-<p>多类别：交叉熵损失；多标签：二值交叉熵损失</p>
-<p>mixup：一种数据增强的方法。将两张图片及其标签按一定比例进行融合</p>
-<p>apex：基于pytorch的低精度运算（32位或16位）。减少显存占用，增加训练速度。pure float可能会导致精度损失和溢出。解决方案：混合精度训练。（设成O1就行了）</p>
-<p>梯度累加（batch accumulation）：增大batch的方法，（多累积几步再更新梯度？）</p>
-<p>伪标签：数据少或有大量额外数据且没有标签的情况下</p>
+        <h1 id="Winning-competitions-with-deep-learning-skills-—-SeuTao"><a href="#Winning-competitions-with-deep-learning-skills-—-SeuTao" class="headerlink" title="Winning competitions with deep learning skills — SeuTao"></a>Winning competitions with deep learning skills — SeuTao</h1><p><img src="https://s2.ax1x.com/2019/11/09/Mnu7rQ.png" alt="Mnu7rQ.png"></p>
+<h2 id="Prepare-for-a-DL-competition"><a href="#Prepare-for-a-DL-competition" class="headerlink" title="Prepare for a DL competition"></a>Prepare for a DL competition</h2><ul>
+<li>GPUs 是基础&amp;必要条件，但不是获得金牌的决定性条件。有着9块金牌的涛神在2019年也才只有2块1080ti而已。</li>
+<li>多读 paper 是获得 idea 的关键，在很多 paper 中能找到相似问题的解决方案。</li>
+<li>多读别人的代码。</li>
+</ul>
+<h2 id="Five-steps-to-Win-a-DL-competition"><a href="#Five-steps-to-Win-a-DL-competition" class="headerlink" title="Five steps to Win a DL competition"></a>Five steps to Win a DL competition</h2><ul>
+<li>Understand the data</li>
+<li>Build a strong baseline</li>
+<li>Find the tricks</li>
+<li>Ensemble</li>
+<li>Pseudo-labels</li>
+</ul>
+<h3 id="Build-a-strong-baseline"><a href="#Build-a-strong-baseline" class="headerlink" title="Build a strong baseline"></a>Build a strong baseline</h3><ul>
+<li>据涛神的看法，建立一个 <strong>strong baseline</strong> 是整个比赛中最重要的一环。一个高质量的 baseline 可以直接让你拿到<strong>银牌</strong>甚至 top15。可以建立一个高质量的 pipeline 并重复利用。</li>
+<li>不要使用花里胡哨的神经网络架构和损失函数。这里大概可以理解为，baseline应使用简单轻量的神经网络，便于快速训练、调参、尝试 tricks。</li>
+<li><strong>优化器</strong>：动量梯度下降或者 lr(3e-4) Adam优化器。优化器的改变对网络性能提升不大。</li>
+<li><strong>学习率</strong>：可以尝试 warm up 和 余弦退火/cyclic lr</li>
+<li>找到对数据合适的<strong>数据增强</strong>。</li>
+<li>可靠的<strong>本地验证</strong>。在kaggle上提交验证相对麻烦而且有次数限制，而有一个可靠的本地验证就能快速地尝试验证各种 tricks。</li>
+<li><strong>BatchNorm</strong>问题，基线很难高分的一个原因，涉及到神经网络细节。这里没看懂先挂张图：<img src="https://s2.ax1x.com/2019/11/09/Mn3W5j.png" alt="Mn3W5j.png"></li>
+</ul>
+<h3 id="Find-the-tricks"><a href="#Find-the-tricks" class="headerlink" title="Find the tricks"></a>Find the tricks</h3><ul>
+<li>任务型 trick：图片分类trick、目标检测trick等。这些trick需要大量相关论文的积累。</li>
+<li>数据型 trick：这需要你对数据敏锐的分析。数据相关的trick往往是制胜的关键。</li>
+</ul>
+<h3 id="Ensemble"><a href="#Ensemble" class="headerlink" title="Ensemble"></a>Ensemble</h3><p>融合技巧很重要，比如stacking、blending等</p>
+<p><img src="https://s2.ax1x.com/2019/11/09/Mn82y6.png" alt="Mn82y6.png"></p>
+<h3 id="Pseudo-labels"><a href="#Pseudo-labels" class="headerlink" title="Pseudo labels"></a>Pseudo labels</h3><ul>
+<li>易于使用而且几乎在所有的深度学习竞赛中都奏效。</li>
+<li>可以通过测试集或者外部数据来生成伪标签。</li>
+<li>在比赛的最后stage使用——Overfit the LB then create pseudo labels（这个有点难理解）</li>
+<li>注意不要 overfit 伪标签</li>
+</ul>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><ul>
+<li>实验效率很重要，总结每一次实验经验，不管是成功还是失败。</li>
+<li>在 kernel only 这种限制测试时间的比赛上，可以使用模型蒸馏、加速。</li>
+<li>找到任务实质相关的论文。</li>
+<li>熟读计算机视觉各个分支的论文，很可能会在之前读过的相关的论文上找到thick。</li>
+</ul>
+<h1 id="Tricks-of-image-classification-—-Jun-Lan"><a href="#Tricks-of-image-classification-—-Jun-Lan" class="headerlink" title="Tricks of image classification — Jun Lan"></a>Tricks of image classification — Jun Lan</h1><ul>
+<li><p>图像分类大致可以分为两种：多类别分类（一个样本属于一个类别） vs 多标签分类（一个样本属于多个类别）</p>
+</li>
+<li><p>找到之前相似的比赛，观察高分solution</p>
+</li>
+<li><p>将数据增强后的图片可视化查看效果，根据任务选择增强方法</p>
+</li>
+<li><p>医疗影像预训练数据：MedicalNet。目前没开源2d数据</p>
+</li>
+<li><p>cycle learning rate：减少调参，更快收敛</p>
+</li>
+<li><p>多类别：交叉熵损失；多标签：二值交叉熵损失</p>
+</li>
+<li><p>mixup：一种数据增强的方法。将两张图片及其标签按一定比例进行融合</p>
+</li>
+<li><p>apex：基于pytorch的低精度运算（32位或16位）。减少显存占用，增加训练速度。pure float可能会导致精度损失和溢出。解决方案：混合精度训练。（设成O1就行了）</p>
+</li>
+<li><p>梯度累加（batch accumulation）：增大batch的方法，（多累积几步再更新梯度？）</p>
+</li>
+<li><p>伪标签：数据少或有大量额外数据且没有标签的情况下</p>
 <ol>
 <li>训练集训练模型</li>
 <li>测试数据</li>
 <li>将置信度较高的数据放入训练集（0.95、0，98）</li>
 <li>再训练</li>
 </ol>
-<p>数据蒸馏（knowledge distillation）：使用小模型（student）来获取大模型（teacher）中的核心知识</p>
+</li>
+<li><p>数据蒸馏（knowledge distillation）：使用小模型（student）来获取大模型（teacher）中的核心知识</p>
 <ol>
 <li>将数据集分为k折</li>
 <li>k折交叉验证训练teacher model</li>
 <li>预测out-of-fold的标签</li>
 <li>在out-of-fold训练student model</li>
 </ol>
+</li>
+</ul>
+<hr>
+<p>下面内容跟 kaggle days 没什么关系，是一些很有用的 tricks。整理自网络，有删改，原文地址：<a href="https://zhuanlan.zhihu.com/p/89476481" target="_blank" rel="noopener">Kaggle你问我答【1】——SeuTao</a></p>
+<p>这是 Kaggle 你问我答 (AMA) 的第一期活动，本期请到的嘉宾是 SueTao，他研究生毕业于东南大学，目前是腾讯的一名算法工程师。SueTao 擅长计算机视觉（Computer Vision），半年 5 战 5 金，也许是史上最快的 GrandMaster。截至目前共斩获 9 金 3 银，kaggle 最高排名全球第 10。</p>
+<p>以下是本期活动的问答集锦：</p>
+<p><strong>Q1：如何搭建kaggle data pipeline?</strong></p>
+<p>A1：我目前的比赛还是集中在cv，也做过语音，还有前段时候的PMP，都是DL相关的竞赛。 数据的pipeline其实是可以积累并且优化的。我觉得可以参考一些前人的代码，尤其是蛙神的code。 可以在蛙神的code基础上，慢慢优化跟积累出自己的数据pipeline。 DL数据pipeline中还有个很重要的部分就是数据增强，这块针对不同比赛可能有不同的做法。</p>
+<p><strong>Q2：自己曾经努力拿过银牌，但是觉得金牌好难，特别是solo的情况，请问金牌和银牌的差距在哪里，如何突破？</strong></p>
+<p>A2：我还是从我参与比较多的cv竞赛角度出发哈。首先，如果你是cv新人，在kaggle竞赛上觉得拿金牌很困难，其实是很正常的。目前cv赛基本被cv高手霸榜了。 如果你是已经比较熟悉cv各个方向的模型，那你可能需要一个竞赛好手来给你带路。毕竟竞赛还是有很多套路的。 如果是新人，我的建议是坚持，通过几个cv竞赛来积累对这个方向的认识。了解不同模型不同任务。 我觉得可以参考padue，大家如果看他竞赛的成绩的话，开始他也只是银牌水平，但是从前段时间的protein开始，他现在在cv赛的水平基本就是solo gold了。 deep learning实践的积累还是很重要，一口吃不成胖子。</p>
+<p><strong>Q4：新出的3d object比赛是不是一种趋势，请问涛神对computer vision的发展有什么观察和展望？</strong></p>
+<p>A4：cv的话3d绝对是一个趋势，包括学术界和工业界； sensor的成本越来越低，性能也越来越好；就人脸识别来说，用3d来说安全性和可靠性就更高了。 其实我目前也算是退坑computer vision了，也谈不上对cv有深入的认识。大家从kaggle上cv赛的数量上可以发现，cv对企业的价值还是非常高的。前景是非常好，例如工业检测之类的。</p>
+<p><strong>Q5：怎么判断该改进网络结构还是调学习率？</strong></p>
+<p>A5：学习率和学习策略可能是搭建baseline里面最重要的部分。这块需要在比赛的前期优化到最好，建议使用简单的网络作为baseline，然后仔细优化学习策略。没有提升空间之后再考虑别的方向的优化。</p>
+<p><strong>Q6：是否应该从分类错误的sample中提取灵感继续改进？如果是该怎么做？</strong></p>
+<p>A6：cv最好的一点是可以看图，非常直观。举个例子：比如之前的鲸鱼竞赛，baseline模型的bad case大多是一些姿态较大，分辨率较差的图像。那么我们就可以考虑增加对应的数据增强。效果也很显著。 再举个反面例子：刚刚结束的nips的cellsignal竞赛，是细胞的荧光成像。整个比赛我完全没有看bad case。 因为没有domain知识，图像非自然，很难观察。 但是也不妨碍比赛能拿名次，只看log来调参。</p>
+<p><strong>Q7：请评价cv 各项任务中 state of the art 模型的实用性，有何推荐？</strong></p>
+<p>A7：“试过才有发言权”，这是我做kaggle之后的一个经验。没做kaggle之前，我工作集中在轻量级的模型，对于sota的大模型几乎没有尝试。所以我在竞赛中会尽量去尝试各种sota，最终会有很多有意思的结论。 会发现kaiming的resnet为什么强，unet为什么就是好用。 有些很fancy的模型真的只是过拟合特定的数据集。 我也没有尝试过所有的sota，但是我觉得paper里的内容看看就好，去伪存真，实践出真知。</p>
+<p><strong>Q8：作为一个新人从头开始拿到金牌的最佳策略？比如选择比赛的类型？</strong></p>
+<p>A8：哈哈 因为我cv一把梭，只能给到cv的经验。如果新人想拿金牌的话，最好就是找一个蛙神all in的比赛，step by step follow蛙神！只要比所有人都肝，有足够计算资源，对齐discussion report出来的模型精度，solo gold就有希望！ 其实我第一个比赛TGS就是这么做的。</p>
+<p><strong>Q9：在kaggle学到的东西是否有应用到别的地方？能否举例说明？</strong></p>
+<p>A9：非常多。举个例子：模型集成（ensemble）。可能有些人说模型集成在实际工作中用不了；工作中的场景有效率的要求；在计算资源受限的情况下，3个小模型集成的效果可能远好于1个大模型的效果。 我之前的参与的人脸项目，其实就用了这样的策略，很好用。但是如何去集成，怎么增大模型间diversity，这些技巧大家可以从kaggle上学习。</p>
+<p><strong>Q10：回头看自己的经历，对刚入坑的新人，有什么想提醒的经验和教训？</strong></p>
+<p>A10：教训到没有，做比赛一年感触还是蛮多的，投入越多收获越大吧。希望大家坚持。 真的只有投入去做了，才会有收获。</p>
+<p><strong>Q11：CV比赛假如遇到瓶颈会往哪些方向尝试？</strong></p>
+<p>A11：数据层面绝对是提分收益最大的方向；还是要多看数据，多分析bad case；不看数据就调网络结构是不可取的。 数据层面有些线索之后，可以指导你对模型结构本身做一些改进。另外最重要的：多看paper，paper是idea的来源。</p>
+<p><strong>Q12：一般会用哪种方式平时积累知识？</strong></p>
+<p>A12：过去很长一段时间内，我积累的方式还是来自比赛 通过一个比赛，我可以验证很多paper的方法，实践在工作中无法使用的模型；帮助我深入理解一些数据上和模型上的问题 感觉从我个人而言，比赛和工作相辅相成，给我工作提供了非常好的积累和储备。</p>
+<p><strong>Q13：想知道打比赛的节奏是什么， 比如比赛结束前一个月， 一周， 几天主要干什么？</strong></p>
+<p>A13：基本上最后一周前，最终方案就要定了。考虑最终的集成。</p>
+<p><strong>Q14：有复现比赛top solution的习惯吗？ 有的话是一种怎样的方式呢？</strong></p>
+<p>A14：会看，但是很少会跑。因为一直忙着做新的比赛。其实应该仔细去研究下的。</p>
+<p><strong>Q15：分类比赛中的最后的sub的阈值应该根据什么来选取呢，有什么选取技巧呢？</strong></p>
+<p>A15：我只能说可靠的local validation是最重要的，所有涉及模型选择，调参；其实都需要一个依据，local validation就是这个依据。这样问题就变成如何建立可靠的local validation了。</p>
+<p><strong>Q16：分类比赛中最后的两个sub一般会怎么样选择呢，不同的方案的模型，还是其他？</strong></p>
+<p>A16：这个问题比较好。前期几个比赛的sub一般都是我选的，有幸抽中过金牌。我个人的建议是，差异一定要大，一个激进一个保守。 就dl比赛来说，集成最稳的是weight ave，简单有效，一般来说我会选一个这个； 然后一些存在过拟合风险的方法，但是lb和cv都很可观的方案，我也会选择一个。</p>
+<p><strong>Q17：请问经常看到各位大佬同时参加好几个比赛，还能拿到很好的名次，这是怎么做到的？</strong></p>
+<p>A17：其实kaggle上的top CVer都会有自己积累下来的pipeline。竞赛任务无非是这几种，迅速搭建一个可靠的baseline，对top选手很容易； 看似在做多个竞赛，可能跑的是一套代码。真的要最终比赛冲刺了，会有针对性地去理解数据和优化。</p>
+<p><strong>Q18：图像比赛有什么通用的技巧吗？厉害的选手一次提交就可以进到绿圈，细节处理上有什么独到之处？</strong></p>
+<p>A18：DL调参的细节太多了，需要很长时间的积累。同样的数据+网络，不同人的训练结果可能相差巨大。这是top CVer的核心竞争力 通用技巧的话，paper上带着“bag of tricks”的都需要仔细阅读 bag of tricks for image classification， bag of tricks for object detection。</p>
+<p><strong>Q19：想问下之前说没法做bad case的时候通过log调参是怎么调的， 另外一般bad case怎么样比较好的分析？</strong></p>
+<p>A19：其实很简单: bias-variance trade off，只看log的话，拿捏好这个。 比如nips cellsignal比赛，baseline效果是，training拟合的非常好，test却非常差。其实是一种train test consistency。从1）数据层面；2）网络层面，去分析可能的情况。1）数据层面:数据分布的问题，2）网络层面：batchnorm。针对性地去做实验，确定问题所在，继续观察bias-variance，要得出可靠结论，再进行下一步。</p>
+<p><strong>Q20：我这边自己写了个基于 pytorch 的轮子, 每次基本上能跟上 public kernel 的步伐, 但是就是很难超越. 我估计是训练资源和调参问题. 那么: 调参大部分用已经训练好的模型来调, 还是每次改变参数都重新训练个几天, 哪种方法对 top CVer 比较实际?</strong></p>
+<p>A20：建议解决计算资源问题，保证快速学习，训练资源很重要，其实最优的实验周期我个人感觉在半天。 半天能出一个实验结果最好，中间可以干别的。 结果出得太快也不好，要及时总结和记录实验。</p>
+<p><strong>Q21：之前看到有新闻说模型会用贴纸识别面包机，用肤色识别罪犯的这种过拟合的情况，还有aptos存在模型通过图片尺寸leak发现lable，有没有什么好办法避免这种情况？</strong></p>
+<p>A21：我感觉过拟合问题其实比大家想象的更严重，之前做活体检测基本就是这么个情况，难以范化。 目前的DL还比较‘蠢’，要说办法的话，加数据算不算？</p>
+<p><strong>Q22：问一个技术性问题，碰到一些受阈值影响的metrics时，训练的时候取最好的模型应该依据val-metrics还是val-loss呢？valid的时候如果遍历阈值，可能会极大的影响效率。不同模型/不同epoch，用不同阈值取得的metrics比较，会不会‘不公平’？</strong></p>
+<p>A22：其实我也没有很好的答案。是我的话，最优的val-metrics和val-loss模型我都会存。其实最担心的是优化的loss和metrics不一致。</p>
+<p><strong>Q23：还想问下对warmRestart这类的循环式的scheduler有什么看法？和传统的ReduceLROnPlateau相比有什么优劣？</strong></p>
+<p>A23：最近发现这个真的很好用。如果用step LR的话，很可能下降的位置就不够好。循环的学习策略，我的感受是既不会有太多过拟合，也不需要很仔细调参，基本会有个不错的结果。</p>
 
       
     </div>
@@ -448,11 +543,25 @@
       
         <div class="post-tags">
           
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+          
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
             <a href="/tags/kaggle-days/" rel="tag"><i class="fa fa-tag"></i> kaggle days</a>
           
             <a href="/tags/kaggle/" rel="tag"><i class="fa fa-tag"></i> kaggle</a>
           
-            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+            <a href="/tags/图像分类/" rel="tag"><i class="fa fa-tag"></i> 图像分类</a>
+          
+            <a href="/tags/比赛技巧/" rel="tag"><i class="fa fa-tag"></i> 比赛技巧</a>
+          
+            <a href="/tags/优化器/" rel="tag"><i class="fa fa-tag"></i> 优化器</a>
+          
+            <a href="/tags/学习率/" rel="tag"><i class="fa fa-tag"></i> 学习率</a>
+          
+            <a href="/tags/数据蒸馏/" rel="tag"><i class="fa fa-tag"></i> 数据蒸馏</a>
+          
+            <a href="/tags/伪标签/" rel="tag"><i class="fa fa-tag"></i> 伪标签</a>
           
         </div>
       
@@ -544,8 +653,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -584,7 +702,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -637,6 +755,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Winning-competitions-with-deep-learning-skills-—-SeuTao"><span class="nav-number">1.</span> <span class="nav-text">Winning competitions with deep learning skills — SeuTao</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Prepare-for-a-DL-competition"><span class="nav-number">1.1.</span> <span class="nav-text">Prepare for a DL competition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Five-steps-to-Win-a-DL-competition"><span class="nav-number">1.2.</span> <span class="nav-text">Five steps to Win a DL competition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Build-a-strong-baseline"><span class="nav-number">1.2.1.</span> <span class="nav-text">Build a strong baseline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Find-the-tricks"><span class="nav-number">1.2.2.</span> <span class="nav-text">Find the tricks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ensemble"><span class="nav-number">1.2.3.</span> <span class="nav-text">Ensemble</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-labels"><span class="nav-number">1.2.4.</span> <span class="nav-text">Pseudo labels</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Others"><span class="nav-number">1.3.</span> <span class="nav-text">Others</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tricks-of-image-classification-—-Jun-Lan"><span class="nav-number">2.</span> <span class="nav-text">Tricks of image classification — Jun Lan</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -673,7 +807,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.7k</span>
+    <span title="Site words total count">29.1k</span>
   
 </div>
 

@@ -400,8 +400,14 @@
 <p><img src="https://s2.ax1x.com/2019/09/01/nS6Rc8.png" alt="nS6Rc8.png"></p>
 <h1 id="深度残差学习"><a href="#深度残差学习" class="headerlink" title="深度残差学习"></a>深度残差学习</h1><h2 id="残差学习"><a href="#残差学习" class="headerlink" title="残差学习"></a>残差学习</h2><p>​    假设 H(x) 由几个堆叠层组成，其输入为 x，并且其最终能被训练为残差函数 F(x)，即 H(x) = F(x) + x。其也能起到所要求的函数的效果，但是使堆叠层训练成残差函数的难度和使用残差结构训练的难度是不一样的。</p>
 <p>​    引言中所提到的反直觉现象促成了这种重构。如同我们在引言中所讨论的，额外增加的层次如果都是恒等映射，深层模型的不会比浅层模型有更大的误差。退化问题则表明，由多个非线性层的叠加而成的额外层很难近似于恒等映射。<strong>而在残差学习的结构下，如果恒等映射是可选择的，额外层可能会简单地将权重降低至接近0来实现恒等映射。</strong></p>
-<h2 id="快捷恒等映射"><a href="#快捷恒等映射" class="headerlink" title="快捷恒等映射"></a>快捷恒等映射</h2><p>​    我们在每几层之间使用残差学习，如上图的结构。在这篇论文中我们将残差块定义为：<br>$$<br>y = F(x,{W_i})+x<br>$$<br>x 和 y 分别表示残差块的输入和输出，函数 F 表示残差映射所需要学习的函数。上图中的 F(x) 为：<br>$$<br>F=W_2 \sigma(W_1x)<br>$$<br>其中 σ 表示 ReLU，为了简化写法忽略偏置项。之后 F + x 通过快捷连接来完成，之后再进行一段ReLU。</p>
-<p>​    第一条方程式中的 F 和 x 的维度必须是相等的。如果不是这种情况（比如当改变输入输出通道时），<strong>我们可以添加系数矩阵 $W_s$ 来使得 F 和 x 维度相等</strong>。<br>$$<br>y=F(x,W_i)+W_sx<br>$$<br>​    <strong>残差函数 F 的形式时可变的。本文的实验中包含了两层和三层的结构，当然更多层也是可以的，甚至可以用于卷积层。</strong></p>
+<h2 id="快捷恒等映射"><a href="#快捷恒等映射" class="headerlink" title="快捷恒等映射"></a>快捷恒等映射</h2><p>​    我们在每几层之间使用残差学习，如上图的结构。在这篇论文中我们将残差块定义为：</p>
+<script type="math/tex; mode=display">
+y = F(x,{W_i})+x</script><p>x 和 y 分别表示残差块的输入和输出，函数 F 表示残差映射所需要学习的函数。上图中的 F(x) 为：</p>
+<script type="math/tex; mode=display">
+F=W_2 \sigma(W_1x)</script><p>其中 σ 表示 ReLU，为了简化写法忽略偏置项。之后 F + x 通过快捷连接来完成，之后再进行一段ReLU。</p>
+<p>​    第一条方程式中的 F 和 x 的维度必须是相等的。如果不是这种情况（比如当改变输入输出通道时），<strong>我们可以添加系数矩阵 $W_s$ 来使得 F 和 x 维度相等</strong>。</p>
+<script type="math/tex; mode=display">
+y=F(x,W_i)+W_sx</script><p>​    <strong>残差函数 F 的形式时可变的。本文的实验中包含了两层和三层的结构，当然更多层也是可以的，甚至可以用于卷积层。</strong></p>
 <h2 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h2><p><img src="https://img-blog.csdn.net/20171218163309386?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvUXVpbmN1bnRpYWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt></p>
 <h1 id="ResNet-的意义"><a href="#ResNet-的意义" class="headerlink" title="ResNet 的意义"></a>ResNet 的意义</h1><ul>
 <li><p>从关联性的角度来看，残差结构使得深层网络和浅层网络的关联性更强，输出端的损失能更加有效地调整到浅层网络的参数。当网络层数过深时，优化器会调低网络权重，使得反向传播“选择性地”使用捷径。</p>
@@ -586,7 +592,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -691,7 +697,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.7k</span>
+    <span title="Site words total count">29.1k</span>
   
 </div>
 
