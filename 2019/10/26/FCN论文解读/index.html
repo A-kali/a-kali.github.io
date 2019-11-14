@@ -104,7 +104,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MUB20s.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MUBz9K.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MUDAAI.png">
-<meta property="og:updated_time" content="2019-11-14T17:57:36.859Z">
+<meta property="og:updated_time" content="2019-11-14T18:15:21.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FCN 论文解读">
 <meta name="twitter:description" content="论文地址：Fully Convolutional Networks for Semantic Segmentation 概述原始的 CNN 在图像的分类和定位任务中都获得了不错的成绩，但在分割任务中表现不佳。本文提出了一种全卷积网络(Fully Convolution Network, FCN)，通过进行像素级的预测(pixelwise prediction)来实现语义分割(semantic se">
@@ -346,7 +346,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 762字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 845字</span>
 
           
 
@@ -361,7 +361,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  762
+                  845
                 </span>
               
 
@@ -422,7 +422,11 @@
 <p>跃层结构将浅层的位置信息和深层的语义信息结合起来，得到更佳鲁棒的结果，其过程如图：</p>
 <p><img src="https://s2.ax1x.com/2019/11/15/MUBz9K.png" alt="MUBz9K.png"></p>
 <h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><p><img src="https://s2.ax1x.com/2019/11/15/MUDAAI.png" alt="MUDAAI.png"></p>
-<h1 id="FCN-的缺点"><a href="#FCN-的缺点" class="headerlink" title="FCN 的缺点"></a>FCN 的缺点</h1><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://blog.csdn.net/fate_fjh/article/details/52882134" target="_blank" rel="noopener">卷积神经网络CNN（1）——图像卷积与反卷积（后卷积，转置卷积）</a></p>
+<h1 id="FCN-的缺点"><a href="#FCN-的缺点" class="headerlink" title="FCN 的缺点"></a>FCN 的缺点</h1><ol>
+<li>分割的结果不够精细。图像过于模糊或平滑，没有分割出目标图像的细节</li>
+<li>因为模型是基于CNN改进而来，即便是用卷积替换了全连接，但是依然是独立像素进行分类，没有充分考虑像素与像素之间的关系</li>
+</ol>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://blog.csdn.net/fate_fjh/article/details/52882134" target="_blank" rel="noopener">卷积神经网络CNN（1）——图像卷积与反卷积（后卷积，转置卷积）</a></p>
 <p>[2]<a href="https://blog.csdn.net/qq_31347869/article/details/89429211" target="_blank" rel="noopener">【论文笔记】FCN</a></p>
 <p>[3]<a href="http://www.sohu.com/a/270896638_633698" target="_blank" rel="noopener">10分钟看懂全卷积神经网络（ FCN ）：语义分割深度模型先驱 </a></p>
 <p>[4]<a href="https://blog.csdn.net/qq_36269513/article/details/80420363" target="_blank" rel="noopener">FCN的学习及理解（Fully Convolutional Networks for Semantic Segmentation）</a></p>
@@ -708,7 +712,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">29.8k</span>
+    <span title="Site words total count">29.9k</span>
   
 </div>
 
