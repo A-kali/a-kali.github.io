@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="论文解读,计算机视觉,语义分割,CNN,FCN,反卷积,">
+  <meta name="keywords" content="论文解读,计算机视觉,神经网络,语义分割,CNN,深度学习,FCN,反卷积,U-Net,">
 
 
 
@@ -89,9 +89,9 @@
 
 
 <meta name="description" content="论文地址：Fully Convolutional Networks for Semantic Segmentation 概述原始的 CNN 在图像的分类和定位任务中都获得了不错的成绩，但在分割任务中表现不佳。本文提出了一种全卷积网络(Fully Convolution Network, FCN)，通过进行像素级的预测(pixelwise prediction)来实现语义分割(semantic se">
-<meta name="keywords" content="论文解读,计算机视觉,语义分割,CNN,FCN,反卷积">
+<meta name="keywords" content="论文解读,计算机视觉,神经网络,语义分割,CNN,深度学习,FCN,反卷积,U-Net">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FCN 论文解读">
+<meta property="og:title" content="FCN 论文解读（附UNet）">
 <meta property="og:url" content="http://a-kali.github.io/2019/10/26/FCN论文解读/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="论文地址：Fully Convolutional Networks for Semantic Segmentation 概述原始的 CNN 在图像的分类和定位任务中都获得了不错的成绩，但在分割任务中表现不佳。本文提出了一种全卷积网络(Fully Convolution Network, FCN)，通过进行像素级的预测(pixelwise prediction)来实现语义分割(semantic se">
@@ -104,9 +104,16 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MUB20s.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MUBz9K.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MUDAAI.png">
-<meta property="og:updated_time" content="2019-11-14T18:15:21.034Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MdWsPg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MdW5IU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MdosiV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MdTPSS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/15/MdTHkq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/18/MyR5wj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/18/MyqBmq.png">
+<meta property="og:updated_time" content="2019-11-19T04:26:20.671Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FCN 论文解读">
+<meta name="twitter:title" content="FCN 论文解读（附UNet）">
 <meta name="twitter:description" content="论文地址：Fully Convolutional Networks for Semantic Segmentation 概述原始的 CNN 在图像的分类和定位任务中都获得了不错的成绩，但在分割任务中表现不佳。本文提出了一种全卷积网络(Fully Convolution Network, FCN)，通过进行像素级的预测(pixelwise prediction)来实现语义分割(semantic se">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/11/15/MUdneI.md.png">
 
@@ -144,7 +151,7 @@
 
 
 
-  <title>FCN 论文解读 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>FCN 论文解读（附UNet） | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -308,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">FCN 论文解读</h1>
+          <h1 class="post-title" itemprop="name headline">FCN 论文解读（附UNet）</h1>
         
 
         <div class="post-meta">
@@ -346,7 +353,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 845字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.7k字</span>
 
           
 
@@ -361,7 +368,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  845
+                  1.7k
                 </span>
               
 
@@ -377,7 +384,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  5分钟
                 </span>
               
             </div>
@@ -413,7 +420,7 @@
 <p>图像(图a)在经过卷积、池化等一系列处理后，得到的特征图(图b)分辨率远小于原图像。这样一来特征图中的像素无法与原图中一一对应，无法对每个像素进行预测。于是需要对特征图进行<strong>上采样</strong>以提高特征图的分辨率。文中对比了三种上采样的方法：</p>
 <h2 id="Shift-and-stitch"><a href="#Shift-and-stitch" class="headerlink" title="Shift-and-stitch"></a>Shift-and-stitch</h2><p>关于该方法可以参考博客：<a href="https://www.jianshu.com/p/e534e2be5d7d" target="_blank" rel="noopener">关于FCN 论文中的 Shift-and-stitch 的详尽解释</a>。作者认为该方法“不能感受到更精细的信息”。</p>
 <h2 id="Patchwise-training"><a href="#Patchwise-training" class="headerlink" title="Patchwise training"></a>Patchwise training</h2><p>与其字面意思一样，patchwise是介于pixelwise和imagewise之间的级别。对每一个感兴趣的像素，以它为中心取一个patch，然后输入网络，输出则为该像素的标签，训练时就将一个个patch组成一个batch作为网络输入。这种方法可能会因为patch的太大或太小造成精度的损失。</p>
-<h2 id="Deconvolution"><a href="#Deconvolution" class="headerlink" title="Deconvolution"></a>Deconvolution</h2><p>反卷积文章作者最终采用的方法，下面是两种反卷积的示例，图解起来十分直观：</p>
+<h2 id="Deconvolution"><a href="#Deconvolution" class="headerlink" title="Deconvolution"></a>Deconvolution</h2><p>反卷积是文章作者最终采用的方法，下面是两种反卷积的示例，图解起来十分直观：</p>
 <p><img src="https://s2.ax1x.com/2019/11/15/MUBwkt.gif" alt="MUBwkt.gif"></p>
 <p><img src="https://s2.ax1x.com/2019/11/15/MUBBff.gif" alt="MUBBff.gif"></p>
 <p>下面是另一种解释，这样一看好像确实是把卷积的操作反过来了：</p>
@@ -422,14 +429,47 @@
 <p>跃层结构将浅层的位置信息和深层的语义信息结合起来，得到更佳鲁棒的结果，其过程如图：</p>
 <p><img src="https://s2.ax1x.com/2019/11/15/MUBz9K.png" alt="MUBz9K.png"></p>
 <h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><p><img src="https://s2.ax1x.com/2019/11/15/MUDAAI.png" alt="MUDAAI.png"></p>
+<h1 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h1><p>训练过程分为四个阶段，也体现了作者的设计思路，值得研究。</p>
+<h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><p><img src="https://s2.ax1x.com/2019/11/15/MdWsPg.png" alt="MdWsPg.png"></p>
+<p>使用数据集对模型的分类backbone进行预训练，使卷积层获得提取相应特征的能力。最后两层红色的是全连接层。</p>
+<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><p><img src="https://s2.ax1x.com/2019/11/15/MdW5IU.png" alt="MdW5IU.png"></p>
+<p> <strong>从特征小图（16×16×4096）预测分割小图（16×16×21），之后直接升采样为大图（300×300×21）。</strong>这里输出通道数为21的原因是：采用的PASCAL数据集中有20类，算上背景类一共21类。每个通道预测一类的像素。反卷积（橙色）的步长为32，故该网络被称为<strong>FCN-32s</strong>。</p>
+<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p><img src="https://s2.ax1x.com/2019/11/15/MdosiV.png" alt="MdosiV.png"></p>
+<p>这个阶段上采样分为两次完成（橙色×2）。 在第二次升采样前，把第4个pooling层（绿色）的预测结果（蓝色）通过跃层结构融合进来，提升精确性。 第二次反卷积步长为16，这个网络称为<strong>FCN-16s</strong>。 </p>
+<h2 id="第四阶段"><a href="#第四阶段" class="headerlink" title="第四阶段"></a>第四阶段</h2><p><img src="https://s2.ax1x.com/2019/11/15/MdTPSS.png" alt="MdTPSS.png"></p>
+<p>这个阶段和第三阶段差不多，相较多了一次上采样。这大概是最终得出的FCN模型，因为同样的原因被称为<strong>FCN-8s</strong>。</p>
+<p>比较这几个阶段的输出可以看出，跃层结构利用浅层信息辅助逐步升采样，有更精细的结果。 </p>
+<p><img src="https://s2.ax1x.com/2019/11/15/MdTHkq.png" alt="MdTHkq.png"></p>
 <h1 id="FCN-的缺点"><a href="#FCN-的缺点" class="headerlink" title="FCN 的缺点"></a>FCN 的缺点</h1><ol>
-<li>分割的结果不够精细。图像过于模糊或平滑，没有分割出目标图像的细节</li>
-<li>因为模型是基于CNN改进而来，即便是用卷积替换了全连接，但是依然是独立像素进行分类，没有充分考虑像素与像素之间的关系</li>
+<li>分割的结果不够精细。图像过于模糊或平滑，没有分割出目标图像的细节。</li>
+<li>因为模型是基于CNN改进而来，即便是用卷积替换了全连接，但是依然是独立像素进行分类，没有充分考虑像素与像素之间的关系。</li>
 </ol>
+<h1 id="U-Net"><a href="#U-Net" class="headerlink" title="U-Net"></a>U-Net</h1><p>论文地址：<a href="https://arxiv.org/abs/1505.04597" target="_blank" rel="noopener">U-Net: Convolutional Networks for Biomedical Image Segmentation</a></p>
+<p><strong>U-Net</strong>是医学图像领域十分常用的一种分割网络，因为跟FCN十分相似，就放这里顺便讲了。</p>
+<h2 id="网络结构-1"><a href="#网络结构-1" class="headerlink" title="网络结构"></a>网络结构</h2><p><img src="https://s2.ax1x.com/2019/11/18/MyR5wj.png" alt="MyR5wj.png"></p>
+<p>由于整个结构图呈”U”字型，故名”U-Net”。在知道FCN的原理后，从图中可以很明显地看出U-Net的结构和FCN没太大区别。其主要区别于以下几点：</p>
+<ul>
+<li><p>由于Unet的主要目标数据集为医学影像（最开始是细胞图像），只需要对每个像素点进行二值分割（有病/没病），故输出的特征图只有2个channel。(output segmentation: 388×388×2)</p>
+</li>
+<li><p>在上采样部分依然有大量的特征通道，使得网络可以将环境信息向更高的分辨率层传播。下采样和上采样部分几乎是对称的。</p>
+</li>
+<li><p>输入图像尺寸(572×572)和输出图像尺寸(388×388)不一样。这点似乎是为了配合一种名为<strong>overlap-tile</strong>的方法。如下图，使用左图蓝色区域预测右图黄色区域，滑动蓝色区域重复此操作直到预测完整张图片（这种细胞图尺寸通常都很大）。最终会导致最边上的蓝色区域没法预测，对于这部分使用<strong>镜像法(mirroring)</strong>外推。</p>
+<p>注：关于这部分我也不太确定，想要了解详细原理可以去官网看原版的实现代码。</p>
+<p><img src="https://s2.ax1x.com/2019/11/18/MyqBmq.png" alt="MyqBmq.png"></p>
+</li>
+<li><p>浅层特征和深层特征合并时，Unet使用的是拼接方法（图中白色模块，估计是为了保留更多的channel），而FCN使用的是求和。</p>
+</li>
+<li><p>用少量图像训练便能取得不错的效果，这点对医学领域图像数据集较少的特性十分友好。</p>
+</li>
+</ul>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://blog.csdn.net/fate_fjh/article/details/52882134" target="_blank" rel="noopener">卷积神经网络CNN（1）——图像卷积与反卷积（后卷积，转置卷积）</a></p>
 <p>[2]<a href="https://blog.csdn.net/qq_31347869/article/details/89429211" target="_blank" rel="noopener">【论文笔记】FCN</a></p>
 <p>[3]<a href="http://www.sohu.com/a/270896638_633698" target="_blank" rel="noopener">10分钟看懂全卷积神经网络（ FCN ）：语义分割深度模型先驱 </a></p>
 <p>[4]<a href="https://blog.csdn.net/qq_36269513/article/details/80420363" target="_blank" rel="noopener">FCN的学习及理解（Fully Convolutional Networks for Semantic Segmentation）</a></p>
+<p>[5]<a href="https://blog.csdn.net/qq_37274615/article/details/73251503" target="_blank" rel="noopener">FCN的理解</a></p>
+<p>[6]<a href="https://blog.csdn.net/justpsss/article/details/77170004" target="_blank" rel="noopener">FCN和U-Net</a></p>
+<p>[7]<a href="https://blog.csdn.net/natsuka/article/details/78565229" target="_blank" rel="noopener">U-net翻译</a></p>
+<p>[8]<a href="https://blog.csdn.net/mieleizhi0522/article/details/82025509" target="_blank" rel="noopener">U-net论文解析</a></p>
 
       
     </div>
@@ -460,13 +500,19 @@
           
             <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
           
+            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+          
             <a href="/tags/语义分割/" rel="tag"><i class="fa fa-tag"></i> 语义分割</a>
           
             <a href="/tags/CNN/" rel="tag"><i class="fa fa-tag"></i> CNN</a>
           
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
             <a href="/tags/FCN/" rel="tag"><i class="fa fa-tag"></i> FCN</a>
           
             <a href="/tags/反卷积/" rel="tag"><i class="fa fa-tag"></i> 反卷积</a>
+          
+            <a href="/tags/U-Net/" rel="tag"><i class="fa fa-tag"></i> U-Net</a>
           
         </div>
       
@@ -607,7 +653,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -669,7 +715,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全卷积化"><span class="nav-number">2.</span> <span class="nav-text">全卷积化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上采样（Upsampling）"><span class="nav-number">3.</span> <span class="nav-text">上采样（Upsampling）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shift-and-stitch"><span class="nav-number">3.1.</span> <span class="nav-text">Shift-and-stitch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Patchwise-training"><span class="nav-number">3.2.</span> <span class="nav-text">Patchwise training</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deconvolution"><span class="nav-number">3.3.</span> <span class="nav-text">Deconvolution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跃层结构-Skip-Layer"><span class="nav-number">4.</span> <span class="nav-text">跃层结构(Skip Layer)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络结构"><span class="nav-number">5.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FCN-的缺点"><span class="nav-number">6.</span> <span class="nav-text">FCN 的缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全卷积化"><span class="nav-number">2.</span> <span class="nav-text">全卷积化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上采样（Upsampling）"><span class="nav-number">3.</span> <span class="nav-text">上采样（Upsampling）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shift-and-stitch"><span class="nav-number">3.1.</span> <span class="nav-text">Shift-and-stitch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Patchwise-training"><span class="nav-number">3.2.</span> <span class="nav-text">Patchwise training</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deconvolution"><span class="nav-number">3.3.</span> <span class="nav-text">Deconvolution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跃层结构-Skip-Layer"><span class="nav-number">4.</span> <span class="nav-text">跃层结构(Skip Layer)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络结构"><span class="nav-number">5.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#训练过程"><span class="nav-number">6.</span> <span class="nav-text">训练过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一阶段"><span class="nav-number">6.1.</span> <span class="nav-text">第一阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二阶段"><span class="nav-number">6.2.</span> <span class="nav-text">第二阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三阶段"><span class="nav-number">6.3.</span> <span class="nav-text">第三阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四阶段"><span class="nav-number">6.4.</span> <span class="nav-text">第四阶段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FCN-的缺点"><span class="nav-number">7.</span> <span class="nav-text">FCN 的缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#U-Net"><span class="nav-number">8.</span> <span class="nav-text">U-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络结构-1"><span class="nav-number">8.1.</span> <span class="nav-text">网络结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">9.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -712,7 +758,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">30k</span>
+    <span title="Site words total count">30.7k</span>
   
 </div>
 
