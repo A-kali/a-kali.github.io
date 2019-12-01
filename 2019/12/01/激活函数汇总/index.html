@@ -104,7 +104,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/02/QmROtP.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/02/QmWjER.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/02/Qmf1bj.md.png">
-<meta property="og:updated_time" content="2019-12-01T16:34:29.028Z">
+<meta property="og:updated_time" content="2019-12-01T16:38:44.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见激活函数汇总">
 <meta name="twitter:description" content="SigmoidSigmoid 常用于二分类和多标签分类的最后一层，能将实数值映射到0-1之间。 函数式：  σ(x) = \frac{1}{1+e^{-x}}导数式：  σ&apos;(x) = σ(x)×(1-σ(x))函数图像：  ReLUReLU是神经网络激活层最常用的一种函数，因为其运算简单、易于求导，能用最简单的方式实现非线性运算的性质。 函数式：  f(x)=max(0,x)函数图像：  Tan">
@@ -952,11 +952,31 @@ ax, \quad x<0
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
