@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="计算机视觉,论文解读,语义分割,深度学习,目标检测,R-CNN,">
+  <meta name="keywords" content="计算机视觉,论文解读,深度学习,目标检测,R-CNN,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 背景伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
-<meta name="keywords" content="计算机视觉,论文解读,语义分割,深度学习,目标检测,R-CNN">
+<meta name="keywords" content="计算机视觉,论文解读,深度学习,目标检测,R-CNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读">
 <meta property="og:url" content="http://a-kali.github.io/2019/10/10/R-CNN-Fast-R-CNN-Faster-R-CNN-Mask-R-CNN-论文解读/index.html">
@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/25/KdIwZQ.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/25/KwJZQS.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/26/K0RaZ9.png">
-<meta property="og:updated_time" content="2019-11-05T09:43:19.831Z">
+<meta property="og:updated_time" content="2019-12-02T09:51:50.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读">
 <meta name="twitter:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 背景伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7分钟
+                  8分钟
                 </span>
               
             </div>
@@ -482,8 +482,12 @@
 </ol>
 <p>另外值得一提的是，Fast R-CNN 采用的是固定大小的输入，而不像SPPnet使用任意大小的输入。</p>
 <h3 id="RoI-池化层"><a href="#RoI-池化层" class="headerlink" title="RoI 池化层"></a>RoI 池化层</h3><p>RoI 池化层实质上就是单层的 SPP 模块。其将一个候选窗口划分为 H×W 的网格，对每个网格内进行最大池化，最后输出一个长度为 H×W 的特征。超参数 H 和 W 视具体网络结构而定。</p>
-<h3 id="多任务损失"><a href="#多任务损失" class="headerlink" title="多任务损失"></a>多任务损失</h3><p>多任务损失由分类任务损失和边框回归任务损失线性组合而成：<br>$$<br>L=L_{cls}(p,u)+\lambda [u\geq 1]L_{loc}(t^u,v)\<br>$$<br>其中：<br>$$<br>L_{cls}(p,u)=-\log p_u\<br>L_{loc}(t^u,v)=\sum smooth_{L_1}(t^u_i-v_i)<br>$$</p>
-<h3 id="Mini-batch-sampling"><a href="#Mini-batch-sampling" class="headerlink" title="Mini-batch sampling"></a>Mini-batch sampling</h3><p>（其实这一段我没看太懂，以下仅作参考）</p>
+<h3 id="多任务损失"><a href="#多任务损失" class="headerlink" title="多任务损失"></a>多任务损失</h3><p>多任务损失由分类任务损失和边框回归任务损失线性组合而成：</p>
+<script type="math/tex; mode=display">
+L=L_{cls}(p,u)+\lambda [u\geq 1]L_{loc}(t^u,v)\\</script><p>其中：</p>
+<script type="math/tex; mode=display">
+L_{cls}(p,u)=-\log p_u\\
+L_{loc}(t^u,v)=\sum smooth_{L_1}(t^u_i-v_i)</script><h3 id="Mini-batch-sampling"><a href="#Mini-batch-sampling" class="headerlink" title="Mini-batch sampling"></a>Mini-batch sampling</h3><p>（其实这一段我没看太懂，以下仅作参考）</p>
 <p>在调优(fine tuning)训练时，每个mini-batch中首先加入 N 张完整图片，从 N 张图片中选出一共 R 个 IoU&gt;0.5 的候选区域，然后将这 R 个候选区域作为训练样本放入网络训练。</p>
 <h1 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h1><p>论文地址：<a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</a></p>
 <p>发布时间：2016.1.6</p>
@@ -509,6 +513,8 @@
 <li><p>将筛选、修正后的锚框映射到特征图上，输入到ROI池化层。后续操作和Fast R-CNN一样。</p>
 </li>
 </ol>
+<h1 id="Mask-R-CNN"><a href="#Mask-R-CNN" class="headerlink" title="Mask R-CNN"></a>Mask R-CNN</h1><p>（待更新）</p>
+<h1 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h1><p><strong>Q：讲下faster-rcnn？Faster-rcnn里面的NMS的算法原理是什么？</strong></p>
 
       
     </div>
@@ -538,8 +544,6 @@
             <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
           
             <a href="/tags/论文解读/" rel="tag"><i class="fa fa-tag"></i> 论文解读</a>
-          
-            <a href="/tags/语义分割/" rel="tag"><i class="fa fa-tag"></i> 语义分割</a>
           
             <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
           
@@ -748,7 +752,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#R-CNN"><span class="nav-number">1.</span> <span class="nav-text">R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择性搜索"><span class="nav-number">1.2.</span> <span class="nav-text">选择性搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体架构"><span class="nav-number">1.3.</span> <span class="nav-text">整体架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SPP-Net"><span class="nav-number">2.</span> <span class="nav-text">SPP-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-1"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间金字塔池化层"><span class="nav-number">2.2.</span> <span class="nav-text">空间金字塔池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-在目标检测中的应用"><span class="nav-number">2.3.</span> <span class="nav-text">SPP 在目标检测中的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fast-R-CNN"><span class="nav-number">3.</span> <span class="nav-text">Fast R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-2"><span class="nav-number">3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构细节和模型训练"><span class="nav-number">3.2.</span> <span class="nav-text">架构细节和模型训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RoI-池化层"><span class="nav-number">3.2.1.</span> <span class="nav-text">RoI 池化层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多任务损失"><span class="nav-number">3.2.2.</span> <span class="nav-text">多任务损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-batch-sampling"><span class="nav-number">3.2.3.</span> <span class="nav-text">Mini-batch sampling</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Faster-R-CNN"><span class="nav-number">4.</span> <span class="nav-text">Faster R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构概览"><span class="nav-number">4.2.</span> <span class="nav-text">架构概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPN"><span class="nav-number">4.3.</span> <span class="nav-text">RPN</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#R-CNN"><span class="nav-number">1.</span> <span class="nav-text">R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择性搜索"><span class="nav-number">1.2.</span> <span class="nav-text">选择性搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体架构"><span class="nav-number">1.3.</span> <span class="nav-text">整体架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SPP-Net"><span class="nav-number">2.</span> <span class="nav-text">SPP-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-1"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间金字塔池化层"><span class="nav-number">2.2.</span> <span class="nav-text">空间金字塔池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-在目标检测中的应用"><span class="nav-number">2.3.</span> <span class="nav-text">SPP 在目标检测中的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fast-R-CNN"><span class="nav-number">3.</span> <span class="nav-text">Fast R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-2"><span class="nav-number">3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构细节和模型训练"><span class="nav-number">3.2.</span> <span class="nav-text">架构细节和模型训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RoI-池化层"><span class="nav-number">3.2.1.</span> <span class="nav-text">RoI 池化层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多任务损失"><span class="nav-number">3.2.2.</span> <span class="nav-text">多任务损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-batch-sampling"><span class="nav-number">3.2.3.</span> <span class="nav-text">Mini-batch sampling</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Faster-R-CNN"><span class="nav-number">4.</span> <span class="nav-text">Faster R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构概览"><span class="nav-number">4.2.</span> <span class="nav-text">架构概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPN"><span class="nav-number">4.3.</span> <span class="nav-text">RPN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mask-R-CNN"><span class="nav-number">5.</span> <span class="nav-text">Mask R-CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关面试题"><span class="nav-number">6.</span> <span class="nav-text">相关面试题</span></a></li></ol></div>
             
 
           </div>
@@ -791,7 +795,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">32.6k</span>
+    <span title="Site words total count">32.7k</span>
   
 </div>
 
