@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="3.1 命名空间的 using 声明​    域操作符（::）的含义是：编译器应从操作符左侧名字所示作用域中寻找右侧那个名字。因此，std::cin 的意思就是要使用命名空间 std 中的名字 cin。而使用 using 声明后则无需专门的前缀也能使用所需的名字了。 123using std::cin;int i;cin &amp;gt;&amp;gt; i; 更方便的方法： 1using namespace s">
+<meta name="description" content="3.1 命名空间的 using 声明​    域操作符（::）的含义是：编译器应从操作符左侧名字所示作用域中寻找右侧那个名字。因此，std::cin 的意思就是要使用命名空间 std 中的名字 cin。而使用 using 声明后则无需专门的前缀也能使用所需的名字了。 123using std::cin;int i;cin &amp;gt;&amp;gt; i;  更方便的方法： 1using namespace">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《C++ Primer》 第3章 字符串、向量和数组">
 <meta property="og:url" content="http://a-kali.github.io/2019/08/26/《C-Primer》-第3章-字符串、向量和数组/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="3.1 命名空间的 using 声明​    域操作符（::）的含义是：编译器应从操作符左侧名字所示作用域中寻找右侧那个名字。因此，std::cin 的意思就是要使用命名空间 std 中的名字 cin。而使用 using 声明后则无需专门的前缀也能使用所需的名字了。 123using std::cin;int i;cin &amp;gt;&amp;gt; i; 更方便的方法： 1using namespace s">
+<meta property="og:description" content="3.1 命名空间的 using 声明​    域操作符（::）的含义是：编译器应从操作符左侧名字所示作用域中寻找右侧那个名字。因此，std::cin 的意思就是要使用命名空间 std 中的名字 cin。而使用 using 声明后则无需专门的前缀也能使用所需的名字了。 123using std::cin;int i;cin &amp;gt;&amp;gt; i;  更方便的方法： 1using namespace">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-08-29T03:37:23.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《C++ Primer》 第3章 字符串、向量和数组">
-<meta name="twitter:description" content="3.1 命名空间的 using 声明​    域操作符（::）的含义是：编译器应从操作符左侧名字所示作用域中寻找右侧那个名字。因此，std::cin 的意思就是要使用命名空间 std 中的名字 cin。而使用 using 声明后则无需专门的前缀也能使用所需的名字了。 123using std::cin;int i;cin &amp;gt;&amp;gt; i; 更方便的方法： 1using namespace s">
+<meta name="twitter:description" content="3.1 命名空间的 using 声明​    域操作符（::）的含义是：编译器应从操作符左侧名字所示作用域中寻找右侧那个名字。因此，std::cin 的意思就是要使用命名空间 std 中的名字 cin。而使用 using 声明后则无需专门的前缀也能使用所需的名字了。 123using std::cin;int i;cin &amp;gt;&amp;gt; i;  更方便的方法： 1using namespace">
 
 
 
@@ -414,23 +414,33 @@
       
         <h1 id="3-1-命名空间的-using-声明"><a href="#3-1-命名空间的-using-声明" class="headerlink" title="3.1 命名空间的 using 声明"></a>3.1 命名空间的 using 声明</h1><p>​    <strong>域操作符</strong>（::）的含义是：编译器应从操作符左侧名字所示作用域中寻找右侧那个名字。因此，std::cin 的意思就是要使用命名空间 std 中的名字 cin。而使用 <strong>using 声明</strong>后则无需专门的前缀也能使用所需的名字了。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; i;</span><br></pre></td></tr></table></figure>
+
 <p>更方便的方法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br></pre></td></tr></table></figure>
+
 <p>这样就可以使用 std 命名空间中所有的名字了。</p>
 <h1 id="3-2-标准库类型-string"><a href="#3-2-标准库类型-string" class="headerlink" title="3.2 标准库类型 string"></a>3.2 标准库类型 string</h1><p>​    标准库类型 <strong>string</strong> 表示可变长的字符序列，使用 string 类型必须首先包含 string 头文件。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt; // 包含 string 头文件</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>; <span class="comment">// string 定义在命名空间 std 中</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="3-2-1-定义和初始化-string-对象"><a href="#3-2-1-定义和初始化-string-对象" class="headerlink" title="3.2.1 定义和初始化 string 对象"></a>3.2.1 定义和初始化 string 对象</h2><p>​    如何初始化类的对象是由类本身决定的。如下是初始化 string 对象的常用方式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(s2)</span></span>;</span><br><span class="line"><span class="built_in">string</span> s1 = s2;    <span class="comment">// 同上</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(n, <span class="string">'c'</span>)</span>  <span class="comment">// 将s1初始化为由连续n个'c'组成的字符串</span></span></span><br></pre></td></tr></table></figure>
+
 <h2 id="3-2-2-string-对象上的操作"><a href="#3-2-2-string-对象上的操作" class="headerlink" title="3.2.2 string 对象上的操作"></a>3.2.2 string 对象上的操作</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">os &lt;&lt; s; <span class="comment">// output stream</span></span><br><span class="line">is &gt;&gt; s; <span class="comment">// 输入到s，字符串以空白分隔</span></span><br><span class="line">getline(is, s); <span class="comment">// 从is中读取一行到s</span></span><br><span class="line">s.empty();</span><br><span class="line">s.size();</span><br><span class="line">s[n];</span><br><span class="line">s1 + s2;</span><br><span class="line">&lt;, &lt;=, &gt;, &gt;=  <span class="comment">// 利用字符在字典中的顺序进行比较，大小写敏感</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="读写-string-对象"><a href="#读写-string-对象" class="headerlink" title="读写 string 对象"></a>读写 string 对象</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span> &gt;&gt; s; <span class="comment">// 将 string 对象读入 s，遇到空白停止</span></span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; s1 &gt;&gt; s2;   <span class="comment">// 把第一个输入到s1中，第二个输入到s2中</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="3-2-3-处理-string-对象中的字符"><a href="#3-2-3-处理-string-对象中的字符" class="headerlink" title="3.2.3 处理 string 对象中的字符"></a>3.2.3 处理 string 对象中的字符</h2><p>​    <strong>cctype头文件</strong>中定义了一组标准库函数来处理 string 对象中的字符。比如判断字符是否为数字、字母、控制字符、可打印字符、大写、小写、标点等，以及大小写转换。（p82）</p>
 <h3 id="基于范围的-for-语句"><a href="#基于范围的-for-语句" class="headerlink" title="基于范围的 for 语句"></a>基于范围的 for 语句</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (declaration: expression)  <span class="comment">// 跟python中 for declaration in expresson 类似</span></span><br><span class="line">    statement</span><br><span class="line"><span class="comment">// 举例    </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> c : str)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
 <h3 id="使用范围-for-语句改变字符串中的字符"><a href="#使用范围-for-语句改变字符串中的字符" class="headerlink" title="使用范围 for 语句改变字符串中的字符"></a>使用范围 for 语句改变字符串中的字符</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> &amp;c : str)  <span class="comment">// c是一个引用，故赋值语句将改变s中字符的值</span></span><br><span class="line">    c = <span class="built_in">toupper</span>(c);</span><br></pre></td></tr></table></figure>
+
 <h1 id="3-3-标准库类型-vector"><a href="#3-3-标准库类型-vector" class="headerlink" title="3.3 标准库类型 vector"></a>3.3 标准库类型 vector</h1><p>​    标准库类型 <strong>vector</strong> 表示对象的集合，其中所有对象的类型都相同。集合中每个对象都有一个与之对应的索引，索引用于访问对象。因为 vectot 容纳着其他对象，所以它也常被称作<strong>容器</strong>。</p>
 <p>​    使用 vector：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec;  <span class="comment">// 定义一个能容纳int类型集合的对象</span></span><br><span class="line"><span class="built_in">vector</span>&lt;Sales_item&gt; Sales_vec;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; file;</span><br></pre></td></tr></table></figure>
+
 <p>vector 能容纳绝大多数类型的对象作为其元素。</p>
 <h2 id="3-3-1-定义和初始化-vector-对象"><a href="#3-3-1-定义和初始化-vector-对象" class="headerlink" title="3.3.1 定义和初始化 vector 对象"></a>3.3.1 定义和初始化 vector 对象</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;T&gt; v1;</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v2(v1);</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v3 = v1;</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v4(n, val);</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v5(n);</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v6&#123;a,b,c...&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;T&gt; v7 = &#123;a,b,c...&#125;;</span><br></pre></td></tr></table></figure>
+
 <h2 id="3-3-2-向-vector-对象中添加元素"><a href="#3-3-2-向-vector-对象中添加元素" class="headerlink" title="3.3.2 向 vector 对象中添加元素"></a>3.3.2 向 vector 对象中添加元素</h2><p>​    vector 的成员函数 <strong>push_back()</strong> 能将一个元素添加到 vector 的尾端。</p>
 <h2 id="3-3-3-其他-vector-操作"><a href="#3-3-3-其他-vector-操作" class="headerlink" title="3.3.3 其他 vector 操作"></a>3.3.3 其他 vector 操作</h2><p>​    跟 string 差不多。</p>
 <h1 id="3-4-迭代器介绍"><a href="#3-4-迭代器介绍" class="headerlink" title="3.4 迭代器介绍"></a>3.4 迭代器介绍</h1><p>​    <strong>迭代器</strong>能用于访问 string 对象和 vector 对象的元素，并且所有的标准库容器都能使用迭代器。使用迭代器能访问某个元素，迭代器也能从一个元素移动到另外一个元素。</p>
@@ -438,7 +448,7 @@
 <h3 id="迭代器运算符"><a href="#迭代器运算符" class="headerlink" title="迭代器运算符"></a>迭代器运算符</h3><ul>
 <li>*iter              返回迭代器iter所指元素的引用</li>
 <li>iter-&gt;men  相当于(*iter).men</li>
-<li>++iter           令 iter 指向容器下一个元素，同理有 —iter，iter + n，iter1 - iter2 等</li>
+<li>++iter           令 iter 指向容器下一个元素，同理有 –iter，iter + n，iter1 - iter2 等</li>
 <li>iter1 &gt; iter2 比较位置关系，靠后的值大</li>
 </ul>
 <h3 id="迭代器类型"><a href="#迭代器类型" class="headerlink" title="迭代器类型"></a>迭代器类型</h3><p> 拥有迭代器迭代器的标准库类型使用 iterator 和 const_iterator 来表示迭代器的类型。<strong>const_iterator</strong> 和常量指针差不多，能读但不能修改所指元素的值，而 <strong>iterator</strong> 所指的对象可读可写。 如果容器对象是一个常量，则只能使用 const_iterator；否则两种类型都能使用。</p>
@@ -447,7 +457,9 @@
 <h2 id="3-5-1-定义和初始化内置数组"><a href="#3-5-1-定义和初始化内置数组" class="headerlink" title="3.5.1 定义和初始化内置数组"></a>3.5.1 定义和初始化内置数组</h2><h3 id="显式初始化数组元素"><a href="#显式初始化数组元素" class="headerlink" title="显式初始化数组元素"></a>显式初始化数组元素</h3><p>​    如果声明时没有指明维度，编译器会根据初始值的数量计算并推断出来；如果指明了维度，那么初始值的总数量不应该超出指定的大小。</p>
 <h3 id="字符数组的特殊性"><a href="#字符数组的特殊性" class="headerlink" title="字符数组的特殊性"></a>字符数组的特殊性</h3><p>​    当使用字符串字面值初始化字符数组时，一定要注意字符串字面值的结尾处还有一个隐藏的空字符，这个空字符也会像字符串的其它字符一样被拷贝到数组里去。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a1[<span class="number">3</span>] = &#123;<span class="string">'c'</span>, <span class="string">'p'</span>, <span class="string">'p'</span>&#125;;  <span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">char</span> a2[<span class="number">4</span>] = <span class="string">"cpp"</span>;            <span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">char</span> a3[<span class="number">3</span>] = <span class="string">"cpp"</span>;            <span class="comment">// 错误</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="理解复杂的数组声明"><a href="#理解复杂的数组声明" class="headerlink" title="理解复杂的数组声明"></a>理解复杂的数组声明</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ptrs[<span class="number">10</span>];                  <span class="comment">// ptrs是含有10个整型指针的数组</span></span><br><span class="line"><span class="keyword">int</span> &amp;refs[<span class="number">10</span>] = <span class="comment">/*?*/</span>;          <span class="comment">// 错误：不存在引用的数组</span></span><br><span class="line"><span class="keyword">int</span> (*Parray)[<span class="number">10</span>];              <span class="comment">// Parray指向一个整型数组</span></span><br><span class="line"><span class="keyword">int</span> (&amp;arrRef)[<span class="number">10</span>];              <span class="comment">// arrRef引用一个整型数组</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="3-5-3-指针和数组"><a href="#3-5-3-指针和数组" class="headerlink" title="3.5.3 指针和数组"></a>3.5.3 指针和数组</h2><p>​    数组类型的对象其实是一个指向该数组首元素的指针。该指针也是一个迭代器。</p>
 
       
@@ -594,7 +606,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -616,7 +628,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -721,7 +733,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">33.6k</span>
+    <span title="Site words total count">34.2k</span>
   
 </div>
 
