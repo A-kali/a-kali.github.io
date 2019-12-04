@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/29/QA2ryq.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/03/Pb7ZzNEjQhDtS4c.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/03/MAWNrVztIbf3CjJ.png">
-<meta property="og:updated_time" content="2019-12-03T17:09:24.275Z">
+<meta property="og:updated_time" content="2019-12-04T11:54:54.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YOLOv1 - YOLOv3">
 <meta name="twitter:description" content="YOLOv1论文地址：You Only Look Once: Unified, Real-Time Object Detection 摘要众所周知，在深度学习目标检测领域有着两个流派，分别是基于候选区域的R-CNN流派和直接回归输出边框的YOLO流派。R-CNN系列的准确率较高，但即便发展到Faster R-CNN，运算速度也才只有7fps。为了使检测工作更接近实时，作者提出了YOLO结构。  Y">
@@ -407,7 +407,7 @@
 <p>同时每个网格预测一组 <strong>C 个类别的概率</strong> $Pr(Class_i|Object)$，即输出一组长度为 C 的概率向量。这个概率表示网格含有物体的情况下，各个类别属于该网格的概率。</p>
 <p>经过上述步骤，最终在神经网络末端输出一个$S×S×(B×5+C)$的张量。</p>
 <p><img src="https://s2.ax1x.com/2019/11/27/QCIFr6.png" alt="QCIFr6.png"></p>
-<p>测试时，将置信度和每一类概率相乘<br>$$<br>Score=Pr(Class_i|Object)×Pr(Object)×IOU^{truth}<em>{pred}=Pr(Class_i)×IOU^{truth}</em>{pred}<br>$$<br>得到的Score表示<strong>每一类在每个边框中的置信度(class-specific confidence for each box)</strong>。通过设置阈值筛选出得分高的box，再通过NMS选出最优结果。</p>
+<p>测试时，将置信度和每一类概率相乘<br>$$<br>Score=Pr(Class_i|Object)×Pr(Object)×IOU^{truth}<em>{pred}=Pr(Class_i)×IOU^{truth}</em>{pred}<br>$$<br>得到的Score表示<strong>每一类在每个边框中的置信度(class-specific confidence for each box)</strong>。通过设置阈值筛选出得分高的box，再以的分最高的box为基准进行NMS选出最优结果。</p>
 <h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p>如图，在 PASCAL VOC 数据集中，图像输入为 448×448，取 S=7，B=2，一共有20 个类别（C=20），则输出就是 7x7x30 的一个 tensor。</p>
 <p><img src="https://s2.ax1x.com/2019/11/27/QCHg76.png" alt="QCHg76.png"></p>
 <p>可以看出这是一个<strong>彻头彻尾的端到端网络</strong>。看到这里可能会有点震惊，上面讲了那么多复杂的设定到头来居然只是个这么朴素的端到端网络？事实上，上面那么多设定大多都是来源于其巧妙设计的损失函数。</p>
@@ -630,7 +630,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -735,7 +735,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.6k</span>
+    <span title="Site words total count">35k</span>
   
 </div>
 
