@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/25/KwJZQS.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/26/K0RaZ9.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/04/4kIh9YJQwTuZvEX.png">
-<meta property="og:updated_time" content="2019-12-04T08:08:47.100Z">
+<meta property="og:updated_time" content="2019-12-04T08:46:09.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN 系列论文解读">
 <meta name="twitter:description" content="R-CNN论文地址：Rich feature hierarchies for accurate object detection and semantic segmentation 发布时间：2014.10.22 背景伴随着AlexNet的横空出世，卷积神经网络开始进入人们的视线，R-CNN便是将卷积神经网络运用于目标检测和语义分割的一个成功典范，其在 VOC 2012 将最佳mAP提高了30%。">
@@ -372,7 +372,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 2.2k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 2.4k字</span>
 
           
 
@@ -387,7 +387,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.2k
+                  2.4k
                 </span>
               
 
@@ -499,7 +499,7 @@
 </ol>
 <p>那么 RPN 具体是怎样的呢？</p>
 <h2 id="RPN"><a href="#RPN" class="headerlink" title="RPN"></a>RPN</h2><p><img src="https://s2.ax1x.com/2019/10/25/KdIwZQ.png" alt="KdIwZQ.png"></p>
-<p>从上图中Faster R-CNN更具体的结构，包括左下方的RPN模块。RPN具体流程如下：</p>
+<p>从上图中可以看到Faster R-CNN更具体的结构，包括左下方的RPN模块。RPN具体流程如下：</p>
 <ol>
 <li><p>使用<strong>滑动窗口(slide window)</strong>遍历整个特征图(feature map)，遍历过程中以每个window中心产生9个预设<strong>锚框(anchor)</strong>，9个锚框分别对应3种尺寸和3种长宽比。</p>
 <p><img src="https://s2.ax1x.com/2019/10/25/KwJZQS.png" alt="KwJZQS.png"></p>
@@ -510,7 +510,17 @@
 <li><p>将筛选、修正后的锚框映射到特征图上，输入到ROI池化层。后续操作和Fast R-CNN一样。</p>
 </li>
 </ol>
+<h2 id="Faster-R-CNN-的训练步骤"><a href="#Faster-R-CNN-的训练步骤" class="headerlink" title="Faster R-CNN 的训练步骤"></a>Faster R-CNN 的训练步骤</h2><ol>
+<li>训练一个用于分类的 CNN（用于特征提取）</li>
+<li>使用 CNN 的特征图作为输出，端到端的fine-tune RPN + CNN。IoU&gt;0.7的作为正样本，IoU&lt;0.3的为负样本。</li>
+<li>固定RPN的权值，训练整个网络。</li>
+<li>固定其余部分的权值，训练RPN</li>
+<li>固定CNN、RPN，训练其余部分</li>
+<li>重复步骤4、5直到满意为止</li>
+</ol>
+<p>由于Faster R-CNN的训练步骤过于繁杂，促使了后续的SSD网络对其进行改进。</p>
 <h2 id="R-CNN-家族的总结"><a href="#R-CNN-家族的总结" class="headerlink" title="R-CNN 家族的总结"></a>R-CNN 家族的总结</h2><p><img src="https://i.loli.net/2019/12/04/4kIh9YJQwTuZvEX.png" alt="57KD5.png"></p>
+<p>图源：贪心学院</p>
 <h1 id="Mask-R-CNN"><a href="#Mask-R-CNN" class="headerlink" title="Mask R-CNN"></a>Mask R-CNN</h1><p>（待更新）</p>
 <h1 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h1><p><strong>Q：讲下faster-rcnn？Faster-rcnn里面的NMS的算法原理是什么？</strong></p>
 
@@ -666,7 +676,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -688,7 +698,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -750,7 +760,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#R-CNN"><span class="nav-number">1.</span> <span class="nav-text">R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择性搜索"><span class="nav-number">1.2.</span> <span class="nav-text">选择性搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体架构"><span class="nav-number">1.3.</span> <span class="nav-text">整体架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SPP-Net"><span class="nav-number">2.</span> <span class="nav-text">SPP-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-1"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间金字塔池化层"><span class="nav-number">2.2.</span> <span class="nav-text">空间金字塔池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-在目标检测中的应用"><span class="nav-number">2.3.</span> <span class="nav-text">SPP 在目标检测中的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fast-R-CNN"><span class="nav-number">3.</span> <span class="nav-text">Fast R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-2"><span class="nav-number">3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构细节和模型训练"><span class="nav-number">3.2.</span> <span class="nav-text">架构细节和模型训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RoI-池化层"><span class="nav-number">3.2.1.</span> <span class="nav-text">RoI 池化层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多任务损失"><span class="nav-number">3.2.2.</span> <span class="nav-text">多任务损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-batch-sampling"><span class="nav-number">3.2.3.</span> <span class="nav-text">Mini-batch sampling</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Faster-R-CNN"><span class="nav-number">4.</span> <span class="nav-text">Faster R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构概览"><span class="nav-number">4.2.</span> <span class="nav-text">架构概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPN"><span class="nav-number">4.3.</span> <span class="nav-text">RPN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-CNN-家族的总结"><span class="nav-number">4.4.</span> <span class="nav-text">R-CNN 家族的总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mask-R-CNN"><span class="nav-number">5.</span> <span class="nav-text">Mask R-CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关面试题"><span class="nav-number">6.</span> <span class="nav-text">相关面试题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#R-CNN"><span class="nav-number">1.</span> <span class="nav-text">R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择性搜索"><span class="nav-number">1.2.</span> <span class="nav-text">选择性搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体架构"><span class="nav-number">1.3.</span> <span class="nav-text">整体架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SPP-Net"><span class="nav-number">2.</span> <span class="nav-text">SPP-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-1"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间金字塔池化层"><span class="nav-number">2.2.</span> <span class="nav-text">空间金字塔池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-在目标检测中的应用"><span class="nav-number">2.3.</span> <span class="nav-text">SPP 在目标检测中的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fast-R-CNN"><span class="nav-number">3.</span> <span class="nav-text">Fast R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景-2"><span class="nav-number">3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构细节和模型训练"><span class="nav-number">3.2.</span> <span class="nav-text">架构细节和模型训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RoI-池化层"><span class="nav-number">3.2.1.</span> <span class="nav-text">RoI 池化层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多任务损失"><span class="nav-number">3.2.2.</span> <span class="nav-text">多任务损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-batch-sampling"><span class="nav-number">3.2.3.</span> <span class="nav-text">Mini-batch sampling</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Faster-R-CNN"><span class="nav-number">4.</span> <span class="nav-text">Faster R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构概览"><span class="nav-number">4.2.</span> <span class="nav-text">架构概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPN"><span class="nav-number">4.3.</span> <span class="nav-text">RPN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster-R-CNN-的训练步骤"><span class="nav-number">4.4.</span> <span class="nav-text">Faster R-CNN 的训练步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-CNN-家族的总结"><span class="nav-number">4.5.</span> <span class="nav-text">R-CNN 家族的总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mask-R-CNN"><span class="nav-number">5.</span> <span class="nav-text">Mask R-CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关面试题"><span class="nav-number">6.</span> <span class="nav-text">相关面试题</span></a></li></ol></div>
             
 
           </div>
@@ -793,7 +803,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.4k</span>
+    <span title="Site words total count">34.6k</span>
   
 </div>
 
