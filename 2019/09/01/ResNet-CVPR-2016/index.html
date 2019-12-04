@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="计算机视觉,论文解读,神经网络,ResNet,">
+  <meta name="keywords" content="计算机视觉,论文解读,深度学习,神经网络,ResNet,DenseNet,">
 
 
 
@@ -88,19 +88,20 @@
 
 
 
-<meta name="description" content="论文地址：Deep Residual Learning for Image Recognition 引言​    众所周知，深度的网络使各层特征和分类器在一个端到端多层网络中融为一个整体，最近的研究也表明网络的深度非常重要。但网络的学习是否像堆积更深层的网络那么简单呢？一个阻碍深层网络学习的阻碍就是臭名昭著的梯度消失和梯度爆炸问题，严重妨碍到神经网络的收敛。这个问题由于归一初始化和中间层归一化的诞">
-<meta name="keywords" content="计算机视觉,论文解读,神经网络,ResNet">
+<meta name="description" content="ResNet论文地址：Deep Residual Learning for Image Recognition 引言​    众所周知，深度的网络使各层特征和分类器在一个端到端多层网络中融为一个整体，最近的研究也表明网络的深度非常重要。但网络的学习是否像堆积更深层的网络那么简单呢？一个阻碍深层网络学习的阻碍就是臭名昭著的梯度消失和梯度爆炸问题，严重妨碍到神经网络的收敛。这个问题由于归一初始化和中间">
+<meta name="keywords" content="计算机视觉,论文解读,深度学习,神经网络,ResNet,DenseNet">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ResNet (CVPR, 2016)">
+<meta property="og:title" content="ResNet &amp; DenseNet">
 <meta property="og:url" content="http://a-kali.github.io/2019/09/01/ResNet-CVPR-2016/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="论文地址：Deep Residual Learning for Image Recognition 引言​    众所周知，深度的网络使各层特征和分类器在一个端到端多层网络中融为一个整体，最近的研究也表明网络的深度非常重要。但网络的学习是否像堆积更深层的网络那么简单呢？一个阻碍深层网络学习的阻碍就是臭名昭著的梯度消失和梯度爆炸问题，严重妨碍到神经网络的收敛。这个问题由于归一初始化和中间层归一化的诞">
+<meta property="og:description" content="ResNet论文地址：Deep Residual Learning for Image Recognition 引言​    众所周知，深度的网络使各层特征和分类器在一个端到端多层网络中融为一个整体，最近的研究也表明网络的深度非常重要。但网络的学习是否像堆积更深层的网络那么简单呢？一个阻碍深层网络学习的阻碍就是臭名昭著的梯度消失和梯度爆炸问题，严重妨碍到神经网络的收敛。这个问题由于归一初始化和中间">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/01/nS6Rc8.png">
-<meta property="og:updated_time" content="2019-11-14T16:04:43.452Z">
+<meta property="og:image" content="https://i.loli.net/2019/12/04/UGQOuIRvWEr6Khp.png">
+<meta property="og:updated_time" content="2019-12-04T06:38:48.128Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ResNet (CVPR, 2016)">
-<meta name="twitter:description" content="论文地址：Deep Residual Learning for Image Recognition 引言​    众所周知，深度的网络使各层特征和分类器在一个端到端多层网络中融为一个整体，最近的研究也表明网络的深度非常重要。但网络的学习是否像堆积更深层的网络那么简单呢？一个阻碍深层网络学习的阻碍就是臭名昭著的梯度消失和梯度爆炸问题，严重妨碍到神经网络的收敛。这个问题由于归一初始化和中间层归一化的诞">
+<meta name="twitter:title" content="ResNet &amp; DenseNet">
+<meta name="twitter:description" content="ResNet论文地址：Deep Residual Learning for Image Recognition 引言​    众所周知，深度的网络使各层特征和分类器在一个端到端多层网络中融为一个整体，最近的研究也表明网络的深度非常重要。但网络的学习是否像堆积更深层的网络那么简单呢？一个阻碍深层网络学习的阻碍就是臭名昭著的梯度消失和梯度爆炸问题，严重妨碍到神经网络的收敛。这个问题由于归一初始化和中间">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/09/01/nS6Rc8.png">
 
 
@@ -137,7 +138,7 @@
 
 
 
-  <title>ResNet (CVPR, 2016) | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>ResNet & DenseNet | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -301,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ResNet (CVPR, 2016)</h1>
+          <h1 class="post-title" itemprop="name headline">ResNet & DenseNet</h1>
         
 
         <div class="post-meta">
@@ -340,7 +341,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.2k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.4k字</span>
 
           
 
@@ -355,7 +356,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  1.4k
                 </span>
               
 
@@ -392,25 +393,34 @@
       
 
       
-        <p><strong>论文地址：</strong><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a></p>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>​    众所周知，深度的网络使各层特征和分类器在一个端到端多层网络中融为一个整体，最近的研究也表明网络的深度非常重要。但网络的学习是否像堆积更深层的网络那么简单呢？一个阻碍深层网络学习的阻碍就是臭名昭著的梯度消失和梯度爆炸问题，严重妨碍到神经网络的收敛。这个问题由于归一初始化和中间层归一化的诞生得到了一定的解决，这使得十层以上的神经网络在随机梯度下降的反向传播时也能得到很好的收敛。</p>
+        <h1 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h1><p>论文地址：<a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>​    众所周知，深度的网络使各层特征和分类器在一个端到端多层网络中融为一个整体，最近的研究也表明网络的深度非常重要。但网络的学习是否像堆积更深层的网络那么简单呢？一个阻碍深层网络学习的阻碍就是臭名昭著的梯度消失和梯度爆炸问题，严重妨碍到神经网络的收敛。这个问题由于归一初始化和中间层归一化的诞生得到了一定的解决，这使得十层以上的神经网络在随机梯度下降的反向传播时也能得到很好的收敛。</p>
 <p>​    然而，实验告诉我们，更深层的神经网络容易表现出<strong>退化</strong>问题（随着层数的加深，准确率达到饱和然后迅速下降），而模型退化的根本原因很大程度上不是因为过拟合，而是因为梯度消失问题。</p>
 <p>​    退化问题表明不是所有的网络结构都能轻易得到优化。假设我们有一个浅层网络和一个深层网络，深层网络的一部分是浅层网络的拷贝，其余部分为恒等映射。在这种情况下深层网络不应该会比浅层网络有更大的误差。<strong>而导致深层网络比浅层网络准确率低的原因是深层网络更难以优化</strong>。</p>
 <p>​    这篇论文将介绍一个深度残差学习框架如何解决退化问题。深度残差框架没有使用直接堆叠网络层来拟合期望的映射函数，而是选择<strong>让这些网络层来拟合一个残差映射</strong>。比如说，我们所期望得到的映射函数射函数为 H(x), 那么我们通过残差函数 F(x) := H(x) - x。那么原始的映射函数就可以通过 F(x) + x 得到。如图所示：</p>
 <p><img src="https://s2.ax1x.com/2019/09/01/nS6Rc8.png" alt="nS6Rc8.png"></p>
-<h1 id="深度残差学习"><a href="#深度残差学习" class="headerlink" title="深度残差学习"></a>深度残差学习</h1><h2 id="残差学习"><a href="#残差学习" class="headerlink" title="残差学习"></a>残差学习</h2><p>​    假设 H(x) 由几个堆叠层组成，其输入为 x，并且其最终能被训练为残差函数 F(x)，即 H(x) = F(x) + x。其也能起到所要求的函数的效果，但是使堆叠层训练成残差函数的难度和使用残差结构训练的难度是不一样的。</p>
+<h2 id="残差学习"><a href="#残差学习" class="headerlink" title="残差学习"></a>残差学习</h2><p>​    假设 H(x) 由几个堆叠层组成，其输入为 x，并且其最终能被训练为残差函数 F(x)，即 H(x) = F(x) + x。其也能起到所要求的函数的效果，但是使堆叠层训练成残差函数的难度和使用残差结构训练的难度是不一样的。</p>
 <p>​    引言中所提到的反直觉现象促成了这种重构。如同我们在引言中所讨论的，额外增加的层次如果都是恒等映射，深层模型的不会比浅层模型有更大的误差。退化问题则表明，由多个非线性层的叠加而成的额外层很难近似于恒等映射。<strong>而在残差学习的结构下，如果恒等映射是可选择的，额外层可能会简单地将权重降低至接近0来实现恒等映射。</strong></p>
 <h2 id="快捷恒等映射"><a href="#快捷恒等映射" class="headerlink" title="快捷恒等映射"></a>快捷恒等映射</h2><p>​    我们在每几层之间使用残差学习，如上图的结构。在这篇论文中我们将残差块定义为：<br>$$<br>y = F(x,{W_i})+x<br>$$<br>x 和 y 分别表示残差块的输入和输出，函数 F 表示残差映射所需要学习的函数。上图中的 F(x) 为：<br>$$<br>F=W_2 \sigma(W_1x)<br>$$<br>其中 σ 表示 ReLU，为了简化写法忽略偏置项。之后 F + x 通过快捷连接来完成，之后再进行一段ReLU。</p>
 <p>​    第一条方程式中的 F 和 x 的维度必须是相等的。如果不是这种情况（比如当改变输入输出通道时），<strong>我们可以添加系数矩阵 $W_s$ 来使得 F 和 x 维度相等</strong>。<br>$$<br>y=F(x,W_i)+W_sx<br>$$<br>​    <strong>残差函数 F 的形式时可变的。本文的实验中包含了两层和三层的结构，当然更多层也是可以的，甚至可以用于卷积层。</strong></p>
-<h1 id="ResNet-的意义"><a href="#ResNet-的意义" class="headerlink" title="ResNet 的意义"></a>ResNet 的意义</h1><ul>
-<li><p>从关联性的角度来看，残差结构使得深层网络和浅层网络的关联性更强，输出端的损失能更加有效地调整到浅层网络的参数。当网络层数过深时，优化器会调低网络权重，使得反向传播“选择性地”使用捷径。</p>
-</li>
-<li><p>从函数角度来看，残差结构直接构建了一个更接近“绝对不比浅层网络差”的结构。</p>
-</li>
+<h2 id="ResNet-的意义"><a href="#ResNet-的意义" class="headerlink" title="ResNet 的意义"></a>ResNet 的意义</h2><ul>
+<li>从关联性的角度来看，残差结构使得深层网络和浅层网络的关联性更强，输出端的损失能更加有效地调整到浅层网络的参数。当网络层数过深时，优化器会调低网络权重，使得反向传播“选择性地”使用捷径。</li>
+<li>从函数角度来看，残差结构直接构建了一个更接近“绝对不比浅层网络差”的结构。</li>
 </ul>
+<h1 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h1><p>论文地址：<a href="https://arxiv.org/abs/1608.06993" target="_blank" rel="noopener">Densely Connected Convolutional Networks</a></p>
+<p>作为CVPR2017年的Best Paper，DenseNet脱离了加深网络层数(ResNet)和加宽网络结构(Inception)来提升网络性能的定式思维，从特征的角度考虑，通过旁路(Bypass)设置来实现特征重用的目的。相比于之前的神经网络，DenseNet有以下几个优点：</p>
+<ul>
+<li>减轻了梯度弥散带来的问题</li>
+<li>增加了特征的重用和传播</li>
+<li>大大减少了参数量</li>
+</ul>
+<p><img src="https://i.loli.net/2019/12/04/UGQOuIRvWEr6Khp.png" alt="png"></p>
+<p>相比于ResNet，DenseNet没有使用特征求和的方式将各个通路结合到一个图层中，而是使用了通道叠加的组合方式。相比于传统卷积网络，这种密集连接模式在参数量较小的情况下也能起到很好的效果，因为它没有必要重新学习冗余的特征图。</p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://hellozhaozheng.github.io/z_post/计算机视觉-ResNet-CVPR2016" target="_blank" rel="noopener">从零开始的BLOG</a></p>
 <p>[2]<a href="https://blog.csdn.net/Quincuntial/article/details/77263562?locationNum=6" target="_blank" rel="noopener">ResNet 论文翻译</a></p>
-<p>[3]<a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a></p>
+<p>[3]<a href="https://www.jianshu.com/p/08a2a1f2a814" target="_blank" rel="noopener">Densely Connected Convolutional Networks翻译总结</a></p>
+<h1 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h1><p><strong>Q：为什么 DenseNet 比 ResNet 更耗显存？</strong></p>
+<p>A：因为 DenseNet 对更多的特征进行重用，需要将特征图保存在显存中。</p>
 <p>恺明大佬牛逼！</p>
 
       
@@ -442,9 +452,13 @@
           
             <a href="/tags/论文解读/" rel="tag"><i class="fa fa-tag"></i> 论文解读</a>
           
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
             <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
           
             <a href="/tags/ResNet/" rel="tag"><i class="fa fa-tag"></i> ResNet</a>
+          
+            <a href="/tags/DenseNet/" rel="tag"><i class="fa fa-tag"></i> DenseNet</a>
           
         </div>
       
@@ -563,7 +577,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -585,7 +599,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -647,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深度残差学习"><span class="nav-number">2.</span> <span class="nav-text">深度残差学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#残差学习"><span class="nav-number">2.1.</span> <span class="nav-text">残差学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷恒等映射"><span class="nav-number">2.2.</span> <span class="nav-text">快捷恒等映射</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ResNet-的意义"><span class="nav-number">3.</span> <span class="nav-text">ResNet 的意义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ResNet"><span class="nav-number">1.</span> <span class="nav-text">ResNet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#残差学习"><span class="nav-number">1.2.</span> <span class="nav-text">残差学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷恒等映射"><span class="nav-number">1.3.</span> <span class="nav-text">快捷恒等映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ResNet-的意义"><span class="nav-number">1.4.</span> <span class="nav-text">ResNet 的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DenseNet"><span class="nav-number">2.</span> <span class="nav-text">DenseNet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关面试题"><span class="nav-number">4.</span> <span class="nav-text">相关面试题</span></a></li></ol></div>
             
 
           </div>
@@ -690,7 +704,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.2k</span>
+    <span title="Site words total count">34.3k</span>
   
 </div>
 
