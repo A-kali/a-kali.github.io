@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/12/05/iNdkjWleXIDqsFK.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/08/cBeWJVdTSU9t5Eb.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/11/aSftLEykhVcC19I.png">
-<meta property="og:updated_time" content="2019-12-10T17:15:48.756Z">
+<meta property="og:updated_time" content="2019-12-11T06:57:45.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="轻量级卷积神经网络综述：从SqueezeNet到EfficientNet">
 <meta name="twitter:description" content="在先前的神经网络发展中，神经网络通常是通过加深、加宽网络结构或重复使用特征图来提高网络的性能。但在网络性能提升的同时，也导致了其对内存、CPU/GPU需求大，推演速度慢，耗电量高等问题，难以运用在实时场景和移动设备中。如自动驾驶车载神经网络运行速度慢就有可能导致事故发生，耗电量高则会导致汽车、手机等移动端续航能力变差，而只有轻量级的神经网络能解决这个问题。下面我将介绍近年来轻量级卷积神经网络的发展">
@@ -349,7 +349,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.3k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.5k字</span>
 
           
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.3k
+                  1.5k
                 </span>
               
 
@@ -402,12 +402,12 @@
 
       
         <p>在先前的神经网络发展中，神经网络通常是通过加深、加宽网络结构或重复使用特征图来提高网络的性能。但在网络性能提升的同时，也导致了其对内存、CPU/GPU需求大，推演速度慢，耗电量高等问题，难以运用在实时场景和移动设备中。如自动驾驶车载神经网络运行速度慢就有可能导致事故发生，耗电量高则会导致汽车、手机等移动端续航能力变差，而只有轻量级的神经网络能解决这个问题。下面我将介绍近年来轻量级卷积神经网络的发展。</p>
-<h1 id="SqueezeNet"><a href="#SqueezeNet" class="headerlink" title="SqueezeNet"></a>SqueezeNet</h1><p>论文地址：<a href="https://arxiv.org/abs/1602.07360v2" target="_blank" rel="noopener">SqueezeNet:AlexNet-level accuracy with 50x fewer parameters and &lt;1MB model size</a></p>
+<h1 id="1-SqueezeNet"><a href="#1-SqueezeNet" class="headerlink" title="1    SqueezeNet"></a>1    SqueezeNet</h1><p>论文地址：<a href="https://arxiv.org/abs/1602.07360v2" target="_blank" rel="noopener">SqueezeNet:AlexNet-level accuracy with 50x fewer parameters and &lt;1MB model size</a></p>
 <p>SqueezeNet网络的主要亮点在于提出了<strong>Fire Module</strong>来减少参数量。Fire Module 分为两部分：<strong>Squeeze 和 Expand</strong>。Squeeze层通过 1×1 卷积对特征图进行降维，减少参数量，Expand层分别使用 1×1 和 3×3 卷积对降维后的特征图进行处理后concat到一起。比起直接用3×3卷积，这种方法减少了一定的运算量。</p>
 <p><img src="https://i.loli.net/2019/12/05/8TYQwPWMnCU3ok4.png" alt="(R7V7PD.png"></p>
 <p>整个网络由多个Fire Module堆叠而成，很像GoogLeNet。右边两个网络结构参考了ResNet。</p>
 <p><img src="https://i.loli.net/2019/12/05/rW4ugsYPjLUxXVh.png" alt="`YX7Opng"></p>
-<h1 id="MobileNet-v1"><a href="#MobileNet-v1" class="headerlink" title="MobileNet v1"></a>MobileNet v1</h1><p>论文地址：<a href="https://arxiv.org/abs/1704.04861" target="_blank" rel="noopener">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications</a></p>
+<h1 id="2-MobileNet-v1"><a href="#2-MobileNet-v1" class="headerlink" title="2    MobileNet v1"></a>2    MobileNet v1</h1><p>论文地址：<a href="https://arxiv.org/abs/1704.04861" target="_blank" rel="noopener">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications</a></p>
 <p>MobileNet由谷歌公司提出，主要用于移动和嵌入式视觉应用，其亮点在于采用<strong>深度可分离卷积(Depth-wise Separable Convolution)</strong> 代替传统卷积。</p>
 <h2 id="深度可分离卷积"><a href="#深度可分离卷积" class="headerlink" title="深度可分离卷积"></a>深度可分离卷积</h2><p>深度可分离卷积分为两步：</p>
 <ol>
@@ -435,17 +435,17 @@
 <p><img src="https://i.loli.net/2019/12/05/K2pm9axhdokJOiR.png" alt="FT.png"></p>
 <h2 id="实验结果对比"><a href="#实验结果对比" class="headerlink" title="实验结果对比"></a>实验结果对比</h2><p>可以看到MobileNet在只牺牲了少量精确度的情况下节约了大量的运算量和网络参数。</p>
 <p><img src="https://i.loli.net/2019/12/05/YwsgB2EQ7cxT1XC.png" alt="O.png"></p>
-<h1 id="Xception"><a href="#Xception" class="headerlink" title="Xception"></a>Xception</h1><p>论文地址：<a href="https://arxiv.org/abs/1610.02357" target="_blank" rel="noopener">Xception: Deep Learning with Depthwise Separable Convolutions</a></p>
+<h1 id="3-Xception"><a href="#3-Xception" class="headerlink" title="3    Xception"></a>3    Xception</h1><p>论文地址：<a href="https://arxiv.org/abs/1610.02357" target="_blank" rel="noopener">Xception: Deep Learning with Depthwise Separable Convolutions</a></p>
 <p>Xception 借鉴了深度可分离卷积的思想并以此改进了Inception V3。</p>
 <p><img src="https://i.loli.net/2019/12/05/Ht6YxQXpTvRbVA2.png" alt="Fpng"></p>
 <p>图中是一个Xception模块，先用 1×1 卷积改变特征图的通道数，再对输出的每个通道分别进行 3×3 卷积，最后将 3×3 卷积的输出concat到一起。</p>
-<h1 id="ShuffleNet-v1"><a href="#ShuffleNet-v1" class="headerlink" title="ShuffleNet v1"></a>ShuffleNet v1</h1><p>论文地址：<a href="https://arxiv.org/abs/1707.01083" target="_blank" rel="noopener">ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices</a></p>
+<h1 id="4-ShuffleNet-v1"><a href="#4-ShuffleNet-v1" class="headerlink" title="4    ShuffleNet v1"></a>4    ShuffleNet v1</h1><p>论文地址：<a href="https://arxiv.org/abs/1707.01083" target="_blank" rel="noopener">ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices</a></p>
 <p>ShuffleNet是由旷视公司提出的轻量级网络，该网络结构主要使用了<strong>分组卷积(group convolution)</strong>和<strong>通道洗牌(channel shuffle)</strong>。</p>
 <p><img src="https://i.loli.net/2019/12/05/tsFGvMo17V6QuIg.png" alt="MBng"></p>
 <p>图a展示了分组卷积，即将通道均等分为多组，分别进行卷积操作（类似于深度可分离卷积）。但这样会导致组之间的信息不流通，对精度造成影响。于是使用通道洗牌的方式，对各组的通道进行交换。</p>
 <p>下图是两种ShuffleNet单元：</p>
 <p><img src="https://i.loli.net/2019/12/05/iNdkjWleXIDqsFK.png" alt="7EYQpng"></p>
-<h1 id="MobileNet-v2"><a href="#MobileNet-v2" class="headerlink" title="MobileNet v2"></a>MobileNet v2</h1><p>论文地址：<a href="https://arxiv.org/abs/1801.04381" target="_blank" rel="noopener">MobileNetV2: Inverted Residuals and Linear Bottlenecks</a></p>
+<h1 id="5-MobileNet-v2"><a href="#5-MobileNet-v2" class="headerlink" title="5    MobileNet v2"></a>5    MobileNet v2</h1><p>论文地址：<a href="https://arxiv.org/abs/1801.04381" target="_blank" rel="noopener">MobileNetV2: Inverted Residuals and Linear Bottlenecks</a></p>
 <h2 id="MobileNet-v1-存在问题"><a href="#MobileNet-v1-存在问题" class="headerlink" title="MobileNet v1 存在问题"></a>MobileNet v1 存在问题</h2><p>MobileNet v1 虽然很好地降低了模型运算量，但依然存在如下两个问题：</p>
 <ol>
 <li>MobileNet v1 的结构是类似于 VGG 的堆叠结构，而这种结构比起后来的 ResNet、GoogLeNet 来说性能不高。</li>
@@ -460,8 +460,18 @@
 </li>
 </ol>
 <p><img src="https://i.loli.net/2019/12/11/aSftLEykhVcC19I.png" alt="H_T83__0YR5Q6K_Y~V8_M_S.png"></p>
-<h1 id="ShuffleNet-v2"><a href="#ShuffleNet-v2" class="headerlink" title="ShuffleNet v2"></a>ShuffleNet v2</h1><p>论文地址：<a href="https://arxiv.org/abs/1807.11164" target="_blank" rel="noopener">ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design</a></p>
-<p>看起来好像很复杂，回头再仔细看看</p>
+<h1 id="6-ShuffleNet-v2"><a href="#6-ShuffleNet-v2" class="headerlink" title="6    ShuffleNet v2"></a>6    ShuffleNet v2</h1><p>论文地址：<a href="https://arxiv.org/abs/1807.11164" target="_blank" rel="noopener">ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design</a></p>
+<p>通常用于神经网络的设计指导指标使用的是计算复杂度衡量指标：<strong>FLOPs</strong>，而不是更直接的评价指标：<strong>运行速度</strong>(speed)。而作者发现相同FLOPs的网络速度可能差别很大，认为FLOPs并不能作为网络性能的唯一衡量指标。</p>
+<p>造成FLOPs和速度不成比例的原因：</p>
+<ol>
+<li>部分影响速度的原因没有被FLOPs包含在内：<ul>
+<li><strong>内存访问成本</strong>(memory access cost)：这会使得强大的GPU算力受到限制。</li>
+<li><strong>并行度</strong>(degree of parallelism)：在相同FLOPs的情况下，并行度高的网络模型速度远高于低并行度模型。</li>
+</ul>
+</li>
+<li>不同的运行平台会影响FLOPs。比如说新版的CUDNN专门对 3 × 3 卷积运算进行了优化。</li>
+</ol>
+<p>出于这点考虑，</p>
 <p>（待更新）</p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
 <li><a href="https://baijiahao.baidu.com/s?id=1589005428414488177&wfr=spider" target="_blank" rel="noopener">纵览轻量化卷积神经网络：SqueezeNet、MobileNet、ShuffleNet、Xception</a></li>
@@ -719,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SqueezeNet"><span class="nav-number">1.</span> <span class="nav-text">SqueezeNet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MobileNet-v1"><span class="nav-number">2.</span> <span class="nav-text">MobileNet v1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#深度可分离卷积"><span class="nav-number">2.1.</span> <span class="nav-text">深度可分离卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算量对比"><span class="nav-number">2.2.</span> <span class="nav-text">运算量对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络模块"><span class="nav-number">2.3.</span> <span class="nav-text">网络模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果对比"><span class="nav-number">2.4.</span> <span class="nav-text">实验结果对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Xception"><span class="nav-number">3.</span> <span class="nav-text">Xception</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ShuffleNet-v1"><span class="nav-number">4.</span> <span class="nav-text">ShuffleNet v1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MobileNet-v2"><span class="nav-number">5.</span> <span class="nav-text">MobileNet v2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MobileNet-v1-存在问题"><span class="nav-number">5.1.</span> <span class="nav-text">MobileNet v1 存在问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MobileNet-v2-的创新点"><span class="nav-number">5.2.</span> <span class="nav-text">MobileNet v2 的创新点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ShuffleNet-v2"><span class="nav-number">6.</span> <span class="nav-text">ShuffleNet v2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-SqueezeNet"><span class="nav-number">1.</span> <span class="nav-text">1    SqueezeNet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-MobileNet-v1"><span class="nav-number">2.</span> <span class="nav-text">2    MobileNet v1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#深度可分离卷积"><span class="nav-number">2.1.</span> <span class="nav-text">深度可分离卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算量对比"><span class="nav-number">2.2.</span> <span class="nav-text">运算量对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络模块"><span class="nav-number">2.3.</span> <span class="nav-text">网络模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果对比"><span class="nav-number">2.4.</span> <span class="nav-text">实验结果对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Xception"><span class="nav-number">3.</span> <span class="nav-text">3    Xception</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-ShuffleNet-v1"><span class="nav-number">4.</span> <span class="nav-text">4    ShuffleNet v1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-MobileNet-v2"><span class="nav-number">5.</span> <span class="nav-text">5    MobileNet v2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MobileNet-v1-存在问题"><span class="nav-number">5.1.</span> <span class="nav-text">MobileNet v1 存在问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MobileNet-v2-的创新点"><span class="nav-number">5.2.</span> <span class="nav-text">MobileNet v2 的创新点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-ShuffleNet-v2"><span class="nav-number">6.</span> <span class="nav-text">6    ShuffleNet v2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -762,7 +772,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">36.4k</span>
+    <span title="Site words total count">36.6k</span>
   
 </div>
 
