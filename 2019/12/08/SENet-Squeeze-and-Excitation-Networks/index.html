@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="卷积：局部区域特征融合（各像素之间的特征 &amp;amp; 通道间的特征） SENet网络的创新点在于关注channel之间的关系，希望模型可以自动学习到不同channel特征的重要程度 （待整理）">
+<meta name="description" content="论文地址：Squeeze-and-Excitation Networks 简介SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。 我们从卷积网络开始说起。近些年来，卷积神经网络在很多领域上都取得了巨大的突破。而卷积核作为卷积神经网络">
 <meta name="keywords" content="计算机视觉,论文解读,深度学习,神经网络,SENet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SENet: Squeeze-and-Excitation Networks">
 <meta property="og:url" content="http://a-kali.github.io/2019/12/08/SENet-Squeeze-and-Excitation-Networks/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="卷积：局部区域特征融合（各像素之间的特征 &amp;amp; 通道间的特征） SENet网络的创新点在于关注channel之间的关系，希望模型可以自动学习到不同channel特征的重要程度 （待整理）">
+<meta property="og:description" content="论文地址：Squeeze-and-Excitation Networks 简介SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。 我们从卷积网络开始说起。近些年来，卷积神经网络在很多领域上都取得了巨大的突破。而卷积核作为卷积神经网络">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T11:34:15.751Z">
+<meta property="og:updated_time" content="2019-12-12T09:58:02.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SENet: Squeeze-and-Excitation Networks">
-<meta name="twitter:description" content="卷积：局部区域特征融合（各像素之间的特征 &amp;amp; 通道间的特征） SENet网络的创新点在于关注channel之间的关系，希望模型可以自动学习到不同channel特征的重要程度 （待整理）">
+<meta name="twitter:description" content="论文地址：Squeeze-and-Excitation Networks 简介SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。 我们从卷积网络开始说起。近些年来，卷积神经网络在很多领域上都取得了巨大的突破。而卷积核作为卷积神经网络">
 
 
 
@@ -338,7 +338,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 65字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 363字</span>
 
           
 
@@ -353,7 +353,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  65
+                  363
                 </span>
               
 
@@ -390,10 +390,11 @@
       
 
       
-        <p>卷积：局部区域特征融合（各像素之间的特征 &amp; 通道间的特征）</p>
-<p>SENet网络的创新点在于关注channel之间的关系，希望模型可以自动学习到不同channel特征的重要程度</p>
-<p>（待整理）</p>
-
+        <p>论文地址：<a href="https://arxiv.org/abs/1709.01507" target="_blank" rel="noopener">Squeeze-and-Excitation Networks</a></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。</p>
+<p>我们从卷积网络开始说起。近些年来，卷积神经网络在很多领域上都取得了巨大的突破。而卷积核作为卷积神经网络的核心，通常被看做是在局部感受野上，将<strong>空间上（spatial）的信息和特征维度上（channel-wise）的信息</strong>进行聚合的信息聚合体。卷积神经网络由一系列卷积层、非线性层和下采样层构成，这样它们能够从全局感受野上去捕获图像的特征来进行图像的描述。</p>
+<p>Inception 结构即是从空间上提取特征的典型案例，其使用不同大小的卷积核，聚合多种不同感受野的特征来提升性能。而 SENet 则是从通道特征之间的关系来考虑，采用了一种<strong>特征重标定(feature recalibration)</strong>的策略，即<strong>通过学习的方式来自动获取到每个特征通道的重要程度，然后依照这个重要程度去提升有用的特征并抑制对当前任务用处不大的特征。</strong></p>
+<h1 id="Squeeze-and-Excitation-Module"><a href="#Squeeze-and-Excitation-Module" class="headerlink" title="Squeeze-and-Excitation Module"></a>Squeeze-and-Excitation Module</h1>
       
     </div>
     
@@ -515,8 +516,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -608,6 +618,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Squeeze-and-Excitation-Module"><span class="nav-number">2.</span> <span class="nav-text">Squeeze-and-Excitation Module</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -644,7 +670,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">37.4k</span>
+    <span title="Site words total count">37.7k</span>
   
 </div>
 
