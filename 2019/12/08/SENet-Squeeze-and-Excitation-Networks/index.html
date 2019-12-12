@@ -96,10 +96,14 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="论文地址：Squeeze-and-Excitation Networks 简介SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。 我们从卷积网络开始说起。近些年来，卷积神经网络在很多领域上都取得了巨大的突破。而卷积核作为卷积神经网络">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-12T09:58:02.979Z">
+<meta property="og:image" content="https://i.loli.net/2019/12/12/SmgX8AJWzBUvR9s.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/12/myFb9gUAhtNZSxV.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/12/lzBcfFuq27vDGjw.png">
+<meta property="og:updated_time" content="2019-12-12T12:43:59.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SENet: Squeeze-and-Excitation Networks">
 <meta name="twitter:description" content="论文地址：Squeeze-and-Excitation Networks 简介SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。 我们从卷积网络开始说起。近些年来，卷积神经网络在很多领域上都取得了巨大的突破。而卷积核作为卷积神经网络">
+<meta name="twitter:image" content="https://i.loli.net/2019/12/12/SmgX8AJWzBUvR9s.png">
 
 
 
@@ -338,7 +342,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 363字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 783字</span>
 
           
 
@@ -353,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  363
+                  783
                 </span>
               
 
@@ -369,7 +373,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -394,7 +398,32 @@
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。</p>
 <p>我们从卷积网络开始说起。近些年来，卷积神经网络在很多领域上都取得了巨大的突破。而卷积核作为卷积神经网络的核心，通常被看做是在局部感受野上，将<strong>空间上（spatial）的信息和特征维度上（channel-wise）的信息</strong>进行聚合的信息聚合体。卷积神经网络由一系列卷积层、非线性层和下采样层构成，这样它们能够从全局感受野上去捕获图像的特征来进行图像的描述。</p>
 <p>Inception 结构即是从空间上提取特征的典型案例，其使用不同大小的卷积核，聚合多种不同感受野的特征来提升性能。而 SENet 则是从通道特征之间的关系来考虑，采用了一种<strong>特征重标定(feature recalibration)</strong>的策略，即<strong>通过学习的方式来自动获取到每个特征通道的重要程度，然后依照这个重要程度去提升有用的特征并抑制对当前任务用处不大的特征。</strong></p>
-<h1 id="Squeeze-and-Excitation-Module"><a href="#Squeeze-and-Excitation-Module" class="headerlink" title="Squeeze-and-Excitation Module"></a>Squeeze-and-Excitation Module</h1>
+<h1 id="Squeeze-and-Excitation-Blocks"><a href="#Squeeze-and-Excitation-Blocks" class="headerlink" title="Squeeze-and-Excitation Blocks"></a>Squeeze-and-Excitation Blocks</h1><p><img src="https://i.loli.net/2019/12/12/SmgX8AJWzBUvR9s.png" alt="I8_M4J____T1XB_FTW_P_H5.png"></p>
+<p>上图是一个 SE 模块的示意图。</p>
+<ul>
+<li><p><strong>Squeeze</strong>：$F_{sq}(·)$ 将特征图进行<strong>全局平均池化(global average pooling)</strong>，使每个二维的特征通道对应生成一个实数，这个实数某种程度上具有全局的感受野。这意味着当 SE 模块用于靠近输入的层时，也能获得全局的感受野，这一点在很多任务中都是非常有用的。</p>
+</li>
+<li><p><strong>Excitation</strong>：$F_{ex}(·,W)$ 是一些<strong>全连接层和激活函数</strong>，其输入为squeeze的结果，<strong>输出为每个特征通道的重要性</strong>。具体分为4层网络：</p>
+<ul>
+<li>FC1：输入长度为 C 的向量，输出长度为 C/16 的向量。</li>
+<li>ReLU：增加非线性</li>
+<li>FC2：输入长度为 C/16 的向量，输出长度为 C 的向量。</li>
+<li>Sigmoid：将输出限制到(0,1)之间，作为每个通道的权重，表示通道的重要性。</li>
+</ul>
+<p>使用两个而不是一个全连接层的好处在于：</p>
+<ol>
+<li>多加了一个ReLU层，具有更多的非线性，可以更好地拟合通道间复杂的相关性</li>
+<li>极大地减少了参数量和计算量（约为原计算量的1/8）</li>
+</ol>
+</li>
+<li><p><strong>Reweight</strong>：通过乘法将 Excitation 得到的通道权重加权到先前的特征上，完成在通道维度上对原始特征的重标定。</p>
+</li>
+</ul>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>作者将 SE 模块拟合到了 Inception 和 ResNet 中，对网络性能产生了较大的增益。</p>
+<p><img src="https://i.loli.net/2019/12/12/myFb9gUAhtNZSxV.png" alt="_LW`_DHP74CK_LED0COG_1P.png"></p>
+<p>在理论上 SE 模块仅增加了网络 1% 的计算量；在实验中，由于 GPU 的架构原因，在 GPU 上的运算时间增加了 10%，而在 CPU 上仅增加了 2%。</p>
+<p><img src="https://i.loli.net/2019/12/12/lzBcfFuq27vDGjw.png" alt="28R__T_T_RPEF6@_EIL4_8F.png"></p>
+
       
     </div>
     
@@ -627,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Squeeze-and-Excitation-Module"><span class="nav-number">2.</span> <span class="nav-text">Squeeze-and-Excitation Module</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Squeeze-and-Excitation-Blocks"><span class="nav-number">2.</span> <span class="nav-text">Squeeze-and-Excitation Blocks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">2.1.</span> <span class="nav-text">实验结果</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -670,7 +699,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">37.7k</span>
+    <span title="Site words total count">38.2k</span>
   
 </div>
 
@@ -900,11 +929,31 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
