@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/12/12/SmgX8AJWzBUvR9s.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/12/myFb9gUAhtNZSxV.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/12/lzBcfFuq27vDGjw.png">
-<meta property="og:updated_time" content="2019-12-12T12:43:59.422Z">
+<meta property="og:updated_time" content="2019-12-12T13:46:27.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SENet: Squeeze-and-Excitation Networks">
 <meta name="twitter:description" content="论文地址：Squeeze-and-Excitation Networks 简介SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。 我们从卷积网络开始说起。近些年来，卷积神经网络在很多领域上都取得了巨大的突破。而卷积核作为卷积神经网络">
@@ -342,7 +342,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 783字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 794字</span>
 
           
 
@@ -357,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  783
+                  794
                 </span>
               
 
@@ -395,10 +395,10 @@
 
       
         <p>论文地址：<a href="https://arxiv.org/abs/1709.01507" target="_blank" rel="noopener">Squeeze-and-Excitation Networks</a></p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>SENet 是北京 Momenta 公司研发团队提出的网络结构，该团队凭借SENet以极大的优势获得了 ImageNet 2017 竞赛的图像分类任务冠军。该网络至今(2019.12.12)仍然是最强力的分类网络之一。</p>
 <p>我们从卷积网络开始说起。近些年来，卷积神经网络在很多领域上都取得了巨大的突破。而卷积核作为卷积神经网络的核心，通常被看做是在局部感受野上，将<strong>空间上（spatial）的信息和特征维度上（channel-wise）的信息</strong>进行聚合的信息聚合体。卷积神经网络由一系列卷积层、非线性层和下采样层构成，这样它们能够从全局感受野上去捕获图像的特征来进行图像的描述。</p>
 <p>Inception 结构即是从空间上提取特征的典型案例，其使用不同大小的卷积核，聚合多种不同感受野的特征来提升性能。而 SENet 则是从通道特征之间的关系来考虑，采用了一种<strong>特征重标定(feature recalibration)</strong>的策略，即<strong>通过学习的方式来自动获取到每个特征通道的重要程度，然后依照这个重要程度去提升有用的特征并抑制对当前任务用处不大的特征。</strong></p>
-<h1 id="Squeeze-and-Excitation-Blocks"><a href="#Squeeze-and-Excitation-Blocks" class="headerlink" title="Squeeze-and-Excitation Blocks"></a>Squeeze-and-Excitation Blocks</h1><p><img src="https://i.loli.net/2019/12/12/SmgX8AJWzBUvR9s.png" alt="I8_M4J____T1XB_FTW_P_H5.png"></p>
+<h2 id="Squeeze-and-Excitation-Blocks"><a href="#Squeeze-and-Excitation-Blocks" class="headerlink" title="Squeeze-and-Excitation Blocks"></a>Squeeze-and-Excitation Blocks</h2><p><img src="https://i.loli.net/2019/12/12/SmgX8AJWzBUvR9s.png" alt="I8_M4J____T1XB_FTW_P_H5.png"></p>
 <p>上图是一个 SE 模块的示意图。</p>
 <ul>
 <li><p><strong>Squeeze</strong>：$F_{sq}(·)$ 将特征图进行<strong>全局平均池化(global average pooling)</strong>，使每个二维的特征通道对应生成一个实数，这个实数某种程度上具有全局的感受野。这意味着当 SE 模块用于靠近输入的层时，也能获得全局的感受野，这一点在很多任务中都是非常有用的。</p>
@@ -423,6 +423,7 @@
 <p><img src="https://i.loli.net/2019/12/12/myFb9gUAhtNZSxV.png" alt="_LW`_DHP74CK_LED0COG_1P.png"></p>
 <p>在理论上 SE 模块仅增加了网络 1% 的计算量；在实验中，由于 GPU 的架构原因，在 GPU 上的运算时间增加了 10%，而在 CPU 上仅增加了 2%。</p>
 <p><img src="https://i.loli.net/2019/12/12/lzBcfFuq27vDGjw.png" alt="28R__T_T_RPEF6@_EIL4_8F.png"></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://blog.csdn.net/wfei101/article/details/79672944" target="_blank" rel="noopener">Face Paper：SeNet论文详解</a></p>
 
       
     </div>
@@ -485,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/12/05/轻量级卷积神经网络综述：从SqueezeNet到EfficientNet/" rel="next" title="轻量级卷积神经网络综述：从SqueezeNet到EfficientNet">
-                <i class="fa fa-chevron-left"></i> 轻量级卷积神经网络综述：从SqueezeNet到EfficientNet
+              <a href="/2019/12/05/轻量级卷积神经网络综述：从SqueezeNet到EfficientNet/" rel="next" title="轻量级卷积神经网络综述：从SqueezeNet到MobileNetv3">
+                <i class="fa fa-chevron-left"></i> 轻量级卷积神经网络综述：从SqueezeNet到MobileNetv3
               </a>
             
           </div>
@@ -656,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Squeeze-and-Excitation-Blocks"><span class="nav-number">2.</span> <span class="nav-text">Squeeze-and-Excitation Blocks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">2.1.</span> <span class="nav-text">实验结果</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Squeeze-and-Excitation-Blocks"><span class="nav-number">2.</span> <span class="nav-text">Squeeze-and-Excitation Blocks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
