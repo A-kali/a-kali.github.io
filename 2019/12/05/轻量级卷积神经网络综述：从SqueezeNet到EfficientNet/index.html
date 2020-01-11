@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="计算机视觉,论文解读,深度学习,神经网络,轻量级网络,SqueezeNet,MobileNet,Xception,ShuffleNet,EfficientNet,深度可分离卷积,">
+  <meta name="keywords" content="计算机视觉,深度学习,神经网络,论文解读,轻量级网络,SqueezeNet,MobileNet,Xception,ShuffleNet,EfficientNet,深度可分离卷积,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="在先前的神经网络发展中，神经网络通常是通过加深、加宽网络结构或重复使用特征图来提高网络的性能。但在网络性能提升的同时，也导致了其对内存、CPU/GPU需求大，推演速度慢，耗电量高等问题，难以运用在实时场景和移动设备中。如自动驾驶车载神经网络运行速度慢就有可能导致事故发生，耗电量高则会导致汽车、手机等移动端续航能力变差，而只有轻量级的神经网络能解决这个问题。下面我将介绍近年来轻量级卷积神经网络的发展">
-<meta name="keywords" content="计算机视觉,论文解读,深度学习,神经网络,轻量级网络,SqueezeNet,MobileNet,Xception,ShuffleNet,EfficientNet,深度可分离卷积">
+<meta name="keywords" content="计算机视觉,深度学习,神经网络,论文解读,轻量级网络,SqueezeNet,MobileNet,Xception,ShuffleNet,EfficientNet,深度可分离卷积">
 <meta property="og:type" content="article">
 <meta property="og:title" content="轻量级卷积神经网络综述：从SqueezeNet到MixNet">
 <meta property="og:url" content="http://a-kali.github.io/2019/12/05/轻量级卷积神经网络综述：从SqueezeNet到EfficientNet/index.html">
@@ -500,12 +500,11 @@
 <li>应当在规定的平台上进行评估。</li>
 </ol>
 <h2 id="高效卷积网络设计准测"><a href="#高效卷积网络设计准测" class="headerlink" title="高效卷积网络设计准测"></a>高效卷积网络设计准测</h2><ul>
-<li><strong>G1: 当输入、输出channels数目相同时，conv计算所需的MAC最低。</strong>以深度可分离卷积(Depth-wise Separable Convolution)为例，其 pointwise convlution (i.e., 1×1 conv) 部分占用了其大部分复杂度。设$c_1$，$c_2$为 1 × 1 卷积的输入、输出通道数，$h$和$w$为特征图的高和宽，则 FLOPs 计算为 $B=hwc_1c_2$。内存访问操作次数为 $MAC=hw(c_1+c_2)+c_1c_2$。得出下面的不等式，仅当输入输出通道数相同时，MAC最小：<script type="math/tex; mode=display">
-MAC\geq 2\sqrt{hwB}+\frac{B}{hw}</script></li>
+<li><strong>G1: 当输入、输出channels数目相同时，conv计算所需的MAC最低。</strong>以深度可分离卷积(Depth-wise Separable Convolution)为例，其 pointwise convlution (i.e., 1×1 conv) 部分占用了其大部分复杂度。设$c_1$，$c_2$为 1 × 1 卷积的输入、输出通道数，$h$和$w$为特征图的高和宽，则 FLOPs 计算为 $B=hwc_1c_2$。内存访问操作次数为 $MAC=hw(c_1+c_2)+c_1c_2$。得出下面的不等式，仅当输入输出通道数相同时，MAC最小：<br>$$<br>MAC\geq 2\sqrt{hwB}+\frac{B}{hw}<br>$$</li>
 <li><strong>G2: 过多的分组卷积(Group Convolution)会增大 MAC 开销。</strong>设分组数量为 $g$，从下面公式可以看出随着 $g$ 增加，MAC增加。  ：</li>
 </ul>
-<script type="math/tex; mode=display">
-MAC=hwc_1+\frac{Bg}{c_1}+\frac{B}{hx}</script><ul>
+<p>$$<br>MAC=hwc_1+\frac{Bg}{c_1}+\frac{B}{hx}<br>$$</p>
+<ul>
 <li><strong>G3: 网络碎片化(fragmentation)会减少并发度。</strong>这里的碎片化大概指的是模型的分支数量。比如说 NASNET-A 的分支数就高达13，而 ResNet 的分支数为2或3。作者通过实验证明，分支数量的提升会提高网络的准确率，但也会因降低GPU并行计算能力而影响效率。</li>
 <li><strong>G4: Element-wise 操作的计算量不容忽视。</strong>element-wise包括激活、张量相加、添加偏置等，它们的共同特征就是FLOPS较小但是MAC相对较大。同时作者将 depthwise convolution 操作也算入了element-wise，因为其有着同样高的 MAC/FLOP 比率。</li>
 </ul>
@@ -519,7 +518,7 @@ MAC=hwc_1+\frac{Bg}{c_1}+\frac{B}{hx}</script><ul>
 <h1 id="7-MnasNet（待更新）"><a href="#7-MnasNet（待更新）" class="headerlink" title="7    MnasNet（待更新）"></a>7    MnasNet（待更新）</h1><p>太复杂了，回头再看</p>
 <h1 id="8-MobileNet-v3（待更新）"><a href="#8-MobileNet-v3（待更新）" class="headerlink" title="8    MobileNet v3（待更新）"></a>8    MobileNet v3（待更新）</h1><p>基于MnasNet</p>
 <h1 id="9-MixNet（待更新）"><a href="#9-MixNet（待更新）" class="headerlink" title="9    MixNet（待更新）"></a>9    MixNet（待更新）</h1><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
-<li><a href="https://baijiahao.baidu.com/s?id=1589005428414488177&amp;wfr=spider" target="_blank" rel="noopener">纵览轻量化卷积神经网络：SqueezeNet、MobileNet、ShuffleNet、Xception</a></li>
+<li><a href="https://baijiahao.baidu.com/s?id=1589005428414488177&wfr=spider" target="_blank" rel="noopener">纵览轻量化卷积神经网络：SqueezeNet、MobileNet、ShuffleNet、Xception</a></li>
 <li><a href="https://www.jianshu.com/p/fdd7d7353c55" target="_blank" rel="noopener">SqueezeNet | 轻量级深层神经网络</a></li>
 <li><a href="https://www.greedyai.com/" target="_blank" rel="noopener">贪心学院</a></li>
 <li><a href="https://blog.csdn.net/lk3030/article/details/84847879" target="_blank" rel="noopener">Xception</a></li>
@@ -556,11 +555,11 @@ MAC=hwc_1+\frac{Bg}{c_1}+\frac{B}{hx}</script><ul>
           
             <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
           
-            <a href="/tags/论文解读/" rel="tag"><i class="fa fa-tag"></i> 论文解读</a>
-          
             <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
           
             <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+          
+            <a href="/tags/论文解读/" rel="tag"><i class="fa fa-tag"></i> 论文解读</a>
           
             <a href="/tags/轻量级网络/" rel="tag"><i class="fa fa-tag"></i> 轻量级网络</a>
           
@@ -693,7 +692,7 @@ MAC=hwc_1+\frac{Bg}{c_1}+\frac{B}{hx}</script><ul>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -715,7 +714,7 @@ MAC=hwc_1+\frac{Bg}{c_1}+\frac{B}{hx}</script><ul>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -819,7 +818,7 @@ MAC=hwc_1+\frac{Bg}{c_1}+\frac{B}{hx}</script><ul>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">37.4k</span>
+    <span title="Site words total count">37.6k</span>
   
 </div>
 
