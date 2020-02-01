@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="论文地址：Averaging Weights Leads to Wider Optima and Better Generalization">
+<meta name="description" content="论文地址：Averaging Weights Leads to Wider Optima and Better Generalization SWA是一种较为先进的模型融合方法。传统的模型融合通常使用多个模型进行预测，再使用某种方法来对预测结果取平均值得到最终的预测值。而SWA仅需要训练单个模型即可进行融合。 SWA一定程度上参考了传统的快照集成（snapshot ensembling），即每训练">
 <meta name="keywords" content="神经网络,模型融合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="随机权值平均(Stochastic Weight Averaging,  SWA)">
 <meta property="og:url" content="http://a-kali.github.io/2020/01/11/随机权值平均-Stochastic-Weight-Averaging-SWA/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="论文地址：Averaging Weights Leads to Wider Optima and Better Generalization">
+<meta property="og:description" content="论文地址：Averaging Weights Leads to Wider Optima and Better Generalization SWA是一种较为先进的模型融合方法。传统的模型融合通常使用多个模型进行预测，再使用某种方法来对预测结果取平均值得到最终的预测值。而SWA仅需要训练单个模型即可进行融合。 SWA一定程度上参考了传统的快照集成（snapshot ensembling），即每训练">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-11T01:52:00.527Z">
+<meta property="og:updated_time" content="2020-01-23T04:57:31.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随机权值平均(Stochastic Weight Averaging,  SWA)">
-<meta name="twitter:description" content="论文地址：Averaging Weights Leads to Wider Optima and Better Generalization">
+<meta name="twitter:description" content="论文地址：Averaging Weights Leads to Wider Optima and Better Generalization SWA是一种较为先进的模型融合方法。传统的模型融合通常使用多个模型进行预测，再使用某种方法来对预测结果取平均值得到最终的预测值。而SWA仅需要训练单个模型即可进行融合。 SWA一定程度上参考了传统的快照集成（snapshot ensembling），即每训练">
 
 
 
@@ -338,7 +338,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 13字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 284字</span>
 
           
 
@@ -353,7 +353,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  13
+                  284
                 </span>
               
 
@@ -391,6 +391,10 @@
 
       
         <p>论文地址：<a href="https://arxiv.org/abs/1803.05407" target="_blank" rel="noopener">Averaging Weights Leads to Wider Optima and Better Generalization</a></p>
+<p>SWA是一种较为先进的模型融合方法。传统的模型融合通常使用多个模型进行预测，再使用某种方法来对预测结果取平均值得到最终的预测值。而SWA仅需要训练单个模型即可进行融合。</p>
+<p>SWA一定程度上参考了传统的<strong>快照集成（snapshot ensembling）</strong>，即每训练 20-40 epochs，对局部最优模型保存一个权重快照，然后利用<strong>余弦退火</strong>的特性跳出局部最优，寻找另一个局部最优解；最后使用多个保存的模型权重进行预测并对预测结果进行融合。这种集成方法仅需要训练单个模型就能得出接近多模型融合的效果。</p>
+<p>但快照集成也保留了传统模型融合的部分缺点：需要保存多个模型，较为占用存储空间；训练周期过长，每收敛一个新模型需要经过较多epochs。</p>
+<p>而SWA的作者发现 2-4 epochs <strong>循环学习率</strong></p>
 
       
     </div>
@@ -529,7 +533,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -551,7 +555,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -639,7 +643,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">37.8k</span>
+    <span title="Site words total count">40.5k</span>
   
 </div>
 

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机视觉,论文解读,抑郁评估,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="某科学のBLOG" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="论文地址：AVEC 2019 Workshop and Challenge: State-of-Mind, Detecting Depression with AI, and Cross-Cultural Affect Recognition 摘要视听情感挑战与工作坊(AVEC 2019)“心智状态、人工智能检测抑郁、跨文化情感识别”是第九届比赛，旨在将多媒体处理和机器学习方法用于自动视听健康和情">
+<meta name="keywords" content="计算机视觉,论文解读,抑郁评估">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文解读】Detecting Depression with AI (AVEC2019)">
+<meta property="og:url" content="http://a-kali.github.io/2020/02/01/Detecting-Depression-with-AI-AVEC2019/index.html">
+<meta property="og:site_name" content="某科学のBLOG">
+<meta property="og:description" content="论文地址：AVEC 2019 Workshop and Challenge: State-of-Mind, Detecting Depression with AI, and Cross-Cultural Affect Recognition 摘要视听情感挑战与工作坊(AVEC 2019)“心智状态、人工智能检测抑郁、跨文化情感识别”是第九届比赛，旨在将多媒体处理和机器学习方法用于自动视听健康和情">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2020/02/01/teQ2Za9kod7L4M1.png">
+<meta property="og:updated_time" content="2020-02-01T08:17:25.251Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【论文解读】Detecting Depression with AI (AVEC2019)">
+<meta name="twitter:description" content="论文地址：AVEC 2019 Workshop and Challenge: State-of-Mind, Detecting Depression with AI, and Cross-Cultural Affect Recognition 摘要视听情感挑战与工作坊(AVEC 2019)“心智状态、人工智能检测抑郁、跨文化情感识别”是第九届比赛，旨在将多媒体处理和机器学习方法用于自动视听健康和情">
+<meta name="twitter:image" content="https://i.loli.net/2020/02/01/teQ2Za9kod7L4M1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":18,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://a-kali.github.io/2020/02/01/Detecting-Depression-with-AI-AVEC2019/">
+
+
+
+
+
+  <title>【论文解读】Detecting Depression with AI (AVEC2019) | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/A-kali/a-kali.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">某科学のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">与其感慨路难行，不如马上出发</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2020/02/01/Detecting-Depression-with-AI-AVEC2019/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hsaki">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某科学のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【论文解读】Detecting Depression with AI (AVEC2019)</h1>
+        
+
+        <div class="post-meta">
+		          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-01T10:45:56+08:00">
+                2020-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+			
+			<span class="post-meta-divider">|</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.8k字</span>
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  60分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>论文地址：<a href="https://arxiv.org/abs/1907.11510v1" target="_blank" rel="noopener">AVEC 2019 Workshop and Challenge: State-of-Mind, Detecting Depression with AI, and Cross-Cultural Affect Recognition</a></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>视听情感挑战与工作坊(AVEC 2019)“心智状态、人工智能检测抑郁、跨文化情感识别”是第九届比赛，旨在将多媒体处理和机器学习方法用于自动视听健康和情感分析，所有参与者在相同的条件下严格竞争。该挑战的目标是为多模态信息处理提供一个通用的基准测试集，并将健康和情绪识别社区以及视听处理社区集合在一起，以比较现实生活数据中各种健康和情绪识别方法的相对优点。本文介绍了今年的主要创新点、挑战指南、使用的数据和基线系统在三个拟议任务上的表现:心理状态识别、人工智能抑郁评估和跨文化情感感知。</p>
+<h1 id="Depression-Detection-with-AI"><a href="#Depression-Detection-with-AI" class="headerlink" title="Depression Detection with AI"></a>Depression Detection with AI</h1><p>抑郁症，尤其是重度抑郁症( major depressive disorder, MDD)，是一种常见的心理健康问题，对人的思维、感觉和行为方式有负面影响。它会导致各种情绪和身体问题，影响工作和个人生活的许多方面。世界卫生组织(WHO)在2015年宣布抑郁症是全球范围内导致疾病和残疾的主要原因:超过3亿人患有抑郁症。鉴于抑郁症的高患病率及其自杀风险，寻找新的诊断和治疗方法变得越来越重要。由于有令人信服的证据表明抑郁症和相关的精神健康障碍与行为模式的改变有关，人们越来越有兴趣使用自动人类行为分析来基于行为线索(如面部表情和说话韵律)进行计算机辅助抑郁症诊断。面部活动、手势、头部运动和表达能力等行为信号都与抑郁症密切相关。</p>
+<p>计算机视觉可以追踪的面部表情和头部动作也是预测抑郁的好方法。据报道，更向下的凝视角度、不那么强烈的微笑、更短的平均微笑持续时间是抑郁症最显著的面部特征。此外，身体表情、手势、头部动作和语言线索也被报道为抑郁检测提供相关线索。综合所有这些证据，有人提议将情感计算技术集成到一个计算机代理中，该代理可以访问人们并识别精神疾病的语言和非语言指标。对创伤后应激障碍患者收集的数据表明，当代理人由充当WoZ的人驱动时，对其抑郁严重程度的自动评估(PHQ-8问卷)可以实现RMSE小于5；PHQ-8 range∈[0,24] 的cutpoint分别定义为轻度、中度、中度和重度抑郁症。这些结果需要进一步研究，因为代理完全由人工智能驱动，因为向导可能会将虚拟代理驱动到一种情况，从而减轻与抑郁症相关的模式的观察，或者自主代理可能在适当地进行访谈方面存在问题。</p>
+<h1 id="Distress-Analysis-Interview-Corpus"><a href="#Distress-Analysis-Interview-Corpus" class="headerlink" title="Distress Analysis Interview Corpus"></a>Distress Analysis Interview Corpus</h1><p>扩展遇险分析访谈语料库(E-DAIC)是WOZ-DAIC的扩展版本，包含半临床访谈，旨在支持诊断焦虑、抑郁和创伤后应激障碍等心理困扰状况。收集这些访谈是为了创建一个计算机代理来采访人们，并识别精神疾病的语言和非语言指标。收集的数据包括音频和视频记录、使用谷歌云语音识别服务自动转录的文本以及广泛的问卷回答。这些面试是由一个叫做Ellie的动画虚拟面试官进行的。在theWoZ的面试中，虚拟代理由另一个房间的人类面试官(巫师)控制，而在Al的面试中，代理以完全自主的方式使用不同的自动感知和行为生成模块。</p>
+<p>为了达到挑战的目的，E-DAIC数据集被划分为培训、开发和测试集，同时保留了演讲者的整体多样性——在年龄、性别分布和8项患者健康问卷(pho8)评分方面——在这些划分内。训练和开发集包括WoZ和人工智能场景的混合，而测试集仅由自主人工智能收集的数据构成。关于扬声器在分区上的分布的详细信息见表2。</p>
+<p><img src="https://i.loli.net/2020/02/01/teQ2Za9kod7L4M1.png" alt="K_UZ`K8@_ADCD0_THOI_~35.png"></p>
+<h1 id="Baseline-System"><a href="#Baseline-System" class="headerlink" title="Baseline System"></a>Baseline System</h1><p>对于抑郁检测基线，我们使用单层64-d GRU作为我们的递归网络，其失步正规化率为20%，然后使用64-d全连通层获得单值回归评分。为了处理偏差，我们将PHQ-8分数标签转换为浮点数，方法是在培训之前按25的倍数缩小比例。使用CCC损失函数和评价分数对网络进行训练和评价，使用原始的PHQ量表报告RMSE结果。批处理大小为15的方法得到了一致的使用，并且在不同的特性集之间优化了学习率。为了使数据适合GPU内存，为会话分配了最大的序列长度。对于MFCCs和eGeMAPS LLDs，以及诸如DeepSpectrum、ResNet和VGG等高维深表示，使用的最大序列长度为20分钟。另外，对于ResNet、VGG和DEEP SPECTRUM表示帧，根据维数的不同，将保留两帧中的一帧或四帧中的一帧，以便将数据加载到内存中。融合不同的视听表现是通过平均他们的分数来实现的。</p>
+<p>DDS的基线结果见表6。结果表明，在开发集上，利用深度谱(DS-VGG)特征获取音频特征的最佳CCC评分，利用ResNet特征获取视觉特征的最佳CCC评分。这些结果表明表达的力量深层神经网络学习的大量数据时在不同的上下文中使用他们最初的设计,这是证实与ResNet视觉模型在测试集上实现最好的结果,尽管相对较低的CCC。</p>
+<p>不同表现形式的融合在开发集上获得了最好的结果，测试集上返回的RMSE比使用AVEC 2017基线系统在DAIC-WoZ数据集上获得的RMSE稍好一些;AVEC2019年的RMSE=6.37，而AVEC 2017年的RMSE=6.97。然而，为今年的挑战开发的基线系统更加复杂，与今年的GRU-RNNs相比，它是一个简单的线性回归模型，因此，根据2017年AVEC抑郁亚挑战的最佳结果(RMSE=4.99)，应该最好地考虑相应的分数。</p>
+<p>根据从与虚拟代理的交互中获得的抑郁程度自动感知的结果，当代理仅由人工智能驱动时，识别似乎比由人作为WoZ驱动时更具挑战性。这一观察结果为设计抑郁症诱因的设计带来了有趣的研究问题。，通过强化学习，根据agent的交互方式。</p>
+
+      
+    </div>
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+          
+            <a href="/tags/论文解读/" rel="tag"><i class="fa fa-tag"></i> 论文解读</a>
+          
+            <a href="/tags/抑郁评估/" rel="tag"><i class="fa fa-tag"></i> 抑郁评估</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/11/胶囊网络（Capsule-Network）/" rel="next" title="胶囊网络（Capsule Network）">
+                <i class="fa fa-chevron-left"></i> 胶囊网络（Capsule Network）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/01/SCI写作入门（1）——SCI简介及写作顺序/" rel="prev" title="SCI写作入门（1）——SCI简介及写作顺序">
+                SCI写作入门（1）——SCI简介及写作顺序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Hsaki">
+            
+              <p class="site-author-name" itemprop="name">Hsaki</p>
+              <p class="site-description motion-element" itemprop="description">橘猫最爱的煎饼狗子!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/a-kali" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hsaki@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/hsakizero" target="_blank" title="Kaggle">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>Kaggle</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Depression-Detection-with-AI"><span class="nav-number">2.</span> <span class="nav-text">Depression Detection with AI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Distress-Analysis-Interview-Corpus"><span class="nav-number">3.</span> <span class="nav-text">Distress Analysis Interview Corpus</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Baseline-System"><span class="nav-number">4.</span> <span class="nav-text">Baseline System</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hsaki</span>
+<div class="powered-by">
+</div>
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">40.5k</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
