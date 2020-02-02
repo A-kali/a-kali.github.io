@@ -88,13 +88,13 @@
 
 
 
-<meta name="description" content="基本概念混淆矩阵   - Positive Predictions Negative Predictions    Positive Label TP (True Positive) FN   Negative Label FP TN   Accuracy（ACC，准确率）$$ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}$$ Precis">
+<meta name="description" content="基本概念混淆矩阵    - Positive Predictions Negative Predictions     Positive Label TP (True Positive) FN   Negative Label FP TN     Accuracy（ACC，准确率） ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}Precis">
 <meta name="keywords" content="机器学习,评价指标">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习中的评价指标">
 <meta property="og:url" content="http://a-kali.github.io/2019/09/03/机器学习中的评价指标/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="基本概念混淆矩阵   - Positive Predictions Negative Predictions    Positive Label TP (True Positive) FN   Negative Label FP TN   Accuracy（ACC，准确率）$$ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}$$ Precis">
+<meta property="og:description" content="基本概念混淆矩阵    - Positive Predictions Negative Predictions     Positive Label TP (True Positive) FN   Negative Label FP TN     Accuracy（ACC，准确率） ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}Precis">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nkRp6J.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/03/nk7o59.jpg">
@@ -103,7 +103,7 @@
 <meta property="og:updated_time" content="2019-09-18T07:01:26.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习中的评价指标">
-<meta name="twitter:description" content="基本概念混淆矩阵   - Positive Predictions Negative Predictions    Positive Label TP (True Positive) FN   Negative Label FP TN   Accuracy（ACC，准确率）$$ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}$$ Precis">
+<meta name="twitter:description" content="基本概念混淆矩阵    - Positive Predictions Negative Predictions     Positive Label TP (True Positive) FN   Negative Label FP TN     Accuracy（ACC，准确率） ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}Precis">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/09/03/nkRp6J.jpg">
 
 
@@ -417,31 +417,35 @@
       
 
       
-        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><table>
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="center">-</th>
-<th align="center">Positive Predictions</th>
-<th align="center">Negative Predictions</th>
+<th style="text-align:center">-</th>
+<th style="text-align:center">Positive Predictions</th>
+<th style="text-align:center">Negative Predictions</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">Positive Label</td>
-<td align="center">TP (True Positive)</td>
-<td align="center">FN</td>
+<tbody>
+<tr>
+<td style="text-align:center">Positive Label</td>
+<td style="text-align:center">TP (True Positive)</td>
+<td style="text-align:center">FN</td>
 </tr>
 <tr>
-<td align="center">Negative Label</td>
-<td align="center">FP</td>
-<td align="center">TN</td>
+<td style="text-align:center">Negative Label</td>
+<td style="text-align:center">FP</td>
+<td style="text-align:center">TN</td>
 </tr>
-</tbody></table>
-<h2 id="Accuracy（ACC，准确率）"><a href="#Accuracy（ACC，准确率）" class="headerlink" title="Accuracy（ACC，准确率）"></a>Accuracy（ACC，准确率）</h2><p>$$<br>ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}<br>$$</p>
-<h2 id="Precision（PRE，精度、查准率）"><a href="#Precision（PRE，精度、查准率）" class="headerlink" title="Precision（PRE，精度、查准率）"></a>Precision（PRE，精度、查准率）</h2><p>$$<br>PRE=\frac{TP}{TP+FP}=\frac{预测正确的正样本数}{所有预测为正的样本数}<br>$$</p>
-<h2 id="True-Positive-Rate（TPR，召回率、查全率）"><a href="#True-Positive-Rate（TPR，召回率、查全率）" class="headerlink" title="True Positive Rate（TPR，召回率、查全率）"></a>True Positive Rate（TPR，召回率、查全率）</h2><p>$$<br>TPR=\frac{TP}{TP+FN}= \frac{预测正确的正样本数}{总正样本数}<br>$$</p>
-<h2 id="False-Positive-Rate（FPR，误报率）"><a href="#False-Positive-Rate（FPR，误报率）" class="headerlink" title="False Positive Rate（FPR，误报率）"></a>False Positive Rate（FPR，误报率）</h2><p>$$<br>FPR=\frac{FP}{TN+FP}=\frac{预测为正的负样本数}{总负样本数}<br>$$</p>
-<h2 id="False-Negative-Rate（FNR，漏报率）"><a href="#False-Negative-Rate（FNR，漏报率）" class="headerlink" title="False Negative Rate（FNR，漏报率）"></a>False Negative Rate（FNR，漏报率）</h2><p>$$<br>FNR=\frac{FN}{TN+FN}=\frac{预测为负的正样本数}{预测成负样本的总数量}<br>$$</p>
-<h1 id="评估曲线"><a href="#评估曲线" class="headerlink" title="评估曲线"></a>评估曲线</h1><h2 id="PR-曲线"><a href="#PR-曲线" class="headerlink" title="PR 曲线"></a>PR 曲线</h2><p>精度又名查准率, 关心的是 “查出的所有正例中, 哪些正例是查对的”<br>召回率又名查全率, 关心的是 “对于所有的正例, 正确查出了多少个”</p>
+</tbody>
+</table>
+</div>
+<h2 id="Accuracy（ACC，准确率）"><a href="#Accuracy（ACC，准确率）" class="headerlink" title="Accuracy（ACC，准确率）"></a>Accuracy（ACC，准确率）</h2><script type="math/tex; mode=display">
+ACC= \frac{TP+TN}{FP+FN+TP+TN}=\frac{预测正确的样本数}{总样本数}</script><h2 id="Precision（PRE，精度、查准率）"><a href="#Precision（PRE，精度、查准率）" class="headerlink" title="Precision（PRE，精度、查准率）"></a>Precision（PRE，精度、查准率）</h2><script type="math/tex; mode=display">
+PRE=\frac{TP}{TP+FP}=\frac{预测正确的正样本数}{所有预测为正的样本数}</script><h2 id="True-Positive-Rate（TPR，召回率、查全率）"><a href="#True-Positive-Rate（TPR，召回率、查全率）" class="headerlink" title="True Positive Rate（TPR，召回率、查全率）"></a>True Positive Rate（TPR，召回率、查全率）</h2><script type="math/tex; mode=display">
+TPR=\frac{TP}{TP+FN}= \frac{预测正确的正样本数}{总正样本数}</script><h2 id="False-Positive-Rate（FPR，误报率）"><a href="#False-Positive-Rate（FPR，误报率）" class="headerlink" title="False Positive Rate（FPR，误报率）"></a>False Positive Rate（FPR，误报率）</h2><script type="math/tex; mode=display">
+FPR=\frac{FP}{TN+FP}=\frac{预测为正的负样本数}{总负样本数}</script><h2 id="False-Negative-Rate（FNR，漏报率）"><a href="#False-Negative-Rate（FNR，漏报率）" class="headerlink" title="False Negative Rate（FNR，漏报率）"></a>False Negative Rate（FNR，漏报率）</h2><script type="math/tex; mode=display">
+FNR=\frac{FN}{TN+FN}=\frac{预测为负的正样本数}{预测成负样本的总数量}</script><h1 id="评估曲线"><a href="#评估曲线" class="headerlink" title="评估曲线"></a>评估曲线</h1><h2 id="PR-曲线"><a href="#PR-曲线" class="headerlink" title="PR 曲线"></a>PR 曲线</h2><p>精度又名查准率, 关心的是 “查出的所有正例中, 哪些正例是查对的”<br>召回率又名查全率, 关心的是 “对于所有的正例, 正确查出了多少个”</p>
 <p>这二者是一对矛盾的度量, 因为我们很容易知道:</p>
 <ul>
 <li>如果我们希望查准率高, 那么可以认为是 “只有当十成把握认为其是正例时, 才将其挑出”。</li>
@@ -454,8 +458,10 @@
 </li>
 <li><p>利用平衡点 (BEP, 查准率=查全率), BEP 越大越好；</p>
 </li>
-<li><p>利用$F_\beta$度量, 当 $\beta&lt;1$ 时， 查准率(精度)权重更大, 当$\beta&gt;1$时， 查全率(召回率)权重更大。$F_\beta$的计算公式来自于加权调和平均数：<br>$$<br>\frac{1}{F_\beta}=\frac{1}{1+β^2}(\frac{1}{P}+\frac{β^2}{R})<br>$$<br>$$<br>F_β=\frac{(1+β^2)×P×R}{β^2×P+R}<br>$$</p>
-</li>
+<li><p>利用$F<em>\beta$度量, 当 $\beta<1$ 时， 查准率(精度)权重更大, 当$\beta>1$时， 查全率(召回率)权重更大。$F</1$></em>\beta$的计算公式来自于加权调和平均数：</p>
+<script type="math/tex; mode=display">
+\frac{1}{F_\beta}=\frac{1}{1+β^2}(\frac{1}{P}+\frac{β^2}{R})</script><script type="math/tex; mode=display">
+F_β=\frac{(1+β^2)×P×R}{β^2×P+R}</script></li>
 </ol>
 <h2 id="ROC-曲线"><a href="#ROC-曲线" class="headerlink" title="ROC 曲线"></a>ROC 曲线</h2><p>​    很多学习器是为测试样本产生一个实值或概率预测，然后将这个预测值与一个分类阈值进行比较，若大于阈值分为正例，否则分为负例，因此<strong>分类过程可以看做是选取一个合适的截断点</strong>。那么到底什么样的截断点更合适呢？ ROC 正是从这个角度来研究学习器好坏的工具。</p>
 <p>​    ROC 曲线的纵坐标和横坐标分别是召回率和误诊率，下图为 ROC 曲线图，实际任务中会利用有限个测试样本来绘制 ROC 图，所以产生的大多不是平滑的曲线。</p>
@@ -618,7 +624,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -640,7 +646,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -744,7 +750,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">40.5k</span>
+    <span title="Site words total count">41.7k</span>
   
 </div>
 
