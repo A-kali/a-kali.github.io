@@ -97,7 +97,11 @@
 <meta property="og:description" content="1    摘要3D点云由于其在计算机视觉、自动驾驶和机器人等领域的广泛应用而受到越来越多的关注。深度学习作为人工智能的主要技术，已经成功地应用于解决各种二维视觉问题。然而，由于使用深度神经网络处理点云所面临的独特挑战，对点云的深度学习仍处于起步阶段。最近，点云上的深度学习变得越来越流行，人们提出了许多方法来解决这一领域的不同问题。目前点云分类方法可以主要被分为两类：基于投影的网络（Projecti">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2020/02/09/KUAF1fT6tzu3nVl.png">
-<meta property="og:updated_time" content="2020-02-08T17:17:48.539Z">
+<meta property="og:image" content="https://i.loli.net/2020/02/09/8O26rgyBF3i5UvJ.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/09/YNDcs95ty12ig6p.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/09/JkrwP75SA2TaXCd.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/09/lzaiosyh2jkuqr9.png">
+<meta property="og:updated_time" content="2020-02-09T14:39:10.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3D点云深度学习综述之 Shape Classification">
 <meta name="twitter:description" content="1    摘要3D点云由于其在计算机视觉、自动驾驶和机器人等领域的广泛应用而受到越来越多的关注。深度学习作为人工智能的主要技术，已经成功地应用于解决各种二维视觉问题。然而，由于使用深度神经网络处理点云所面临的独特挑战，对点云的深度学习仍处于起步阶段。最近，点云上的深度学习变得越来越流行，人们提出了许多方法来解决这一领域的不同问题。目前点云分类方法可以主要被分为两类：基于投影的网络（Projecti">
@@ -340,7 +344,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 949字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 2.5k字</span>
 
           
 
@@ -355,7 +359,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  949
+                  2.5k
                 </span>
               
 
@@ -371,7 +375,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  30分钟
+                  80分钟
                 </span>
               
             </div>
@@ -396,9 +400,25 @@
 <p><img src="https://i.loli.net/2020/02/09/KUAF1fT6tzu3nVl.png" alt="64NDV_C@`6_PE_XEMYT9OL6.png"></p>
 <h1 id="2-基于投影的网络"><a href="#2-基于投影的网络" class="headerlink" title="2    基于投影的网络"></a>2    基于投影的网络</h1><p>基于投影的方法将三维点云投影到不同的表达模式中(例如：多视图、体积表示)，用于特征学习和形状分类。</p>
 <h2 id="2-1-多视图表示"><a href="#2-1-多视图表示" class="headerlink" title="2.1    多视图表示"></a>2.1    多视图表示</h2><p>多视图（Multi-view）方法通常<strong>提取一个3D对象从多个角度投影的特征，之后再通过某种方法将多个特征融合起来</strong>。而如何将视图特征融合起来则是这个方法的关键。MVCNN开创了这种方法的先例，其简单地将多个视图的特征max-pools到一个全局描述符（global descriptor）中。而max-pooling仅仅保留了单一视图的最大值元素，损失了大量信息。MHBN在此之上进行改进，通过双线性池化（bilinear pooling）来得到一个全局的描述符。后续有许多网络进行了进一步的改进，在此不一一赘述。</p>
-<h2 id="2-2-体积表示"><a href="#2-2-体积表示" class="headerlink" title="2.2    体积表示"></a>2.2    体积表示</h2><p>早期的研究者们通常使用3D卷积网络对基于3D点云的体积表示（Volumetric representation）进行特征提取。Daniel等人提出了一种体积占用网络VoxNet来实现3D对象识别。Wu等人提出了一种基于卷积深度信念的3D ShapeNets来学习不同3D形状的点分布。在体素网格上，三维形状通常由二进制变量的概率分布来表示。虽然取得了令人鼓舞的性能，但这些方法无法很好地扩展到稠密的三维数据，因为计算和内存占用是随分辨率的立方增长的。为此，引入了层次结构和紧凑的图结构(如八叉树)来降低这些方法的计算和内存开销。Wang等人提出了一种基于八叉树的OctNet来进行三维形状分类。将在最细叶八分区采样的三维模型的平均法向量输入网络，将3D- cnn应用于被三维形状表面占据的八分区。与基于密集输入网格的基线网络相比，OctNet对高分辨率点云的内存和运行时间要求要少得多。leet等人提出了一种称为点网格的混合网络，它集成了点和网格表示来实现高效的点云处理。在每个嵌入式网格单元中采样的点的数量是恒定的，这使得网络可以通过使用3D卷积来提取几何细节。</p>
-<h1 id="3-点基网络"><a href="#3-点基网络" class="headerlink" title="3    点基网络"></a>3    点基网络</h1><p>点基网络使用最原始的点作为网络的输入。由于其能保留更多的原始特征，点基网络成为当前3D点云识别的主流方法。该方法可以被分为<strong>点级多层感知机（Pointwise MLP）、卷积神经网络、图神经网络、数据索引神经网络（Data indexing-based networks）和其它神经网络</strong>。</p>
-<h2 id="3-1-点级多层感知机"><a href="#3-1-点级多层感知机" class="headerlink" title="3.1 点级多层感知机"></a>3.1 点级多层感知机</h2>
+<h2 id="2-2-体积表示"><a href="#2-2-体积表示" class="headerlink" title="2.2    体积表示"></a>2.2    体积表示</h2><p>早期的研究者们通常<strong>使用3D卷积网络对基于3D点云的体积表示（Volumetric representation）进行特征提取</strong>。Daniel等人提出了一种体积占用网络VoxNet来实现3D对象识别。Wu等人提出了一种基于卷积深度信念的3D ShapeNets来学习不同3D形状的点分布。在体素网格上，三维形状通常由二进制变量的概率分布来表示。虽然取得了令人鼓舞的性能，但这些方法无法很好地扩展到稠密的三维数据，因为计算和内存占用是随分辨率的立方增长的。为此，引入了层次结构和紧凑的图结构(如八叉树)来降低这些方法的计算和内存开销。Wang等人提出了一种基于八叉树的OctNet来进行三维形状分类。将在最细叶八分区采样的三维模型的平均法向量输入网络，将3D- cnn应用于被三维形状表面占据的八分区。与基于密集输入网格的基线网络相比，OctNet对高分辨率点云的内存和运行时间要求要少得多。leet等人提出了一种称为点网格的混合网络，它集成了点和网格表示来实现高效的点云处理。在每个嵌入式网格单元中采样的点的数量是恒定的，这使得网络可以通过使用3D卷积来提取几何细节。</p>
+<h1 id="3-点基网络"><a href="#3-点基网络" class="headerlink" title="3    点基网络"></a>3    点基网络</h1><p>点基网络使用最原始的点作为网络的输入。由于其能保留更多的原始特征，点基网络成为当前3D点云识别的主流方法。该方法可以被分为<strong>点级多层感知机（Pointwise MLP）、卷积神经网络、图神经网络、基于数据索引网络（Data indexing-based networks）和其它神经网络</strong>。</p>
+<h2 id="3-1-点级多层感知机"><a href="#3-1-点级多层感知机" class="headerlink" title="3.1 点级多层感知机"></a>3.1 点级多层感知机</h2><p>这些方法<strong>使用MLPs对每个点独立建模，然后使用对称函数聚合全局特征</strong>，如图所示。由于对称函数的存在，这类网络可以保证三维点云的无序性。然而，三维点之间的几何关系并没有得到充分的考虑。</p>
+<p><img src="https://i.loli.net/2020/02/09/8O26rgyBF3i5UvJ.png" alt="FK_UYCNROC_~JTZ_`B`C_KU.png"></p>
+<p>这个方向的开山之作是PointNet，其使用max-pooling聚合多个MLP提取的特征。该网络独立地提取每个点的特征，没有考虑到点之间的结构信息。分层网络PointNet++于此被提出用来捕获邻近点之间的几何结构信息。</p>
+<p>由于其简单性和强大的表示能力，许多网络都是基于PointNet开发的。Achlioptas等人提出了一种深度自编码网络学习点云表示。它的编码器遵循PointNet的设计，使用5个一维卷积层、ReLU非线性激活、批处理标准化和最大池化操作独立地学习点特征。在PATs(Point Attention Transformers)中，每个点都由其绝对位置和相对于其相邻点的相对位置来表示,然后利用GSA(Group Shuffle Attention)来捕获点之间的关系，并建立了一个排列不变、可微、可训练的端到端GSS(Gumbel Subset Sampling)层来学习层次特征。Mo-Net的架构类似于PointNet，但它采用有限的一组矩作为其网络的输入。PointWeb也是在PointNet++上构建的，它使用局部邻居的上下文来使用自适应特性调整(Adaptive Feature Adjustment, AFA)改进点特性。Duan等人提出了一种结构关系网络(SRN)，利用MLP来学习不同局部结构之间的结构关系特征。Lin等人通过为PointNet学习的输入空间和函数空间构造一个查找表来加速推理过程。在中等大小的机器上，ModelNet和ShapeNet数据集上的推理时间加快了1.5 ms，是PointNet的32倍。SRINet首先投影一个点云来获得旋转不变量表示，然后利用基于PointNet的backbone来提取全局特征，并使用基于图的融合来提取局部特征。</p>
+<h2 id="3-2-卷积网络"><a href="#3-2-卷积网络" class="headerlink" title="3.2    卷积网络"></a>3.2    卷积网络</h2><p>与二维网格结构(如图像)定义的卷积核相比，三维点云的卷积核由于点云的不规则性而难以设计。根据卷积核的类型，目前的三维卷积网络可以分为<strong>连续卷积网络和离散卷积网络</strong>，如图所示。</p>
+<p><img src="https://i.loli.net/2020/02/09/YNDcs95ty12ig6p.png" alt="_OW`QQ_M_`4TFGIAJRAWGHW.png"></p>
+<h3 id="3-2-1-3D连续卷积网络"><a href="#3-2-1-3D连续卷积网络" class="headerlink" title="3.2.1    3D连续卷积网络"></a>3.2.1    3D连续卷积网络</h3><p><strong>3D连续卷积在连续空间上定义卷积核，其邻近点的权重与中心点的空间分布有关。</strong>3D连续卷积可以被解释为点子集的加权线性组合，通常使用MLP学习每个点的权重。</p>
+<p>例如 RS-CNN 的关键层 RS-Conv 需要点的子集在某种程度上作为其输入，使用MLP学习局部点之间从低级关系（如Euclidear距离和相对位置）到高级关系之间的映射来实现卷积。</p>
+<p>一些方法还使用现有的算法来执行卷积。在PointConv中，卷积被定义为相对于重要抽样的连续三维卷积的蒙特卡罗估计。卷积核由一个加权函数(通过MLP层学习)和一个密度函数(通过核化密度估计和MLP层学习)组成。为了提高记忆和计算效率，将三维卷积进一步简化为矩阵乘法和二维卷积两种运算。在相同的参数设置下，其内存消耗可减少约64倍。类似的网络还有MCCNN、SpiderCNN、PCNN、KPConv。</p>
+<p>而一些方法则被提出用于解决三维卷积网络所面临的旋转等变问题。Esteves等人提出了以多值球函数为输入，学习旋转等变表示的三维球面卷积神经网络(Spherical CNN)。利用球面谐域内的锚点对谱进行参数化，得到局部卷积滤波器。张量场网络(Tensor field networks)被提出用于定义点积运算，它是一个可学习的径向函数和球面调和函数的乘积，这两个函数对于点的三维旋转、平移和排列是局部等价的。SPHNet以PCNN为基础，通过在体积度量函数的卷积过程中加入球谐核实现旋转不变性。</p>
+<h3 id="3-2-2-3D离散卷积网络"><a href="#3-2-2-3D离散卷积网络" class="headerlink" title="3.2.2    3D离散卷积网络"></a>3.2.2    3D离散卷积网络</h3><p><strong>3D离散卷积在规则网格上定义卷积核，其中相邻点的权值与相对于中心点的偏移量相关。</strong></p>
+<p>Hua等人将非均匀三维点云转化为均匀网格，并在每个网格上定义卷积核。与2D卷积(为每个像素分配权重)不同，3D卷积核为落入相同网格的所有点分配相同的权重。对于给定的点，位于同一网格上的所有相邻点的平均特征是从上一层计算出来的。然后对所有网格的平均特征进行加权求和，得到当前层的输出。Lei等人定义了一个球面卷积核，方法是将一个三维球面邻近区域划分为多个容量容器，并将每个容器与一个可学习的加权矩阵相关联。一个点的球面卷积核的输出由相邻点的加权激活值的平均值的非线性激活决定。类似的神经网络还有GeoConv、PointCNN、InterpConv、RIConv、A-CNN、ReLPV、SFCNN等。</p>
+<h2 id="3-3-图神经网络"><a href="#3-3-图神经网络" class="headerlink" title="3.3    图神经网络"></a>3.3    图神经网络</h2><p><strong>基于图的网络将点云中的每个点视为一个图的顶点，并基于每个点的邻居为图生成有向边。然后在空间或光谱域中进行特征学习。</strong>典型的基于图的网络如图所示。</p>
+<p><img src="https://i.loli.net/2020/02/09/JkrwP75SA2TaXCd.png" alt="MLVH~H__VJDM32NKGZ4_7LX.png"></p>
+<h2 id="3-4-基于数据索引的网络"><a href="#3-4-基于数据索引的网络" class="headerlink" title="3.4    基于数据索引的网络"></a>3.4    基于数据索引的网络</h2><p>这类网络是<strong>基于不同的数据索引结构(如八叉树和kd-tree)构建的。在这些方法中，点特征由沿着树从叶节点到根节点的层次学习得到。</strong>其典型代表作有Kd-Net、3DContextNet、SO-Net等。</p>
+<h1 id="4-性能对比"><a href="#4-性能对比" class="headerlink" title="4    性能对比"></a>4    性能对比</h1><p><img src="https://i.loli.net/2020/02/09/lzaiosyh2jkuqr9.png" alt="ST8DMA9EJ2DE__N48_9HN@F.png"></p>
+
       
     </div>
     
@@ -631,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-摘要"><span class="nav-number">1.</span> <span class="nav-text">1    摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-基于投影的网络"><span class="nav-number">2.</span> <span class="nav-text">2    基于投影的网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-多视图表示"><span class="nav-number">2.1.</span> <span class="nav-text">2.1    多视图表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-体积表示"><span class="nav-number">2.2.</span> <span class="nav-text">2.2    体积表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-点基网络"><span class="nav-number">3.</span> <span class="nav-text">3    点基网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-点级多层感知机"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 点级多层感知机</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-摘要"><span class="nav-number">1.</span> <span class="nav-text">1    摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-基于投影的网络"><span class="nav-number">2.</span> <span class="nav-text">2    基于投影的网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-多视图表示"><span class="nav-number">2.1.</span> <span class="nav-text">2.1    多视图表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-体积表示"><span class="nav-number">2.2.</span> <span class="nav-text">2.2    体积表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-点基网络"><span class="nav-number">3.</span> <span class="nav-text">3    点基网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-点级多层感知机"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 点级多层感知机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-卷积网络"><span class="nav-number">3.2.</span> <span class="nav-text">3.2    卷积网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-3D连续卷积网络"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1    3D连续卷积网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-3D离散卷积网络"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2    3D离散卷积网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-图神经网络"><span class="nav-number">3.3.</span> <span class="nav-text">3.3    图神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-基于数据索引的网络"><span class="nav-number">3.4.</span> <span class="nav-text">3.4    基于数据索引的网络</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-性能对比"><span class="nav-number">4.</span> <span class="nav-text">4    性能对比</span></a></li></ol></div>
             
 
           </div>
@@ -673,7 +693,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.4k</span>
+    <span title="Site words total count">50.9k</span>
   
 </div>
 
