@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="某科学のBLOG">
 <meta property="og:description" content="DAIC-WOZ数据库是抑郁分析访谈语料库(Distress Analysis Interview Corpus, DAIC) 的一部分，该语料库主要包含临床访谈记录，旨在支持对焦虑、抑郁和创伤后应激障碍等心理困扰状况的诊断。这些访谈数据被收集起来，作为训练一个计算机代理的数据。该代理能够自动对人们进行访谈，并在语言(verbal)和非语言(nonverbal)指标上识别精神疾病。收集的数据包括音">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-11T09:27:13.616Z">
+<meta property="og:updated_time" content="2020-02-11T13:02:26.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DAIC-WOZ抑郁评估数据格式">
 <meta name="twitter:description" content="DAIC-WOZ数据库是抑郁分析访谈语料库(Distress Analysis Interview Corpus, DAIC) 的一部分，该语料库主要包含临床访谈记录，旨在支持对焦虑、抑郁和创伤后应激障碍等心理困扰状况的诊断。这些访谈数据被收集起来，作为训练一个计算机代理的数据。该代理能够自动对人们进行访谈，并在语言(verbal)和非语言(nonverbal)指标上识别精神疾病。收集的数据包括音">
@@ -338,7 +338,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 956字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1k字</span>
 
           
 
@@ -353,7 +353,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  956
+                  1k
                 </span>
               
 
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  30分钟
+                  40分钟
                 </span>
               
             </div>
@@ -440,6 +440,19 @@
 <li>文件格式：frame_number,  timestamp(seconds),  confidence,  detection_success,  X,  Y,  Z,  Rx,  Ry,  Rz</li>
 </ul>
 </li>
+</ul>
+<h2 id="2-Audio-file"><a href="#2-Audio-file" class="headerlink" title="2    Audio file"></a>2    Audio file</h2><ul>
+<li>XXX_AUDIO.wav<ul>
+<li>耳机录音频率为16kHz。音频文件中可能包含少量虚拟面试官的信息，在处理时使用记录文件(transcript files)来缓解这个问题。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-Transcript-file"><a href="#3-Transcript-file" class="headerlink" title="3    Transcript file"></a>3    Transcript file</h2><ul>
+<li>XXX_TRANSCRIPT.csv</li>
+</ul>
+<h2 id="4-Audio-features"><a href="#4-Audio-features" class="headerlink" title="4    Audio features"></a>4    Audio features</h2><ul>
+<li>XXX_COVAREP.csv</li>
+<li>XXX_FORMANT.csv</li>
 </ul>
 
       
@@ -582,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -666,7 +679,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-description"><span class="nav-number">1.</span> <span class="nav-text">Data description</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File-description-and-feature-documentation"><span class="nav-number">2.</span> <span class="nav-text">File  description  and  feature  documentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CLNF-framework-output"><span class="nav-number">2.1.</span> <span class="nav-text">1    CLNF framework output</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-description"><span class="nav-number">1.</span> <span class="nav-text">Data description</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File-description-and-feature-documentation"><span class="nav-number">2.</span> <span class="nav-text">File  description  and  feature  documentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CLNF-framework-output"><span class="nav-number">2.1.</span> <span class="nav-text">1    CLNF framework output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Audio-file"><span class="nav-number">2.2.</span> <span class="nav-text">2    Audio file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Transcript-file"><span class="nav-number">2.3.</span> <span class="nav-text">3    Transcript file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Audio-features"><span class="nav-number">2.4.</span> <span class="nav-text">4    Audio features</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -708,7 +721,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">51.7k</span>
+    <span title="Site words total count">52.7k</span>
   
 </div>
 
