@@ -88,13 +88,13 @@
 
 
 
-<meta name="description" content="SigmoidSigmoid 常用于二分类和多标签分类的最后一层，能将实数值映射到0-1之间。 函数式：  σ(x) = \frac{1}{1+e^{-x}}导数式：  σ&apos;(x) = σ(x)×(1-σ(x))函数图像：  ReLUReLU是神经网络激活层最常用的一种函数，因为其运算简单、易于求导，能用最简单的方式实现非线性运算的性质。 函数式：  f(x)=max(0,x)函数图像：  Tan">
+<meta name="description" content="SigmoidSigmoid 常用于二分类和多标签分类的最后一层，能将实数值映射到0-1之间。 函数式：$$σ(x) = \frac{1}{1+e^{-x}}$$导数式：$$σ’(x) = σ(x)×(1-σ(x))$$函数图像：  ReLUReLU是神经网络激活层最常用的一种函数，因为其运算简单、易于求导，能用最简单的方式实现非线性运算的性质。 函数式：$$f(x)=max(0,x)$$函数图像">
 <meta name="keywords" content="激活函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见激活函数汇总">
 <meta property="og:url" content="http://a-kali.github.io/2019/12/01/激活函数汇总/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="SigmoidSigmoid 常用于二分类和多标签分类的最后一层，能将实数值映射到0-1之间。 函数式：  σ(x) = \frac{1}{1+e^{-x}}导数式：  σ&apos;(x) = σ(x)×(1-σ(x))函数图像：  ReLUReLU是神经网络激活层最常用的一种函数，因为其运算简单、易于求导，能用最简单的方式实现非线性运算的性质。 函数式：  f(x)=max(0,x)函数图像：  Tan">
+<meta property="og:description" content="SigmoidSigmoid 常用于二分类和多标签分类的最后一层，能将实数值映射到0-1之间。 函数式：$$σ(x) = \frac{1}{1+e^{-x}}$$导数式：$$σ’(x) = σ(x)×(1-σ(x))$$函数图像：  ReLUReLU是神经网络激活层最常用的一种函数，因为其运算简单、易于求导，能用最简单的方式实现非线性运算的性质。 函数式：$$f(x)=max(0,x)$$函数图像">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/01/QmcKiT.md.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/01/QmcLkV.md.png">
@@ -107,7 +107,7 @@
 <meta property="og:updated_time" content="2019-12-01T16:38:44.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见激活函数汇总">
-<meta name="twitter:description" content="SigmoidSigmoid 常用于二分类和多标签分类的最后一层，能将实数值映射到0-1之间。 函数式：  σ(x) = \frac{1}{1+e^{-x}}导数式：  σ&apos;(x) = σ(x)×(1-σ(x))函数图像：  ReLUReLU是神经网络激活层最常用的一种函数，因为其运算简单、易于求导，能用最简单的方式实现非线性运算的性质。 函数式：  f(x)=max(0,x)函数图像：  Tan">
+<meta name="twitter:description" content="SigmoidSigmoid 常用于二分类和多标签分类的最后一层，能将实数值映射到0-1之间。 函数式：$$σ(x) = \frac{1}{1+e^{-x}}$$导数式：$$σ’(x) = σ(x)×(1-σ(x))$$函数图像：  ReLUReLU是神经网络激活层最常用的一种函数，因为其运算简单、易于求导，能用最简单的方式实现非线性运算的性质。 函数式：$$f(x)=max(0,x)$$函数图像">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/12/01/QmcKiT.md.png">
 
 
@@ -369,7 +369,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 157字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 281字</span>
 
           
 
@@ -384,7 +384,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  157
+                  281
                 </span>
               
 
@@ -422,30 +422,15 @@
 
       
         <h1 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h1><p>Sigmoid 常用于二分类和多标签分类的最后一层，能将实数值映射到0-1之间。</p>
-<p>函数式：</p>
-<script type="math/tex; mode=display">
-σ(x) = \frac{1}{1+e^{-x}}</script><p>导数式：</p>
-<script type="math/tex; mode=display">
-σ'(x) = σ(x)×(1-σ(x))</script><p>函数图像：</p>
+<p>函数式：<br>$$<br>σ(x) = \frac{1}{1+e^{-x}}<br>$$<br>导数式：<br>$$<br>σ’(x) = σ(x)×(1-σ(x))<br>$$<br>函数图像：</p>
 <p><a href="https://imgse.com/i/QmcKiT" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/01/QmcKiT.md.png" alt="QmcKiT.md.png"></a></p>
 <h1 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h1><p>ReLU是神经网络激活层最常用的一种函数，因为其运算简单、易于求导，能用最简单的方式实现非线性运算的性质。</p>
-<p>函数式：</p>
-<script type="math/tex; mode=display">
-f(x)=max(0,x)</script><p>函数图像：</p>
+<p>函数式：<br>$$<br>f(x)=max(0,x)<br>$$<br>函数图像：</p>
 <p><a href="https://imgse.com/i/QmcLkV" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/01/QmcLkV.md.png" alt="QmcLkV.md.png"></a></p>
 <h1 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h1><p>常见于递归神经网络。</p>
-<p>函数式：</p>
-<script type="math/tex; mode=display">
-f(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}</script><p>函数图像：</p>
+<p>函数式：<br>$$<br>f(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}<br>$$<br>函数图像：</p>
 <p><img src="https://s2.ax1x.com/2019/12/01/QmgaBn.png" alt="QmgaBn.png"></p>
-<h1 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h1><p>函数式：</p>
-<script type="math/tex; mode=display">
-f(x)=\left\{
-\begin{aligned}
-x, \quad x\geq0\\
-ax, \quad x<0
-\end{aligned}
-\right.</script><p>函数图像：</p>
+<h1 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h1><p>函数式：<br>$$<br>f(x)=\left{<br>\begin{aligned}<br>x, \quad x\geq0\<br>ax, \quad x&lt;0<br>\end{aligned}<br>\right.<br>$$<br>函数图像：</p>
 <p><img src="https://s2.ax1x.com/2019/12/01/Qm21bR.png" alt="Qm21bR.png"></p>
 <h1 id="PReLU"><a href="#PReLU" class="headerlink" title="PReLU"></a>PReLU</h1><p>PReLU(Parametric Rectified Linear Unit) 参数化修正线性单元。其参数随着网络训练而改变。</p>
 <p><img src="https://s2.ax1x.com/2019/12/02/QmRH0A.png" alt="QmRH0A.png"></p>
@@ -600,7 +585,7 @@ ax, \quad x<0
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -622,7 +607,7 @@ ax, \quad x<0
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -726,7 +711,7 @@ ax, \quad x<0
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.7k</span>
+    <span title="Site words total count">54k</span>
   
 </div>
 

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="情感识别,RNN,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="某科学のBLOG" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="论文地址：Emotion Recognition From Speech With Recurrent Neural Networks 1    Introduction在自动语音识别(Automated Speech Recognition, ASR)任务中，语音被模型转化成文字。但是在人们的对话过程中除了文本以外还有其它重要的信息，比如语调、情感、响度。这些信息在语音理解中亦扮演者十分重要的角">
+<meta name="keywords" content="情感识别,RNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文笔记：使用RNN进行情感识别">
+<meta property="og:url" content="http://a-kali.github.io/2020/03/03/论文笔记：使用RNN进行情感识别/index.html">
+<meta property="og:site_name" content="某科学のBLOG">
+<meta property="og:description" content="论文地址：Emotion Recognition From Speech With Recurrent Neural Networks 1    Introduction在自动语音识别(Automated Speech Recognition, ASR)任务中，语音被模型转化成文字。但是在人们的对话过程中除了文本以外还有其它重要的信息，比如语调、情感、响度。这些信息在语音理解中亦扮演者十分重要的角">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1160281/201811/1160281-20181113191458804-356625669.png">
+<meta property="og:updated_time" content="2020-03-03T09:22:57.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文笔记：使用RNN进行情感识别">
+<meta name="twitter:description" content="论文地址：Emotion Recognition From Speech With Recurrent Neural Networks 1    Introduction在自动语音识别(Automated Speech Recognition, ASR)任务中，语音被模型转化成文字。但是在人们的对话过程中除了文本以外还有其它重要的信息，比如语调、情感、响度。这些信息在语音理解中亦扮演者十分重要的角">
+<meta name="twitter:image" content="https://img2018.cnblogs.com/blog/1160281/201811/1160281-20181113191458804-356625669.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":18,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://a-kali.github.io/2020/03/03/论文笔记：使用RNN进行情感识别/">
+
+
+
+
+
+  <title>论文笔记：使用RNN进行情感识别 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/A-kali/a-kali.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">某科学のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">与其感慨路难行，不如马上出发</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2020/03/03/论文笔记：使用RNN进行情感识别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hsaki">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某科学のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">论文笔记：使用RNN进行情感识别</h1>
+        
+
+        <div class="post-meta">
+		          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-03T16:31:11+08:00">
+                2020-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+			
+			<span class="post-meta-divider">|</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.2k字</span>
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  40分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>论文地址：<a href="https://arxiv.org/abs/1701.08071" target="_blank" rel="noopener">Emotion Recognition From Speech With Recurrent Neural Networks</a></p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1    Introduction"></a>1    Introduction</h1><p>在<strong>自动语音识别(Automated Speech Recognition, ASR)</strong>任务中，语音被模型转化成文字。但是在人们的对话过程中除了文本以外还有其它重要的信息，比如<strong>语调、情感、响度</strong>。这些信息在语音理解中亦扮演者十分重要的角色。本文将围绕其中“情感”部分进行概述，即<strong>语音情感识别(Speech Emotion Recognition, SER)</strong>。</p>
+<p>在语音情感识别方面存在一些难点：</p>
+<ol>
+<li><strong>情感是主观的</strong>，不同人对于同一段语音，理解出的情感可能不同。</li>
+<li><strong>同一段语音可能包含多种情感</strong>。（可以通过<a href="https://zhuanlan.zhihu.com/p/86745594" target="_blank" rel="noopener">CTC损失函数</a>解决）</li>
+<li><strong>数据来源</strong>：从电影中截取的语音可能和现实中存在偏差。通常会找专业演员来演绎各种情感来制造数据。</li>
+</ol>
+<h1 id="2-Related-works"><a href="#2-Related-works" class="headerlink" title="2    Related works"></a>2    Related works</h1><p>大部分文献将语音情感识别视为一个分类问题，对每一个utterance分配一个label。utterance即为一小段语音，是语音的最小单元。</p>
+<p>在深度学习之前，大多研究提取底层的手工特征，用传统分类器进行分类，比如HMM（隐马尔可夫模型）或GMM（高斯混合模型）。</p>
+<p>深度学习出现后，有人把utterance分帧计算低层特征，用三层全连接层，对输出概率聚合成utterance水平的特征（用简单的统计量，比如最大值，最小值，平均值等），最后用ELM（Extreme Learning Machine）分类。</p>
+<p>后面出现了纯深度学习和端到端的架构模型。有人使用Attention CNN，有人用DBN，还有人用迁移学习把语音识别的任务（数据集）迁移到语音情感识别中。</p>
+<h1 id="3-Data-and-preprocessing"><a href="#3-Data-and-preprocessing" class="headerlink" title="3    Data and preprocessing"></a>3    Data and preprocessing</h1><p>IEMOCAP（Interactive Emotional Dyadic Motion Capture）被选作数据集，因为它有详尽的获取方法，免费的学术许可，较长的语音时长和良好的标注。</p>
+<p>大约包括12个小时，含有视频，音频和人脸关键点的数据。由南加利福尼亚大学戏剧系的10位专业演员表演所得。评估者对每个utterance给出评价（10个情感选项），当一半以上的评估者对某个utterance的评估一致时，该utterance才分配到评估的感情。本文中选取其中4种情感用于分析（生气，兴奋，中立和伤心），只有这些样本才被考虑到本文工作中，下图是标签分布。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1160281/201811/1160281-20181113191458804-356625669.png" alt="img"></p>
+<p>原始信号的采样率是16kHz，直接使用计算量很大，需要尽量保持信息的同时减小计算量。本文对utterance进行分帧，帧长为200ms，帧移为100ms，在帧上计算声学特征（用了哪些声学特征见下文介绍），然后把这些特征合在一起作为utterance的特征输入到模型。关于帧长的选取，论文从30ms到200ms都做过实验发现效果差别不大，而较长的帧可以导致比较少的帧，能减小计算量，所以使用了200ms。</p>
+<p>对于语音信号的特征主要有三种，一是声学特征，也就是声波的一些属性；二是音律特征，指的是停用词，韵律（押韵，平仄），响度，这个特征依赖于说话人，所以没有用这类特征；三是语义学特征，就是语音对应的文字内容的信息。</p>
+<p>本文只使用了声学特征，使用的是python库PyAudioAnalysis的API提供的34个特征，主要包括3个时域特征（过零率，能量，能量熵），5个谱特征，13个MFCC特征，13个音阶特征。也就是一帧的声音用34维的向量来表示。</p>
+<h1 id="4-Approach"><a href="#4-Approach" class="headerlink" title="4    Approach"></a>4    Approach</h1><p>因为一个utterance只对应一个标签，但是有很多帧，有些帧是不包含情感的，所以输入序列和输出序列难以一一对应，为了应对这个问题，可以使用CTC（Connectionist Temporal Classification）的方法。</p>
+<p>CTC模型中的LSTM的输入时间步和输出时间步T为78，因为每个语音样本划分成了78帧。情感标签有4个，加上空白符，得到大小为5的字符集合。真实输出只有一个标签，所以在这些长度为78的输出序列中，经过B转换后能得到一个真实情感标签的那些序列才是我们要的序列，用CTC的方法来使得这些序列产生的概率最大。</p>
+<p>注：文本大量参考这篇文章<a href="https://www.cnblogs.com/liaohuiqiang/p/9954088.html" target="_blank" rel="noopener">论文笔记：Emotion Recognition From Speech With Recurrent Neural Networks</a>，以自己的语言整理一遍笔记，旨在巩固记忆加深理解，并非完全原创。</p>
+
+      
+    </div>
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/情感识别/" rel="tag"><i class="fa fa-tag"></i> 情感识别</a>
+          
+            <a href="/tags/RNN/" rel="tag"><i class="fa fa-tag"></i> RNN</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/09/DAIC-WOZ抑郁评估数据格式/" rel="next" title="DAIC-WOZ抑郁评估数据格式">
+                <i class="fa fa-chevron-left"></i> DAIC-WOZ抑郁评估数据格式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Hsaki">
+            
+              <p class="site-author-name" itemprop="name">Hsaki</p>
+              <p class="site-description motion-element" itemprop="description">橘猫最爱的煎饼狗子!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/a-kali" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hsaki@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/hsakizero" target="_blank" title="Kaggle">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>Kaggle</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1    Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Related-works"><span class="nav-number">2.</span> <span class="nav-text">2    Related works</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Data-and-preprocessing"><span class="nav-number">3.</span> <span class="nav-text">3    Data and preprocessing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Approach"><span class="nav-number">4.</span> <span class="nav-text">4    Approach</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hsaki</span>
+<div class="powered-by">
+</div>
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">54k</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

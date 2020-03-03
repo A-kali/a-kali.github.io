@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="计算机视觉,深度学习,神经网络,目标检测,YOLO,">
+  <meta name="keywords" content="深度学习,计算机视觉,神经网络,目标检测,YOLO,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="YOLOv1论文地址：You Only Look Once: Unified, Real-Time Object Detection 摘要众所周知，在深度学习目标检测领域有着两个流派，分别是基于候选区域的R-CNN流派和直接回归输出边框的YOLO流派。R-CNN系列的准确率较高，但即便发展到Faster R-CNN，运算速度也才只有7fps。为了使检测工作更接近实时，作者提出了YOLO结构。  Y">
-<meta name="keywords" content="计算机视觉,深度学习,神经网络,目标检测,YOLO">
+<meta name="keywords" content="深度学习,计算机视觉,神经网络,目标检测,YOLO">
 <meta property="og:type" content="article">
 <meta property="og:title" content="YOLOv1 - YOLOv3">
 <meta property="og:url" content="http://a-kali.github.io/2019/11/27/YOLOv1-YOLOv3/index.html">
@@ -424,16 +424,14 @@
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>众所周知，在深度学习目标检测领域有着两个流派，分别是<strong>基于候选区域的R-CNN流派</strong>和<strong>直接回归输出边框的YOLO流派</strong>。R-CNN系列的准确率较高，但即便发展到Faster R-CNN，运算速度也才只有7fps。为了使检测工作更接近实时，作者提出了YOLO结构。</p>
 <p><img src="https://s2.ax1x.com/2019/11/27/QCYCPs.png" alt="QCYCPs.png"></p>
 <h2 id="YOLO-的实现"><a href="#YOLO-的实现" class="headerlink" title="YOLO 的实现"></a>YOLO 的实现</h2><p>（第一次看可能有点复杂，建议拿笔出来边梳理边看）</p>
-<p>YOLO 将输入图像划分为 <strong>S × S 个网格</strong>。如果一个物体的中心点在这个网格中，则该网格负责检测这个物体。每个网格预测 <strong>B 个边框(bounding box)</strong>及其<strong>置信度(confidence)</strong>。其中置信度为<strong>该网格包含目标物体的概率</strong>乘以预测边界框与真实边界框(ground truth)的<strong>交并比(IOU)</strong>，即：</p>
-<script type="math/tex; mode=display">
-Confidence=Pr(Object)×IOU^{truth}_{pred}</script><p>也就是说，<strong>当置信度为0时，边框内不含有任何目标物，除此之外置信度都等于交并比</strong>。该置信度只是个预测值，受真实的置信度监督。这点可以从后面的损失函数看出来。</p>
+<p>YOLO 将输入图像划分为 <strong>S × S 个网格</strong>。如果一个物体的中心点在这个网格中，则该网格负责检测这个物体。每个网格预测 <strong>B 个边框(bounding box)</strong>及其<strong>置信度(confidence)</strong>。其中置信度为<strong>该网格包含目标物体的概率</strong>乘以预测边界框与真实边界框(ground truth)的<strong>交并比(IOU)</strong>，即：<br>$$<br>Confidence=Pr(Object)×IOU^{truth}_{pred}<br>$$<br>也就是说，<strong>当置信度为0时，边框内不含有任何目标物，除此之外置信度都等于交并比</strong>。该置信度只是个预测值，受真实的置信度监督。这点可以从后面的损失函数看出来。</p>
 <p>于是我们得知，每个边框由5个预测值组成，分别为$x,y,w,h,confidence$。</p>
 <p>同时每个网格预测一组 <strong>C 个类别的概率</strong> $Pr(Class_i|Object)$，即输出一组长度为 C 的概率向量。这个概率表示网格含有物体的情况下，各个类别属于该网格的概率。</p>
 <p>经过上述步骤，最终在神经网络末端输出一个$S×S×(B×5+C)$的张量。</p>
 <p><img src="https://s2.ax1x.com/2019/11/27/QCIFr6.png" alt="QCIFr6.png"></p>
 <p>测试时，将置信度和每一类概率相乘</p>
-<script type="math/tex; mode=display">
-Score=Pr(Class_i|Object)×Pr(Object)×IOU^{truth}_{pred}=Pr(Class_i)×IOU^{truth}_{pred}</script><p>得到的Score表示<strong>每一类在每个边框中的置信度(class-specific confidence for each box)</strong>。通过设置阈值筛选出得分高的box，再以的分最高的box为基准进行NMS选出最优结果。</p>
+<p>$$<br>Score=Pr(Class_i|Object)×Pr(Object)×IOU^{truth}<em>{pred}=Pr(Class_i)×IOU^{truth}</em>{pred}<br>$$</p>
+<p>得到的Score表示<strong>每一类在每个边框中的置信度(class-specific confidence for each box)</strong>。通过设置阈值筛选出得分高的box，再以的分最高的box为基准进行NMS选出最优结果。</p>
 <h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p>如图，在 PASCAL VOC 数据集中，图像输入为 448×448，取 S=7，B=2，一共有20 个类别（C=20），则输出就是 7x7x30 的一个 tensor。</p>
 <p><img src="https://s2.ax1x.com/2019/11/27/QCHg76.png" alt="QCHg76.png"></p>
 <p>可以看出这是一个<strong>彻头彻尾的端到端网络</strong>。看到这里可能会有点震惊，上面讲了那么多复杂的设定到头来居然只是个这么朴素的端到端网络？事实上，上面那么多设定大多都是来源于其巧妙设计的损失函数。</p>
@@ -466,14 +464,8 @@ Score=Pr(Class_i|Object)×Pr(Object)×IOU^{truth}_{pred}=Pr(Class_i)×IOU^{truth
 <li><strong>使用 k-means 聚类算法来选择锚框</strong>：手工选择的锚框可能对性能产生影响性能。作者使用k-means对训练集目标框进行聚类，以IOU为距离计算指标，即 $d = 1 - IOU$。在对性能和准确率进行衡量之后，选择了 $k = 5$，得出聚类结果的5个聚类中心作为锚框的最终选择（只取锚框的大小和形状，不取锚框的位置）。</li>
 <li><strong>Direct location prediction</strong>：在RPN中的锚框非常不稳定，其公式如下：</li>
 </ul>
-<script type="math/tex; mode=display">
-x=(t_x*w_a)−x_a\\y=(t_y*h_a)−y_a</script><p>$t_x$和$t_y$为预测值，当$t_x=1$时，预测框相比于原本的锚框将右移一整个锚框的宽度！YOLOv2对这种方法进行了改进：</p>
-<script type="math/tex; mode=display">
-b_x=σ(t_x)+c_x\\
-b_y=σ(t_y)+c_y\\
-b_w=p_we^{t_w}\\
-b_h=p_he^{t_h}\\
-Pr(object)*IOU(b,object)=σ(t_o)</script><p>$t_x,t_y,t_w,t_h,t_o$为预测值，被Sigmoid函数限制在(0,1)之间。之后再通过下图的一些运算得到最终box。在<strong>限制了预测值大小</strong>的情况下，模型参数会更容易学习。</p>
+<p>$$<br>x=(t_x<em>w_a)−x_a\y=(t_y</em>h_a)−y_a<br>$$</p>
+<p>$t_x$和$t_y$为预测值，当$t_x=1$时，预测框相比于原本的锚框将右移一整个锚框的宽度！YOLOv2对这种方法进行了改进：<br>$$<br>b_x=σ(t_x)+c_x\<br>b_y=σ(t_y)+c_y\<br>b_w=p_we^{t_w}\<br>b_h=p_he^{t_h}\<br>Pr(object)<em>IOU(b,object)=σ(t_o)<br>$$<br>$t_x,t_y,t_w,t_h,t_o$为预测值，被Sigmoid函数限制在(0,1)之间。之后再通过下图的一些运算得到最终box。在*</em>限制了预测值大小**的情况下，模型参数会更容易学习。</p>
 <p><img src="https://i.loli.net/2019/12/03/Pb7ZzNEjQhDtS4c.png" alt="RH.png"></p>
 <ul>
 <li><strong>Fine-Grained Features</strong>：为了能在小型目标上获得更好的效果，作者把浅层高分辨率的特征图叠加到深层低分辨率的图上了，但没详细说明，估计跟U-Net差不多吧。</li>
@@ -513,9 +505,9 @@ Pr(object)*IOU(b,object)=σ(t_o)</script><p>$t_x,t_y,t_w,t_h,t_o$为预测值，
       
         <div class="post-tags">
           
-            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
-          
             <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
           
             <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
           
@@ -640,7 +632,7 @@ Pr(object)*IOU(b,object)=σ(t_o)</script><p>$t_x,t_y,t_w,t_h,t_o$为预测值，
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -662,7 +654,7 @@ Pr(object)*IOU(b,object)=σ(t_o)</script><p>$t_x,t_y,t_w,t_h,t_o$为预测值，
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -766,7 +758,7 @@ Pr(object)*IOU(b,object)=σ(t_o)</script><p>$t_x,t_y,t_w,t_h,t_o$为预测值，
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.7k</span>
+    <span title="Site words total count">54k</span>
   
 </div>
 
