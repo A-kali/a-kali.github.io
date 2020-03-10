@@ -97,7 +97,7 @@
 <meta property="og:description" content="论文地址：AVEC 2019 Workshop and Challenge: State-of-Mind, Detecting Depression with AI, and Cross-Cultural Affect Recognition 1    Abstract视听情感挑战与工作坊(AVEC 2019)“心智状态、人工智能检测抑郁、跨文化情感识别”是第九届比赛，旨在将多媒体处理和机器学习方">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2020/02/01/teQ2Za9kod7L4M1.png">
-<meta property="og:updated_time" content="2020-03-02T12:44:08.016Z">
+<meta property="og:updated_time" content="2020-03-03T15:23:06.887Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文解读】Detecting Depression with AI (AVEC2019)">
 <meta name="twitter:description" content="论文地址：AVEC 2019 Workshop and Challenge: State-of-Mind, Detecting Depression with AI, and Cross-Cultural Affect Recognition 1    Abstract视听情感挑战与工作坊(AVEC 2019)“心智状态、人工智能检测抑郁、跨文化情感识别”是第九届比赛，旨在将多媒体处理和机器学习方">
@@ -401,11 +401,11 @@
 <p><img src="https://i.loli.net/2020/02/01/teQ2Za9kod7L4M1.png" alt="K_UZ`K8@_ADCD0_THOI_~35.png"></p>
 <h1 id="4-Baseline-Features"><a href="#4-Baseline-Features" class="headerlink" title="4    Baseline Features"></a>4    Baseline Features</h1><p>视听信号的情感识别通常依赖于特征集，这些特征集的提取基于近几十年来在视听信号处理领域的研究出来的特定技术，在语音方面有：<strong>梅尔倒频谱系数(Mel Frequency Cepstral Coefficients, MFCCs)</strong>；视觉方面则有：<strong>面部活动单元(Facial Action Units, FAUs)</strong>。</p>
 <h2 id="4-1-Expert-knowledge"><a href="#4-1-Expert-knowledge" class="headerlink" title="4.1    Expert-knowledge"></a>4.1    Expert-knowledge</h2><p>影响感知的传统方法是在固定时间内，通过一组滑动窗口计算的统计度量，来总结随时间变化的视听信号低水平描述符(low-level descriptors, LLDs)。</p>
-<p>在音频方面，我们计算了<strong>扩展GeMAPs特征集(extended Geneva Minimalistic Acoustic Parameter Set, eGeMAPS)</strong>，它包含88个覆盖上述声学维度，并在这里用作基线。除此之外，我们使用OpenSMILE工具包使MFCCs 1-13 的一阶和二阶导数被计算为一组声学LLDs。在视觉方面，我们使用openFace工具包提取每个视频帧的17个FAU强度，以及一个置信度。此外，还提取了姿态(pose)和凝视(gaze)的描述符。</p>
-<h2 id="4-2-Bags-of-Words"><a href="#4-2-Bags-of-Words" class="headerlink" title="4.2    Bags-of-Words"></a>4.2    Bags-of-Words</h2><p><strong>词袋(bags-of-words, BoW)</strong>技术起源于文本处理，它代表了LLD的分布。我们使用MFCCs和eGeMAPs数据集作为声学数据，FAU的强度作为视频数据。MFCCs和eGeMAPS的LLD是经过标准化处理的。</p>
+<p>在音频方面，我们计算了<strong>扩展GeMAPs特征集(extended Geneva Minimalistic Acoustic Parameter Set, eGeMAPS)</strong>，它包含88个覆盖上述声学维度，并在这里用作基线。除此之外，我们使用OpenSMILE工具包使MFCCs 1-13 的一阶和二阶差分被计算为一组声学LLDs。在视觉方面，我们使用openFace工具包提取每个视频帧的17个FAU强度，以及一个置信度。此外，还提取了姿态(pose)和凝视(gaze)的描述符。</p>
+<h2 id="4-2-Bags-of-Words"><a href="#4-2-Bags-of-Words" class="headerlink" title="4.2    Bags-of-Words"></a>4.2    Bags-of-Words</h2><p><strong>词袋(bags-of-words, BoW)</strong>技术起源于文本处理，它代表了LLD的分布。我们使用MFCCs和eGeMAPs特征集作为声学数据，FAU的强度作为视频数据。MFCCs和eGeMAPS的LLD是经过标准化处理的。</p>
 <p>为了生成BoW表示，声学和视觉特征都在长度为4s的音视频段上进行处理，对于SEWA数据集的每一段为100ms，对于USoM和E-DAIC数据集为1s。随机采样示例来构建字典，并从结果项频率中取对数以压缩它们的范围。整个跨模式BoW(XBoW)处理链是使用开源工具包openXBOW执行的。</p>
-<h2 id="4-3-Deep-Representations"><a href="#4-3-Deep-Representations" class="headerlink" title="4.3    Deep Representations"></a>4.3    Deep Representations</h2><p>在去年的挑战中，我们将深度光谱特征(Deep Spectrum features)作为一种基于深度学习的音频基线特征表示。深度光谱特征的灵感来自于图像处理中常见的深度表示学习范式：将语音实例的光谱图像输入到预先训练好的CNNs中，提取一组由此产生的激活值作为特征向量。</p>
-<p>在今年的挑战中，我们使用VGG-16、AlexNet、DenseNet-121和DenseNet-201四个鲁棒的预训练模型中提取了深度光谱特征；在AVEC 2019 CES上使用AlexNet纯粹是为了与之前的AVEC 2018 CES保持一致。语音文件首先被转换成具有128个mel频段的mel谱图图像，所有挑战语料库的窗口宽度为4s, USoM和E-DAIC数据集的跳数为1s, SEWA数据集的跳数为100ms。随后，基于频谱的图像通过预先训练的网络进行转发。然后，通过激活VGG-16和AlexNet中的第二个全连接层形成4096维的特征向量，通过激活DenseNet-121和DenseNet-201网络的最后一个平均池化层分别得到1024和1920维的特征向量。</p>
+<h2 id="4-3-Deep-Representations"><a href="#4-3-Deep-Representations" class="headerlink" title="4.3    Deep Representations"></a>4.3    Deep Representations</h2><p>在去年的挑战中，我们将深度频谱特征(Deep Spectrum features)作为一种基于深度学习的音频基线特征表示。深度频谱特征的灵感来自于图像处理中常见的深度表示学习范式：将语音实例的频谱图像输入到预先训练好的CNNs中，提取一组由此产生的激活值作为特征向量。</p>
+<p>在今年的挑战中，我们使用VGG-16、AlexNet、DenseNet-121和DenseNet-201四个鲁棒的预训练模型中提取了深度频谱特征；在AVEC 2019 CES上使用AlexNet纯粹是为了与之前的AVEC 2018 CES保持一致。语音文件首先被转换成具有128个mel频段的mel谱图图像，所有挑战语料库的窗口宽度为4s, USoM和E-DAIC数据集的跳数为1s, SEWA数据集的跳数为100ms。随后，基于频谱的图像通过预先训练的网络进行转发。然后，通过激活VGG-16和AlexNet中的第二个全连接层形成4096维的特征向量，通过激活DenseNet-121和DenseNet-201网络的最后一个平均池化层分别得到1024和1920维的特征向量。</p>
 <p>我们还提供了两个基线深度视觉表示，分别使用了VGG-16网络和ResNet-50网络，这两个网络都是使用Affwild数据集进行预训练的。首先应用openFace工具包来检测脸部区域，然后执行面部对齐。然后，我们冻结两个预先训练的模型的权重，并分别将对齐的脸部图像输入两个CNN。为了获得每个帧的深度表示，我们分别从预训练的VGG-16网络中提取第一个全连接层的输出，从预训练的ResNet-50网络中提取全局平均池化层的输出。因此，每一帧都提供了来自VGG的4096维深特征向量和来自ResNet的2048维深特征向量。</p>
 <h1 id="5-Baseline-System"><a href="#5-Baseline-System" class="headerlink" title="5    Baseline System"></a>5    Baseline System</h1><p>对于抑郁检测基线，我们使用单层64-d GRU作为我们的递归网络，其失步正规化率为20%，然后使用64-d全连通层获得单值回归评分。为了处理偏差，我们将PHQ-8分数标签转换为浮点数，方法是在培训之前按25的倍数缩小比例。使用CCC损失函数和评价分数对网络进行训练和评价，使用原始的PHQ量表报告RMSE结果。批处理大小为15的方法得到了一致的使用，并且在不同的特性集之间优化了学习率。为了使数据适合GPU内存，为会话分配了最大的序列长度。对于MFCCs和eGeMAPS LLDs，以及诸如DeepSpectrum、ResNet和VGG等高维深表示，使用的最大序列长度为20分钟。另外，对于ResNet、VGG和深度光谱表示帧，根据维数的不同，将保留两帧中的一帧或四帧中的一帧，以便将数据加载到内存中。融合不同的视听表现是通过平均他们的分数来实现的。</p>
 <p>DDS的基线结果见表6。结果表明，在开发集上，利用深度谱(DS-VGG)特征获取音频特征的最佳CCC评分，利用ResNet特征获取视觉特征的最佳CCC评分。这些结果表明表达的力量深层神经网络学习的大量数据时在不同的上下文中使用他们最初的设计,这是证实与ResNet视觉模型在测试集上实现最好的结果,尽管相对较低的CCC。</p>
@@ -686,7 +686,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">54k</span>
+    <span title="Site words total count">55.9k</span>
   
 </div>
 
