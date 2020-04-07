@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/02/04/AMvSXGaWkoDQr1d.png">
 <meta property="og:image" content="https://i.loli.net/2020/02/04/VKebGpFvu2qTNLd.png">
 <meta property="og:image" content="https://i.loli.net/2020/02/04/p9Gat8BS4V3ud1s.png">
-<meta property="og:updated_time" content="2020-02-04T10:18:57.331Z">
+<meta property="og:updated_time" content="2020-04-07T13:53:09.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文解读】Multimodal Fusion with Deep Neural Networks for Audio-Video Emotion Recognition">
 <meta name="twitter:description" content="摘要：本文提出了一种新的音频、视频和文本多模态融合用于情绪识别的深度神经网络。该DNN体系结构具有独立层和共享层，这些层旨在学习每种模态的表示，以及模态之间的最佳组合来得到最佳的预测结果。AVEC情绪数据集上的实验结果表明，与其他在特征水平上进行早期模式融合的先进系统相比，我们提出的DNN可以实现更高水平的一致性相关系数(Concordance Correlation Coefficient, C">
@@ -342,7 +342,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 3.6k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 3.8k字</span>
 
           
 
@@ -357,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.6k
+                  3.8k
                 </span>
               
 
@@ -407,12 +407,12 @@
 <p>尽管有精密的传感器和强大的技术，但在现实世界场景中开发精确的情绪识别模型仍面临一些挑战。在设计过程中，代表性数据的数量是有限的。假设识别模型是使用从特定条件下提取的有限数量的标记参考样本设计的。虽然许多音视频信号可以被捕获来设计识别模型，但它们需要昂贵的专家注释来创建大规模的数据集来检测唤醒和价态水平。在操作过程中，在操作域(即、受试者的办公室、家庭等)，在各种情况下。根据特定的捕捉条件和个体行为，面部和语音表情会随着时间发生显著的动态变化。因此，识别模型并不能代表操作域内模式的类内变化。实际上，任何分布上的变化(无论是域移位还是概念漂移)都会降低系统性能。识别模型需要对特定人员、传感器和计算设备以及操作环境进行校准和调整。</p>
 <p>众所周知，随着时间的推移，结合来自不同模式的时空信息可以提高鲁棒性和识别精度。模式也可以根据上下文或语义信息动态组合，例如记录环境中的噪声。例如，可以根据捕获条件在不同的层(分辨率)组合深度学习架构的输出响应。</p>
 <p>本文主要研究利用深度学习体系结构来生成精确的混合情感识别系统。例如，Kim等人提出了一种层次化的3级CNN结构来组合多模态源。DNNs被认为是学习具有特定目标的转换序列，以获得将在一个系统中组合的特征。由于特征级和分数级融合不一定能获得较高的精度，因此提出了一种混合方法，通过学习特征和分类器来优化多模态融合。</p>
-<h1 id="3-Multimodal-Fusion-with-Deep-NNs"><a href="#3-Multimodal-Fusion-with-Deep-NNs" class="headerlink" title="3    Multimodal Fusion with Deep NNs"></a>3    Multimodal Fusion with Deep NNs</h1><p>本文提出了一种新的高性价比的DNN结构，该结构可以从多个信息源中学习受试者行为与情绪状态之间的映射。鉴于随时间变化的微妙的模式在一个主题的脸和语音模式(和文本信息)的视听录音用希数据库,系统提出了学习功能表示,分类和融合功能准确预测主题的唤醒水平,价和喜欢。</p>
-<p>该方法的主要直觉是联合学习每一个判别表示法，以及它们的分类和融合函数。每个特征子集首先由一个或多个隐藏层独立处理。网络的这一部分学习给定任务的最佳特性表示。然后，每个块的最后隐藏层相互连接到一个或多个完全连接的层，这些层将执行表示的分类和融合。在全球范围内，这个网络应该学习如何转换输入特征，从而进行分类和组合，并产生一个全局决策。训练一个混合分类器来组合这些特征可以提高识别系统的整体精度。该架构利用了三种不同的信息来源——音频(语音)、视频(脸部)和文本。有关特性集的详细信息，请参阅[20]。</p>
-<p>1)音频特征:声学特征由23个声学低电平描述符(lld)组成，如能量、频谱和倒频谱、音高、音质和微韵律特征，在一个短期帧内每10ms提取一次。使用一个包含1000个音频单词的编码书，在6秒的时间段里计算分段级声学特征，并创建音频单词的直方图。因此，得到的特征向量有1000维。</p>
-<p>2)视频特征:每帧(帧步20ms)提取视频特征，包括三种特征类型:按度数归一化的人脸方向;10个视点的像素坐标;49个面部地标的像素坐标。每个带有独立码本和直方图的袋装视频单词被创建为三个面部特征类型，每个码本的大小为1000，产生一个3000维的节段级特征向量。</p>
-<p>3)文本特征:文本特征是基于语音转录的袋装词特征表示。该词典包含521个单词，其中只考虑了一元语法(unigram)。在一段6秒的时间内创建的直方图。总的来说，文本包(BoTW)特性包含521个特性。</p>
-<h2 id="3-1-DNN-Architecture"><a href="#3-1-DNN-Architecture" class="headerlink" title="3.1    DNN Architecture"></a>3.1    DNN Architecture</h2><p>所提出的多模态融合的DNN体系结构如图所示。DNN对每个模态使用一对全连接的层分别处理音频、视频和文本，以生成和探索同一类型特征之间的相关性。然后，第二阶段(b)使用连接函数合并这些独立层的输出。该层在一个块中接收前一步的输出，并提供一个与模式的本质相关联的全连接层(c)。DNN输出由单个线性神经元(d)产生，作为整个网络的回归值。最后，利用标度模(e)来缩小预测量与标签量之间的差距。不同的标度函数被认为是最好的结果-小数标度，最小最大归一化和标准差标度。最终的预测(f)通过线性函数(前一层的加权和)产生。</p>
+<h1 id="3-Multimodal-Fusion-with-Deep-NNs"><a href="#3-Multimodal-Fusion-with-Deep-NNs" class="headerlink" title="3    Multimodal Fusion with Deep NNs"></a>3    Multimodal Fusion with Deep NNs</h1><p>本文提出了一种高效的的DNN结构，该结构可以从多个信息源中学习受试者行为与情绪状态之间的映射。对于给定的时序面部和语音模态（包括文本信息）的AVEC SEWA 数据库，本系统旨在从中学习特征表示、分类和融合以对影本进行准确地预测。</p>
+<p>该方法的主要内容在于联合学习每一个判别表示，以及它们的分类和融合函数。每个特征子集首先由一个或多个隐藏层独立处理。网络的这一部分学习给定模态的最佳特征表示。然后，每个块的最后隐藏层相互连接到一个或多个完全连接的层，这些层将进行特征的分类和融合。从全局的角度来看，这个网络应该学习如何转换输入特征，从而进行分类和融合，并产生一个全局决策。训练一个混合分类器来组合这些特征可以提高识别系统的整体精度。该架构使用了三种不同的信息来源——音频（语音）、视频（脸部）和文本。有关特性集的详细信息，请参阅[20]。</p>
+<p>1)音频特征：声学特征由23个声学LLD组成，如能量、频谱和倒频谱、音高、音质和微韵律特征，每10ms的短帧提取一次。使用一个包含1000个音频单词的编码书，在6秒的时间段里计算分段级声学特征，并创建音频单词的直方图。因此，得到的特征向量有1000维。</p>
+<p>2)视频特征：每帧（帧步20ms）提取视频特征，包括三种特征类型：按度数归一化的人脸方向；10个视点的像素坐标；49个面部标志的像素坐标。每个带有独立码本和直方图的BoVW被创建为三个面部特征类型，每个码本的大小为1000，产生一个3000维的节段级特征向量。</p>
+<p>3)文本特征：文本特征是基于语音转录的词袋特征表示。该词典包含521个单词，其中只考虑了一元语法（unigram）。在一段6秒的时间内创建的直方图。总的来说，文本包(BoTW)包含521个特征。</p>
+<h2 id="3-1-DNN-Architecture"><a href="#3-1-DNN-Architecture" class="headerlink" title="3.1    DNN Architecture"></a>3.1    DNN Architecture</h2><p>所提出的多模态融合的DNN体系结构如图所示。DNN对每个模态使用一对全连接层分别处理音频、视频和文本，以生成和探索同一类型特征之间的相关性。然后，第二阶段(b)合并这些独立层的输出。该层在一个块中接收前一步的输出，并提供一个与模式的本质相关联的全连接层(c)。DNN输出由单个线性神经元(d)产生，作为整个网络的回归值。最后，利用标度模(e)来缩小预测量与标签量之间的差距。不同的标度函数被认为是最好的结果-小数标度，最小最大归一化和标准差标度。最终的预测(f)通过线性函数(前一层的加权和)产生。</p>
 <p><img src="https://i.loli.net/2020/02/04/AMvSXGaWkoDQr1d.png" alt="E@CC6K8WWH9YLDBW7UAALCT.png"></p>
 <h1 id="4-Experimental-Methodology"><a href="#4-Experimental-Methodology" class="headerlink" title="4    Experimental Methodology"></a>4    Experimental Methodology</h1><p>RECOLA数据集包括一个训练集和一个开发集(development set)。在本研究的实验中，开发集被分为两个子集。第一个包含从开发集的14份数据中随机选择的5个数据。剩下的数据作为测试集来评估方法的性能。</p>
 <p>在SVR实验中，原始提案被用于建立单峰和早期融合系统。后融合方法使用第一个开发子集来优化每个单模系统。使用第二个开发子集对融合函数进行了优化。</p>
@@ -421,8 +421,7 @@
 <p><img src="https://i.loli.net/2020/02/04/VKebGpFvu2qTNLd.png" alt="_1VUA87A@T_2AO9_Y9_4_OI.png"></p>
 <h2 id="4-1-Preprocessing"><a href="#4-1-Preprocessing" class="headerlink" title="4.1    Preprocessing"></a>4.1    Preprocessing</h2><p>当应用延迟补偿函数时，CCC评分的结果有显著的提高。图2显示了CCC随延迟的变化。</p>
 <p><img src="https://i.loli.net/2020/02/04/p9Gat8BS4V3ud1s.png" alt="Y__AZX_RMMEY_8~AES`42H3.png"></p>
-<p>## </p>
-<p>看到这里我意识到这是篇水文，懒得继续看了</p>
+<h1 id="5-Conclusion-and-Future-Work"><a href="#5-Conclusion-and-Future-Work" class="headerlink" title="5    Conclusion and Future Work"></a>5    Conclusion and Future Work</h1><p>本文提出了一种新的DNN结构来预测情绪状态。它融合了三种不同的模态：音频信号、面部特征和音频信号的对话文本。每个模态首先由两个全连接层独立编码，然后合并成一个单一的表示，然后用于估计主体的情绪状态。该网络以端到端方式训练，提供比其他提出的架构更高的CCC。通过对输入特征进行适当的归一化，并对回归的输出进行时间平滑处理，可以期望得到进一步的改进。对于未来的工作，我们计划扩展我们的工作，包括一个基于递归神经网络的最后阶段，它可以学习情绪的时间模式，从而提高整个系统的准确性。此外，我们还将评估从明确训练的卷积神经网络中提取的视觉特征的性能。</p>
 
       
     </div>
@@ -656,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1    Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Related-Work"><span class="nav-number">2.</span> <span class="nav-text">2    Related Work</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Multimodal-Fusion-with-Deep-NNs"><span class="nav-number">3.</span> <span class="nav-text">3    Multimodal Fusion with Deep NNs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-DNN-Architecture"><span class="nav-number">3.1.</span> <span class="nav-text">3.1    DNN Architecture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Experimental-Methodology"><span class="nav-number">4.</span> <span class="nav-text">4    Experimental Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Preprocessing"><span class="nav-number">4.1.</span> <span class="nav-text">4.1    Preprocessing</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1    Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Related-Work"><span class="nav-number">2.</span> <span class="nav-text">2    Related Work</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Multimodal-Fusion-with-Deep-NNs"><span class="nav-number">3.</span> <span class="nav-text">3    Multimodal Fusion with Deep NNs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-DNN-Architecture"><span class="nav-number">3.1.</span> <span class="nav-text">3.1    DNN Architecture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Experimental-Methodology"><span class="nav-number">4.</span> <span class="nav-text">4    Experimental Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Preprocessing"><span class="nav-number">4.1.</span> <span class="nav-text">4.1    Preprocessing</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Conclusion-and-Future-Work"><span class="nav-number">5.</span> <span class="nav-text">5    Conclusion and Future Work</span></a></li></ol></div>
             
 
           </div>
@@ -698,7 +697,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">56.4k</span>
+    <span title="Site words total count">56.6k</span>
   
 </div>
 
