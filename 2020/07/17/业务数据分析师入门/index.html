@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据分析,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="某科学のBLOG" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="1    数据分析概念、作用和步骤数据分析是指用适当的统计方法对收集来的大量数据进行分析，将他们加以汇总和理解并消化，以求最大化地开发数据的功能，发挥数据的作用。 数据分析的作用：  现状分析：企业运营情况、业务发展。通常使用日报、月报来完成。 原因分析：在现状上展开原因分析，通常使用专题分析来完成。 预测分析：对企业发展趋势做预测，为企业提供参考和决策依据。  数据分析的步骤：  明确分析目的和">
+<meta name="keywords" content="数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="业务数据分析师入门">
+<meta property="og:url" content="http://a-kali.github.io/2020/07/17/业务数据分析师入门/index.html">
+<meta property="og:site_name" content="某科学のBLOG">
+<meta property="og:description" content="1    数据分析概念、作用和步骤数据分析是指用适当的统计方法对收集来的大量数据进行分析，将他们加以汇总和理解并消化，以求最大化地开发数据的功能，发挥数据的作用。 数据分析的作用：  现状分析：企业运营情况、业务发展。通常使用日报、月报来完成。 原因分析：在现状上展开原因分析，通常使用专题分析来完成。 预测分析：对企业发展趋势做预测，为企业提供参考和决策依据。  数据分析的步骤：  明确分析目的和">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/mUvrcf5yDjSgQYL.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/8hiW9d2t4DN6pPg.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/rHb25QgRoEukc13.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/KUDOub7vPJ5ZSdh.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/m6SlcrROhxHqi71.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/ZQfzjATtUWeupEO.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/YFLxZ91EAJrWcf5.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/NXEUSLAfxFCyhr2.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/thQ7YKC2PgEkpRA.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/yQDGZrlNw2uRk8P.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/WCUdyFXJHxpl2Sw.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/YgKNH75vTlp9UeQ.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/lPu4S6imsHEaY3G.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/HeV5PzsAmir2gpR.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/9DWL2VoxKpZwJsR.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/cUNn8bHgLjXBJhp.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/TieQ2JuEaODytkg.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/1MjT3GmWYsHeDtl.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/kO5VWU74otcK2Fj.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/WoRqaPCTliugHfI.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/IBUNDniwFX2gm59.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/tGmynaOofjDg14A.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/X4LSfPsdbxJ1EzB.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/rsoViW5gzMTZwqx.png">
+<meta property="og:updated_time" content="2020-07-17T05:45:08.303Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="业务数据分析师入门">
+<meta name="twitter:description" content="1    数据分析概念、作用和步骤数据分析是指用适当的统计方法对收集来的大量数据进行分析，将他们加以汇总和理解并消化，以求最大化地开发数据的功能，发挥数据的作用。 数据分析的作用：  现状分析：企业运营情况、业务发展。通常使用日报、月报来完成。 原因分析：在现状上展开原因分析，通常使用专题分析来完成。 预测分析：对企业发展趋势做预测，为企业提供参考和决策依据。  数据分析的步骤：  明确分析目的和">
+<meta name="twitter:image" content="https://i.loli.net/2020/07/12/mUvrcf5yDjSgQYL.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":18,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://a-kali.github.io/2020/07/17/业务数据分析师入门/">
+
+
+
+
+
+  <title>业务数据分析师入门 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/A-kali/a-kali.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">某科学のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">与其感慨路难行，不如马上出发</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2020/07/17/业务数据分析师入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hsaki">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某科学のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">业务数据分析师入门</h1>
+        
+
+        <div class="post-meta">
+		          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T13:44:12+08:00">
+                2020-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+			
+			<span class="post-meta-divider">|</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.8k字</span>
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  60分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-数据分析概念、作用和步骤"><a href="#1-数据分析概念、作用和步骤" class="headerlink" title="1    数据分析概念、作用和步骤"></a>1    数据分析概念、作用和步骤</h1><p><strong>数据分析</strong>是指用适当的统计方法对收集来的大量数据进行分析，将他们加以汇总和理解并消化，以求最大化地开发数据的功能，发挥数据的作用。</p>
+<p>数据分析的<strong>作用</strong>：</p>
+<ul>
+<li>现状分析：企业运营情况、业务发展。通常使用日报、月报来完成。</li>
+<li>原因分析：在现状上展开原因分析，通常使用专题分析来完成。</li>
+<li>预测分析：对企业发展趋势做预测，为企业提供参考和决策依据。</li>
+</ul>
+<p>数据分析的<strong>步骤</strong>：</p>
+<ol>
+<li>明确分析目的和思路：目的、思路、分析框架（如PEST）、体系化；</li>
+<li>数据收集：数据库、出版物、互联网、市场调查；</li>
+<li>数据处理：整理成适合数据分析的形式；</li>
+<li>数据分析：将数据整理分析成结论，数据挖掘是一类高级的数据分析方法；</li>
+<li>数据展现：表格、图像；</li>
+<li>撰写报告：分析、结论、建议或解决方法。</li>
+</ol>
+<h1 id="2-数据分析方法论"><a href="#2-数据分析方法论" class="headerlink" title="2    数据分析方法论"></a>2    数据分析方法论</h1><p>确定分析思路以营销、管理等理论为指导，一般把这些数据分析相关的营销、管理等理论统称为<strong>数据分析方法论</strong>。</p>
+<h2 id="PEST分析法"><a href="#PEST分析法" class="headerlink" title="PEST分析法"></a>PEST分析法</h2><p><a href="https://baike.baidu.com/item/PEST/10805117?fr=aladdin" target="_blank" rel="noopener">PEST</a>是指对<strong>政治（Political）、经济（Economic）、技术（Technological）和社会（Social）</strong>这四类影响企业的主要外部环境因素进行分析。</p>
+<ul>
+<li>政治：新政策，经济政策，市场道德标准，文化宗教等；</li>
+<li>经济：社会经济结构，经济发展水平，经济体制，经济状况等；</li>
+<li>社会：人口，流动性，消费心理，生活方式变化，价值观等；</li>
+<li>技术：新技术的发明、传播等。</li>
+</ul>
+<h2 id="5W2H分析法"><a href="#5W2H分析法" class="headerlink" title="5W2H分析法"></a>5W2H分析法</h2><p>5W2H分析法是从回答中发现解决问题的线索的方法，广泛应用于企业营销管理活动等方面。</p>
+<p><img src="https://i.loli.net/2020/07/12/mUvrcf5yDjSgQYL.png" alt></p>
+<h2 id="逻辑树分析法"><a href="#逻辑树分析法" class="headerlink" title="逻辑树分析法"></a>逻辑树分析法</h2><p>逻辑树分析法是将一个已知问题当成树干，然后考虑这个问题和哪些问题相关。每想到一个问题就可以在所在树干下加一个树枝，并表明树枝代表什么问题。以此来将问题逐步分解。</p>
+<p><img src="https://i.loli.net/2020/07/12/8hiW9d2t4DN6pPg.png" alt="image.png"></p>
+<h2 id="4P营销理论"><a href="#4P营销理论" class="headerlink" title="4P营销理论"></a>4P营销理论</h2><p>4P营销理论将营销要素概括为如下四类：<strong>产品（Product）、价格（Price）、促销（Promotion）、渠道（Place）</strong>。如果要了解公司的整体运营情况，就可以采用4P营销理论进行分析指导。</p>
+<p><img src="https://i.loli.net/2020/07/12/rHb25QgRoEukc13.png" alt="image.png"></p>
+<h2 id="用户使用行为理论"><a href="#用户使用行为理论" class="headerlink" title="用户使用行为理论"></a>用户使用行为理论</h2><p> 用户使用行为是指用户行为获取、使用物品或服务所采取的各种行动，一般按照以下过程：<strong>认知产品、熟悉、试用、使用、成为忠实用户</strong>。</p>
+<p><img src="https://i.loli.net/2020/07/12/KUDOub7vPJ5ZSdh.png" alt="image.png"></p>
+<h1 id="3-常用数据分析方法"><a href="#3-常用数据分析方法" class="headerlink" title="3    常用数据分析方法"></a>3    常用数据分析方法</h1><h2 id="对比分析法"><a href="#对比分析法" class="headerlink" title="对比分析法"></a>对比分析法</h2><p>将两个或两个以上的数据进行比较，分析其中差异。包括与目标值对比、不同时期对比、同级别对比、行业内对比、活动效果对比。</p>
+<h2 id="分组分析法"><a href="#分组分析法" class="headerlink" title="分组分析法"></a>分组分析法</h2><p><img src="https://i.loli.net/2020/07/12/m6SlcrROhxHqi71.png" alt="image.png"></p>
+<h2 id="结构分析法"><a href="#结构分析法" class="headerlink" title="结构分析法"></a>结构分析法</h2><p><img src="https://i.loli.net/2020/07/12/ZQfzjATtUWeupEO.png" alt="image.png"></p>
+<h2 id="平均分析法"><a href="#平均分析法" class="headerlink" title="平均分析法"></a>平均分析法</h2><p><img src="https://i.loli.net/2020/07/12/YFLxZ91EAJrWcf5.png" alt="image.png"></p>
+<h2 id="杜邦分析法"><a href="#杜邦分析法" class="headerlink" title="杜邦分析法"></a>杜邦分析法</h2><p>杜邦分析法是利用主要<strong>财务指标</strong>之间的内在联系，对企业财务状况以及经济效益进行综合分析评价的方法。</p>
+<p>![image-20200712161837746](C:\Users\STEVE JOBS\AppData\Roaming\Typora\typora-user-images\image-20200712161837746.png)</p>
+<h2 id="漏斗图分析法"><a href="#漏斗图分析法" class="headerlink" title="漏斗图分析法"></a>漏斗图分析法</h2><p>漏斗图是一个适合业务流程比较规范、周期比较长、各流程环节涉及复杂业务比较多的管理分析工具。漏斗图能很快在复杂的环节中找出主要因素。</p>
+<p><img src="https://i.loli.net/2020/07/12/NXEUSLAfxFCyhr2.png" alt="image.png"></p>
+<h1 id="4-数据图表讲解"><a href="#4-数据图表讲解" class="headerlink" title="4    数据图表讲解"></a>4    数据图表讲解</h1><p><strong>选择恰当的图表（重要）：</strong></p>
+<p><img src="https://i.loli.net/2020/07/12/thQ7YKC2PgEkpRA.png" alt="image.png"></p>
+<h2 id="展现数据的表格技巧"><a href="#展现数据的表格技巧" class="headerlink" title="展现数据的表格技巧"></a>展现数据的表格技巧</h2><ol>
+<li>突出显示单元格：对满足条件的单元格突出显示。（Excel：开始-样式-条件格式-突出显示单元格规则）</li>
+<li>项目选取： 同上。（Excel：开始-样式-条件格式-项目选取规则）</li>
+<li>数据条： 在表格单元格中显示柱状图，直观显示数值大小。（Excel：开始-样式-条件格式-数据条）</li>
+<li>图标集：对数值分类，不同类别数值显示不同图标。（Excel：开始-样式-条件格式-图标样式）</li>
+</ol>
+<p>效果图：</p>
+<p><img src="https://i.loli.net/2020/07/12/yQDGZrlNw2uRk8P.png" alt="image.png"></p>
+<h2 id="各种图表展示"><a href="#各种图表展示" class="headerlink" title="各种图表展示"></a>各种图表展示</h2><p><img src="https://i.loli.net/2020/07/12/WCUdyFXJHxpl2Sw.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/07/12/YgKNH75vTlp9UeQ.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/07/12/lPu4S6imsHEaY3G.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/07/12/HeV5PzsAmir2gpR.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/07/12/9DWL2VoxKpZwJsR.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/07/12/cUNn8bHgLjXBJhp.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/07/12/TieQ2JuEaODytkg.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/07/12/1MjT3GmWYsHeDtl.png" alt="image.png"></p>
+<h1 id="5-数据关键指标"><a href="#5-数据关键指标" class="headerlink" title="5    数据关键指标"></a>5    数据关键指标</h1><h2 id="5-1-产品经理常用数据指标（KPI）"><a href="#5-1-产品经理常用数据指标（KPI）" class="headerlink" title="5.1    产品经理常用数据指标（KPI）"></a>5.1    产品经理常用数据指标（KPI）</h2><p><img src="https://i.loli.net/2020/07/12/kO5VWU74otcK2Fj.png" alt="image.png"></p>
+<h2 id="5-2-电商类网站分析指标"><a href="#5-2-电商类网站分析指标" class="headerlink" title="5.2    电商类网站分析指标"></a>5.2    电商类网站分析指标</h2><p><img src="https://i.loli.net/2020/07/12/WoRqaPCTliugHfI.png" alt="image.png"></p>
+<h3 id="5-2-1-内容指标"><a href="#5-2-1-内容指标" class="headerlink" title="5.2.1    内容指标"></a>5.2.1    内容指标</h3><p><strong>转化率</strong>：转化率 = 进行了相应动作的访问量 / 总访问量。用于衡量网站内容对访问者的吸引程度和网站的宣传效果。</p>
+<p><strong>回访者比率</strong>：转化率 = 回访者数 / 独立访问者数。衡量网站内容对访问者的吸引程度和网站实用性，你的网站是否有令人感兴趣的内容使访问者再次访问你的网站。</p>
+<ul>
+<li>积极回访者比率：积极回访者比率 = 访问超过11页的用户 / 总访问数。衡量有多少访问者度网站内容高度感兴趣。</li>
+<li>忠实访问者比率：忠实访问者比率 = 访问时间在xx分钟以上的用户 / 总访问数。</li>
+</ul>
+<p><strong>忠实访问者指数</strong>：忠实访问者指数 = 大于xx分钟的访问页数 / 大于xx分钟的访问者数。衡量“忠实访问者”是否真的在浏览页面。</p>
+<p>忠实访问者量：忠实访问者量 = 大于xx分钟的访问页数 / 总访问页数。表现该网站是否吸引了错误的访问者。</p>
+<p>访问者参与指数：访问者参与指数 = 总访问数 / 独立访问者数。</p>
+<p><strong>回弹率</strong>：回弹率 = 只访问了一页的访问数 / 总访问数。表示访问者只看到了一页的比率。如果这个指标高则表明可能网页布局需要优化。</p>
+<p>浏览用户相关：</p>
+<ul>
+<li>浏览用户比率：少于1分钟的访问者数 / 总访问数。</li>
+<li>浏览用户指数：少于1分钟的访问页数 / 少于1分钟的访问者数。</li>
+<li>浏览用户量：少于1分钟的浏览页数 / 所有浏览页数。</li>
+</ul>
+<h3 id="5-2-2-商业指标"><a href="#5-2-2-商业指标" class="headerlink" title="5.2.2    商业指标"></a>5.2.2    商业指标</h3><p><img src="https://i.loli.net/2020/07/12/IBUNDniwFX2gm59.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/07/12/tGmynaOofjDg14A.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/07/12/X4LSfPsdbxJ1EzB.png" alt="image.png"></p>
+<h3 id="5-2-3-其它指标"><a href="#5-2-3-其它指标" class="headerlink" title="5.2.3    其它指标"></a>5.2.3    其它指标</h3><p><img src="https://i.loli.net/2020/07/12/rsoViW5gzMTZwqx.png" alt="image.png"></p>
+<h1 id="6-数据分析报告"><a href="#6-数据分析报告" class="headerlink" title="6    数据分析报告"></a>6    数据分析报告</h1><p><strong>数据分析报告</strong>是根据数据分析方法，运用数据来反映某项事物的结论，并提出解决办法的分析应用文体。</p>
+<p>数据分析报告的<strong>原则</strong>：</p>
+<ul>
+<li>规范性：术语规范；</li>
+<li>重要性：选取重要的、关键的指标；</li>
+<li>谨慎性：真实、严谨、实事求是；</li>
+<li>创新性：特征挖掘。</li>
+</ul>
+<p>数据分析报告的<strong>作用</strong>：展示分析结果、验证分析质量、提供决策参考。</p>
+<p>数据分析报告的<strong>种类</strong>：专题分析报告（单一性、深入性）、综合分析报告（全面性、联系性）、日常数据通报（进度性、规范性、时效性）。</p>
+<p><strong>数据分析报告的构成</strong>：</p>
+<ul>
+<li>标题页：简洁的标题；</li>
+<li>目录；</li>
+<li>前言：分析背景、分析目的、分析思路；</li>
+<li>正文：通过图表和文字系统全面地表述分析的过程和结果，表明所有数据分析事实和观点，各部分之间具有逻辑关系。</li>
+<li>结论和建议；</li>
+<li>附录：名词解释、计算方法、原始数据等。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据分析/" rel="tag"><i class="fa fa-tag"></i> 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/04/证券投资概述/" rel="next" title="证券投资概述">
+                <i class="fa fa-chevron-left"></i> 证券投资概述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Hsaki">
+            
+              <p class="site-author-name" itemprop="name">Hsaki</p>
+              <p class="site-description motion-element" itemprop="description">橘猫最爱的煎饼狗子!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/a-kali" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hsaki@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/hsakizero" target="_blank" title="Kaggle">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>Kaggle</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-数据分析概念、作用和步骤"><span class="nav-number">1.</span> <span class="nav-text">1    数据分析概念、作用和步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-数据分析方法论"><span class="nav-number">2.</span> <span class="nav-text">2    数据分析方法论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PEST分析法"><span class="nav-number">2.1.</span> <span class="nav-text">PEST分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5W2H分析法"><span class="nav-number">2.2.</span> <span class="nav-text">5W2H分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑树分析法"><span class="nav-number">2.3.</span> <span class="nav-text">逻辑树分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4P营销理论"><span class="nav-number">2.4.</span> <span class="nav-text">4P营销理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户使用行为理论"><span class="nav-number">2.5.</span> <span class="nav-text">用户使用行为理论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-常用数据分析方法"><span class="nav-number">3.</span> <span class="nav-text">3    常用数据分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对比分析法"><span class="nav-number">3.1.</span> <span class="nav-text">对比分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组分析法"><span class="nav-number">3.2.</span> <span class="nav-text">分组分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构分析法"><span class="nav-number">3.3.</span> <span class="nav-text">结构分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平均分析法"><span class="nav-number">3.4.</span> <span class="nav-text">平均分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杜邦分析法"><span class="nav-number">3.5.</span> <span class="nav-text">杜邦分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏斗图分析法"><span class="nav-number">3.6.</span> <span class="nav-text">漏斗图分析法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-数据图表讲解"><span class="nav-number">4.</span> <span class="nav-text">4    数据图表讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#展现数据的表格技巧"><span class="nav-number">4.1.</span> <span class="nav-text">展现数据的表格技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种图表展示"><span class="nav-number">4.2.</span> <span class="nav-text">各种图表展示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-数据关键指标"><span class="nav-number">5.</span> <span class="nav-text">5    数据关键指标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-产品经理常用数据指标（KPI）"><span class="nav-number">5.1.</span> <span class="nav-text">5.1    产品经理常用数据指标（KPI）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-电商类网站分析指标"><span class="nav-number">5.2.</span> <span class="nav-text">5.2    电商类网站分析指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-内容指标"><span class="nav-number">5.2.1.</span> <span class="nav-text">5.2.1    内容指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-商业指标"><span class="nav-number">5.2.2.</span> <span class="nav-text">5.2.2    商业指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-其它指标"><span class="nav-number">5.2.3.</span> <span class="nav-text">5.2.3    其它指标</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-数据分析报告"><span class="nav-number">6.</span> <span class="nav-text">6    数据分析报告</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hsaki</span>
+<div class="powered-by">
+</div>
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">63k</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
