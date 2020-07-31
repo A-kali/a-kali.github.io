@@ -88,19 +88,19 @@
 
 
 
-<meta name="description" content="Q：Dropout是失活神经元还是失活连接 A：失活神经元并清除失活神经元周围的连接">
+<meta name="description" content="Q：Dropout是失活神经元还是失活连接 A：失活神经元并清除失活神经元周围的连接  Q：Dropout为什么能缓解过拟合？  模型集成说：dropout相当于生成了若干更瘦小的神经网络。对于N个神经元的神经网络来说，dropout可以看做2的N次方个共享某些参数模型的集成（N等于全连接层的神经元的数量）。Dropout率等于0.5时效果最好，因为0.5时随机生成的网络结构最多。模型集成“取平均">
 <meta name="keywords" content="计算机视觉,神经网络,机器学习,图像处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="部分计算机视觉算法面试题解答">
 <meta property="og:url" content="http://a-kali.github.io/2019/12/02/部分计算机视觉算法面试题解答/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="Q：Dropout是失活神经元还是失活连接 A：失活神经元并清除失活神经元周围的连接">
+<meta property="og:description" content="Q：Dropout是失活神经元还是失活连接 A：失活神经元并清除失活神经元周围的连接  Q：Dropout为什么能缓解过拟合？  模型集成说：dropout相当于生成了若干更瘦小的神经网络。对于N个神经元的神经网络来说，dropout可以看做2的N次方个共享某些参数模型的集成（N等于全连接层的神经元的数量）。Dropout率等于0.5时效果最好，因为0.5时随机生成的网络结构最多。模型集成“取平均">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/02/Qm4Aht.md.png">
-<meta property="og:updated_time" content="2019-12-01T17:15:59.062Z">
+<meta property="og:updated_time" content="2020-07-31T15:58:12.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="部分计算机视觉算法面试题解答">
-<meta name="twitter:description" content="Q：Dropout是失活神经元还是失活连接 A：失活神经元并清除失活神经元周围的连接">
+<meta name="twitter:description" content="Q：Dropout是失活神经元还是失活连接 A：失活神经元并清除失活神经元周围的连接  Q：Dropout为什么能缓解过拟合？  模型集成说：dropout相当于生成了若干更瘦小的神经网络。对于N个神经元的神经网络来说，dropout可以看做2的N次方个共享某些参数模型的集成（N等于全连接层的神经元的数量）。Dropout率等于0.5时效果最好，因为0.5时随机生成的网络结构最多。模型集成“取平均">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/12/02/Qm4Aht.md.png">
 
 
@@ -340,7 +340,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 33字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 268字</span>
 
           
 
@@ -355,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  33
+                  268
                 </span>
               
 
@@ -395,6 +395,11 @@
         <p><strong>Q：Dropout是失活神经元还是失活连接</strong></p>
 <p>A：失活神经元并清除失活神经元周围的连接</p>
 <p><a href="https://imgse.com/i/Qm4Aht" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/02/Qm4Aht.md.png" alt="Qm4Aht.md.png"></a></p>
+<p><strong>Q：Dropout为什么能缓解过拟合？</strong></p>
+<ol>
+<li><strong>模型集成说</strong>：dropout相当于生成了若干更瘦小的神经网络。对于N个神经元的神经网络来说，<strong>dropout可以看做2的N次方个共享某些参数模型的集成</strong>（N等于全连接层的神经元的数量）。Dropout率等于0.5时效果最好，因为0.5时随机生成的网络结构最多。模型集成“取平均”让一些“相反的”拟合互相抵消。相互依赖的大部队（神经网络）不能适应各种各样的变化，应变能力不强，容易团灭，但dropout一些神经元后就像打游击战了，很灵活，可以对付各种情况。</li>
+<li><strong>强制协同工作说</strong>：强迫每个神经元每次和随机挑选出来的不同神经元共同工作，减弱了神经元节点间的联合适应依赖性。</li>
+</ol>
 
       
     </div>
@@ -647,7 +652,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">63k</span>
+    <span title="Site words total count">63.2k</span>
   
 </div>
 
