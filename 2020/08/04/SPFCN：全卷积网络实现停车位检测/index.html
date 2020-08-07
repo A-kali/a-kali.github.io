@@ -88,22 +88,23 @@
 
 
 
-<meta name="description" content="论文：SPFCN: Select and Prune the Fully Convolutional Networks for Real-time Parking Slot Detection Github：https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection 摘要：对于配备自动停车系统的车辆，车位检测的准确性和速度是至关重要的。本文提出">
+<meta name="description" content="论文：SPFCN: Select and Prune the Fully Convolutional Networks for Real-time Parking Slot Detection Github：https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection 1    Abstract摘要：对于配备自动停车系统的车辆，车位检测的准确性和">
 <meta name="keywords" content="计算机视觉,全卷积网络,自动驾驶">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SPFCN：全卷积网络实现停车位检测">
 <meta property="og:url" content="http://a-kali.github.io/2020/08/04/SPFCN：全卷积网络实现停车位检测/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="论文：SPFCN: Select and Prune the Fully Convolutional Networks for Real-time Parking Slot Detection Github：https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection 摘要：对于配备自动停车系统的车辆，车位检测的准确性和速度是至关重要的。本文提出">
+<meta property="og:description" content="论文：SPFCN: Select and Prune the Fully Convolutional Networks for Real-time Parking Slot Detection Github：https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection 1    Abstract摘要：对于配备自动停车系统的车辆，车位检测的准确性和">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2020/08/04/PQqr8x3LBTjpStO.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/04/JGntQPWVTpEKy2H.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/04/Us6pSbQlrJyvOE4.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/04/snCaumJKZ2qb9Ve.png">
-<meta property="og:updated_time" content="2020-08-04T15:34:39.661Z">
+<meta property="og:image" content="https://i.loli.net/2020/08/05/6zqsPuD5icKgjZx.png">
+<meta property="og:updated_time" content="2020-08-07T13:00:42.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SPFCN：全卷积网络实现停车位检测">
-<meta name="twitter:description" content="论文：SPFCN: Select and Prune the Fully Convolutional Networks for Real-time Parking Slot Detection Github：https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection 摘要：对于配备自动停车系统的车辆，车位检测的准确性和速度是至关重要的。本文提出">
+<meta name="twitter:description" content="论文：SPFCN: Select and Prune the Fully Convolutional Networks for Real-time Parking Slot Detection Github：https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection 1    Abstract摘要：对于配备自动停车系统的车辆，车位检测的准确性和">
 <meta name="twitter:image" content="https://i.loli.net/2020/08/04/PQqr8x3LBTjpStO.png">
 
 
@@ -365,7 +366,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 562字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 787字</span>
 
           
 
@@ -380,7 +381,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  562
+                  787
                 </span>
               
 
@@ -419,20 +420,24 @@
       
         <p>论文：SPFCN: Select and Prune the Fully Convolutional Networks for Real-time Parking Slot Detection</p>
 <p>Github：<a href="https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection" target="_blank" rel="noopener">https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection</a></p>
-<p>摘要：对于配备自动停车系统的车辆，车位检测的准确性和速度是至关重要的。本文提出了一个基于FCN的检测器，在保证准确性的同时实现更快的速度和更小的模型尺寸。作者制定了一个策略来选择最佳感受野的卷积核，并在每次训练epoch结束后自动删除冗余通道。该模型能够联合检测停车位的角和线特征，并能在常规的处理器上有效地实时运行。该模型在2.3 GHz的CPU上能达到 30 FPS，车位角定位误差1.51±2.14 cm (std. err)，车位检测精度98%，总体满足车载移动终端速度和精度要求。</p>
-<p>该模型使用<a href="https://blog.csdn.net/wangzi371312/article/details/81174452" target="_blank" rel="noopener">Stacked Hourglass Network</a>作为基本结构，同时输出标志点、入口线、边界线的heatmap。此处原理和CenterNet类似。</p>
+<h1 id="1-Abstract"><a href="#1-Abstract" class="headerlink" title="1    Abstract"></a>1    Abstract</h1><p>摘要：对于配备自动停车系统的车辆，车位检测的准确性和速度是至关重要的。本文提出了一个基于FCN的检测器，在保证准确性的同时实现更快的速度和更小的模型尺寸。作者制定了一个策略来选择最佳感受野的卷积核，并在每次训练epoch结束后自动删除冗余通道。该模型能够联合检测停车位的角和线特征，并能在常规的处理器上有效地实时运行。该模型在2.3 GHz的CPU上能达到 30 FPS，车位角定位误差1.51±2.14 cm (std. err)，车位检测精度98%，总体满足车载移动终端速度和精度要求。</p>
+<h1 id="2-Method"><a href="#2-Method" class="headerlink" title="2    Method"></a>2    Method</h1><p>该模型使用<a href="https://blog.csdn.net/wangzi371312/article/details/81174452" target="_blank" rel="noopener">Stacked Hourglass Network</a>作为基本结构，同时输出标志点、入口线、边界线的heatmap。此处原理和CenterNet类似。</p>
 <p><img src="https://i.loli.net/2020/08/04/PQqr8x3LBTjpStO.png" alt="image.png"></p>
 <p>该模型的主要特点在于其<strong>SP模块（Select-Prune Module）</strong>，SP模块分为Select模块和Prune模块两部分：</p>
 <ul>
 <li><p><strong>Select Module</strong>：Select模块主要用于选择拥有更合适的感受野的卷积核。考虑到移动端使用类Inception结构对算力要求过大，不能满足实时性。Select模块使用<strong>贡献评估网络（Contribution Evaluation Networks, CEN）</strong>对不同感受野的卷积核进行评估，选择贡献度最高的的卷积核。CEN只是一个简单的MLP模块，接收不同卷积核的输出作为输入，并输出一个贡献值，最终只留下平均贡献值最高的卷积核。即训练阶段结束后，整个模块最终会退化成一个卷积核。</p>
 <p><img src="https://i.loli.net/2020/08/04/JGntQPWVTpEKy2H.png" alt="image.png"></p>
 </li>
-<li><p><strong>Prune Module</strong>：Prune模块负责修剪卷积核中的通道。网络交替进行训练和修剪，在修剪阶段会自动评估每个卷积通道的贡献度，并剔除贡献度低于定值的通道。其贡献度由通道的权重计算得出。如果修剪阶段过早地结束，网络会自动开始剔除贡献度最低的通道。</p>
+<li><p><strong>Prune Module</strong>：Prune模块负责修剪卷积核中的通道。网络交替进行训练和修剪，在修剪阶段会自动评估每个卷积通道的贡献度，并剔除贡献度低于定值的通道。其贡献度由通道的权重计算得出。如果某个卷积核没有低于定值的通道，则会自动剔除贡献值最低的通道。</p>
 <p><img src="https://i.loli.net/2020/08/04/Us6pSbQlrJyvOE4.png" alt="image.png"></p>
 <p><img src="https://i.loli.net/2020/08/04/snCaumJKZ2qb9Ve.png" alt="image.png"></p>
 </li>
 </ul>
-<p>最后对<strong>鸟瞰图（bird eye view, BEV）</strong>进</p>
+<p>最后对<strong>鸟瞰图（bird eye view, BEV）</strong>进行输入网络进行分割，输出BEV的heatmap。</p>
+<h1 id="3-Experiments"><a href="#3-Experiments" class="headerlink" title="3    Experiments"></a>3    Experiments</h1><p>数据集使用的是<a href="https://cslinzhang.github.io/deepps/" target="_blank" rel="noopener">DeepPS数据集</a>，该数据集中包含 9527(training)+2138(validating) 张BEV图像。作者将训练样本转化为224<em>×</em>224的灰度图作为网络的输入，点线标记作为labels。</p>
+<p>整个训练过程分为三个阶段，分别为<strong>预训练阶段</strong>、<strong>选择阶段</strong>和<strong>修剪阶段</strong>，不同阶段使用不同的损失函数。</p>
+<p><img src="https://i.loli.net/2020/08/05/6zqsPuD5icKgjZx.png" alt="image.png"></p>
+<p>预训练阶段的前5个epoch只用heatmaps的FocalLoss用来预热（warm-up），随后10个epoch使用完整的损失函数；在选择阶段，从第一层到最后一层逐层进行选择，每层选择结束后微调2-3个epoch；在修剪阶段，损失函数再次恢复到只有heatmap的FocalLoss，训练100个epoch的同时进行修剪；最后再去掉两个正则化操作，微调15个epoch。</p>
 
       
     </div>
@@ -551,8 +556,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -644,6 +658,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Abstract"><span class="nav-number">1.</span> <span class="nav-text">1    Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Method"><span class="nav-number">2.</span> <span class="nav-text">2    Method</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Experiments"><span class="nav-number">3.</span> <span class="nav-text">3    Experiments</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -679,7 +709,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">64k</span>
+    <span title="Site words total count">64.2k</span>
   
 </div>
 
