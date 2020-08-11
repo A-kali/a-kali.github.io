@@ -98,13 +98,13 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2020/08/07/YBgedQokvwPlhHV.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/10/hvftgsOw6VFiXIE.png">
-<meta property="og:image" content="c:%5CUsers%5Cficha%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200810104051534.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/11/i2rt3GMlKbUakPN.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/10/GrVdznPJ1qT9pw5.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/10/gDtnTWBj3PkXozR.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/11/cpO1Ueq6WPazGK3.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/11/WBEQnLpIN2qCHx3.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/11/2lW4Oi1k6qhzF3f.png">
-<meta property="og:updated_time" content="2020-08-11T15:42:41.414Z">
+<meta property="og:updated_time" content="2020-08-11T15:52:37.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hourglass &amp; CornerNet &amp; CenterNet">
 <meta name="twitter:description" content="最近get到一个project做停车位检测，参考了几篇论文之后决定用关键点检测的方法，于是顺便读了如下几篇关键点检测相关的神经网络论文。 Hourglass论文链接：Stacked Hourglass Networks for Human Pose Estimation Stacked Hourglass Neworks（以下简称Hourglass）由多个Hourglass模块堆叠而成，其模块对特">
@@ -428,7 +428,7 @@
 <p><img src="https://i.loli.net/2020/08/07/YBgedQokvwPlhHV.png" alt="image.png"></p>
 <p><img src="https://i.loli.net/2020/08/10/hvftgsOw6VFiXIE.png" alt="image.png"></p>
 <p>每个Hourglass模块采用encoder-decoder结构，对输入图下采样提取特征后进行上采样，输出原图大小的heatmap作为关键点的标记。encoder和decoder之间使用残差结构融合前后特征。</p>
-<p><img src="C:%5CUsers%5Cficha%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200810104051534.png" alt="image-20200810104051534"></p>
+<p><img src="https://i.loli.net/2020/08/11/i2rt3GMlKbUakPN.png" alt="image.png"></p>
 <p>该网络的思想和结构后被其它检测网络广泛采用。</p>
 <h1 id="CornerNet"><a href="#CornerNet" class="headerlink" title="CornerNet"></a>CornerNet</h1><p>论文链接：<a href="https://arxiv.org/abs/1808.01244" target="_blank" rel="noopener">CornerNet: Detecting Objects as Paired Keypoints</a><br>代码链接：<a href="https://github.com/umich-vl/CornerNet" target="_blank" rel="noopener">https://github.com/umich-vl/CornerNet</a></p>
 <p>CornerNet是一个通过检测对角来进行目标检测的网络。主要原理是采用Hourglass作为基本结构，输出检测框对角的Heatmap。</p>
