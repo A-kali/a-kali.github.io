@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机视觉,深度学习,关键点检测,Hourglass,目标检测,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="某科学のBLOG" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="最近get到一个project做停车位检测，参考了几篇论文之后决定用关键点检测的方法，于是顺便读了如下几篇关键点检测相关的神经网络论文。 Hourglass论文链接：Stacked Hourglass Networks for Human Pose Estimation Stacked Hourglass Neworks（以下简称Hourglass）由多个Hourglass模块堆叠而成，其模块对特">
+<meta name="keywords" content="计算机视觉,深度学习,关键点检测,Hourglass,目标检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hourglass &amp; CornerNet &amp; CenterNet">
+<meta property="og:url" content="http://a-kali.github.io/2020/08/11/Hourglass-CornerNet-CenterNet/index.html">
+<meta property="og:site_name" content="某科学のBLOG">
+<meta property="og:description" content="最近get到一个project做停车位检测，参考了几篇论文之后决定用关键点检测的方法，于是顺便读了如下几篇关键点检测相关的神经网络论文。 Hourglass论文链接：Stacked Hourglass Networks for Human Pose Estimation Stacked Hourglass Neworks（以下简称Hourglass）由多个Hourglass模块堆叠而成，其模块对特">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2020/08/07/YBgedQokvwPlhHV.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/10/hvftgsOw6VFiXIE.png">
+<meta property="og:image" content="c:%5CUsers%5Cficha%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200810104051534.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/10/GrVdznPJ1qT9pw5.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/10/gDtnTWBj3PkXozR.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/11/cpO1Ueq6WPazGK3.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/11/WBEQnLpIN2qCHx3.png">
+<meta property="og:image" content="c:%5CUsers%5Cficha%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200811182129010.png">
+<meta property="og:updated_time" content="2020-08-11T15:35:49.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hourglass &amp; CornerNet &amp; CenterNet">
+<meta name="twitter:description" content="最近get到一个project做停车位检测，参考了几篇论文之后决定用关键点检测的方法，于是顺便读了如下几篇关键点检测相关的神经网络论文。 Hourglass论文链接：Stacked Hourglass Networks for Human Pose Estimation Stacked Hourglass Neworks（以下简称Hourglass）由多个Hourglass模块堆叠而成，其模块对特">
+<meta name="twitter:image" content="https://i.loli.net/2020/08/07/YBgedQokvwPlhHV.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":18,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://a-kali.github.io/2020/08/11/Hourglass-CornerNet-CenterNet/">
+
+
+
+
+
+  <title>Hourglass & CornerNet & CenterNet | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/A-kali/a-kali.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">某科学のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">与其感慨路难行，不如马上出发</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2020/08/11/Hourglass-CornerNet-CenterNet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hsaki">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某科学のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hourglass & CornerNet & CenterNet</h1>
+        
+
+        <div class="post-meta">
+		          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-11T00:26:01+08:00">
+                2020-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机视觉/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机视觉</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+			
+			<span class="post-meta-divider">|</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 824字</span>
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  824
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  20分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近get到一个project做停车位检测，参考了几篇论文之后决定用关键点检测的方法，于是顺便读了如下几篇关键点检测相关的神经网络论文。</p>
+<h1 id="Hourglass"><a href="#Hourglass" class="headerlink" title="Hourglass"></a>Hourglass</h1><p>论文链接：<a href="https://arxiv.org/abs/1603.06937" target="_blank" rel="noopener">Stacked Hourglass Networks for Human Pose Estimation</a></p>
+<p>Stacked Hourglass Neworks（以下简称Hourglass）由多个Hourglass模块堆叠而成，其模块对特征图进行下采样后，将特征图上采样到原来的大小，形似沙漏，故名Hourglass。</p>
+<p>Hourglass原本是用于做<strong>人体姿态估计（Human pose estimation）</strong>，其中比较关键的一步就是检测人体上的关键点。人体不同的部位特征不同，所需要的特征图大小也不一样。Hourglass网络能够处理各种尺寸的人体特征，以此来捕捉人体各部位之间的空间关系。</p>
+<p><img src="https://i.loli.net/2020/08/07/YBgedQokvwPlhHV.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/08/10/hvftgsOw6VFiXIE.png" alt="image.png"></p>
+<p>每个Hourglass模块采用encoder-decoder结构，对输入图下采样提取特征后进行上采样，输出原图大小的heatmap作为关键点的标记。encoder和decoder之间使用残差结构融合前后特征。</p>
+<p><img src="C:%5CUsers%5Cficha%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200810104051534.png" alt="image-20200810104051534"></p>
+<p>该网络的思想和结构后被其它检测网络广泛采用。</p>
+<h1 id="CornerNet"><a href="#CornerNet" class="headerlink" title="CornerNet"></a>CornerNet</h1><p>论文链接：<a href="https://arxiv.org/abs/1808.01244" target="_blank" rel="noopener">CornerNet: Detecting Objects as Paired Keypoints</a><br>代码链接：<a href="https://github.com/umich-vl/CornerNet" target="_blank" rel="noopener">https://github.com/umich-vl/CornerNet</a></p>
+<p>CornerNet是一个通过检测对角来进行目标检测的网络。主要原理是采用Hourglass作为基本结构，输出检测框对角的Heatmap。</p>
+<p>这个设计真的很<del>反人类</del>反人工智能，因为对角上应该是没有什么特征的。但是该网络的设计思想非常有意思，给后来的Anchor Free类型的目标检测网络提供了思路。</p>
+<p><img src="https://i.loli.net/2020/08/10/GrVdznPJ1qT9pw5.png" alt="image.png"></p>
+<p>CornerNet的整体结构如下图所示，其骨干部分使用Hourglass，输出部分有两个分支模块，分别表示<strong>左上角点预测分支</strong>和<strong>右下角点预测分支</strong>，每个分支模块包含一个<strong>corner pooling</strong>层和3个输出：<strong>heatmaps、embeddings和offsets</strong>。</p>
+<p><img src="https://i.loli.net/2020/08/10/gDtnTWBj3PkXozR.png" alt="image.png"></p>
+<h3 id="输出端"><a href="#输出端" class="headerlink" title="输出端"></a>输出端</h3><ul>
+<li><p><strong>Heatmaps</strong>对角点的位置进行预测，最有可能是角点的位置输出值越高。其gt是基于角点的高斯值；</p>
+</li>
+<li><p><strong>Offset</strong>输出取整计算时丢失的精度信息（感觉用处不是很大）；</p>
+<p><img src="https://i.loli.net/2020/08/11/cpO1Ueq6WPazGK3.png" alt="image.png"></p>
+</li>
+<li><p><strong>Embedding</strong>用来对左上角点和右下角点进行匹配。其输出一个vector，当两个角点的vector距离较小时，则认为这两点为成对点（这个和人脸匹配有点像）。这部分由两个损失函数实现，第一部分用来缩小成对点向量的距离，第二部分用来放大非成对点向量之间的距离。</p>
+<p><img src="https://i.loli.net/2020/08/11/WBEQnLpIN2qCHx3.png" alt="image.png"></p>
+</li>
+</ul>
+<h3 id="Corner-Pooling"><a href="#Corner-Pooling" class="headerlink" title="Corner Pooling"></a>Corner Pooling</h3><p>因为CornerNet是预测左上角和右下角两个角点，但是这两个角点在不同目标上没有相同规律可循，如果采用普通池化操作，那么在训练预测角点支路时会比较困难。考虑到对于每一个左上角点，其所有的特征都在其右下方。因此如果左上角角点经过池化操作后能有其右下方的信息，那么就有利于该点的预测。右下角点同理。</p>
+<p>Corner Pooling便是一种对某个像素的右下方（或左上方）的所有像素进行池化的操作。</p>
+<p><img src="C:%5CUsers%5Cficha%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200811182129010.png" alt="image-20200811182129010"></p>
+<hr>
+<blockquote>
+<p>前方施工⚠</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+          
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
+            <a href="/tags/关键点检测/" rel="tag"><i class="fa fa-tag"></i> 关键点检测</a>
+          
+            <a href="/tags/Hourglass/" rel="tag"><i class="fa fa-tag"></i> Hourglass</a>
+          
+            <a href="/tags/目标检测/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/10/GAN综述：对抗生成网络在图像视频生成领域的算法与应用/" rel="next" title="GAN综述：对抗生成网络在图像视频生成领域的算法与应用">
+                <i class="fa fa-chevron-left"></i> GAN综述：对抗生成网络在图像视频生成领域的算法与应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Hsaki">
+            
+              <p class="site-author-name" itemprop="name">Hsaki</p>
+              <p class="site-description motion-element" itemprop="description">橘猫最爱的煎饼狗子!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/a-kali" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hsaki@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/hsakizero" target="_blank" title="Kaggle">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>Kaggle</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hourglass"><span class="nav-number">1.</span> <span class="nav-text">Hourglass</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CornerNet"><span class="nav-number">2.</span> <span class="nav-text">CornerNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输出端"><span class="nav-number">2.0.1.</span> <span class="nav-text">输出端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corner-Pooling"><span class="nav-number">2.0.2.</span> <span class="nav-text">Corner Pooling</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hsaki</span>
+<div class="powered-by">
+</div>
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">65.3k</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
