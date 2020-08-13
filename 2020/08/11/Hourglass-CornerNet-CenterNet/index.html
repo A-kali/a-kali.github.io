@@ -104,7 +104,10 @@
 <meta property="og:image" content="https://i.loli.net/2020/08/11/cpO1Ueq6WPazGK3.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/11/WBEQnLpIN2qCHx3.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/11/2lW4Oi1k6qhzF3f.png">
-<meta property="og:updated_time" content="2020-08-11T15:52:37.981Z">
+<meta property="og:image" content="https://i.loli.net/2020/08/12/WhrlemckSsBZEpH.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/13/svJWj2Np7aSlu3o.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/13/K2UojbPhNxGIVs3.png">
+<meta property="og:updated_time" content="2020-08-13T15:10:29.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hourglass &amp; CornerNet &amp; CenterNet">
 <meta name="twitter:description" content="最近get到一个project做停车位检测，参考了几篇论文之后决定用关键点检测的方法，于是顺便读了如下几篇关键点检测相关的神经网络论文。 Hourglass论文链接：Stacked Hourglass Networks for Human Pose Estimation Stacked Hourglass Neworks（以下简称Hourglass）由多个Hourglass模块堆叠而成，其模块对特">
@@ -369,7 +372,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 824字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.5k字</span>
 
           
 
@@ -384,7 +387,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  824
+                  1.5k
                 </span>
               
 
@@ -400,7 +403,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  20分钟
+                  50分钟
                 </span>
               
             </div>
@@ -436,7 +439,7 @@
 <p><img src="https://i.loli.net/2020/08/10/GrVdznPJ1qT9pw5.png" alt="image.png"></p>
 <p>CornerNet的整体结构如下图所示，其骨干部分使用Hourglass，输出部分有两个分支模块，分别表示<strong>左上角点预测分支</strong>和<strong>右下角点预测分支</strong>，每个分支模块包含一个<strong>corner pooling</strong>层和3个输出：<strong>heatmaps、embeddings和offsets</strong>。</p>
 <p><img src="https://i.loli.net/2020/08/10/gDtnTWBj3PkXozR.png" alt="image.png"></p>
-<h3 id="输出端"><a href="#输出端" class="headerlink" title="输出端"></a>输出端</h3><ul>
+<h2 id="1-输出端"><a href="#1-输出端" class="headerlink" title="1    输出端"></a>1    输出端</h2><ul>
 <li><p><strong>Heatmaps</strong>对角点的位置进行预测，最有可能是角点的位置输出值越高。其gt是基于角点的高斯值；</p>
 </li>
 <li><p><strong>Offset</strong>输出取整计算时丢失的精度信息（感觉用处不是很大）；</p>
@@ -446,13 +449,39 @@
 <p><img src="https://i.loli.net/2020/08/11/WBEQnLpIN2qCHx3.png" alt="image.png"></p>
 </li>
 </ul>
-<h3 id="Corner-Pooling"><a href="#Corner-Pooling" class="headerlink" title="Corner Pooling"></a>Corner Pooling</h3><p>因为CornerNet是预测左上角和右下角两个角点，但是这两个角点在不同目标上没有相同规律可循，如果采用普通池化操作，那么在训练预测角点支路时会比较困难。考虑到对于每一个左上角点，其所有的特征都在其右下方。因此如果左上角角点经过池化操作后能有其右下方的信息，那么就有利于该点的预测。右下角点同理。</p>
+<h2 id="2-Corner-Pooling"><a href="#2-Corner-Pooling" class="headerlink" title="2    Corner Pooling"></a>2    Corner Pooling</h2><p>因为CornerNet是预测左上角和右下角两个角点，但是这两个角点在不同目标上没有相同规律可循，如果采用普通池化操作，那么在训练预测角点支路时会比较困难。考虑到对于每一个左上角点，其所有的特征都在其右下方。因此如果左上角角点经过池化操作后能有其右下方的信息，那么就有利于该点的预测。右下角点同理。</p>
 <p>Corner Pooling便是一种对某个像素的右下方（或左上方）的所有像素进行池化的操作。</p>
 <p><img src="https://i.loli.net/2020/08/11/2lW4Oi1k6qhzF3f.png" alt="image.png"></p>
-<hr>
-<blockquote>
-<p>前方施工⚠</p>
-</blockquote>
+<h1 id="CenterNet"><a href="#CenterNet" class="headerlink" title="CenterNet"></a>CenterNet</h1><p>论文地址：<a href="https://arxiv.org/abs/1904.07850" target="_blank" rel="noopener">Objects as Points</a><br>Github：<a href="https://github.com/xingyizhou/CenterNet" target="_blank" rel="noopener">https://github.com/xingyizhou/CenterNet</a></p>
+<p>CenterNet有两篇发布时间十分接近的两篇论文，这里我们讲其中开源项目Star比较多、受认可度比较高的<a href="https://arxiv.org/abs/1904.07850" target="_blank" rel="noopener">Objects as Points</a>。</p>
+<p>单从网络的结构和损失函数来看，这个模型是非常符合当代神经网络设计思想的模型：设定简约，输入输出端到端，且能够适应多种任务。堪称神经网络中的艺术品。</p>
+<h2 id="1-Abstract"><a href="#1-Abstract" class="headerlink" title="1    Abstract"></a>1    Abstract</h2><p>在普通的<strong>目标检测</strong>任务中，CenterNet的思想和CornerNet十分接近。只不过CornerNet输出的是边框两个角点的坐标，而CenterNet输出的是<strong>中心点的坐标及其到边框的距离</strong>。</p>
+<p><img src="https://i.loli.net/2020/08/12/WhrlemckSsBZEpH.png" alt="image.png"></p>
+<p>CenterNet还能用于<strong>3D目标检测(3D object detection)</strong>和<strong>多人人体姿态估计(multi-person human pose estimation)</strong>。在3D目标检测任务中，网络预测目标中心点的位置和深度、3D检测框的长宽以及目标的方向；在多人姿态估计任务中，网络预测中心点的位置以及各个关键的对中心点的偏置(offset)。</p>
+<h2 id="2-Related-work"><a href="#2-Related-work" class="headerlink" title="2    Related work"></a>2    Related work</h2><p>CenterNet的改变和优势：</p>
+<ul>
+<li><p>在<strong>目标检测</strong>任务中，相比于RCNN系列网络，没有使用RPN、Anchor、NMS技术，没有使用阈值做前后景分类。仅仅提取特征图上的局部峰值点作为中心；</p>
+</li>
+<li><p>在<strong>通过关键点做目标检测</strong>的任务中，相比于CornerNet等网络，不需要对关键点进行配对操作；</p>
+</li>
+<li><p>在<strong>单目3D目标检测</strong>任务中，相比于Deep3Dbox等网络，同样更加简洁快速。</p>
+<p><img src="https://i.loli.net/2020/08/13/svJWj2Np7aSlu3o.png" alt="image.png"></p>
+</li>
+</ul>
+<h2 id="3-Method"><a href="#3-Method" class="headerlink" title="3     Method"></a>3     Method</h2><p>这部分和CornerNet差不多，主要讲了下输出gt的格式，公式比较多，结合源码看比较容易懂。</p>
+<p>挑几个比较有看点的：</p>
+<ol>
+<li><p>在中心点位置生成<strong>和目标大小相同的高斯核</strong>，得到heatmap。而CornerNet仅仅在对角生成固定大小的高斯核；</p>
+</li>
+<li><p>损失函数是针对CenterNet的性质根据FocalLoss改进的<strong>像素级惩罚衰减逻辑回归FocalLoss(penalty-reduced pixel-wise logistic regression with focal loss)</strong>，中文是我瞎翻译的，感觉这么长的名字可以用来当日本轻小说的题目了。</p>
+<p><img src="https://i.loli.net/2020/08/13/K2UojbPhNxGIVs3.png" alt="image.png"></p>
+<p>其中的N是预测出的关键点的数量，剩下的都是FocalLoss里的超参数。其实就是像素级的FocalLoss没啥区别。</p>
+</li>
+<li><p>值得一提的是CenterNet对每个中心点做了<strong>偏差预测</strong>，为了弥补模型在下采样过程中造成的定位误差。</p>
+</li>
+</ol>
+<p>后面的感觉都半斤八两了，佛系更新。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://blog.csdn.net/u014380165/article/details/83032273" target="_blank" rel="noopener">CornerNet 算法笔记</a><br>[2]<a href="https://blog.csdn.net/c20081052/article/details/89358658" target="_blank" rel="noopener">论文精读——CenterNet :Objects as Points</a></p>
 
       
     </div>
@@ -686,7 +715,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hourglass"><span class="nav-number">1.</span> <span class="nav-text">Hourglass</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CornerNet"><span class="nav-number">2.</span> <span class="nav-text">CornerNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输出端"><span class="nav-number">2.0.1.</span> <span class="nav-text">输出端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corner-Pooling"><span class="nav-number">2.0.2.</span> <span class="nav-text">Corner Pooling</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hourglass"><span class="nav-number">1.</span> <span class="nav-text">Hourglass</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CornerNet"><span class="nav-number">2.</span> <span class="nav-text">CornerNet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-输出端"><span class="nav-number">2.1.</span> <span class="nav-text">1    输出端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Corner-Pooling"><span class="nav-number">2.2.</span> <span class="nav-text">2    Corner Pooling</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CenterNet"><span class="nav-number">3.</span> <span class="nav-text">CenterNet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Abstract"><span class="nav-number">3.1.</span> <span class="nav-text">1    Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Related-work"><span class="nav-number">3.2.</span> <span class="nav-text">2    Related work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Method"><span class="nav-number">3.3.</span> <span class="nav-text">3     Method</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -728,7 +757,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">65.3k</span>
+    <span title="Site words total count">66k</span>
   
 </div>
 
