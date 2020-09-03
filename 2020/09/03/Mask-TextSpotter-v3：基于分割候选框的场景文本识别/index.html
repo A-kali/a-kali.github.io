@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="计算机视觉,计划,">
+  <meta name="keywords" content="计算机视觉,场景文本识别,">
 
 
 
@@ -88,18 +88,22 @@
 
 
 
-<meta name="description" content="最近一直在打比赛，临近年关总算是抽出了点时间写一篇计划类的 blog 了。原本放假前计划了很多事情，但一开始比赛就打乱了所有的计划。 目前计划是打算系统地学习一下人脸识别、视频处理和NAS方面的内容，大概了解下一些新兴技术的基本原理（比如联邦学习、GAN、目标跟踪、实例分割、全景分割等），顺便再补一下去年没填的坑（比如LSTM、FPN、YOLOv3、知识蒸馏等）。 Face Recognition">
-<meta name="keywords" content="计算机视觉,计划">
+<meta name="description" content="论文地址：Mask TextSpotter v3: Segmentation Proposal Network for Robust Scene Text Spotting Github：https://github.com/MhLiao/MaskTextSpotterV3 Abstract最近检测与识别相结合的场景文本识别端到端模型取得了很大进展。然而，目前的任意形状场景文本识别模型大多使用RP">
+<meta name="keywords" content="计算机视觉,场景文本识别">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2020年上半年论文阅读计划">
-<meta property="og:url" content="http://a-kali.github.io/2020/01/06/2020年上半年论文阅读计划/index.html">
+<meta property="og:title" content="Mask TextSpotter v3：基于分割候选框的场景文本识别">
+<meta property="og:url" content="http://a-kali.github.io/2020/09/03/Mask-TextSpotter-v3：基于分割候选框的场景文本识别/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="最近一直在打比赛，临近年关总算是抽出了点时间写一篇计划类的 blog 了。原本放假前计划了很多事情，但一开始比赛就打乱了所有的计划。 目前计划是打算系统地学习一下人脸识别、视频处理和NAS方面的内容，大概了解下一些新兴技术的基本原理（比如联邦学习、GAN、目标跟踪、实例分割、全景分割等），顺便再补一下去年没填的坑（比如LSTM、FPN、YOLOv3、知识蒸馏等）。 Face Recognition">
+<meta property="og:description" content="论文地址：Mask TextSpotter v3: Segmentation Proposal Network for Robust Scene Text Spotting Github：https://github.com/MhLiao/MaskTextSpotterV3 Abstract最近检测与识别相结合的场景文本识别端到端模型取得了很大进展。然而，目前的任意形状场景文本识别模型大多使用RP">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-08T08:11:19.483Z">
+<meta property="og:image" content="https://i.loli.net/2020/09/02/J93otX4vVBPydT7.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/02/DJFe94Ckndgp6QN.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/02/l9RejYTKfJu7SP6.png">
+<meta property="og:updated_time" content="2020-09-03T14:22:44.469Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2020年上半年论文阅读计划">
-<meta name="twitter:description" content="最近一直在打比赛，临近年关总算是抽出了点时间写一篇计划类的 blog 了。原本放假前计划了很多事情，但一开始比赛就打乱了所有的计划。 目前计划是打算系统地学习一下人脸识别、视频处理和NAS方面的内容，大概了解下一些新兴技术的基本原理（比如联邦学习、GAN、目标跟踪、实例分割、全景分割等），顺便再补一下去年没填的坑（比如LSTM、FPN、YOLOv3、知识蒸馏等）。 Face Recognition">
+<meta name="twitter:title" content="Mask TextSpotter v3：基于分割候选框的场景文本识别">
+<meta name="twitter:description" content="论文地址：Mask TextSpotter v3: Segmentation Proposal Network for Robust Scene Text Spotting Github：https://github.com/MhLiao/MaskTextSpotterV3 Abstract最近检测与识别相结合的场景文本识别端到端模型取得了很大进展。然而，目前的任意形状场景文本识别模型大多使用RP">
+<meta name="twitter:image" content="https://i.loli.net/2020/09/02/J93otX4vVBPydT7.png">
 
 
 
@@ -129,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://a-kali.github.io/2020/01/06/2020年上半年论文阅读计划/">
+  <link rel="canonical" href="http://a-kali.github.io/2020/09/03/Mask-TextSpotter-v3：基于分割候选框的场景文本识别/">
 
 
 
 
 
-  <title>2020年上半年论文阅读计划 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Mask TextSpotter v3：基于分割候选框的场景文本识别 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -282,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2020/01/06/2020年上半年论文阅读计划/">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2020/09/03/Mask-TextSpotter-v3：基于分割候选框的场景文本识别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hsaki">
@@ -299,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2020年上半年论文阅读计划</h1>
+          <h1 class="post-title" itemprop="name headline">Mask TextSpotter v3：基于分割候选框的场景文本识别</h1>
         
 
         <div class="post-meta">
@@ -312,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-06T18:58:49+08:00">
-                2020-01-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-03T22:21:50+08:00">
+                2020-09-03
               </time>
             
 
@@ -322,28 +326,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计划/" itemprop="url" rel="index">
-                    <span itemprop="name">计划</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -360,7 +342,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 198字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 2.3k字</span>
 
           
 
@@ -375,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  198
+                  2.3k
                 </span>
               
 
@@ -391,7 +373,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10分钟
+                  80分钟
                 </span>
               
             </div>
@@ -412,12 +394,45 @@
       
 
       
-        <p>最近一直在打比赛，临近年关总算是抽出了点时间写一篇计划类的 blog 了。原本放假前计划了很多事情，但一开始比赛就打乱了所有的计划。</p>
-<p>目前计划是打算系统地学习一下人脸识别、视频处理和NAS方面的内容，大概了解下一些新兴技术的基本原理（比如联邦学习、GAN、目标跟踪、实例分割、全景分割等），顺便再补一下去年没填的坑（比如LSTM、FPN、YOLOv3、知识蒸馏等）。</p>
-<p><a href="https://arxiv.org/abs/1811.00116" target="_blank" rel="noopener">Face Recognition: From Traditional to Deep Learning Methods</a>：人脸识别综述</p>
-<p><a href="https://arxiv.org/abs/1912.04977" target="_blank" rel="noopener">Advances and Open Problems in Federated Learning</a>：联邦学习综述</p>
-<p><a href="https://arxiv.org/abs/1912.12033" target="_blank" rel="noopener">Deep Learning for 3D Point Clouds: A Survey</a>：3D点云综述</p>
-<p><a href="https://arxiv.org/abs/2008.02793" target="_blank" rel="noopener">Generative Adversarial Networks for Image and Video Synthesis: Algorithms and Applications</a>：GAN综述</p>
+        <p>论文地址：<a href="https://arxiv.org/abs/2007.09482" target="_blank" rel="noopener">Mask TextSpotter v3: Segmentation Proposal Network for Robust Scene Text Spotting</a></p>
+<p>Github：<a href="https://github.com/MhLiao/MaskTextSpotterV3" target="_blank" rel="noopener">https://github.com/MhLiao/MaskTextSpotterV3</a></p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>最近检测与识别相结合的场景文本识别端到端模型取得了很大进展。然而，目前的任意形状场景文本识别模型大多使用RPN来生成候选框，而RPN严重依赖于手工设计的轴对称矩形anchor。这使得处理高宽比或不规则形状的文本实例时存在困难，处理密集文本时单个候选框中容易包含多个相邻实例。为了解决这些问题，我们提出了Mask TextSpotter v3，一种端到端的场景文本识别器，其<strong>采用SPN(Segmentation Proposal Network)代替RPN。我们的SPN是anchor-free的，能够精确表示任意形状的候选区域</strong>。因此，我们的Mask TextSpotter v3可以处理极端宽高比或不规则形状的文本实例，而且它的识别精度不会受到附近文本或背景噪音的影响。</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1    Introduction"></a>1    Introduction</h1><p>在现实中阅读文本是一项非常重要的技术，有着广泛的应用，包括照片OCR，菜单阅读，地理定位等。系统针对该任务的设计一般包括文本检测和识别两个模块，其中文本检测的目标是对文本实例及其边界框进行定位，而文本识别的目标是将检测到的文本区域转换为一系列标签进行字符识别。场景文本识别/端到端识别是一个结合了这两种模块的任务，既需要检测又需要识别。</p>
+<p>场景文本阅读的挑战主要在于场景文本实例的不同方位、宽高比和形状。因此，旋转鲁棒性，宽高比鲁棒性和形状鲁棒性在场景文本检测任务中是非常重要的。因为文本通常不会沿着图像的轴线对其，所以<strong>旋转鲁棒性</strong>非常重要。<strong>高宽比鲁棒性</strong>对于非拉丁文本尤其重要，因为这些文本通常表现为很长的文本行，而不是一个个单词。<strong>形状鲁棒性</strong>对于处理不规则形状的文本是必要的，不规则形状经常出现在logo中。</p>
+<p>RPN的局限性主要表现在两个方面：(1)手工预先设计的锚点是使用轴对称的矩形来定义的，不易匹配高长比极端的文本实例。(2)文本实例密集时，生成矩形候选框可能包含多个相邻文本实例。如图a所示，由Mask TextSpotter v2产生的候选框相互重叠，其RoI特征包含多个相邻文本实例，导致检测和识别错误。</p>
+<p><img src="https://i.loli.net/2020/09/02/J93otX4vVBPydT7.png" alt="image.png"></p>
+<p>在本文中，我们提出了SPN，旨在解决RPN-based方法的局限性。<strong>SPN是anchor-free的，并给出了精确的多边形候选框，不用预先设计anchor。同时我们提出hard RoI masking应用到RoI特征中，可以抑制邻近的文本实例或背景噪声，从而充分利用该方法的精确性。</strong>我们的实验表明，Mask TextSpotter v3显著提高了对旋转、宽高比和形状的鲁棒性。在旋转的ICDAR 2013数据集上，图像以不同角度旋转，我们的方法在端到端检测和识别方面都超过了目前最先进的21.9%。在端到端识别任务中，我们的方法超出最先进方法5.9%。我们的方法还在具有极端高长宽比的文本行标记的MSRA-TD500数据集，以及包含许多低分辨率小文本实例的ICDAR 2015数据集上达到了最高水准。我们的贡献主要包括三方面：</p>
+<ol>
+<li>我们提出的<strong>SPN能够精确表示任意形状的候选框</strong>。Anchor-free SPN克服了RPN在处理极端长宽比或不规则形状文本时的局限性，并提供了更精确的方案来提高识别的鲁棒性。据我们所知，它是首个用于端到端可训练文本定位的任意形状建议生成器。</li>
+<li>我们提出了 <strong>hard RoI masking 将多边形候选框应用于RoI特征</strong>，有效地抑制背景噪声或相邻的文本实例。</li>
+<li>我们提出的Mask TextSpotter v3显著提高了对旋转、宽高比和形状的鲁棒性，在几个具有挑战性的场景文本测试中取得了最先进的结果。</li>
+</ol>
+<h1 id="2-Methodology"><a href="#2-Methodology" class="headerlink" title="2    Methodology"></a>2    Methodology</h1><p>Mask TextSpotter v3使用ResNet-50作为backbone，SPN生成候选框，一个Fast R-CNN模块微调候选框，一个文本实例分割模块用来精确检测，一个字符分割模块和一个空间注意力模块用来识别。Mask TextSpotter v3的pipeline如图所示。</p>
+<p><img src="https://i.loli.net/2020/09/02/DJFe94Ckndgp6QN.png" alt="image.png"></p>
+<h2 id="2-1-Segmentation-proposal-network"><a href="#2-1-Segmentation-proposal-network" class="headerlink" title="2.1     Segmentation proposal network"></a>2.1     Segmentation proposal network</h2><p>如上图所示，我们提出的<strong>SPN采用U-Net结构使其对尺度具有鲁棒性</strong>。和基于FPN多个阶段产生不同尺度的候选框的RPN不同，<strong>SPN从分割mask生成候选框，并且使用由多个感受野产生的特征图融合而成的特征图进行预测</strong>，该特征图长宽为输入图像的1/4。分割预测模块配置见文末补充。分割模型输出的掩码概率图尺寸和输入图像相同，通道数为1，取值范围为[0,1]。</p>
+<p><strong>Segmentation label generation.</strong> 为了分离邻近的文本实例，基于分割的场景文本检测器常用的方法是缩小文本区域。受DB模型的启发，我们采用Vatti裁剪算法，通过裁剪$d$个像素来缩小文本区域。偏移像素d可以确定为$d= A(1-r^2)/L$，其中$A$和$L$分别为文本域多边形的面积和周长，$r$为收缩比，通常设为0.4。生成label的例子如下图所示：</p>
+<p><img src="https://i.loli.net/2020/09/02/l9RejYTKfJu7SP6.png" alt="image.png"></p>
+<p><strong>Proposal generation. </strong>对于一个给定的值域在[0,1]之间的分割图，我们通过阈值对其进行二值化：</p>
+<script type="math/tex; mode=display">
+B_{i,j}=\left\{  
+             \begin{array}{}  
+             1 & & if \ S_{i,j}>=t,\\  
+             0 & & otherwise.\\  
+             \end{array}  
+\right.</script><p>我们对掩码$B$中连通的区域进行分组，这些连通区域可以被认为是缩小后的文本区域。因此，我们使用Vatti裁剪算法扩大它们$\hat d$个像素，其中$\hat d$计算为$\hat d=\hat A×\hat r / \hat L$。其中，$\hat A$和$\hat L$是缩小后文本区域的面积和周长。根据收缩比$r$的值，我们将$\hat r$设置为3.0。</p>
+<p>如上所述，SPN产生的候选框可以精确地表示多边形文本区域。因此，SPN具有生成极端长宽比/密集/不规则形状的文本实例候选框的能力。</p>
+<p><strong>（概括：分割→缩小文本域→二值化→将连通的像素划分为一个文本域→恢复文本域大小）</strong></p>
+<h2 id="2-2-Hard-RoI-masking"><a href="#2-2-Hard-RoI-masking" class="headerlink" title="2.2    Hard RoI masking"></a>2.2    Hard RoI masking</h2><p>由于自定义RoI Align操作只支持轴对称的矩形bounding boxes，因此我们使用多边形候选框中的最小的、轴对称的矩形bounding boxes来生成RoI特征，以保持RoI Align操作。</p>
+<p>Qin等人提出了RoI masking，将掩码概率图与RoI特征相乘，其中掩码概率图由Mask R-CNN检测模块生成。然而，掩码概率图可能不准确，因为其基于RPN的候选框进行预测，一个候选框中可能包含多个密集相邻的文本。而我们为候选框设计了精确的多边形表示。因此，我们提出了 hard RoI masking 直接将这些候选框应用到RoI特征上。</p>
+<p><strong>Hard RoI masking将二值多边形掩码与RoI特征相乘，以抑制背景噪声或邻近文本实例</strong>，大大降低了检测和识别模块的执行难度和出错概率。</p>
+<h2 id="2-3-Detection-and-recognition"><a href="#2-3-Detection-and-recognition" class="headerlink" title="2.3    Detection and recognition"></a>2.3    Detection and recognition</h2><p>我们遵循Mask TextSpotter v2的文本检测和识别模块的主要设计，原因如下:(1)Mask TextSpotter v2是目前最先进的、具有竞争力的检测和识别模块。(2)由于Mask TextSpotter v2是基于RPN的场景文本检测中一种具有代表性的方法，我们可以控制变量，来验证我们所提出的SPN的有效性和鲁棒性。</p>
+<p>检测时，将Hard RoI masking生成的masked RoI特征输入到Fast R-CNN模块以进一步细化定位，并使用文本实例分割模块进行精确分割。采用字符分割模块和空间注意力模块进行识别。</p>
+<h2 id="2-4-Optimization"><a href="#2-4-Optimization" class="headerlink" title="2.4    Optimization"></a>2.4    Optimization</h2><p>损失函数$L$定义如下：</p>
+<script type="math/tex; mode=display">
+L=L_s+\alpha_1L_{rcnn}+\alpha_2L_{mask}.</script><p>$L<em>{rcnn}$和$ L</em>{mask}$分别在Fast R-CNN和Mask TextSpotter v2中有过明确定义。$L_mask$由文本分割损失、字符分割损失、空间注意力解码器损失组成。$L_s$表示SPN的损失。根据Mask TextSpotter v2，我们将$\alpha_1$和$\alpha_2$设为1.0。</p>
+<p>我们采用dice loss计算SPN的损失。设$S$和$G$分别为分割结果mask和目标mask，则$L_s$可由如下公式计算：</p>
+<script type="math/tex; mode=display">
+L_s=1-\frac{2.0×\sum(S*G)}{\sum S + \sum G}</script><p>（大概意思就是两个mask重合率越高，损失越小）</p>
 
       
     </div>
@@ -446,7 +461,7 @@
           
             <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
           
-            <a href="/tags/计划/" rel="tag"><i class="fa fa-tag"></i> 计划</a>
+            <a href="/tags/场景文本识别/" rel="tag"><i class="fa fa-tag"></i> 场景文本识别</a>
           
         </div>
       
@@ -474,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/03/Bengali-AI-Handwritten-Grapheme-Classification/" rel="next" title="Bengali.AI Handwritten Grapheme Classification 比赛记录">
-                <i class="fa fa-chevron-left"></i> Bengali.AI Handwritten Grapheme Classification 比赛记录
+              <a href="/2020/09/03/【论文翻译】MoCo：用于无监督视觉表示学习的动量比较/" rel="next" title="【论文翻译】MoCo：用于无监督视觉表示学习的动量比较">
+                <i class="fa fa-chevron-left"></i> 【论文翻译】MoCo：用于无监督视觉表示学习的动量比较
               </a>
             
           </div>
@@ -483,10 +498,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/01/Detecting-Depression-with-AI-AVEC2019/" rel="prev" title="【论文解读】Detecting Depression with AI (AVEC2019)">
-                【论文解读】Detecting Depression with AI (AVEC2019) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -538,8 +549,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -630,6 +650,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-number">2.</span> <span class="nav-text">1    Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Methodology"><span class="nav-number">3.</span> <span class="nav-text">2    Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Segmentation-proposal-network"><span class="nav-number">3.1.</span> <span class="nav-text">2.1     Segmentation proposal network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Hard-RoI-masking"><span class="nav-number">3.2.</span> <span class="nav-text">2.2    Hard RoI masking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Detection-and-recognition"><span class="nav-number">3.3.</span> <span class="nav-text">2.3    Detection and recognition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Optimization"><span class="nav-number">3.4.</span> <span class="nav-text">2.4    Optimization</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
