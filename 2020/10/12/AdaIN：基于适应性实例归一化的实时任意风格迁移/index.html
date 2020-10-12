@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机视觉,风格迁移,论文翻译,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="某科学のBLOG" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="论文地址：Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization Github：https://github.com/xunhuang1995/AdaIN-style PyTorch版代码：https://github.com/naoto0804/pytorch-AdaIN AbstractGatys等人">
+<meta name="keywords" content="计算机视觉,风格迁移,论文翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AdaIN：基于适应性实例归一化的实时任意风格迁移">
+<meta property="og:url" content="http://a-kali.github.io/2020/10/12/AdaIN：基于适应性实例归一化的实时任意风格迁移/index.html">
+<meta property="og:site_name" content="某科学のBLOG">
+<meta property="og:description" content="论文地址：Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization Github：https://github.com/xunhuang1995/AdaIN-style PyTorch版代码：https://github.com/naoto0804/pytorch-AdaIN AbstractGatys等人">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2020/10/09/aEOytThG9LQ5q1b.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/25/BJ5SiRZen3bx2Uh.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/29/j2ZQMDuv8HtWqhk.png">
+<meta property="og:updated_time" content="2020-10-12T15:21:14.171Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AdaIN：基于适应性实例归一化的实时任意风格迁移">
+<meta name="twitter:description" content="论文地址：Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization Github：https://github.com/xunhuang1995/AdaIN-style PyTorch版代码：https://github.com/naoto0804/pytorch-AdaIN AbstractGatys等人">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/09/aEOytThG9LQ5q1b.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":18,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://a-kali.github.io/2020/10/12/AdaIN：基于适应性实例归一化的实时任意风格迁移/">
+
+
+
+
+
+  <title>AdaIN：基于适应性实例归一化的实时任意风格迁移 | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/A-kali/a-kali.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">某科学のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">与其感慨路难行，不如马上出发</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2020/10/12/AdaIN：基于适应性实例归一化的实时任意风格迁移/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hsaki">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某科学のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AdaIN：基于适应性实例归一化的实时任意风格迁移</h1>
+        
+
+        <div class="post-meta">
+		          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-12T23:20:11+08:00">
+                2020-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机视觉/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机视觉</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+			
+			<span class="post-meta-divider">|</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 4.4k字</span>
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  150分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>论文地址：<a href="https://arxiv.org/pdf/1703.06868.pdf" target="_blank" rel="noopener">Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization</a></p>
+<p>Github：<a href="https://github.com/xunhuang1995/AdaIN-style" target="_blank" rel="noopener">https://github.com/xunhuang1995/AdaIN-style</a></p>
+<p>PyTorch版代码：<a href="https://github.com/naoto0804/pytorch-AdaIN" target="_blank" rel="noopener">https://github.com/naoto0804/pytorch-AdaIN</a></p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Gatys等人最近引入了一种神经算法，可以将一幅内容(Content)图像以另一幅图像的风格(Style)呈现，实现所谓的<strong>风格迁移(Style Transfer)</strong>。然而，他们的框架需要经历一个缓慢的迭代优化过程，这限制了其实际应用。有人提出用前向神经网络进行快速逼近，以加快神经风格迁移。不幸的是，速度的提高是有代价的：网络通常与一组固定的风格绑定在一起，不能适应任意的新的风格。在本文中，我们提出了一个简单而有效的方法，首次实现了实时任意风格的传输。该方法的核心是一种新的<strong>自适应实例归一化(adaptive instance normalization, AdalN)</strong>层，它将内容特征的均值和方差与风格特征的均值和方差对齐。我们的方法达到了与现有方法相比最快的速度，并且不受预定义样式集的限制。此外，用户可以灵活调控通过这个方法训练出来的模型，如内容样式权衡、样式插值、颜色和空间控制，所有这些都仅使用一个前向神经网络。</p>
+<p><img src="https://i.loli.net/2020/10/09/aEOytThG9LQ5q1b.png" alt="image.png"></p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1    Introduction"></a>1    Introduction</h1><p><a href="http://pdfs.semanticscholar.org/3eeb/f249182614838294f7658da7e8d20c0a1917.pdf" target="_blank" rel="noopener">Gatys等人的开创性工作</a>表明，深度神经网络(DNNs)不仅编码图像的内容，而且编码图像的风格信息。此外，图像风格和内容在某种程度上是可分离的：可以在保留内容的同时改变图像的风格。他们的风格迁移方法足够灵活，可以组合任意图像的内容和样式。但是该方法的优化过程十分缓慢。</p>
+<p>在加速神经迁移方向已经有了许多的研究。部分研究试图训练前向神经网络，通过单次前向传递来执行风格化操作。但这些方法限制了每个网络只能训练单一的风格。最近有一些研究解决了这个问题，但它们要么仍然局限于有限的风格集合，要么比单一风格的传输方法慢得多。</p>
+<p>在这篇论文中中，我们首次提出了能够解决速度与灵活性矛盾的风格迁移算法。<strong>我们的方法可以实时对任意新的风格进行迁移，将基于优化框架的灵活性和前向方法的速度结合在一起</strong>。我们的方法灵感来源于<strong><a href="https://arxiv.org/abs/1701.02096v1" target="_blank" rel="noopener">实例归一化(instance normalization, IN)</a></strong>层，其在前向风格迁移中非常有效。IN通过对特征统计(feature statistics)进行归一化来进行风格归一化，有些研究表明特征统计携带了图像的风格信息。根据这个解释，我们引入了一个简单的IN扩展，即自适应实例归一化(AdaIN)。对于一组内容和风格，AdaIN只需调整内容输入的平均值和方差，就能匹配风格输入的平均值和方差。通过实验，我们发现AdaIN通过传递特征统计量，有效地将前者的内容与后者的风格结合起来。然后，通过将AdaIN输出反向返回到图像空间，解码网络学会生成最终的风格化图像。在实现了高速风格迁移的同时，我们的方法提供了大量的用户控件，不需要对训练过程进行任何修改。</p>
+<h1 id="2-Related-Work"><a href="#2-Related-Work" class="headerlink" title="2    Related Work"></a>2    Related Work</h1><p><strong>Style transfer.</strong> 风格迁移问题起源于非真实感渲染，与纹理合成和转换密切相关。早期的一些方法包括线性滤波器响应的直方图匹配和非参数采样。这些方法通常依赖于低级的统计信息，并且常常无法捕获语义结构。Gatys等通过匹配DNN卷积层的特征统计量，首次展示了令人印象深刻的风格迁移结果。最近，许多研究对风格迁移的算法进行了一些改进。Li和Wand在深度特征空间中引入了一种基于马尔可夫随机场的框架来加强局部模式。Gatys等人提出了控制色彩保存、空间位置的方法。以及风格迁移的规模。Ruder等人通过添加时序约束提高了视频风格迁移的质量。</p>
+<p>Gatys等人的框架基于一个缓慢的优化过程，迭代更新图像，以最小化由内容损失和样式损失。即使是现代GPU也需要几分钟的时间，而移动应用程序中的设备处理速度更慢，难以实现。一个常见的解决方法是用训练最小化相同目标的前馈神经网络来代替优化过程。这些前馈风格的传输方法比基于优化的替代方法大约快三个数量级，为实时应用打开了大门。Wang等人的使用多分辨率架构增强了前馈式传输的粒度。Ulyanov等人提出了提高生成样本质量和多样性的方法。然而，上述前馈方法的局限性在于，每个网络都被绑在一个固定的样式上。为了解决这个问题，Dumoulin等人引入了一个能够编码32种样式及其插值的单一网络。与我们的工作同时，Li等人提出了一种前馈架构，可以合成多达300种纹理和转移16种风格。但是，上述两种方法不能适应训练中没有观察到的任意风格。</p>
+<p>最近，Chen和Schmidt引入了一种前馈方法，借助风格交换层可以传输任意的风格。对于给定内容和风格图像的特征激活，风格交换层将以patch-by-patch的方式将内容特征替换为最匹配的风格特征。然而，他们的风格交换层创造了一个新的计算瓶颈：超过95%的计算花费在512 x 512输入图像的样式交换上。我们的方法允许任意的风格的同时，比他们的方法快1-2个数量级。</p>
+<p>风格迁移的另一个核心问题是使用哪种风格损失函数。Gatys等人的原始框架通过匹配Gram矩阵捕获的特征激活之间的二阶统计量来匹配风格。后来也有研究提出了其它的损失函数，如MRF损失，adversarial 损失，直方图损失，CORAL损失，MMD损失，以及信道平均和方差之间的距离。注意，以上所有的损失函数都是为了匹配风格图像和合成图像之间的一些特征统计。</p>
+<p><strong>Deep generative image modeling.</strong> 有几个图像生成框架可供选择，包括变分自动编码器、自回归模型和生成对抗网络(GANs)。值得注意的是，GANs已经取得了最令人印象深刻的视觉质量。GAN框架的各种改进已经被提出，比如条件生成、多级处理以及更好的训练目标。GANs也被应用于风格迁移和跨域图像生成。</p>
+<h1 id="3-Background"><a href="#3-Background" class="headerlink" title="3    Background"></a>3    Background</h1><h2 id="3-1-Batch-Normalization"><a href="#3-1-Batch-Normalization" class="headerlink" title="3.1    Batch Normalization"></a>3.1    Batch Normalization</h2><p>loffe和Szegedy的开创性地引入了批归一化(BN)层，通过对特征统计进行归一化，显著地简化了前馈网络的训练。BN层的设计初衷是为了加速识别网络的训练，但后来被发现在生成图像模型中也是有效的。对于给定批处理输入x，BN对每个特征通道的均值和标准差进行归一化：<br>$$<br>BN(x)=\gamma \begin{pmatrix} \frac{x-\mu (x)}{\sigma (x)}\end{pmatrix}+\beta<br>$$<br>其中$\gamma$和$\beta$从数据中习得，$\mu(x)$和$\sigma$是batch的均值和标准差，由每个特征通道的batch size和空间维度独立计算而得：<br>$$<br>\mu_c(x)=\frac{1}{NHW}\sum^N_{n=1}\sum^H_{h=1}\sum^W_{w=1}x_{nchw}\<br>\sigma_c(x)=\sqrt{\frac{1}{NHW}\sum^N_{n=1}\sum^H_{h=1}\sum^W_{w=1}(x_{nchw}-\mu_c(x))^2+\epsilon}<br>$$<br>BN在训练时使用mini-batch统计，在推理时使用常规的统计代替，造成了训练和推理的差异。为了解决这个问题，最近提出了批重正化，在训练期间逐步使用常规的统计数据。Li等人发现BN的另一个有趣应用：BN可以通过重新计算目标域的常规统计数据来减轻域偏移。</p>
+<h2 id="3-2-Instance-Normalization"><a href="#3-2-Instance-Normalization" class="headerlink" title="3.2    Instance Normalization"></a>3.2    Instance Normalization</h2><p>在原始的前馈风格化方法中，风格迁移网络在每个卷积层之后包含一个BN层。令人惊讶的是，Ulyanov等发现，只需将BN层替换为IN层，就可以得到显著的改善：<br>$$<br>IN(x)=\gamma \begin{pmatrix} \frac{x-\mu (x)}{\sigma (x)}\end{pmatrix}+\beta<br>$$<br>和BN不同的是，IN的的$\mu(x)$和$\sigma(x)$是对每个通道和每个样本独立计算的：<br>$$<br>\mu_{nc}(x)=\frac{1}{HW}\sum^H_{h=1}\sum^W_{w=1}x_{nchw}\<br>\sigma_c(x)=\sqrt{\frac{1}{HW}\sum^H_{h=1}\sum^W_{w=1}(x_{nchw}-\mu_{nc}(x))^2+\epsilon}<br>$$<br>另一个区别是，在测试时应用的层不变，而BN层通常使用常规统计代替mini-batch统计。</p>
+<h2 id="3-3-Conditional-Instance-Normalization"><a href="#3-3-Conditional-Instance-Normalization" class="headerlink" title="3.3    Conditional Instance Normalization"></a>3.3    Conditional Instance Normalization</h2><p>Dumoulin等人没有学习单一的仿射参数集$\gamma$和$\beta$，而是提出了条件实例归一化(CIN)层，该层对每种不同的风格$s$学习不同的参数集$\gamma^s$和$\beta^s$：<br>$$<br>CIN(x;s)=\gamma^s \begin{pmatrix} \frac{x-\mu (x)}{\sigma (x)}\end{pmatrix}+\beta^s<br>$$<br>在训练过程中，从一组固定的风格集合$s\in  {1,2,…,S}$(实验中$S = 32$)中随机选取一幅风格图像及其索引$s$。然后将内容图像输入到一个网络中，在CIN层使用对应的$\gamma^s$和$\beta^s$。令人惊讶的是，<strong>有着相同卷积参数、不同仿射参数的多个网络，可以生成完全不同风格的图像。</strong></p>
+<p>与没有归一化层的网络相比，有CIN层的网络需要增加$2FS$的附加参数，其中$F$为网络中feature map的数量。由于附加参数的数量与样式的数量成线性关系，因此很难用这个方法生成非常多的风格。而且，每添加一种新的风格，都需要重新训练一次网络。</p>
+<h1 id="4-Interpreting-Instance-Normalization"><a href="#4-Interpreting-Instance-Normalization" class="headerlink" title="4     Interpreting Instance Normalization"></a>4     Interpreting Instance Normalization</h1><p>尽管IN取得了巨大的成功，但它们对样式转换起作用的原因仍然是难以捉摸的。Ulyanov等人把IN的成功归于其内容图像的不变性。然而，IN发生在特征空间中，因此它应该比在像素空间中进行简单的对比归一化具有更深远的影响。也许更令人惊讶的是IN中的仿射参数可以完全改变输出图像的风格。</p>
+<p>众所周知，DNN的卷积特征统计可以捕捉到图像的风格。Gatys等人使用二阶统计量作为其优化目标，而Li等人最近表明，包括channel-wise的均值和方差在内的其它统计量对风格迁移也是有效的。因此<strong>我们认为IN通过归一化特征统计（即均值和方差），在某种程度上执行了“风格归一化(style normalization)”。于是我们认为网络的特征统计也可以控制生成图像的风格。</strong></p>
+<p>我们分别运行带有IN和BN层的网络来执行单一风格的转换。正如预期的那样，使用IN的模型比BN模型收敛得更快（如下图）。为了检验Ulyanov的解释，我们通过对亮度通道进行直方图均衡化，将所有训练图像归一化到相同对比度。如图(b)所示，IN仍然有效，说明Ulyanov的解释不完全。为了验证我们的假设，我们使用预训练的风格转移网络将所有的训练图像归一化为相同的风格(不同于目标风格)。从图(c)可以看出，在对图像进行了风格归一化后，IN带来的改进就小得多了。另外，使用风格归一化图像训练BN的模型和使用原始图像训练IN的模型收敛速度一样快，表明IN确实执行了一种风格归一化。</p>
+<p><img src="https://i.loli.net/2020/09/25/BJ5SiRZen3bx2Uh.png" alt="image.png"></p>
+<p>由于BN是在一个batch的样本上进行特征统计，可以直观地理解为将一个batch的样本围绕着单一风格进行归一化。然而每一个的样本都有不同的风格，很难将一个batch中所有样本转化成同一个风格。虽然卷积层可能会学会弥补样本之间风格的差异，但也为训练增加了难度。另一方面，IN可以将每个样本的风格归一化为目标风格，网络的其他部分可以在舍弃原有信息风格的同时专注于内容处理，提高了训练速度。CIN成功的原因也很明确：不同的仿射参数可以将特征统计值归一化到不同的值，从而将输出的图像归一化到不同的风格。</p>
+<h1 id="5-Adaptive-Instance-Normalization"><a href="#5-Adaptive-Instance-Normalization" class="headerlink" title="5    Adaptive Instance Normalization"></a>5    Adaptive Instance Normalization</h1><p>如果将输入归一化为由仿射参数指定的单一风格，是否有可能通过自适应仿射变换使其适应任意给定的风格？我们对IN进行了一个简单的扩展。我们称之为自适应实例归一化(AdaIN)。AdaIN接收一个内容输入x和一个样式输入y，并简单地将x的通道平均值和方差与y的平均值和方差匹配。<strong>与BN、IN和CIN不同，AdaIN没有可以学习的仿射参数。相反，它自适应地从风格输入中计算仿射参数</strong>：<br>$$<br>AdaIN(x,y)=\sigma (y)\begin{pmatrix} \frac{x-\mu (x)}{\sigma (x)}\end{pmatrix}+\mu (y)<br>$$<br>相比于IN，我们仅仅是将两个仿射参数替换成了$\sigma (y)$和$\mu (y)$，这两个统计值的依然是在空间位置上进行计算。</p>
+<p>假设存在一个检测特定风格纹路的特征通道。具有这种纹路的风格图像将在该层产生较高的平均激活值。AdaIN产生的输出在保持内容图像的空间结构的同时，对该特征具有同样高的平均激活度。纹路特征可以通过前馈解码器转换到到图像空间。该特征通道的方差可以将更细微的风格信息传递到AdaIN输出和最终输出的图像中。</p>
+<p>简而言之，AdaIN通过迁移特征统计量，即通道方向上的均值和方差，在特征空间中进行风格迁移。</p>
+<h1 id="6-Experimental-Setup"><a href="#6-Experimental-Setup" class="headerlink" title="6    Experimental Setup"></a>6    Experimental Setup</h1><p>如下是我们基于AdaIN的风格迁移网络的概览图：</p>
+<p><img src="https://i.loli.net/2020/09/29/j2ZQMDuv8HtWqhk.png" alt="image.png"></p>
+<h2 id="6-1-Architecture"><a href="#6-1-Architecture" class="headerlink" title="6.1    Architecture"></a>6.1    Architecture</h2><p>我们的风格迁移网络$T$以一个内容图像$c$和一个任意风格的图像$s$作为输入，并合成一个输出图像，该图像重新组合前者的内容和后者的样式。我们采用一种简单的encoder-decoder架构，其中encoder $f$ 固定在预训练VGG-19的前几层（直到relu4_1）。在特征空间中对内容和风格图像进行编码后，我们将这两种特征图输入AdalN层，使内容特征图的均值和方差与风格特征图的均值和方差对齐，生成目标特征图$t$：<br>$$<br>t=AdaIN(f(c),f(s))<br>$$<br>训练一个随机初始化的decoder $g$将$t$映射回图像空间，生成风格化图像$T (c, s)$：<br>$$<br>T(c,s)=g(t)<br>$$<br>decoder大部分是encoder的镜像，所有池化层替换为最近的上采样，以减少棋盘效应。我们在$f$和$g$中使用反射填充（(reflflection padding)来避免边界失真。另一个问题是decoder应该使用IN、BN还是不使用标准化层。如第4节所述，IN将每个样本归为单个样式，而BN将一批样本归一化，以单个样式为中心。当我们希望decoder生成风格迥异的图像时，两者都是不可取的。因此，我们在decoder中不使用归一化层。</p>
+<h2 id="6-2-Training"><a href="#6-2-Training" class="headerlink" title="6.2    Training"></a>6.2    Training</h2><ul>
+<li>Dataset<ul>
+<li>Content: MS-COCO</li>
+<li>Style: WikiArt</li>
+</ul>
+</li>
+<li>Sample size: 80000</li>
+<li>Optimizer: adam</li>
+<li>Batch size: 8 content-style image pairs</li>
+<li>Resize: 512, RandomCrop: 256×256</li>
+<li>Model: VGG-19</li>
+<li>Loss: $L=L_c+\lambda L_s$</li>
+</ul>
+<p>损失函数为内容损失和风格损失的加权和。内容损失是目标特征与输出图像特征之间的欧氏距离。我们使用AdaIN输出$t$作为内容目标，而不是内容图像：<br>$$<br>L_c=|f(g(t))-t|<em>2<br>$$<br>由于AdaIN层只迁移了风格特征的平均值和标准差，所以我们的风格损失只与这些统计数据匹配。虽然我们发现常用的Gram矩阵损失可以产生类似的结果，但我们还是使用IN统计，因为它在概念上更清晰。<br>$$<br>L_s=\sum^L</em>{i=1}|\mu (\phi_i(g(t)))-\mu(\phi_i(s))|<em>2+\sum^L</em>{i=1}|\sigma (\phi_i(g(t)))-\sigma(\phi_i(s))|_2<br>$$<br>其中$\phi$表示VGG-19中用于计算风格损失的层。在我们的实验中，我们在relu1_1, relu2_1, relu3_1,  relu4_1中使用了相等的权重。</p>
+
+      
+    </div>
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+          
+            <a href="/tags/风格迁移/" rel="tag"><i class="fa fa-tag"></i> 风格迁移</a>
+          
+            <a href="/tags/论文翻译/" rel="tag"><i class="fa fa-tag"></i> 论文翻译</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/28/SynthText：用于文本定位的自然场景文本合成/" rel="next" title="SynthText：用于文本定位的自然场景文本合成">
+                <i class="fa fa-chevron-left"></i> SynthText：用于文本定位的自然场景文本合成
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Hsaki">
+            
+              <p class="site-author-name" itemprop="name">Hsaki</p>
+              <p class="site-description motion-element" itemprop="description">橘猫最爱的煎饼狗子!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/a-kali" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hsaki@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/hsakizero" target="_blank" title="Kaggle">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>Kaggle</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-number">2.</span> <span class="nav-text">1    Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Related-Work"><span class="nav-number">3.</span> <span class="nav-text">2    Related Work</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Background"><span class="nav-number">4.</span> <span class="nav-text">3    Background</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Batch-Normalization"><span class="nav-number">4.1.</span> <span class="nav-text">3.1    Batch Normalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Instance-Normalization"><span class="nav-number">4.2.</span> <span class="nav-text">3.2    Instance Normalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Conditional-Instance-Normalization"><span class="nav-number">4.3.</span> <span class="nav-text">3.3    Conditional Instance Normalization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Interpreting-Instance-Normalization"><span class="nav-number">5.</span> <span class="nav-text">4     Interpreting Instance Normalization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Adaptive-Instance-Normalization"><span class="nav-number">6.</span> <span class="nav-text">5    Adaptive Instance Normalization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Experimental-Setup"><span class="nav-number">7.</span> <span class="nav-text">6    Experimental Setup</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-Architecture"><span class="nav-number">7.1.</span> <span class="nav-text">6.1    Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-Training"><span class="nav-number">7.2.</span> <span class="nav-text">6.2    Training</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hsaki</span>
+<div class="powered-by">
+</div>
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">76.9k</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
