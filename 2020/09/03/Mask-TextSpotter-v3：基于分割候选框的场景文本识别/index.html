@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/09/02/J93otX4vVBPydT7.png">
 <meta property="og:image" content="https://i.loli.net/2020/09/02/DJFe94Ckndgp6QN.png">
 <meta property="og:image" content="https://i.loli.net/2020/09/02/l9RejYTKfJu7SP6.png">
-<meta property="og:updated_time" content="2020-09-27T16:22:47.968Z">
+<meta property="og:updated_time" content="2020-10-28T13:32:16.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mask TextSpotter v3：基于分割候选框的场景文本识别">
 <meta name="twitter:description" content="论文地址：Mask TextSpotter v3: Segmentation Proposal Network for Robust Scene Text Spotting Github：https://github.com/MhLiao/MaskTextSpotterV3 Abstract最近检测与识别相结合的场景文本识别端到端模型取得了很大进展。然而，目前的任意形状场景文本识别模型大多使用RP">
@@ -434,14 +434,7 @@
 <h2 id="2-1-Segmentation-proposal-network"><a href="#2-1-Segmentation-proposal-network" class="headerlink" title="2.1     Segmentation proposal network"></a>2.1     Segmentation proposal network</h2><p>如上图所示，我们提出的<strong>SPN采用U-Net结构使其对尺度具有鲁棒性</strong>。和基于FPN多个阶段产生不同尺度的候选框的RPN不同，<strong>SPN从分割mask生成候选框，并且使用由多个感受野产生的特征图融合而成的特征图进行预测</strong>，该特征图长宽为输入图像的1/4。分割预测模块配置见文末补充。分割模型输出的掩码概率图尺寸和输入图像相同，通道数为1，取值范围为[0,1]。</p>
 <p><strong>Segmentation label generation.</strong> 为了分离邻近的文本实例，基于分割的场景文本检测器常用的方法是缩小文本区域。受DB模型的启发，我们采用Vatti裁剪算法，通过裁剪$d$个像素来缩小文本区域。偏移像素d可以确定为$d= A(1-r^2)/L$，其中$A$和$L$分别为文本域多边形的面积和周长，$r$为收缩比，通常设为0.4。生成label的例子如下图所示：</p>
 <p><img src="https://i.loli.net/2020/09/02/l9RejYTKfJu7SP6.png" alt="image.png"></p>
-<p><strong>Proposal generation.</strong> 对于一个给定的值域在[0,1]之间的分割图，我们通过阈值对其进行二值化：</p>
-<script type="math/tex; mode=display">
-B_{i,j}=\left\{  
-             \begin{array}{}  
-             1 & & if \ S_{i,j}>=t,\\  
-             0 & & otherwise.\\  
-             \end{array}  
-\right.</script><p>我们对掩码$B$中连通的区域进行分组，这些连通区域可以被认为是缩小后的文本区域。因此，我们使用Vatti裁剪算法扩大它们$\hat d$个像素，其中$\hat d$计算为$\hat d=\hat A×\hat r / \hat L$。其中，$\hat A$和$\hat L$是缩小后文本区域的面积和周长。根据收缩比$r$的值，我们将$\hat r$设置为3.0。</p>
+<p><strong>Proposal generation.</strong> 对于一个给定的值域在[0,1]之间的分割图，我们通过阈值对其进行二值化。对掩码$B$中连通的区域进行分组，这些连通区域可以被认为是缩小后的文本区域。因此，我们使用Vatti裁剪算法扩大它们$\hat d$个像素，其中$\hat d$计算为$\hat d=\hat A×\hat r / \hat L$。其中，$\hat A$和$\hat L$是缩小后文本区域的面积和周长。根据收缩比$r$的值，我们将$\hat r$设置为3.0。</p>
 <p>如上所述，SPN产生的候选框可以精确地表示多边形文本区域。因此，SPN具有生成极端长宽比/密集/不规则形状的文本实例候选框的能力。</p>
 <p><strong>（概括：分割→缩小文本域→二值化→将连通的像素划分为一个文本域→恢复文本域大小）</strong></p>
 <h2 id="2-2-Hard-RoI-masking"><a href="#2-2-Hard-RoI-masking" class="headerlink" title="2.2    Hard RoI masking"></a>2.2    Hard RoI masking</h2><p>由于自定义RoI Align操作只支持轴对称的矩形bounding boxes，因此我们使用多边形候选框中的最小的、轴对称的矩形bounding boxes来生成RoI特征，以保持RoI Align操作。</p>
@@ -449,12 +442,8 @@ B_{i,j}=\left\{
 <p><strong>Hard RoI masking将二值多边形掩码与RoI特征相乘，以抑制背景噪声或邻近文本实例</strong>，大大降低了检测和识别模块的执行难度和出错概率。</p>
 <h2 id="2-3-Detection-and-recognition"><a href="#2-3-Detection-and-recognition" class="headerlink" title="2.3    Detection and recognition"></a>2.3    Detection and recognition</h2><p>我们遵循Mask TextSpotter v2的文本检测和识别模块的主要设计，原因如下:(1)Mask TextSpotter v2是目前最先进的、具有竞争力的检测和识别模块。(2)由于Mask TextSpotter v2是基于RPN的场景文本检测中一种具有代表性的方法，我们可以控制变量，来验证我们所提出的SPN的有效性和鲁棒性。</p>
 <p>检测时，将Hard RoI masking生成的masked RoI特征输入到Fast R-CNN模块以进一步细化定位，并使用文本实例分割模块进行精确分割。采用字符分割模块和空间注意力模块进行识别。</p>
-<h2 id="2-4-Optimization"><a href="#2-4-Optimization" class="headerlink" title="2.4    Optimization"></a>2.4    Optimization</h2><p>损失函数$L$定义如下：</p>
-<script type="math/tex; mode=display">
-L=L_s+\alpha_1L_{rcnn}+\alpha_2L_{mask}.</script><p>$L<em>{rcnn}$和$ L</em>{mask}$分别在Fast R-CNN和Mask TextSpotter v2中有过明确定义。$L_mask$由文本分割损失、字符分割损失、空间注意力解码器损失组成。$L_s$表示SPN的损失。根据Mask TextSpotter v2，我们将$\alpha_1$和$\alpha_2$设为1.0。</p>
-<p>我们采用dice loss计算SPN的损失。设$S$和$G$分别为分割结果mask和目标mask，则$L_s$可由如下公式计算：</p>
-<script type="math/tex; mode=display">
-L_s=1-\frac{2.0×\sum(S*G)}{\sum S + \sum G}</script><p>（大概意思就是两个mask重合率越高，损失越小）</p>
+<h2 id="2-4-Optimization"><a href="#2-4-Optimization" class="headerlink" title="2.4    Optimization"></a>2.4    Optimization</h2><p>损失函数$L$定义如下：<br>$$<br>L=L_s+\alpha_1L_{rcnn}+\alpha_2L_{mask}.<br>$$<br>$L_{rcnn}$和$ L_{mask}$分别在Fast R-CNN和Mask TextSpotter v2中有过明确定义。$L_{mask}$由文本分割损失、字符分割损失、空间注意力解码器损失组成。$L_s$表示SPN的损失。根据Mask TextSpotter v2，我们将$\alpha_1$和$\alpha_2$设为1.0。</p>
+<p>我们采用dice loss计算SPN的损失。设$S$和$G$分别为分割结果mask和目标mask，则$L_s$可由如下公式计算：<br>$$<br>L_s=1-\frac{2.0×\sum(S*G)}{\sum S + \sum G}<br>$$<br>（大概意思就是两个mask重合率越高，损失越小）</p>
 
       
     </div>
