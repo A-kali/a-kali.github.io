@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://a-kali.github.io/"/>
-  <updated>2020-11-11T16:31:05.748Z</updated>
+  <updated>2020-11-11T16:38:38.377Z</updated>
   <id>http://a-kali.github.io/</id>
   
   <author>
@@ -15,6 +15,100 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【面试向】如何进行多标签分类</title>
+    <link href="http://a-kali.github.io/2020/11/12/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%A4%9A%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB/"/>
+    <id>http://a-kali.github.io/2020/11/12/如何进行多标签分类/</id>
+    <published>2020-11-11T16:37:46.000Z</published>
+    <updated>2020-11-11T16:38:38.377Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>Q：多标签分类怎么解决？</strong></p><p>解决多标签分类问题的方法有很多，个人感觉只有两种比较好用。</p><p>第一种是将n标签问题转化为n个二分类的问题，即模型输出为长度为n的二值向量，每个值对应一个标签，用于表示样本是否包含该标签。这应该是最简单常见的方法，但该方法忽略了标签与标签之间的相关性。</p><p>第二种是使用CNN+RNN+Embedding的策略（参考文献：<a href="https://arxiv.org/abs/1604.04573" target="_blank" rel="noopener">CNN-RNN: A Unified Framework for Multi-label Image Classification</a>）。该方法考虑到了各个标签之间的关联性，将每个标签映射到高维空间上。每次运行预测一个标签，并根据该标签预测下一个标签。理论上该方法的准确率会比较高，但时间效率很低。</p><p><img src="https://i.loli.net/2020/11/11/S5p13cqzibZQfK2.png" alt="image.png"></p><p><a href="https://www.kaggle.com/c/imet-2019-fgvc6" target="_blank" rel="noopener">Kaggle: iMet Collection 2019 - FGVC6</a> 大都会文物分类竞赛就是多标签分类任务，几乎所有参赛者都使用第一种方法。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;Q：多标签分类怎么解决？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;解决多标签分类问题的方法有很多，个人感觉只有两种比较好用。&lt;/p&gt;
+&lt;p&gt;第一种是将n标签问题转化为n个二分类的问题，即模型输出为长度为n的二值向量，每个值对应一个标签，用于表示样本是否包含该标签。这
+      
+    
+    </summary>
+    
+      <category term="面试" scheme="http://a-kali.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="神经网络" scheme="http://a-kali.github.io/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="面试" scheme="http://a-kali.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DB：基于可微二值化的实时场景文本检测</title>
+    <link href="http://a-kali.github.io/2020/11/12/DB%EF%BC%9A%E5%9F%BA%E4%BA%8E%E5%8F%AF%E5%BE%AE%E4%BA%8C%E5%80%BC%E5%8C%96%E7%9A%84%E5%AE%9E%E6%97%B6%E5%9C%BA%E6%99%AF%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/"/>
+    <id>http://a-kali.github.io/2020/11/12/DB：基于可微二值化的实时场景文本检测/</id>
+    <published>2020-11-11T16:36:11.000Z</published>
+    <updated>2020-11-11T16:40:35.929Z</updated>
+    
+    <content type="html"><![CDATA[<p>论文地址：<a href="https://arxiv.org/abs/1911.08947" target="_blank" rel="noopener">Real-time Scene Text Detection with Differentiable Binarization</a></p><p>Github：<a href="https://github.com/MhLiao/DB（代码结构很复杂）" target="_blank" rel="noopener">https://github.com/MhLiao/DB（代码结构很复杂）</a></p><p><strong>Structure</strong></p><p>DB(Differentiable Binarization)是一个轻量级的、基于分割的场景文本检测(Scene Text Detection, STD)模型。该模型的原理简洁易懂，在本文中就简单介绍一下。</p><p><img src="https://i.loli.net/2020/11/04/MF73kDbCcueraNL.png" alt="image.png"></p><p>上图展示了DB的模型结构。前半部分是常见的32倍下采样+8倍上采样+特征融合，比较特殊的是该模型使用了后四层卷积的输出concat到一起进行预测。图中的pred是3×3卷积，输出两张map分别用来表示概率和阈值。使用阈值map对概率map进行二值化后，就将输出结果分为了前景（文本域）和背景。</p><p>但是看到这里会很容易发现，这个自适应的阈值似乎很多余。其实我也觉得。文中也没有很具体地解释为什么DB能起作用，但又确实有一定作用。</p><p>个人感觉这个自适应阈值能够把那些挨得比较紧的文本域给隔开，避免混淆成一个文本域。</p><p>值得一提的是阈值map只在训练的时候使用，在测试时仅使用固定阈值。估计在测试时使用DB并不能得到比较有效的提升，出于运算量的考虑决定去掉这部分。</p><p><strong>Loss</strong></p><p>损失函数分为三部分：概率图损失，阈值损失，二值图损失。其中概率图和二值图都使用交叉熵损失函数，而阈值损失使用的是L1损失函数。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;论文地址：&lt;a href=&quot;https://arxiv.org/abs/1911.08947&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Real-time Scene Text Detection with Differentiable Binariz
+      
+    
+    </summary>
+    
+      <category term="计算机视觉" scheme="http://a-kali.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+      <category term="计算机视觉" scheme="http://a-kali.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+      <category term="场景文本检查" scheme="http://a-kali.github.io/tags/%E5%9C%BA%E6%99%AF%E6%96%87%E6%9C%AC%E6%A3%80%E6%9F%A5/"/>
+    
+      <category term="DB" scheme="http://a-kali.github.io/tags/DB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【面试向】Batch Normalization</title>
+    <link href="http://a-kali.github.io/2020/11/12/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%BD%92%E4%B8%80%E5%8C%96/"/>
+    <id>http://a-kali.github.io/2020/11/12/神经网络中的归一化/</id>
+    <published>2020-11-11T16:32:30.000Z</published>
+    <updated>2020-11-11T16:34:41.237Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>Q：BN的作用</strong></p><p>通过一定的归一化手段，将每层神经元的输入分布拉回到均值为0方差为1的标准正态分布，避免梯度消失。</p><blockquote><p>随着网络深度加深或者在训练过程中，其分布逐渐发生偏移或者变动，之所以训练收敛慢，一般是整体分布逐渐往非线性函数的取值区间的上下限两端靠近，导致反向传播时低层神经网络的梯度消失，神经网络收敛变慢。</p></blockquote><p><strong>Q：手撕BN</strong></p><p>BatchNorm2D（常用于卷积神经网络）</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BatchNorm2D</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, channel, momentum=<span class="number">0.1</span>, eps=<span class="number">1e-5</span>)</span>:</span></span><br><span class="line">        self.running_mean = np.zeros(channel) <span class="comment"># 用于测试时</span></span><br><span class="line">        self.running_var = np.ones(channel)   <span class="comment"># 同上</span></span><br><span class="line">        self.momentum = momentum   </span><br><span class="line">        self.eps = eps                        <span class="comment"># 接近于0的数，用于避免分母为0</span></span><br><span class="line">        self.training = <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, input)</span>:</span></span><br><span class="line">        <span class="comment"># input.shape: (B, C, H, W)</span></span><br><span class="line">        len_ch = input.size(<span class="number">1</span>)</span><br><span class="line">        output = np.zeros(input.size())</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len_ch):</span><br><span class="line">            in_ch = input[:, i, :, :]</span><br><span class="line">            total_elem = in_ch.numel()</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> self.training:</span><br><span class="line">                <span class="comment"># 计算均值和方差，并归一化</span></span><br><span class="line">                mean = in_ch.sum() / total_elem</span><br><span class="line">                var = ((in_ch - mean) ** <span class="number">2</span>).sum() / total_elem</span><br><span class="line">                out_ch = (in_ch - mean) / (var + self.eps) ** <span class="number">0.5</span></span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 更新参数</span></span><br><span class="line">                var_unbiased = ((in_ch - mean) ** <span class="number">2</span>).sum() / (total_elem - <span class="number">1</span>)</span><br><span class="line">                self.running_mean[i] = self.running_mean[i] * (<span class="number">1</span> - self.momentum) + mean * self.momentum</span><br><span class="line">                self.running_var[i] = self.running_var[i] * (<span class="number">1</span> - self.momentum) + var_unbiased * self.momentum</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                out_ch = (in_ch - self.running_mean[i]) / (self.running_var[i] + self.eps) ** <span class="number">0.5</span></span><br><span class="line">                </span><br><span class="line">            output[:, i, :, :] = out_ch</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure><p>BatchNorm1D大概也能根据以上代码进行修改（我瞎写的，仅供参考）</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BatchNorm1D</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, momentum=<span class="number">0.1</span>, eps=<span class="number">1e-5</span>)</span>:</span></span><br><span class="line">        self.running_mean = <span class="number">0</span></span><br><span class="line">        self.running_var = <span class="number">1</span></span><br><span class="line">        self.momentum = momentum   </span><br><span class="line">        self.eps = eps           </span><br><span class="line">        self.training = <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, input)</span>:</span></span><br><span class="line"></span><br><span class="line">        total_elem = input.numel()</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> self.training:</span><br><span class="line">            <span class="comment"># 计算均值和方差，并归一化</span></span><br><span class="line">            mean = input.sum() / total_elem</span><br><span class="line">            var = ((input - mean) ** <span class="number">2</span>).sum() / total_elem</span><br><span class="line">            output = (input - mean) / (var + self.eps) ** <span class="number">0.5</span></span><br><span class="line">                </span><br><span class="line">            <span class="comment"># 更新参数</span></span><br><span class="line">            var_unbiased = ((input - mean) ** <span class="number">2</span>).sum() / (total_elem - <span class="number">1</span>)</span><br><span class="line">            self.running_mean = self.running_mean * (<span class="number">1</span> - self.momentum) + mean * self.momentum</span><br><span class="line">            self.running_var = self.running_var * (<span class="number">1</span> - self.momentum) + var_unbiased * self.momentum</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            output = (input - self.running_mean) / (self.running_var + self.eps) ** <span class="number">0.5</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure><p><strong>Q：BN能防止过拟合吗？为什么？</strong></p><p>BN能一定程度上缓解过拟合。BN使得模型在训练时的输出不仅仅根据当前的输入样本信息，还包含了同一batch其他样本的信息。训练时，同一个样本跟不同的样本组成一个mini-batch，它们的输出是不同的。相当于在神经网络中进行了数据增强。</p><p><strong>Q：BN 有哪些参数？</strong></p><p>可训练的参数有均值和方差。超参数有动量，2D的超参数还包含通道数。</p><p><strong>Q：BN 的反向传播推导</strong></p><ul><li><input disabled type="checkbox"> TODO</li></ul><p><strong>Q：BN 在训练和测试的区别？</strong></p><p>训练时使用的是当前batch的样本统计量进行归一化，测试时使用的是在训练过程中更新迭代计算得到的均值和方差进行归一化。</p><p><strong>Q：有什么其它的归一化方法？</strong></p><p><a href="https://blog.csdn.net/liuxiao214/article/details/81037416" target="_blank" rel="noopener">https://blog.csdn.net/liuxiao214/article/details/81037416</a></p><ul><li>IN(Instance Norm)：实例归一化。与BN的区别在于，BN使用整个batch的统计量作为参数进行归一化，而IN仅使用当前样本的统计量。IN常用于风格迁移任务中。</li><li><a href="https://a-kali.github.io/2020/10/12/AdaIN%EF%BC%9A%E5%9F%BA%E4%BA%8E%E9%80%82%E5%BA%94%E6%80%A7%E5%AE%9E%E4%BE%8B%E5%BD%92%E4%B8%80%E5%8C%96%E7%9A%84%E5%AE%9E%E6%97%B6%E4%BB%BB%E6%84%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/#more">AdaIN</a>：自适应的实例归一化。在IN的基础上，将统计量固定为目标风格图像的统计量。在风格迁移中可以快速适应任意风格。</li><li><a href="https://zhuanlan.zhihu.com/p/54530247" target="_blank" rel="noopener">LN(Layer Norm)</a>：与BN的区别在于，BN是对于一个batch样本的单个通道进行归一化，LN是对单个样本的所有通道进行归一化。可用于RNN或者小batch。</li><li>GN(Group Norm)：组归一化。和LN类似，比LN多一个超参数G，G表示分组的数量。同样用来解决在小batch时BN效果较差的问题。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;Q：BN的作用&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通过一定的归一化手段，将每层神经元的输入分布拉回到均值为0方差为1的标准正态分布，避免梯度消失。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;随着网络深度加深或者在训练过程中，其分布逐渐发生偏移或者变动，之所以训练
+      
+    
+    </summary>
+    
+      <category term="面试" scheme="http://a-kali.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="神经网络" scheme="http://a-kali.github.io/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="面试" scheme="http://a-kali.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="手撕" scheme="http://a-kali.github.io/tags/%E6%89%8B%E6%92%95/"/>
+    
+      <category term="BN" scheme="http://a-kali.github.io/tags/BN/"/>
+    
+      <category term="Normalization" scheme="http://a-kali.github.io/tags/Normalization/"/>
+    
+  </entry>
   
   <entry>
     <title>【面试向】IoU和mIoU</title>
@@ -399,11 +493,11 @@
     
       <category term="计算机视觉" scheme="http://a-kali.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
-      <category term="3D点云" scheme="http://a-kali.github.io/tags/3D%E7%82%B9%E4%BA%91/"/>
-    
       <category term="深度学习" scheme="http://a-kali.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="神经网络" scheme="http://a-kali.github.io/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="3D点云" scheme="http://a-kali.github.io/tags/3D%E7%82%B9%E4%BA%91/"/>
     
       <category term="图像分类" scheme="http://a-kali.github.io/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"/>
     
@@ -477,82 +571,6 @@
         &lt;h1 id=&quot;如何确定你的目标期刊？&quot;&gt;&lt;a href=&quot;#如何确定你的目标期刊？&quot; class=&quot;headerlink&quot; title=&quot;如何确定你的目标期刊？&quot;&gt;&lt;/a&gt;如何确定你的目标期刊？&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;期刊的类型、领域范围&lt;/li&gt;
 &lt;li&gt;期刊的声望和影响
-      
-    
-    </summary>
-    
-    
-      <category term="论文写作" scheme="http://a-kali.github.io/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SCI写作入门（13）—— 写作语句链接</title>
-    <link href="http://a-kali.github.io/2020/02/03/SCI%E5%86%99%E4%BD%9C%E5%85%A5%E9%97%A8%EF%BC%8813%EF%BC%89%E2%80%94%E2%80%94-%E5%86%99%E4%BD%9C%E8%AF%AD%E5%8F%A5%E9%93%BE%E6%8E%A5/"/>
-    <id>http://a-kali.github.io/2020/02/03/SCI写作入门（13）——-写作语句链接/</id>
-    <published>2020-02-03T03:59:33.000Z</published>
-    <updated>2020-02-03T04:49:42.992Z</updated>
-    
-    <content type="html"><![CDATA[<p>在SCI论文的写作过程中，常常会出现一些比较复杂的句子，为了能够使语句的意思更加紧密合理的表达出来，就需要使用一些连接词来简介语句的前后关系。能用来连接语句前后关系的词包括<strong>连接词和副词</strong>。</p><p>根据语句的前后关系，连接词可以分为7类：</p><ul><li><p><strong>因果关系</strong>；常用连接词：therefore, consequently, thus, hence, as a result, indeed等，用来对前句的内容进行总结。</p></li><li><p><strong>并列关系</strong>；常用连接词：also, likewise, besides in addition, moreover, furthermore等，用来连接多个同等事物或特征。</p></li><li><p><strong>相反关系</strong>；常用连接词：in contrast, but, however, yet, on the other hand, surprisingly, nevertheless, instead of等，用来描述某些设想与文献描述不符的现象或者结果。</p></li><li><p><strong>相似关系</strong>（类似于并列关系）；常用连接词：similarly, likewise，用于表达两个功能或者结果具有相似性。</p></li><li><p><strong>举例关系</strong>；常用连接词：for example, for instance, specifically, such as including等。</p></li><li><p><strong>时间关系</strong>；如：later等。</p></li><li><p><strong>顺序关系</strong>（类似于时间关系）；常用连接词：then, next, finally, first, second等。</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在SCI论文的写作过程中，常常会出现一些比较复杂的句子，为了能够使语句的意思更加紧密合理的表达出来，就需要使用一些连接词来简介语句的前后关系。能用来连接语句前后关系的词包括&lt;strong&gt;连接词和副词&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;根据语句的前后关系，连接词可以分为7类
-      
-    
-    </summary>
-    
-    
-      <category term="论文写作" scheme="http://a-kali.github.io/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SCI写作入门（11）—— 实在憋不出来咋办</title>
-    <link href="http://a-kali.github.io/2020/02/03/SCI%E5%86%99%E4%BD%9C%E5%85%A5%E9%97%A8%EF%BC%8811%EF%BC%89%E2%80%94%E2%80%94-%E5%AE%9E%E5%9C%A8%E6%86%8B%E4%B8%8D%E5%87%BA%E6%9D%A5%E5%92%8B%E5%8A%9E/"/>
-    <id>http://a-kali.github.io/2020/02/03/SCI写作入门（11）——-实在憋不出来咋办/</id>
-    <published>2020-02-03T03:19:11.000Z</published>
-    <updated>2020-02-03T03:56:54.403Z</updated>
-    
-    <content type="html"><![CDATA[<p>素材来源：实验万事屋</p><p>本文仅为英语和写作水平有限、写作时词穷的同学提供方向，并不提倡论文抄袭。</p><p><strong>去哪里“抄”？</strong></p><ul><li>Google 图书、图书馆（书籍）</li><li>维基百科（定义、性质）</li><li>论文文献（Introduction、Methods、Discussion、Figure legend）：抄语法、词组，修改主语等。</li></ul><p><strong>查重</strong>：论文写完后，一定要去做查重。如果被审稿人查出重复率较高会退回重改，影响发表时间。查重服务可以来自于万方等数据库，或者淘宝、闲鱼商家提供的服务。</p><p><strong>语法、词汇差错</strong>：</p><ul><li>易改软件</li><li>英语润色服务</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;素材来源：实验万事屋&lt;/p&gt;
-&lt;p&gt;本文仅为英语和写作水平有限、写作时词穷的同学提供方向，并不提倡论文抄袭。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;去哪里“抄”？&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Google 图书、图书馆（书籍）&lt;/li&gt;
-&lt;li&gt;维基百科（定义、性质
-      
-    
-    </summary>
-    
-    
-      <category term="论文写作" scheme="http://a-kali.github.io/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SCI写作入门（3）—— Figure Legend</title>
-    <link href="http://a-kali.github.io/2020/02/02/SCI%E5%86%99%E4%BD%9C%E5%85%A5%E9%97%A8%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94-Figure-Legend/"/>
-    <id>http://a-kali.github.io/2020/02/02/SCI写作入门（3）——-Figure-Legend/</id>
-    <published>2020-02-02T13:59:24.000Z</published>
-    <updated>2020-02-02T14:07:04.688Z</updated>
-    
-    <content type="html"><![CDATA[<p>素材来源：实验万事屋</p><h1 id="1-图片说明"><a href="#1-图片说明" class="headerlink" title="1    图片说明"></a>1    图片说明</h1><h1 id="2-表格注释"><a href="#2-表格注释" class="headerlink" title="2    表格注释"></a>2    表格注释</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;素材来源：实验万事屋&lt;/p&gt;
-&lt;h1 id=&quot;1-图片说明&quot;&gt;&lt;a href=&quot;#1-图片说明&quot; class=&quot;headerlink&quot; title=&quot;1    图片说明&quot;&gt;&lt;/a&gt;1    图片说明&lt;/h1&gt;&lt;h1 id=&quot;2-表格注释&quot;&gt;&lt;a href=&quot;#2-表格注释&quot;
       
     
     </summary>
