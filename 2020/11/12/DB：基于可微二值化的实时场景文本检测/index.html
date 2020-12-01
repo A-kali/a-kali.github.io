@@ -97,7 +97,7 @@
 <meta property="og:description" content="论文地址：Real-time Scene Text Detection with Differentiable Binarization Github：https://github.com/MhLiao/DB（代码结构很复杂） Structure DB(Differentiable Binarization)是一个轻量级的、基于分割的场景文本检测(Scene Text Detection, STD">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/04/MF73kDbCcueraNL.png">
-<meta property="og:updated_time" content="2020-11-11T16:40:35.929Z">
+<meta property="og:updated_time" content="2020-12-01T16:38:24.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DB：基于可微二值化的实时场景文本检测">
 <meta name="twitter:description" content="论文地址：Real-time Scene Text Detection with Differentiable Binarization Github：https://github.com/MhLiao/DB（代码结构很复杂） Structure DB(Differentiable Binarization)是一个轻量级的、基于分割的场景文本检测(Scene Text Detection, STD">
@@ -362,7 +362,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 409字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 344字</span>
 
           
 
@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  409
+                  344
                 </span>
               
 
@@ -420,8 +420,7 @@
 <p>DB(Differentiable Binarization)是一个轻量级的、基于分割的场景文本检测(Scene Text Detection, STD)模型。该模型的原理简洁易懂，在本文中就简单介绍一下。</p>
 <p><img src="https://i.loli.net/2020/11/04/MF73kDbCcueraNL.png" alt="image.png"></p>
 <p>上图展示了DB的模型结构。前半部分是常见的32倍下采样+8倍上采样+特征融合，比较特殊的是该模型使用了后四层卷积的输出concat到一起进行预测。图中的pred是3×3卷积，输出两张map分别用来表示概率和阈值。使用阈值map对概率map进行二值化后，就将输出结果分为了前景（文本域）和背景。</p>
-<p>但是看到这里会很容易发现，这个自适应的阈值似乎很多余。其实我也觉得。文中也没有很具体地解释为什么DB能起作用，但又确实有一定作用。</p>
-<p>个人感觉这个自适应阈值能够把那些挨得比较紧的文本域给隔开，避免混淆成一个文本域。</p>
+<p>这个自适应阈值能把分布比较密集的文本域给隔开，避免混淆成一个文本域。</p>
 <p>值得一提的是阈值map只在训练的时候使用，在测试时仅使用固定阈值。估计在测试时使用DB并不能得到比较有效的提升，出于运算量的考虑决定去掉这部分。</p>
 <p><strong>Loss</strong></p>
 <p>损失函数分为三部分：概率图损失，阈值损失，二值图损失。其中概率图和二值图都使用交叉熵损失函数，而阈值损失使用的是L1损失函数。</p>
@@ -675,7 +674,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">81.6k</span>
+    <span title="Site words total count">81.5k</span>
   
 </div>
 
