@@ -97,7 +97,7 @@
 <meta property="og:description" content="Q：BN解决了什么问题？ 解决两个问题：  Internal Covariate Shift：深度神经网络涉及到很多层的叠加，而每一层的参数更新会导致上层的输入数据分布发生变化，通过层层叠加，高层的输入分布变化会非常剧烈，这就使得高层需要不断去重新适应底层的参数更新。 梯度消失：由于之前Sigmoid一类的激活函数的存在，数据在网络中传播时整体分布逐渐往非线性函数的取值区间的上下限两端靠近，导致反">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/11/ZtDTfcHxUvyeioj.png">
-<meta property="og:updated_time" content="2020-12-12T22:08:33.046Z">
+<meta property="og:updated_time" content="2020-12-12T23:38:35.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【面试向】Batch Normalization">
 <meta name="twitter:description" content="Q：BN解决了什么问题？ 解决两个问题：  Internal Covariate Shift：深度神经网络涉及到很多层的叠加，而每一层的参数更新会导致上层的输入数据分布发生变化，通过层层叠加，高层的输入分布变化会非常剧烈，这就使得高层需要不断去重新适应底层的参数更新。 梯度消失：由于之前Sigmoid一类的激活函数的存在，数据在网络中传播时整体分布逐渐往非线性函数的取值区间的上下限两端靠近，导致反">
@@ -445,7 +445,7 @@
 <p><strong>Q：BN可以防止过拟合吗？</strong></p>
 <p>BN可以一定程度上缓解过拟合。在样本shuffle训练的情况下，某个样本在不同epoch遇到的同一个batch的其他样本都是不一样的，于是会产生不同的均值和标准差，相当于在模型内部做了数据增强。</p>
 <p><strong>Q：BN和Dropout同时用会怎样？怎样才能同时使用？</strong></p>
-<p>Dropout在测试阶段会根据神经元保留率来修改神经元权重，这会导致隐藏层输出值的方差跟训练时不同。而BN此时已经根据训练数据统计固定了方差参数，无法适应改变后的方差。多层累积下来产生方差偏移，影响模型效果。所以只有在Dropout在所有BN后面时能同时使用。</p>
+<p>Dropout在训练（或测试）阶段会根据神经元保留率来修改神经元权重，这会导致测试时隐藏层输出值的方差跟训练时不同。而BN此时已经根据训练数据统计固定了方差参数，无法适应改变后的方差。多层累积下来产生方差偏移，影响模型效果。所以只有在Dropout在所有BN后面时能同时使用。</p>
 <p><strong>Q：有什么其它的归一化方法？</strong></p>
 <ul>
 <li>IN(Instance Norm)：实例归一化。与BN的区别在于，BN使用整个batch的统计量作为参数进行归一化，而IN仅使用当前样本的统计量。IN常用于风格迁移任务中。</li>
