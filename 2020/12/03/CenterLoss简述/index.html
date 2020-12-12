@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="损失函数,">
 
 
 
@@ -88,17 +88,21 @@
 
 
 
-<meta name="description" content="橘猫最爱的煎饼狗子!">
+<meta name="description" content="Center Loss对于常见的图像分类问题，我们通常使用交叉熵损失函数监督神经网络。下图为神经网络在MNIST数据集上进行手写体数字分类任务得到的特征分布，在类与类之间能看到很明显的界限，能够便于softmax对特征进行分类。但是仍然可以看出部分不同类的样本距离很近，而同类的样本分布距离较远，这有可能对最终的分类结果有影响。  而Center Loss的提出就是为了缩小类内(intra-clas">
+<meta name="keywords" content="损失函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CenterLoss简述">
 <meta property="og:url" content="http://a-kali.github.io/2020/12/03/CenterLoss简述/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="橘猫最爱的煎饼狗子!">
+<meta property="og:description" content="Center Loss对于常见的图像分类问题，我们通常使用交叉熵损失函数监督神经网络。下图为神经网络在MNIST数据集上进行手写体数字分类任务得到的特征分布，在类与类之间能看到很明显的界限，能够便于softmax对特征进行分类。但是仍然可以看出部分不同类的样本距离很近，而同类的样本分布距离较远，这有可能对最终的分类结果有影响。  而Center Loss的提出就是为了缩小类内(intra-clas">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-12-03T09:18:01.679Z">
+<meta property="og:image" content="https://i.loli.net/2020/12/02/4M5jQxUcpW3H6G1.png">
+<meta property="og:image" content="https://i.loli.net/2020/12/02/pdn8rZzMEN7OaoA.png">
+<meta property="og:updated_time" content="2020-12-12T20:29:55.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CenterLoss简述">
-<meta name="twitter:description" content="橘猫最爱的煎饼狗子!">
+<meta name="twitter:description" content="Center Loss对于常见的图像分类问题，我们通常使用交叉熵损失函数监督神经网络。下图为神经网络在MNIST数据集上进行手写体数字分类任务得到的特征分布，在类与类之间能看到很明显的界限，能够便于softmax对特征进行分类。但是仍然可以看出部分不同类的样本距离很近，而同类的样本分布距离较远，这有可能对最终的分类结果有影响。  而Center Loss的提出就是为了缩小类内(intra-clas">
+<meta name="twitter:image" content="https://i.loli.net/2020/12/02/4M5jQxUcpW3H6G1.png">
 
 
 
@@ -337,7 +341,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 0字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 270字</span>
 
           
 
@@ -352,7 +356,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  270
                 </span>
               
 
@@ -389,7 +393,14 @@
       
 
       
-        
+        <h1 id="Center-Loss"><a href="#Center-Loss" class="headerlink" title="Center Loss"></a>Center Loss</h1><p>对于常见的图像分类问题，我们通常使用交叉熵损失函数监督神经网络。下图为神经网络在MNIST数据集上进行手写体数字分类任务得到的特征分布，在类与类之间能看到很明显的界限，能够便于softmax对特征进行分类。但是仍然可以看出部分不同类的样本距离很近，而同类的样本分布距离较远，这有可能对最终的分类结果有影响。</p>
+<p><img src="https://i.loli.net/2020/12/02/4M5jQxUcpW3H6G1.png" alt="image.png"></p>
+<p>而<strong>Center Loss</strong>的提出就是为了<strong>缩小类内(intra-class)距离</strong>。其公式表示如下：</p>
+<script type="math/tex; mode=display">
+L_c=\frac{1}{2}\sum^m_{i=1}‖x_i-c_{yi}‖^2_2</script><p>其中$c_{yi}$表示第y个类别的特征中心，$x_i$表示全连接层之前的特征，$m$表示mini-batch的大小。该损失函数试图使每个样本的特征向其类别中心靠近。</p>
+<p>至于类中心怎么更新迭代，这里就不写了（公式太复杂了yingyingying）。反正最终得到的特征分布如下：</p>
+<p><img src="https://i.loli.net/2020/12/02/pdn8rZzMEN7OaoA.png" alt="image.png"></p>
+
       
     </div>
     
@@ -412,6 +423,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/损失函数/" rel="tag"><i class="fa fa-tag"></i> 损失函数</a>
+          
+        </div>
       
 
       
@@ -501,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -541,7 +567,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -594,6 +620,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Center-Loss"><span class="nav-number">1.</span> <span class="nav-text">Center Loss</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -629,7 +671,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">81.7k</span>
+    <span title="Site words total count">82k</span>
   
 </div>
 
