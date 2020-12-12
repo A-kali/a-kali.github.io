@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://a-kali.github.io/"/>
-  <updated>2020-12-12T20:37:07.157Z</updated>
+  <updated>2020-12-12T20:43:04.577Z</updated>
   <id>http://a-kali.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://a-kali.github.io/2020/12/13/FLOPs%E4%B8%8E%E5%8F%82%E6%95%B0%E9%87%8F%E7%9A%84%E8%AE%A1%E7%AE%97/"/>
     <id>http://a-kali.github.io/2020/12/13/FLOPs与参数量的计算/</id>
     <published>2020-12-12T20:36:07.000Z</published>
-    <updated>2020-12-12T20:37:07.157Z</updated>
+    <updated>2020-12-12T20:43:04.577Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="FLOPs"><a href="#FLOPs" class="headerlink" title="FLOPs"></a>FLOPs</h1><p><strong>FLOPs(floating point operations)</strong>，意指浮点运算数，理解为计算量。可以用来衡量算法/模型的复杂度。注意不要和FLOPS(floating point operations per second)搞混。</p><p>拿卷积操作举例。这里需要注意，卷积的计算量如果从output map size考虑的话，是可以与input map size无关的。因为卷积的每一次矩阵相乘都一定输出output map的一个像素点，但如果从input map下手的话，还需要考虑stride和padding。</p><p>所以<strong>卷积层</strong>的FLOPs计算公式为：<br>$$<br>FLOPs=(2×C_i×K^2)×(H×W×C_o)<br>$$<br>其中Ci和Co分别为输入输出的通道数，K为卷积核大小，H和W分别为output map的高和宽。</p><p>这个公式前半部分的运算就是每计算一个输出元素所需要的计算量，就是output map的元素数量。之所以要×2是因为一次卷积运算需要进行乘法和加法两种操作（相乘后求和），比如说两个3×3大小的矩阵相乘求和得到一个元素值，需要进行3×3次乘法操作和3×3-1次加法操作，再加上神经网络中的bias，运算量一共为2×3×3。</p><p>同理可得<strong>全连接层</strong>的FLOPs计算公式为：<br>$$<br>FLOPs=2×I×O<br>$$</p><h1 id="参数量"><a href="#参数量" class="headerlink" title="参数量"></a>参数量</h1><p>卷积参数量的计算比较简单，这里带过一下：<br>$$<br>params=(K^2×C_i+1)×C_o<br>$$</p><p>实际工程上要计算这两个值的话的话，感觉github上有挺多包的……</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="FLOPs"><a href="#FLOPs" class="headerlink" title="FLOPs"></a>FLOPs</h1><p><strong>FLOPs(floating point operations)</strong>，意指浮点运算数，理解为计算量。可以用来衡量算法/模型的复杂度。注意不要和FLOPS(floating point operations per second)搞混。</p><p>拿卷积操作举例。这里需要注意，卷积的计算量如果从output map size考虑的话，是可以与input map size无关的。因为卷积的每一次矩阵相乘都一定输出output map的一个像素点，但如果从input map下手的话，还需要考虑stride和padding。</p><p>所以<strong>卷积层</strong>的FLOPs计算公式为：</p><script type="math/tex; mode=display">FLOPs=(2×C_i×K^2)×(H×W×C_o)</script><p>其中Ci和Co分别为输入输出的通道数，K为卷积核大小，H和W分别为output map的高和宽。</p><p>这个公式前半部分的运算就是每计算一个输出元素所需要的计算量，就是output map的元素数量。之所以要×2是因为一次卷积运算需要进行乘法和加法两种操作（相乘后求和），比如说两个3×3大小的矩阵相乘求和得到一个元素值，需要进行3×3次乘法操作和3×3-1次加法操作，再加上神经网络中的bias，运算量一共为2×3×3。</p><p>同理可得<strong>全连接层</strong>的FLOPs计算公式为：</p><script type="math/tex; mode=display">FLOPs=2×I×O</script><h1 id="参数量"><a href="#参数量" class="headerlink" title="参数量"></a>参数量</h1><p>卷积参数量的计算比较简单，这里带过一下：</p><script type="math/tex; mode=display">params=(K^2×C_i+1)×C_o</script><p>实际工程上要计算这两个值的话的话，感觉github上有挺多包的……</p>]]></content>
     
     <summary type="html">
     
@@ -34,6 +34,10 @@
     
     </summary>
     
+    
+      <category term="FLOPs" scheme="http://a-kali.github.io/tags/FLOPs/"/>
+    
+      <category term="参数量" scheme="http://a-kali.github.io/tags/%E5%8F%82%E6%95%B0%E9%87%8F/"/>
     
   </entry>
   
@@ -96,9 +100,9 @@
     <link href="http://a-kali.github.io/2020/12/03/CenterLoss%E7%AE%80%E8%BF%B0/"/>
     <id>http://a-kali.github.io/2020/12/03/CenterLoss简述/</id>
     <published>2020-12-03T09:18:01.000Z</published>
-    <updated>2020-12-12T20:29:55.974Z</updated>
+    <updated>2020-12-12T20:43:25.408Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Center-Loss"><a href="#Center-Loss" class="headerlink" title="Center Loss"></a>Center Loss</h1><p>对于常见的图像分类问题，我们通常使用交叉熵损失函数监督神经网络。下图为神经网络在MNIST数据集上进行手写体数字分类任务得到的特征分布，在类与类之间能看到很明显的界限，能够便于softmax对特征进行分类。但是仍然可以看出部分不同类的样本距离很近，而同类的样本分布距离较远，这有可能对最终的分类结果有影响。</p><p><img src="https://i.loli.net/2020/12/02/4M5jQxUcpW3H6G1.png" alt="image.png"></p><p>而<strong>Center Loss</strong>的提出就是为了<strong>缩小类内(intra-class)距离</strong>。其公式表示如下：<br>$$<br>L_c=\frac{1}{2}\sum^m_{i=1}‖x_i-c_{yi}‖^2_2<br>$$<br>其中$c_{yi}$表示第y个类别的特征中心，$x_i$表示全连接层之前的特征，$m$表示mini-batch的大小。该损失函数试图使每个样本的特征向其类别中心靠近。</p><p>至于类中心怎么更新迭代，这里就不写了（公式太复杂了yingyingying）。反正最终得到的特征分布如下：</p><p><img src="https://i.loli.net/2020/12/02/pdn8rZzMEN7OaoA.png" alt="image.png"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Center-Loss"><a href="#Center-Loss" class="headerlink" title="Center Loss"></a>Center Loss</h1><p>对于常见的图像分类问题，我们通常使用交叉熵损失函数监督神经网络。下图为神经网络在MNIST数据集上进行手写体数字分类任务得到的特征分布，在类与类之间能看到很明显的界限，能够便于softmax对特征进行分类。但是仍然可以看出部分不同类的样本距离很近，而同类的样本分布距离较远，这有可能对最终的分类结果有影响。</p><p><img src="https://i.loli.net/2020/12/02/4M5jQxUcpW3H6G1.png" alt="image.png"></p><p>而<strong>Center Loss</strong>的提出就是为了<strong>缩小类内(intra-class)距离</strong>。其公式表示如下：</p><script type="math/tex; mode=display">L_c=\frac{1}{2}\sum^m_{i=1}‖x_i-c_{yi}‖^2_2</script><p>其中$c_{yi}$表示第y个类别的特征中心，$x_i$表示全连接层之前的特征，$m$表示mini-batch的大小。该损失函数试图使每个样本的特征向其类别中心靠近。</p><p>至于类中心怎么更新迭代，这里就不写了（公式太复杂了yingyingying）。反正最终得到的特征分布如下：</p><p><img src="https://i.loli.net/2020/12/02/pdn8rZzMEN7OaoA.png" alt="image.png"></p>]]></content>
     
     <summary type="html">
     
