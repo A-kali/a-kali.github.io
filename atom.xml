@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://a-kali.github.io/"/>
-  <updated>2020-12-12T20:33:26.691Z</updated>
+  <updated>2020-12-12T20:37:07.157Z</updated>
   <id>http://a-kali.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FLOPs与参数量的计算</title>
+    <link href="http://a-kali.github.io/2020/12/13/FLOPs%E4%B8%8E%E5%8F%82%E6%95%B0%E9%87%8F%E7%9A%84%E8%AE%A1%E7%AE%97/"/>
+    <id>http://a-kali.github.io/2020/12/13/FLOPs与参数量的计算/</id>
+    <published>2020-12-12T20:36:07.000Z</published>
+    <updated>2020-12-12T20:37:07.157Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="FLOPs"><a href="#FLOPs" class="headerlink" title="FLOPs"></a>FLOPs</h1><p><strong>FLOPs(floating point operations)</strong>，意指浮点运算数，理解为计算量。可以用来衡量算法/模型的复杂度。注意不要和FLOPS(floating point operations per second)搞混。</p><p>拿卷积操作举例。这里需要注意，卷积的计算量如果从output map size考虑的话，是可以与input map size无关的。因为卷积的每一次矩阵相乘都一定输出output map的一个像素点，但如果从input map下手的话，还需要考虑stride和padding。</p><p>所以<strong>卷积层</strong>的FLOPs计算公式为：<br>$$<br>FLOPs=(2×C_i×K^2)×(H×W×C_o)<br>$$<br>其中Ci和Co分别为输入输出的通道数，K为卷积核大小，H和W分别为output map的高和宽。</p><p>这个公式前半部分的运算就是每计算一个输出元素所需要的计算量，就是output map的元素数量。之所以要×2是因为一次卷积运算需要进行乘法和加法两种操作（相乘后求和），比如说两个3×3大小的矩阵相乘求和得到一个元素值，需要进行3×3次乘法操作和3×3-1次加法操作，再加上神经网络中的bias，运算量一共为2×3×3。</p><p>同理可得<strong>全连接层</strong>的FLOPs计算公式为：<br>$$<br>FLOPs=2×I×O<br>$$</p><h1 id="参数量"><a href="#参数量" class="headerlink" title="参数量"></a>参数量</h1><p>卷积参数量的计算比较简单，这里带过一下：<br>$$<br>params=(K^2×C_i+1)×C_o<br>$$</p><p>实际工程上要计算这两个值的话的话，感觉github上有挺多包的……</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;FLOPs&quot;&gt;&lt;a href=&quot;#FLOPs&quot; class=&quot;headerlink&quot; title=&quot;FLOPs&quot;&gt;&lt;/a&gt;FLOPs&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;FLOPs(floating point operations)&lt;/strong&gt;，意指浮点运算数，
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>OpenCV中的平滑、腐蚀膨胀和边缘检测</title>
@@ -550,29 +571,6 @@
       <category term="情感识别" scheme="http://a-kali.github.io/tags/%E6%83%85%E6%84%9F%E8%AF%86%E5%88%AB/"/>
     
       <category term="RNN" scheme="http://a-kali.github.io/tags/RNN/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DAIC-WOZ抑郁评估数据格式</title>
-    <link href="http://a-kali.github.io/2020/02/09/DAIC-WOZ%E6%8A%91%E9%83%81%E8%AF%84%E4%BC%B0%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/"/>
-    <id>http://a-kali.github.io/2020/02/09/DAIC-WOZ抑郁评估数据格式/</id>
-    <published>2020-02-09T14:52:27.000Z</published>
-    <updated>2020-02-11T13:02:26.459Z</updated>
-    
-    <content type="html"><![CDATA[<p>DAIC-WOZ数据库是抑郁分析访谈语料库(Distress Analysis Interview Corpus, DAIC) 的一部分，该语料库主要包含临床访谈记录，旨在支持对焦虑、抑郁和创伤后应激障碍等心理困扰状况的诊断。这些访谈数据被收集起来，作为训练一个计算机代理的数据。该代理能够自动对人们进行访谈，并在语言(verbal)和非语言(nonverbal)指标上识别精神疾病。收集的数据包括音频和视频记录以及大量的的问卷回答；这部分语料库包括一个名为Ellie的动画虚拟面试官主持的Oz访谈，由另一个房间里的真人面试官控制。数据已被转录和注释的各种语言的和非语言的特征。</p><h1 id="Data-description"><a href="#Data-description" class="headerlink" title="Data description"></a>Data description</h1><p>数据包中包含<strong>编号300-492、共189个数据样本</strong>（其中 342,394,398,460 因技术原因被移除）。数据包格式如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Pack\</span><br><span class="line">300_P</span><br><span class="line">301_P</span><br><span class="line">...</span><br><span class="line">492_P</span><br><span class="line">util</span><br><span class="line">documents</span><br><span class="line">train_split.csv</span><br><span class="line">dev_split.csv</span><br><span class="line">test_split.csv</span><br></pre></td></tr></table></figure><p>部分样本需要提醒：</p><ul><li>373 - 在5:52-7:00有一个中断，助手进入房间解决一个小的技术问题，会议继续进行并结束。</li><li>444 - 在4:46-6:27左右有一个中断，参与者的手机响了，助手进入房间帮助他们关机。</li><li>451,458,480 - 会话在技术上是完整的，但是缺少了Ellie(虚拟人类)部分的记录。参与者的成绩单仍然包括在内，但没有面试官的问题。</li><li>402 - 视频结尾被删减了约2分钟。</li></ul><p><strong>train_split_Depression_AVEC2017.csv</strong>：该文件包含参与者id、PHQ8二进制标签(PHQ8得分&gt;= 10)、PHQ8得分和参与者性别，以及PHQ8问卷的每个问题的唯一回答。详细信息参见documents文件夹下的scherer_etal2015_VowelSpace.pdf。</p><p><strong>dev_split_Depression_AVEC2017.csv</strong>：同上。</p><p><strong>test_split_Depression_AVEC2017.csv</strong>：仅包含id和性别。</p><p>每个样本文件夹下文件组织如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">XXX_P\ </span><br><span class="line">  XXX_CLNF_features.txt </span><br><span class="line">  XXX_CLNF_features3D.txt </span><br><span class="line">  XXX_CLNF_gaze.txt </span><br><span class="line">  XXX_CLNF_hog.bin </span><br><span class="line">  XXX_CLNF_pose.txt </span><br><span class="line">  XXX_CLNF_AUs.csv   </span><br><span class="line">  XXX_AUDIO.wav </span><br><span class="line">  XXX_COVAREP.csv </span><br><span class="line">  XXX_FORMANT.csv </span><br><span class="line">  XXX_TRANSCRIPT.csv</span><br></pre></td></tr></table></figure><p>util文件夹组织如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">util\ </span><br><span class="line">  runHOGread_example.m </span><br><span class="line">  Read_HOG_files.m</span><br></pre></td></tr></table></figure><h1 id="File-description-and-feature-documentation"><a href="#File-description-and-feature-documentation" class="headerlink" title="File  description  and  feature  documentation"></a>File  description  and  feature  documentation</h1><p>这部分表述的是每个样本文件夹下各个文件的作用。</p><h2 id="1-CLNF-framework-output"><a href="#1-CLNF-framework-output" class="headerlink" title="1    CLNF framework output"></a>1    CLNF framework output</h2><p>这部分是由CLNF人脸关键点检测算法输出的数据，包括以下文件：</p><ul><li>XXX.CLNF_features.txt<ul><li>包含68个2D人脸关键点；</li><li>文件格式：frame,  timestamp(seconds),  confidence,  detection_success, x0,  x1,…,  x67,  y0,  y1,…, y67。分别表示 帧、时间点、置信度、是否检查成功，各个关键点坐标；</li><li>值之间由逗号分隔，虽然后缀是txt但应该当作csv文件处理。</li></ul></li><li>XXX_CLNF_AUs.csv<ul><li>AU表示Action Unit，是<a href="http://www.360doc.com/content/15/0128/13/10690471_444446832.shtml" target="_blank" rel="noopener">面部表情编码系统</a>(Facial Action Coding System, FACS)的运动单元。每一个AU代表一个表情元素；</li><li>文件格式：frame,  timestamp,  confidence,  success,  AU01_r,  AU02_r, AU04_r,  AU05_r,  AU06_r, AU09_r,  AU10_r,  AU12_r,  AU14_r, AU15_r,  AU17_r,  AU20_r,  AU25_r,  AU26_r,  AU04_c, AU12_c,  AU15_c,  AU23_c,  AU28_c,  AU45_c。其中AUX_r表示该面部包含该AU的概率，而AUX_c则用二值表示是否包含该AU。</li></ul></li><li>XXX.CLNF_features3D.txt<ul><li>包含68个3D人脸关键点；</li><li>格式与2D的类似，只是多了个坐标轴。以摄像机为坐标(0,0,0)，单位为毫米。</li></ul></li><li>XXX.CLNF_gaze.txt<ul><li>文件包含4个视线向量。前两个表示以世界为坐标空间，双眼的视线向量；后两个表示以头为坐标空间，双眼的视线向量。</li><li>文件格式：frame,  timestamp(seconds),  confidence,  detection_success,  x_0,  y_0,  z_0,  x_1,  y_1,  z_1, x_h0,  y_h0,  z_h0,  x_h1,  y_h1,  z_h1</li></ul></li><li>XXX.CLNF_hog.bin<ul><li>Felzenswalb’s  HoG</li></ul></li><li>XXX.CLNF_pose.txt<ul><li>pose文件包含两个坐标，X,Y,Z是位置坐标，Rx,Ry,Rz是头部旋转坐标。位置是以毫米为单位的世界坐标，旋转是以弧度和欧拉角为单位的(为了得到一个合适的旋转矩阵，使用R= Rx * Ry * Rz)。</li><li>文件格式：frame_number,  timestamp(seconds),  confidence,  detection_success,  X,  Y,  Z,  Rx,  Ry,  Rz</li></ul></li></ul><h2 id="2-Audio-file"><a href="#2-Audio-file" class="headerlink" title="2    Audio file"></a>2    Audio file</h2><ul><li>XXX_AUDIO.wav<ul><li>耳机录音频率为16kHz。音频文件中可能包含少量虚拟面试官的信息，在处理时使用记录文件(transcript files)来缓解这个问题。</li></ul></li></ul><h2 id="3-Transcript-file"><a href="#3-Transcript-file" class="headerlink" title="3    Transcript file"></a>3    Transcript file</h2><ul><li>XXX_TRANSCRIPT.csv</li></ul><h2 id="4-Audio-features"><a href="#4-Audio-features" class="headerlink" title="4    Audio features"></a>4    Audio features</h2><ul><li>XXX_COVAREP.csv</li><li>XXX_FORMANT.csv</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;DAIC-WOZ数据库是抑郁分析访谈语料库(Distress Analysis Interview Corpus, DAIC) 的一部分，该语料库主要包含临床访谈记录，旨在支持对焦虑、抑郁和创伤后应激障碍等心理困扰状况的诊断。这些访谈数据被收集起来，作为训练一个计算机代理的
-      
-    
-    </summary>
-    
-    
-      <category term="抑郁评估" scheme="http://a-kali.github.io/tags/%E6%8A%91%E9%83%81%E8%AF%84%E4%BC%B0/"/>
     
   </entry>
   
