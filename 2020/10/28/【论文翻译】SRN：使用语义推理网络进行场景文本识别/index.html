@@ -435,17 +435,40 @@
 <h2 id="3-1-Backbone-Network"><a href="#3-1-Backbone-Network" class="headerlink" title="3.1    Backbone Network"></a>3.1    Backbone Network</h2><p>在backbone中，我们使用FPN来融合ResNet50的stage-3, stage-4和stage-5层的特征。因此ResNet50+FPN最终输出特征图尺寸为输入图像的$1/8$，通道数为$512$。其灵感来源于non-local mechanisms，我们还采用transformer多头注意网络和一个前馈模块捕获全局空间依赖性。将二维特征图输入到两个堆叠transformer单元中，其中多头注意力的头数为$8$，前馈输出维度为$512$。至此，我们提取出了一个（大概是）$H×W×512$的特征。</p>
 <p><strong>总结：ResNet50 + FPN + 8 head transformer</strong></p>
 <h2 id="3-2-Parallel-Visual-Attention-Module"><a href="#3-2-Parallel-Visual-Attention-Module" class="headerlink" title="3.2    Parallel Visual Attention Module"></a>3.2    Parallel Visual Attention Module</h2><p>注意机制在序列识别中得到了广泛的应用。它可以看作是一种特征对齐的形式，将输入中的相关信息与相应的输出进行对齐。我们使用注意机制生成$N$个特征，每个特征对应文本中的一个字符。现有的注意力方法由于存在一些时间依赖项而导致效率低下。本文提出了一种新的注意方法——<strong>平行视觉注意(PVA)</strong>，通过突破这些障碍来提高效率。</p>
-<p>一般来说，注意机制可以描述如下：给定一个key-value集合和一个query, 计算query与所有keys的相似性。然后使values根据相似性来进行融合。在我们的研究中，key-value集合是输入的二维特征，现有的方法使用隐藏层$H_{t-1}$作为query生成第$t$个特征。为了使计算并行，我们使用读取序号作为query，而不是依赖于时间的$H_{t-1}$。文本中的第一个字符的读取序号为0，第二个字符的读取序号顺序为1，以此类推。我们的PVA可以总结为：<br>$$<br>B_{i,j}=\left{<br>             \begin{array}{}<br>             e_{t,ij}=W^T_e tanh(W_of_o(O_t)+W_vv_{ij})\<br>             \alpha_{t,ij}=\frac{exp(e_{t,ij})}{\sum_{∀i,j}exp(e_{t,ij})}\<br>             \end{array}<br>\right.<br>$$<br>其中$W$均为可训练的权值。$O_t$是每个字符的读取顺序，$f_o$是embedding函数。</p>
-<p>基于PVA的想法，我们设计了并行视觉注意模块(PVAM)用于对齐每个视觉特征和time step。对齐第$t$个time step和视觉特征的过程描述如下：<br>$$<br>g_t=\sum_{∀i,j}\alpha_{t,ij}v_{ij}<br>$$<br>由于<strong>这个计算方法具有时间无关性，PVAM可以在所有time step上并行执行对齐操作</strong>。</p>
+<p>一般来说，注意机制可以描述如下：给定一个key-value集合和一个query, 计算query与所有keys的相似性。然后使values根据相似性来进行融合。在我们的研究中，key-value集合是输入的二维特征，现有的方法使用隐藏层$H<em>{t-1}$作为query生成第$t$个特征。为了使计算并行，我们使用读取序号作为query，而不是依赖于时间的$H</em>{t-1}$。文本中的第一个字符的读取序号为0，第二个字符的读取序号顺序为1，以此类推。我们的PVA可以总结为：</p>
+<script type="math/tex; mode=display">
+B_{i,j}=\left\{  
+             \begin{array}{}  
+             e_{t,ij}=W^T_e tanh(W_of_o(O_t)+W_vv_{ij})\\  
+             \alpha_{t,ij}=\frac{exp(e_{t,ij})}{\sum_{∀i,j}exp(e_{t,ij})}\\  
+             \end{array}  
+\right.</script><p>其中$W$均为可训练的权值。$O_t$是每个字符的读取顺序，$f_o$是embedding函数。</p>
+<p>基于PVA的想法，我们设计了并行视觉注意模块(PVAM)用于对齐每个视觉特征和time step。对齐第$t$个time step和视觉特征的过程描述如下：</p>
+<script type="math/tex; mode=display">
+g_t=\sum_{∀i,j}\alpha_{t,ij}v_{ij}</script><p>由于<strong>这个计算方法具有时间无关性，PVAM可以在所有time step上并行执行对齐操作</strong>。</p>
 <p>如图所示，所得到的注意图能够正确地注意对应字符的视觉区域，验证了PVAM的有效性。</p>
 <p><img src="https://i.loli.net/2020/10/26/6gR1KYUsrDlXI92.png" alt="image.png"></p>
-<h2 id="3-3-Global-Semantic-Reasoning-Module"><a href="#3-3-Global-Semantic-Reasoning-Module" class="headerlink" title="3.3    Global Semantic Reasoning Module"></a>3.3    Global Semantic Reasoning Module</h2><p>在本节中，我们提出了遵循多路并行传输思想的全局语义推理模块(GSRM)，以克服单向语义上下文传递的缺点。首先我们回顾一下典型的类RNN结构的Bahdanau注意机制中需要最大化的概率公式。可以表示为：<br>$$<br>p(y_1y_2…y_N)=\prod_{t=1}^Np(y_t|e_{t-1},H_{t-1},g_t)<br>$$<br>其中$e_t$为第$t$个label $y_t$的词嵌入。在每个time step，类RNN的方法会参考先前的labels或者预测结果。由于$e_{t-1}$、$H_{t-1}$等信息只能在time step中获取，使得这类方法的只能以序列的方式进行，限制了语义推理的能力，导致推理效率较低。</p>
-<p>为了克服上述问题，我们使用一个时间无关的近似嵌入$e’$来代替真正的嵌入$e$。这种改进可以带来几个好处。1)首先，可以将上式中最后一步的$H_{t-1}$隐藏状态值去除，从而将串行推理过程升级为高效并行推理过程，因为所有的时间依赖项都已经被消除。2)第二，包括前后所有字符在内的全局语义信息都能用来推导当前时刻的语义状态。因此，我们将概率表达式改进如下：<br>$$<br>p(y_1y_2…y_N)=\prod^N_{t=1}p(y_t|f_r(e_1…e_{t-1}e_{t+1}…e_N),g_t)\<br>\approx \prod^N_{t=1}p(y_t|f_r(e’<em>1…e’</em>{t-1}e’<em>{t+1}…e’_N),g_t)<br>$$<br>其中$f_r$表示用于建立全局语义和当前语义信息的函数。如果我们使$s_t=f_r(e_1…e</em>{t-1}e_{t+1}…e_N)$，$s_t$表示第$t$个语义信息的特征，上式可以简化如下：<br>$$<br>p(y_1y_2…y_N)=\prod^N_{t=1}p(y_t|s_t, g_t)<br>$$<br>于此我们提出了GSRM。该结构分为两个关键部分：视觉语义嵌入模块(Visual-to-semantic embedding block)和语义推理模块(semantic reasoning block)。</p>
+<h2 id="3-3-Global-Semantic-Reasoning-Module"><a href="#3-3-Global-Semantic-Reasoning-Module" class="headerlink" title="3.3    Global Semantic Reasoning Module"></a>3.3    Global Semantic Reasoning Module</h2><p>在本节中，我们提出了遵循多路并行传输思想的全局语义推理模块(GSRM)，以克服单向语义上下文传递的缺点。首先我们回顾一下典型的类RNN结构的Bahdanau注意机制中需要最大化的概率公式。可以表示为：</p>
+<script type="math/tex; mode=display">
+p(y_1y_2...y_N)=\prod_{t=1}^Np(y_t|e_{t-1},H_{t-1},g_t)</script><p>其中$e<em>t$为第$t$个label $y_t$的词嵌入。在每个time step，类RNN的方法会参考先前的labels或者预测结果。由于$e</em>{t-1}$、$H_{t-1}$等信息只能在time step中获取，使得这类方法的只能以序列的方式进行，限制了语义推理的能力，导致推理效率较低。</p>
+<p>为了克服上述问题，我们使用一个时间无关的近似嵌入$e’$来代替真正的嵌入$e$。这种改进可以带来几个好处。1)首先，可以将上式中最后一步的$H_{t-1}$隐藏状态值去除，从而将串行推理过程升级为高效并行推理过程，因为所有的时间依赖项都已经被消除。2)第二，包括前后所有字符在内的全局语义信息都能用来推导当前时刻的语义状态。因此，我们将概率表达式改进如下：</p>
+<script type="math/tex; mode=display">
+p(y_1y_2...y_N)=\prod^N_{t=1}p(y_t|f_r(e_1...e_{t-1}e_{t+1}...e_N),g_t)\\
+\approx \prod^N_{t=1}p(y_t|f_r(e'_1...e'_{t-1}e'_{t+1}...e'_N),g_t)</script><p>其中$f<em>r$表示用于建立全局语义和当前语义信息的函数。如果我们使$s_t=f_r(e_1…e</em>{t-1}e_{t+1}…e_N)$，$s_t$表示第$t$个语义信息的特征，上式可以简化如下：</p>
+<script type="math/tex; mode=display">
+p(y_1y_2...y_N)=\prod^N_{t=1}p(y_t|s_t, g_t)</script><p>于此我们提出了GSRM。该结构分为两个关键部分：视觉语义嵌入模块(Visual-to-semantic embedding block)和语义推理模块(semantic reasoning block)。</p>
 <p><img src="https://i.loli.net/2020/10/27/SyL1OrqVf4NGWbh.png" alt="image.png"></p>
 <p><strong>视觉语义嵌入模块</strong>用于生成$e’$，其输入特征已经经过PVAM对每个字符进行对齐。该视觉特征首先输入到一个全连接层和softmax层，并受到交叉熵损失监督。然后使用argmax选出可能性最大的字符进行embedding，得到$e’_t$。</p>
 <p><strong>语义推理模块</strong>用于全局语义推理，相当于上上条公式里的$f_r$。多个transformer单元使模型能够高效地感知全局上下文信息，词语的语义可以通过多个transformer单元隐式建模。最后通过该模块输出每一步的语义特征，受交叉熵损失监督。</p>
 <p>通过交叉熵损失，从语义信息的角度对客观概率进行优化，也有助于减少收敛时间。值得注意的是，在GSRM中，全局语义是并行推理的，这使得SRN比传统的基于注意力的方法运行得更快，特别是在长文本的情况下。</p>
-<h2 id="3-4-Visual-Semantic-Fusion-Decoder"><a href="#3-4-Visual-Semantic-Fusion-Decoder" class="headerlink" title="3.4. Visual-Semantic Fusion Decoder"></a>3.4. Visual-Semantic Fusion Decoder</h2><p>在场景文本识别的同时考虑视觉对齐特征和语义信息是非常重要的。然而视觉和语义属于不同的领域，在不同的情况下，它们在最终序列识别中的权重应该是不同的。受门控单元的启发，我们引入了一些可训练的权重来平衡VSFD中不同领域的特征贡献。其操作方式如下：<br>$$<br>B_{i,j}=\left{<br>             \begin{array}{}<br>             z_t=\sigma (W_z\cdot[g_t,s_t])\<br>            f_t=z_t<em>g_t+(1-z_t)</em>s_t\<br>             \end{array}<br>\right.<br>$$<br>其中$W_z$为可训练的权值，$f_t$为第$t$次融合特征向量。</p>
+<h2 id="3-4-Visual-Semantic-Fusion-Decoder"><a href="#3-4-Visual-Semantic-Fusion-Decoder" class="headerlink" title="3.4. Visual-Semantic Fusion Decoder"></a>3.4. Visual-Semantic Fusion Decoder</h2><p>在场景文本识别的同时考虑视觉对齐特征和语义信息是非常重要的。然而视觉和语义属于不同的领域，在不同的情况下，它们在最终序列识别中的权重应该是不同的。受门控单元的启发，我们引入了一些可训练的权重来平衡VSFD中不同领域的特征贡献。其操作方式如下：</p>
+<script type="math/tex; mode=display">
+B_{i,j}=\left\{  
+             \begin{array}{}  
+             z_t=\sigma (W_z\cdot[g_t,s_t])\\  
+            f_t=z_t*g_t+(1-z_t)*s_t\\  
+             \end{array}  
+\right.</script><p>其中$W_z$为可训练的权值，$f_t$为第$t$次融合特征向量。</p>
 
       
     </div>
@@ -615,7 +638,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -719,7 +742,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">83.6k</span>
+    <span title="Site words total count">83.3k</span>
   
 </div>
 

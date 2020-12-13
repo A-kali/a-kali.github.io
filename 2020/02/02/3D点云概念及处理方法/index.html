@@ -393,7 +393,7 @@
         <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p><strong>点云与三维图像的关系：</strong>三维图像是一种特殊的信息表达形式。和二维图像相比，三维图像借助第三个维度的信息，可以实现天然的物体-背景解耦。点云数据是最为常见也是最基础的三维模型。点云模型往往由测量直接得到，每个点对应一个测量点。</p>
 <p><strong>点云的概念</strong>：点云是在同一空间参考系下表达目标空间分布和目标表面特性的海量点集合，在获取物体表面每个采样点的空间坐标后，得到的是点的集合，称之为“点云”（Point Cloud）。</p>
 <p><strong>点云的内容：</strong>根据激光测量原理得到的点云，包括三维坐标（XYZ）和激光反射强度（Intensity），强度信息与目标的表面材质、粗糙度、入射角方向，以及仪器的发射能量，激光波长有关。<br>根据摄影测量原理得到的点云，包括三维坐标（XYZ）和颜色信息（RGB）。<br>结合激光测量和摄影测量原理得到点云，包括三维坐标（XYZ）、激光反射强度（Intensity）和颜色信息（RGB）。</p>
-<p><strong>点云存储格式：*</strong>.pts; *.asc ; *.dat; .stl ; .imw；.xyz；.las。LAS格式文件已成为LiDAR数据的工业标准格式，LAS文件按每条扫描线排列方式存放数据,包括激光点的三维坐标、多次回波信息、强度信息、扫描角度、分类信息、飞行航带信息、飞行姿态信息、项目信息、GPS信息、数据点颜色信息等。</p>
+<p><strong>点云存储格式：*</strong>.pts; <em>.asc ; </em>.dat; .stl ; .imw；.xyz；.las。LAS格式文件已成为LiDAR数据的工业标准格式，LAS文件按每条扫描线排列方式存放数据,包括激光点的三维坐标、多次回波信息、强度信息、扫描角度、分类信息、飞行航带信息、飞行姿态信息、项目信息、GPS信息、数据点颜色信息等。</p>
 <h1 id="点云性质"><a href="#点云性质" class="headerlink" title="点云性质"></a>点云性质</h1><p>点云数据是在欧式空间下的点的一个子集，它具有以下三个特征：</p>
 <ul>
 <li>无序。点云数据是一个集合，对数据的顺序是不敏感的。这就意味这处理点云数据的模型需要对数据的不同排列保持不变性。目前文献中使用的方法包括将无序的数据重排序、用数据的所有排列进行数据增强然后使用RNN模型、用对称函数来保证排列不变性。由于第三种方式的简洁性且容易在模型中实现，论文作者选择使用第三种方式，既使用maxpooling这个对称函数来提取点云数据的特征。</li>
@@ -573,7 +573,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -677,7 +677,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">83.6k</span>
+    <span title="Site words total count">83.3k</span>
   
 </div>
 
