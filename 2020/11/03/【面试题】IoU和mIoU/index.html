@@ -418,9 +418,11 @@
 <p>IoU就是交并比嘛，两个框相交的面积除以合并的面积。</p>
 <p>定义bbox1, bbox2为两个长度为 4 的数组，用于表示两个检测框左上和右下坐标点。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BoxIoU</span><span class="params">(bbox1, bbox2)</span>:</span></span><br><span class="line">	x11, y11, x12, y12 = bbox1</span><br><span class="line">    x21, y21, x22, y22 = bbox2</span><br><span class="line">	</span><br><span class="line">    <span class="comment"># 计算相交面积</span></span><br><span class="line">    iw = max(min(x12, x22) - max(x11, x21), <span class="number">0</span>)</span><br><span class="line">    iy = max(min(y12, y22) - max(y11, y21), <span class="number">0</span>)</span><br><span class="line">    inter = iw * iy</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算合并面积</span></span><br><span class="line">	area1 = (x12 - x11) * (y12 - y11)</span><br><span class="line">    area2 = (x22 - x21) * (y22 - y21)</span><br><span class="line">	uni = area1 + area2 - inter</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算交并比</span></span><br><span class="line">    iou = inter / uni</span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure>
+
 <p>其实以上应该都只是基于常规检测框的IoU计算，如果是非矩形检测框或者分割任务中的IoU则要另当别论。</p>
 <p>对于分割任务，定义mask1, mask2为两个相同大小的二维二值numpy数组。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SegIoU</span><span class="params">(mask1, mask2)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> (mask1 &amp; mask2).sum() / (mask1 | mask2).sum()</span><br></pre></td></tr></table></figure>
+
 <p><strong>Q2：啥是mIoU？如何计算mIoU？</strong></p>
 <p>mIoU即均交并比。对于每个类计算一遍IoU后取平均就行了。</p>
 
@@ -563,7 +565,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -585,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -673,7 +675,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">83.3k</span>
+    <span title="Site words total count">84.4k</span>
   
 </div>
 
