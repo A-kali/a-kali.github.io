@@ -101,7 +101,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/12/04/rIq3OVLCfDnWvpu.png">
 <meta property="og:image" content="https://i.loli.net/2020/12/04/CgwknPWiDm12b7x.png">
 <meta property="og:image" content="https://i.loli.net/2020/12/05/f3BTRk6cFPYgqHG.png">
-<meta property="og:updated_time" content="2020-12-12T20:33:26.691Z">
+<meta property="og:updated_time" content="2020-12-21T01:00:45.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV中的平滑、腐蚀膨胀和边缘检测">
 <meta name="twitter:description" content="图像平滑与滤波图像平滑是指为了抑制噪声，使图像亮度趋于平缓的处理方法就是图像平滑。图像平滑可以通过各种滤波来实现，这些图像滤波都是一些简单的卷积操作。  均值滤波：即在一个卷积核的感受野内的平均值作为该像素点的值，opencv代码为cv2.blur(img, (3, 3))。 高斯滤波：高斯滤波会根据距离取周围的像素点加权和，越近的像素权重越大。opencv代码为cv2.GaussianBlur。">
@@ -344,7 +344,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 963字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 973字</span>
 
           
 
@@ -359,7 +359,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  963
+                  973
                 </span>
               
 
@@ -406,18 +406,15 @@
 <p><img src="https://i.loli.net/2020/12/05/tHxuK4iXhCP85cz.png" alt="image.png"></p>
 <h1 id="图像的形态学操作"><a href="#图像的形态学操作" class="headerlink" title="图像的形态学操作"></a>图像的形态学操作</h1><h2 id="1-腐蚀与膨胀"><a href="#1-腐蚀与膨胀" class="headerlink" title="1    腐蚀与膨胀"></a>1    腐蚀与膨胀</h2><p>进行膨胀(dilation)操作时，使用卷积核遍历图像，使用内核覆盖区域的最大相素值代替锚点位置的相素。这一最大化操作将会导致图像中的亮区扩大，因此名为膨胀 。腐蚀(erosion)则与膨胀相反。在OpenCV中代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kernel = np.ones((<span class="number">3</span>, <span class="number">3</span>), np.uint8)</span><br><span class="line">cv2.erode(img, kernel, iterations=<span class="number">1</span>)  <span class="comment"># 腐蚀</span></span><br><span class="line">cv2.dilate(img, kernel, iterations=<span class="number">1</span>)  <span class="comment"># 膨胀</span></span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.loli.net/2020/12/05/XHDSuCR7yxOYIin.png" alt="image.png"></p>
 <h2 id="2-开运算与闭运算"><a href="#2-开运算与闭运算" class="headerlink" title="2    开运算与闭运算"></a>2    开运算与闭运算</h2><p>开运算指的是先腐蚀后膨胀的操作，闭运算则是先膨胀后腐蚀的操作。通常用于消除噪点、沟壑，平滑物体轮廓。在OpenCV中代码如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)  # 开运算</span><br><span class="line">cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)  # 闭运算</span><br></pre></td></tr></table></figure>
-
 <h2 id="3-梯度计算"><a href="#3-梯度计算" class="headerlink" title="3    梯度计算"></a>3    梯度计算</h2><p>使用膨胀的结果减去腐蚀的结果可以计算得到图像的梯度，但OpenCV中提供了更便捷的操作：<code>cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel)</code>。</p>
-<h1 id="Sobel算子"><a href="#Sobel算子" class="headerlink" title="Sobel算子"></a>Sobel算子</h1><p>Sobel算子是计算机视觉领域的一种重要处理方法。主要用于获得数字图像的<strong>一阶梯度</strong>，常用于<strong>边缘检测</strong>。Sobel算子是把图像中每个像素的上下左右四领域的<strong>灰度值加权差</strong>，在边缘处达到极值从而检测边缘。</p>
+<h1 id="Sobel算子"><a href="#Sobel算子" class="headerlink" title="Sobel算子"></a>Sobel算子</h1><p>Sobel算子是计算机视觉领域的一种重要处理方法。主要用于获得数字图像的<strong>一阶梯度</strong>，常用于<strong>边缘检测</strong>（注意与轮廓检测相区分）。Sobel算子是把图像中每个像素的上下左右四领域的<strong>灰度值加权差</strong>，在边缘处达到极值从而检测边缘。</p>
 <p>该算子包含两组3x3的矩阵，分别为横向及纵向，将之与图像作平面<strong>卷积</strong>，即可分别得出横向及纵向的差值。如果以A代表原始图像，Gx及Gy分别代表经横向及纵向边缘检测的图像，其公式如下：</p>
 <p><img src="https://i.loli.net/2020/12/04/rIq3OVLCfDnWvpu.png" alt="image.png"></p>
 <p>在OpenCV中，可通过<code>cv2.Sobel(src, ddepth, dx, dy, ksize)</code>调用Sobel算子。具体操作：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">'pic.png'</span>, cv2.IMREAD_GRAYSCALE)  <span class="comment"># 读取灰度图</span></span><br><span class="line">sobelx = cv2.Sobel(img, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">3</span>)  <span class="comment"># x方向的梯度</span></span><br><span class="line">sobelx = cv2.convertScaleAbs(sobelx)  <span class="comment"># 取绝对值将复数转为正数</span></span><br><span class="line">sobely = cv2.Sobel(img, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)  <span class="comment"># y方向的梯度</span></span><br><span class="line">sobely = cv2.convertScaleAbs(sobely)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将x和y方向分别求到的梯度加权求和</span></span><br><span class="line">sobelxy = cv2.addWeighted(sobelx, <span class="number">0.5</span>, sobely, <span class="number">0.5</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
 <p>求得的结果如下所示，其中左边是原图，右边是边缘检测结果：</p>
 <p><img src="https://i.loli.net/2020/12/04/CgwknPWiDm12b7x.png" alt="image.png"></p>
 <p>因为直接求两个方向的梯度效果较差，所以此处是对两个方向分别求梯度再加权平均，而不是直接求两个方向的梯度。</p>
