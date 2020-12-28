@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://a-kali.github.io/"/>
-  <updated>2020-12-21T00:21:32.458Z</updated>
+  <updated>2020-12-28T10:29:06.467Z</updated>
   <id>http://a-kali.github.io/</id>
   
   <author>
@@ -15,6 +15,86 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SIFT特征提取和描述</title>
+    <link href="http://a-kali.github.io/2020/12/28/SIFT%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E5%92%8C%E6%8F%8F%E8%BF%B0/"/>
+    <id>http://a-kali.github.io/2020/12/28/SIFT特征提取和描述/</id>
+    <published>2020-12-28T10:26:10.000Z</published>
+    <updated>2020-12-28T10:29:06.467Z</updated>
+    
+    <content type="html"><![CDATA[<p>SIFT，即<strong>尺度不变特征变换（Scale-invariant feature transform，SIFT）</strong>，是用于图像处理领域对局部特征的一种描述方法。主要原理是<strong>通过一些数学计算得到图像中特征点的坐标，并根据该点周围像素点的值生成一个用于稳定描述该特征点的向量</strong>。该算法常用于特征匹配领域。</p><p>SIFT算法具有如下一些特点：</p><ol><li>SIFT特征是图像的局部特征，其对旋转、尺度缩放、亮度变化保持不变性，对视角变化、仿射变换、噪声也保持一定程度的稳定性；</li><li>区分性（Distinctiveness）好，信息量丰富，适用于在海量特征数据库中进行快速、准确的匹配；</li><li>多量性，即使少数的几个物体也可以产生大量的SIFT特征向量；</li><li>高速性，经优化的SIFT匹配算法甚至可以达到实时的要求；</li><li>可扩展性，可以很方便的与其他形式的特征向量进行联合。</li></ol><h1 id="一、图像尺度空间"><a href="#一、图像尺度空间" class="headerlink" title="一、图像尺度空间"></a>一、图像尺度空间</h1><p>在一定范围内，无论物体是大还是小，人眼都能分辨出来；但计算机对不同尺度下的物体分辨能力却很低。所以要让机器能够对物体在不同尺度下有一个统一的认知，就需要考虑图像在不同尺度下都存在的特点。</p><p>不同尺度的图像可以通过<strong>高斯模糊</strong>（或称为<a href="https://a-kali.github.io/2020/12/13/OpenCV%E4%B8%AD%E7%9A%84%E5%B9%B3%E6%BB%91%E3%80%81%E8%85%90%E8%9A%80%E8%86%A8%E8%83%80%E5%92%8C%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/">高斯滤波</a>）来模拟：<br>$$<br>L(x, y, \sigma)=G(x, y, \sigma)*I(x, y)<br>$$<br>其中I为图像，G为高斯函数：<br>$$<br>G(x, y, \sigma)=\frac{1}{2\pi\sigma^2}e^{\frac{x^2+y^2}{2\sigma^2}}<br>$$<br>其中σ用于控制滤波器权重，σ越大，权重数值分布越均匀，即周边值更大、中心值更小，得到的图像越模糊。</p><p><img src="https://i.loli.net/2020/12/27/LU4sBYMQXWIb8Fx.png" alt="image.png"></p><p>通过这个方法可以得到不同尺度空间的图像，图像越模糊，就相当于得到了更远距离/更小尺度空间的图像。</p><h1 id="二、高斯差分金字塔"><a href="#二、高斯差分金字塔" class="headerlink" title="二、高斯差分金字塔"></a>二、高斯差分金字塔</h1><p>对于一张图像进行n-1次上/下采样操作，得到的n个不同分辨率的结果可以组合成一个<strong>图像金字塔</strong>。对金字塔的每一层进行m次不同程度的高斯模糊，最终得到n×m张图像。</p><p><img src="https://i.loli.net/2020/12/27/HerEtTBQoWiIXD2.png" alt="image.png"></p><p>之后对金字塔每一层得到的模糊结果分别求差，得到n×(m-1)个二维数组，得到的这个结果就是<strong>高斯差分金字塔（Difference of Gaussian, DOG）</strong>。DOG中较大的值表示该点对于不同的模糊程度变化更大，该点更有可能是特征的关键点/边缘。找出<strong>局部极值点</strong>需要对每个点与其周围的26个点（同平面8个，上下各9个）点进行比较。</p><p><img src="https://i.loli.net/2020/12/28/9HfCAV4gOTuz57l.png" alt="image.png"></p><p><img src="https://i.loli.net/2020/12/28/QX2VGIU7OmFjH98.png" alt="image.png"></p><p>DOG用数学公式表示如下：<br>$$<br>D(x,y,\sigma)=L(x, y, k\sigma)-L(x, y, \sigma)<br>$$</p><h1 id="三、特征描述"><a href="#三、特征描述" class="headerlink" title="三、特征描述"></a>三、特征描述</h1><h2 id="1-特征点的方向"><a href="#1-特征点的方向" class="headerlink" title="1    特征点的方向"></a>1    特征点的方向</h2><p>每个像素点L(x, y)的梯度的模m(x, y)以及方向θ(x, y)计算如下：<br>$$<br>m(x,y)=\sqrt{[L(x+1,y)-L(x-1,y)]^2+[L(x,y+1)-L{(x,y-1)}]^2}\<br>\theta(x,y)=arctan \frac{L(x,y+1)-L(x,y-1)}{L(x+1,y)-L(x-1,y)}<br>$$<br>每个像素点可以得到<strong>位置(x, y)、尺度m和方向θ</strong>三个信息。对于每个特征点，统计其邻域所有像素点在8个方向上的尺度和，尺度和最大的方向视为该特征点的<strong>主方向</strong>，占比超过主方向80%的视为<strong>辅方向</strong>。具有多个方向的关键点可以被复制成多份，然后将方向值分别赋给复制后的特征点，于是一个特征点就产生了多个坐标、尺度相同，但方向不同的特征点。</p><p><img src="https://i.loli.net/2020/12/28/qjAZ2HrOoeJ8law.png" alt="image.png"></p><h2 id="2-生成特征描述"><a href="#2-生成特征描述" class="headerlink" title="2    生成特征描述"></a>2    生成特征描述</h2><p>本部分将使用邻域像素的方向和尺度为该特征点生成一个唯一的指纹，称为<strong>描述符</strong>。首先在关键点周围采用16×16的邻域，将该16×16区域进一步划分为4×4子块。由于子块中的每一个像素都具有8个方向中的一个，并且具有尺度。于是对于每一个子块都能用一个长度为8的向量来表示该子块所有像素在8个方向上的尺度和。</p><p>最终对于每一个特征点，我们得到了一个总长度为4×4×8=128的特征描述符。</p><p><img src="https://i.loli.net/2020/12/28/26wiWJ8cZzmL9aV.png" alt="image.png"></p><p>计算两个特征点描述符之间的欧氏距离即可进行匹配。原算法中使用的是kd树进行搜索匹配，这里不作详细描述。</p><p><img src="https://i.loli.net/2020/12/28/rKe1gRlLtJNPi4k.png" alt="image.png"></p><h1 id="四、OpenCV中的SIFT算法"><a href="#四、OpenCV中的SIFT算法" class="headerlink" title="四、OpenCV中的SIFT算法"></a>四、OpenCV中的SIFT算法</h1><p>由于算法版权问题，SIFT算法只能在OpenCV3.4及以下版本才能使用。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sift = cv2.xfeatures2d.SIFT_create()  # 创建一个SIFT对象</span><br><span class="line">kp, des = sift.detectAndCompute(img_gray, None) # 返回关键点对象和以及每个关键点的特征向量</span><br><span class="line"></span><br><span class="line"># show_kp_img = cv2.drawKeypoints(img_gray, kp, img)  # 可调用封装接口在图像中标出关键点</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;SIFT，即&lt;strong&gt;尺度不变特征变换（Scale-invariant feature transform，SIFT）&lt;/strong&gt;，是用于图像处理领域对局部特征的一种描述方法。主要原理是&lt;strong&gt;通过一些数学计算得到图像中特征点的坐标，并根据该点周围像素点
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>OpenCV与角点检测</title>
+    <link href="http://a-kali.github.io/2020/12/28/OpenCV%E4%B8%8E%E8%A7%92%E7%82%B9%E6%A3%80%E6%B5%8B/"/>
+    <id>http://a-kali.github.io/2020/12/28/OpenCV与角点检测/</id>
+    <published>2020-12-28T10:24:08.000Z</published>
+    <updated>2020-12-28T10:25:13.604Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Harris角点检测原理"><a href="#Harris角点检测原理" class="headerlink" title="Harris角点检测原理"></a>Harris角点检测原理</h1><p>Harris角点检测的基本原理：类似于边缘检测，只不过边缘检测只判断单个方向的梯度，而角点检测判断多个方向的梯度/相似性。</p><p>对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：<br>$$<br>c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2<br>$$<br>W(x, y)表示以点(x, y)为中心的窗口；而w(x, y)是每个像素的权重，既可以是常数，也可以是高斯加权函数；P(u, v)表示坐标为(u, v)的像素值。上述公式表示计算窗口滑动前后，窗口中的每个像素及其对应像素的差值加权总和。</p><p>对平移后的像素点进行泰勒一阶展开，可得：<br>$$<br>P(u+Δx, v+Δy)\approx P(u,v)+P_x(u,v)Δx+P_y(u,v)Δy<br>$$<br>于是相似性c简化后如下，此时可以看出这是一个椭圆函数：<br>$$<br>c(x, y;Δx, Δy)\approx\ AΔx^2+2CΔxΔy+BΔy^2<br>$$<br>其中<br>$$<br>A=I_x(x,y)^2\<br>B=I_y(x,y)^2\<br>C=I_x(x,y)I_y(x,y)<br>$$<br>经过对角化消除C后得：<br>$$<br>c(x, y;Δx, Δy)\approx\ \lambda_1Δx^2+\lambda_2Δy^2<br>$$<br>可以看出λ越大，表示平移前后的滑窗灰度值差别越大。λ1大表示在横坐标上相差较大，λ2大表示在纵坐标上相差较大。当λ1和λ2的值都很大且值相近时，判断(x, y)为物体角点。</p><p><img src="https://i.loli.net/2020/12/24/ZGvlFgDmr7i1yOT.png" alt="image.png"></p><p>于是可以通过计算<strong>角点响应值</strong>R来判断该点是否为角点。<br>$$<br>R=\lambda_1\lambda_2-k (\lambda_1+\lambda_2)^2<br>$$<br>其中k为系数，通常取值0.04 ~ 0.06。R&gt;&gt;0表示该点为角点，R≈0表示该点为平坦区，R&lt;&lt;0表示该点为边界。</p><h1 id="OpenCV"><a href="#OpenCV" class="headerlink" title="OpenCV"></a>OpenCV</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.cornerHarris(img, blockSize, ksize, k)</span><br></pre></td></tr></table></figure><ul><li>img：输入图像；</li><li>blockSize：滑动窗口的大小；</li><li>ksize：Sobel求导中使用的矩阵大小；</li><li>k：计算角点响应值的系数。</li></ul><p>检测结果：</p><p><img src="https://i.loli.net/2020/12/24/8YvEOeaNGot7qSz.png" alt="image.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Harris角点检测原理&quot;&gt;&lt;a href=&quot;#Harris角点检测原理&quot; class=&quot;headerlink&quot; title=&quot;Harris角点检测原理&quot;&gt;&lt;/a&gt;Harris角点检测原理&lt;/h1&gt;&lt;p&gt;Harris角点检测的基本原理：类似于边缘检测，只不过边缘检
+      
+    
+    </summary>
+    
+      <category term="图像处理" scheme="http://a-kali.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="图像处理" scheme="http://a-kali.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+      <category term="OpenCV" scheme="http://a-kali.github.io/tags/OpenCV/"/>
+    
+      <category term="角点检测" scheme="http://a-kali.github.io/tags/%E8%A7%92%E7%82%B9%E6%A3%80%E6%B5%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>图像直方图与均衡化</title>
+    <link href="http://a-kali.github.io/2020/12/28/%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/"/>
+    <id>http://a-kali.github.io/2020/12/28/图像直方图与均衡化/</id>
+    <published>2020-12-28T10:21:39.000Z</published>
+    <updated>2020-12-28T10:22:58.770Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="图像直方图"><a href="#图像直方图" class="headerlink" title="图像直方图"></a>图像直方图</h1><p><strong>图像直方图</strong>即对图像中每个像素值出现次数的统计直方图。</p><p><img src="https://i.loli.net/2020/12/21/xt3kON27wSyeZ85.png" alt="image.png"></p><p>OpenCV：<code>cv2.calcHist(images, channels, mask, histSize, ranges)</code></p><ul><li>images：输入图像；</li><li>channels：输入一个包含[0, 1, 2]的列表选择通道，全选表示BGR，[0]表示灰度图；</li><li>mask：与images对齐的掩码，用于标记需要统计的像素，全选则输入None；</li><li>histSize：直方图横坐标的个数；</li><li>ranges：像素值范围，默认为[0, 256]</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">'cat.jpg'</span>)</span><br><span class="line">color = (<span class="string">'b'</span>, <span class="string">'g'</span>, <span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> i, col <span class="keyword">in</span> enumerate(color):</span><br><span class="line">    hist = cv2.calcHist([img], [i], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">    plt.plot(hist, color=col)</span><br><span class="line">    plt.xlim([<span class="number">0</span>, <span class="number">256</span>])</span><br></pre></td></tr></table></figure><p><img src="https://i.loli.net/2020/12/21/c4CFThHt6OUIVZr.png" alt="image.png"></p><h1 id="直方图均衡化"><a href="#直方图均衡化" class="headerlink" title="直方图均衡化"></a>直方图均衡化</h1><p><strong>直方图均衡化</strong>是将原图像通过某种变换，得到一幅灰度直方图为均匀分布的新图像的方法。其基本思想是对在图像中像素个数多的灰度级进行展宽，而对像素个数少的灰度级进行缩减。从而达到清晰图像的目的。</p><p><img src="https://i.loli.net/2020/12/21/DfW9auiAH875oBJ.png" alt="image.png"></p><p><img src="https://i.loli.net/2020/12/21/KpfIYFsvorSGyRT.png" alt="image.png"></p><p>步骤：</p><ol><li>确定图像的灰度级（通常情况下，如果我们的图像是彩色。需要将其转换为灰度图像，其灰度级一般是0-255）；</li><li>统计每一个灰度在原始图像上的像素所占总体的比例，即每个灰度的概率；</li><li>计算累加概率（将低灰度级的概率累加到高灰度级的概率上）；</li><li>根据公式求映射结果：</li></ol><p>$$<br>SS(i)=int((max(pix)-min(pix))*S(i)+0.5)<br>$$</p><p><img src="https://i.loli.net/2020/12/21/k1VlTa9vjCKhszf.png" alt="image.png"></p><p>OpenCV代码：<code>cv2.equalizeHist(img)</code></p><p>虽然直方图均衡化后能让图像整体更加清晰，但有时候会使得原本突出的局部特征变得模糊（如图中的人脸）。</p><p><img src="https://i.loli.net/2020/12/21/Bep6arx71ok8FLb.png" alt="image.png"></p><p>可以使用<strong>自适应直方图均衡化</strong>解决这个问题。将图像划分为多个小区域（在opencv中默认为8×8），对每一个划分子域分别进行直方图均衡化。最后使用双线性插值对每一个子域的边界进行拼接。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create a CLAHE object (Arguments are optional).</span></span><br><span class="line">clahe = cv2.createCLAHE(clipLimit=<span class="number">2.0</span>, tileGridSize=(<span class="number">8</span>,<span class="number">8</span>))</span><br><span class="line">img = clahe.apply(img)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;图像直方图&quot;&gt;&lt;a href=&quot;#图像直方图&quot; class=&quot;headerlink&quot; title=&quot;图像直方图&quot;&gt;&lt;/a&gt;图像直方图&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;图像直方图&lt;/strong&gt;即对图像中每个像素值出现次数的统计直方图。&lt;/p&gt;
+&lt;p&gt;&lt;img sr
+      
+    
+    </summary>
+    
+      <category term="图像处理" scheme="http://a-kali.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="图像处理" scheme="http://a-kali.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+      <category term="OpenCV" scheme="http://a-kali.github.io/tags/OpenCV/"/>
+    
+      <category term="直方图" scheme="http://a-kali.github.io/tags/%E7%9B%B4%E6%96%B9%E5%9B%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>YOLOv4（二）：骨干网络的改进</title>
@@ -119,9 +199,9 @@
       <category term="面试" scheme="http://a-kali.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Dropout" scheme="http://a-kali.github.io/tags/Dropout/"/>
-    
       <category term="面试" scheme="http://a-kali.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="Dropout" scheme="http://a-kali.github.io/tags/Dropout/"/>
     
   </entry>
   
@@ -132,7 +212,7 @@
     <published>2020-12-12T20:36:07.000Z</published>
     <updated>2020-12-21T00:28:56.497Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="FLOPs"><a href="#FLOPs" class="headerlink" title="FLOPs"></a>FLOPs</h1><p><strong>FLOPs(floating point operations)</strong>，意指浮点运算数，理解为计算量。可以用来衡量算法/模型的复杂度。注意不要和FLOPS(floating point operations per second)搞混。</p><p>拿卷积操作举例。这里需要注意，卷积的计算量如果从output map size考虑的话，是可以与input map size无关的。因为卷积的每一次矩阵相乘都一定输出output map的一个像素点，但如果从input map下手的话，还需要考虑stride和padding。</p><p>所以<strong>卷积层</strong>的FLOPs计算公式为：</p><script type="math/tex; mode=display">FLOPs=(2×C_i×K^2)×(H×W×C_o)</script><p>其中Ci和Co分别为输入输出的通道数，K为卷积核大小，H和W分别为output map的高和宽。</p><p>这个公式前半部分的运算就是每计算一个输出元素所需要的计算量，就是output map的元素数量。之所以要×2是因为一次卷积运算需要进行乘法和加法两种操作（相乘后求和），比如说两个3×3大小的矩阵相乘求和得到一个元素值，需要进行3×3次乘法操作和3×3-1次加法操作，再加上神经网络中的bias，运算量一共为2×3×3。</p><p>同理可得<strong>全连接层</strong>的FLOPs计算公式为：</p><script type="math/tex; mode=display">FLOPs=2×I×O</script><h1 id="参数量"><a href="#参数量" class="headerlink" title="参数量"></a>参数量</h1><p>卷积参数量的计算比较简单，这里带过一下：</p><script type="math/tex; mode=display">params=(K^2×C_i+1)×C_o</script><p>实际工程上要计算这两个值的话的话，感觉github上有挺多包的……</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="FLOPs"><a href="#FLOPs" class="headerlink" title="FLOPs"></a>FLOPs</h1><p><strong>FLOPs(floating point operations)</strong>，意指浮点运算数，理解为计算量。可以用来衡量算法/模型的复杂度。注意不要和FLOPS(floating point operations per second)搞混。</p><p>拿卷积操作举例。这里需要注意，卷积的计算量如果从output map size考虑的话，是可以与input map size无关的。因为卷积的每一次矩阵相乘都一定输出output map的一个像素点，但如果从input map下手的话，还需要考虑stride和padding。</p><p>所以<strong>卷积层</strong>的FLOPs计算公式为：<br>$$<br>FLOPs=(2×C_i×K^2)×(H×W×C_o)<br>$$<br>其中Ci和Co分别为输入输出的通道数，K为卷积核大小，H和W分别为output map的高和宽。</p><p>这个公式前半部分的运算就是每计算一个输出元素所需要的计算量，就是output map的元素数量。之所以要×2是因为一次卷积运算需要进行乘法和加法两种操作（相乘后求和），比如说两个3×3大小的矩阵相乘求和得到一个元素值，需要进行3×3次乘法操作和3×3-1次加法操作，再加上神经网络中的bias，运算量一共为2×3×3。</p><p>同理可得<strong>全连接层</strong>的FLOPs计算公式为：<br>$$<br>FLOPs=2×I×O<br>$$</p><h1 id="参数量"><a href="#参数量" class="headerlink" title="参数量"></a>参数量</h1><p>卷积参数量的计算比较简单，这里带过一下：<br>$$<br>params=(K^2×C_i+1)×C_o<br>$$</p><p>实际工程上要计算这两个值的话的话，感觉github上有挺多包的……</p>]]></content>
     
     <summary type="html">
     
@@ -144,11 +224,11 @@
     </summary>
     
     
-      <category term="面试" scheme="http://a-kali.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
       <category term="FLOPs" scheme="http://a-kali.github.io/tags/FLOPs/"/>
     
       <category term="参数量" scheme="http://a-kali.github.io/tags/%E5%8F%82%E6%95%B0%E9%87%8F/"/>
+    
+      <category term="面试" scheme="http://a-kali.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
@@ -157,7 +237,7 @@
     <link href="http://a-kali.github.io/2020/12/13/OpenCV%E4%B8%AD%E7%9A%84%E5%B9%B3%E6%BB%91%E3%80%81%E8%85%90%E8%9A%80%E8%86%A8%E8%83%80%E5%92%8C%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/"/>
     <id>http://a-kali.github.io/2020/12/13/OpenCV中的平滑、腐蚀膨胀和边缘检测/</id>
     <published>2020-12-12T20:32:16.000Z</published>
-    <updated>2020-12-21T01:00:45.295Z</updated>
+    <updated>2020-12-28T10:25:34.366Z</updated>
     
     <content type="html"><![CDATA[<h1 id="图像平滑与滤波"><a href="#图像平滑与滤波" class="headerlink" title="图像平滑与滤波"></a>图像平滑与滤波</h1><p>图像平滑是指为了抑制噪声，使图像亮度趋于平缓的处理方法就是图像平滑。图像平滑可以通过各种滤波来实现，这些图像滤波都是一些简单的卷积操作。</p><ul><li>均值滤波：即在一个卷积核的感受野内的平均值作为该像素点的值，opencv代码为<code>cv2.blur(img, (3, 3))</code>。</li><li>高斯滤波：高斯滤波会根据距离取周围的像素点加权和，越近的像素权重越大。opencv代码为<code>cv2.GaussianBlur</code>。由于高斯滤波对中心点权重最高，使得其对椒盐类的噪声处理效果较差。</li><li>中值滤波：即在一个卷积核的感受野内的中值作为该像素点的值，opencv代码为<code>cv2.midianBlur(img, (3, 3))</code>。中值滤波对中心点的取值较为绝对化，故对椒盐类的噪声处理能力较强。</li></ul><p>下面三张图分别为原图、高斯滤波结果、中值滤波结果。</p><p><img src="https://i.loli.net/2020/12/05/tHxuK4iXhCP85cz.png" alt="image.png"></p><h1 id="图像的形态学操作"><a href="#图像的形态学操作" class="headerlink" title="图像的形态学操作"></a>图像的形态学操作</h1><h2 id="1-腐蚀与膨胀"><a href="#1-腐蚀与膨胀" class="headerlink" title="1    腐蚀与膨胀"></a>1    腐蚀与膨胀</h2><p>进行膨胀(dilation)操作时，使用卷积核遍历图像，使用内核覆盖区域的最大相素值代替锚点位置的相素。这一最大化操作将会导致图像中的亮区扩大，因此名为膨胀 。腐蚀(erosion)则与膨胀相反。在OpenCV中代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kernel = np.ones((<span class="number">3</span>, <span class="number">3</span>), np.uint8)</span><br><span class="line">cv2.erode(img, kernel, iterations=<span class="number">1</span>)  <span class="comment"># 腐蚀</span></span><br><span class="line">cv2.dilate(img, kernel, iterations=<span class="number">1</span>)  <span class="comment"># 膨胀</span></span><br></pre></td></tr></table></figure><p><img src="https://i.loli.net/2020/12/05/XHDSuCR7yxOYIin.png" alt="image.png"></p><h2 id="2-开运算与闭运算"><a href="#2-开运算与闭运算" class="headerlink" title="2    开运算与闭运算"></a>2    开运算与闭运算</h2><p>开运算指的是先腐蚀后膨胀的操作，闭运算则是先膨胀后腐蚀的操作。通常用于消除噪点、沟壑，平滑物体轮廓。在OpenCV中代码如下所示：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)  # 开运算</span><br><span class="line">cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)  # 闭运算</span><br></pre></td></tr></table></figure><h2 id="3-梯度计算"><a href="#3-梯度计算" class="headerlink" title="3    梯度计算"></a>3    梯度计算</h2><p>使用膨胀的结果减去腐蚀的结果可以计算得到图像的梯度，但OpenCV中提供了更便捷的操作：<code>cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel)</code>。</p><h1 id="Sobel算子"><a href="#Sobel算子" class="headerlink" title="Sobel算子"></a>Sobel算子</h1><p>Sobel算子是计算机视觉领域的一种重要处理方法。主要用于获得数字图像的<strong>一阶梯度</strong>，常用于<strong>边缘检测</strong>（注意与轮廓检测相区分）。Sobel算子是把图像中每个像素的上下左右四领域的<strong>灰度值加权差</strong>，在边缘处达到极值从而检测边缘。</p><p>该算子包含两组3x3的矩阵，分别为横向及纵向，将之与图像作平面<strong>卷积</strong>，即可分别得出横向及纵向的差值。如果以A代表原始图像，Gx及Gy分别代表经横向及纵向边缘检测的图像，其公式如下：</p><p><img src="https://i.loli.net/2020/12/04/rIq3OVLCfDnWvpu.png" alt="image.png"></p><p>在OpenCV中，可通过<code>cv2.Sobel(src, ddepth, dx, dy, ksize)</code>调用Sobel算子。具体操作：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">'pic.png'</span>, cv2.IMREAD_GRAYSCALE)  <span class="comment"># 读取灰度图</span></span><br><span class="line">sobelx = cv2.Sobel(img, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">3</span>)  <span class="comment"># x方向的梯度</span></span><br><span class="line">sobelx = cv2.convertScaleAbs(sobelx)  <span class="comment"># 取绝对值将复数转为正数</span></span><br><span class="line">sobely = cv2.Sobel(img, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)  <span class="comment"># y方向的梯度</span></span><br><span class="line">sobely = cv2.convertScaleAbs(sobely)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将x和y方向分别求到的梯度加权求和</span></span><br><span class="line">sobelxy = cv2.addWeighted(sobelx, <span class="number">0.5</span>, sobely, <span class="number">0.5</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure><p>求得的结果如下所示，其中左边是原图，右边是边缘检测结果：</p><p><img src="https://i.loli.net/2020/12/04/CgwknPWiDm12b7x.png" alt="image.png"></p><p>因为直接求两个方向的梯度效果较差，所以此处是对两个方向分别求梯度再加权平均，而不是直接求两个方向的梯度。</p><h1 id="Canny边缘检测"><a href="#Canny边缘检测" class="headerlink" title="Canny边缘检测"></a>Canny边缘检测</h1><p>Canny边缘检测算法是对图像进行的一系列用于边缘检测的操作步骤：</p><ol><li>使用高斯滤波器对图像进行平滑处理，滤除噪声；</li><li>计算图像中每个像素点的梯度强度和方向；</li><li>使用非极大值抑制消除边缘检测带来的杂散效应；</li><li>应用双阈值检测找出潜在的边缘，抑制孤立弱边缘。</li></ol><p><img src="https://i.loli.net/2020/12/05/f3BTRk6cFPYgqHG.png" alt="image.png"></p>]]></content>
     
@@ -170,10 +250,14 @@
     
     </summary>
     
+      <category term="图像处理" scheme="http://a-kali.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="图像处理" scheme="http://a-kali.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
     
       <category term="OpenCV" scheme="http://a-kali.github.io/tags/OpenCV/"/>
     
-      <category term="图像处理" scheme="http://a-kali.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+      <category term="边缘检测" scheme="http://a-kali.github.io/tags/%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/"/>
     
   </entry>
   
@@ -487,101 +571,6 @@
       <category term="计算机视觉" scheme="http://a-kali.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
       <category term="场景文本识别" scheme="http://a-kali.github.io/tags/%E5%9C%BA%E6%99%AF%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【论文翻译】MoCo：用于无监督视觉表示学习的动量对比</title>
-    <link href="http://a-kali.github.io/2020/09/03/%E3%80%90%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E3%80%91MoCo%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%97%A0%E7%9B%91%E7%9D%A3%E8%A7%86%E8%A7%89%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8A%A8%E9%87%8F%E5%AF%B9%E6%AF%94/"/>
-    <id>http://a-kali.github.io/2020/09/03/【论文翻译】MoCo：用于无监督视觉表示学习的动量对比/</id>
-    <published>2020-09-03T14:04:54.000Z</published>
-    <updated>2020-09-27T16:22:31.810Z</updated>
-    
-    <content type="html"><![CDATA[<p>论文地址：<a href="https://arxiv.org/pdf/1911.05722.pdf" target="_blank" rel="noopener">Momentum Contrast for Unsupervised Visual Representation Learning</a></p><h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>我们提出了动量对比(Momentum Contrast, MoCo)的无监督视觉表示学习。从基于字典查找的对比学习(contrastive learning)的角度出发，我们构建了一个带有队列和移动平均编码器的动态字典：这使我们能够实时构建一个大型的、一致的字典，从而促进非监督对比学习。MoCo在ImageNet分类任务中表现优异。更重要的是，MoCo学到的表示可以很好地应用到<strong>下游任务(downstream task)</strong>中。MoCo可以在PASCAL VOC、COCO等7个数据集的检测/分割任务中超过了其监督学习的预训练模型。这表明，在许多视觉任务中，无监督和监督学习之间的差距已经很大程度上缩小了。</p><h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1    Introduction"></a>1    Introduction</h1><p>无监督表示学习在NLP中的应用非常成功，如：GPT、BERT。但在CV领域，有监督的预训练仍占主导地位，而无监督的方法则普遍落后。原因可能是由于它们所属的信号空间不同。语言任务具有离散的信号空间(单词、子单词单元等)用于构建标记化词典( tokenized dictionaries)，在此基础上进行无监督学习。相反，CV更加关注字典构建，因为原始信号处于连续的高维空间。</p><p>最近的一些研究提出了使用<strong>对比损失(contrastive loss)</strong>的无监督视觉表示学习，得出了令人激动的结果。这些方法可以看作是<strong>构建动态词典(dynamic dictionaries)</strong>。数据样本通过一个encoder提取特征后得到字典中的“密钥”(keys)。无监督学习训练encoder来执行字典查询过程：一个“查询”(query)通过encoder后，得到的输出应该与其匹配的key值相近，而与其他样本的key尽可能不同。学习目的为最小化contrastive loss。</p><p>从这个角度来看，我们认为应该在训练过程中逐步建立满足以下条件的词典：<strong>大型&amp;一致</strong>。直观地说，一个<strong>更大的字典</strong>可以更好地对底层连续的、高维的视觉空间进行采样；而字典中的<strong>key应该用相同或类似的encoder表示，以便它们与query的比较是一致</strong>的。然而，使用现有的contrastive loss方法可能局限于这两个方面中的一个(稍后在下文中讨论)。</p><p>我们将动量对比(MoCo)作为一种构建大型且一致的字典的方式，用于非监督学习。我们将字典当作数据样本的队列：每当一个新的batch完成编码后进入队列，将最老的编码移出队列。队列将字典大小与batch大小解耦，如此一来就能独立建立字典（而不是依赖于batch大小），允许字典的大小比batch大很多。此外，由于字典的key来自前几个batch，为了保持一致性，我们提出了一种基于动量的encoder。</p><p><img src="https://i.loli.net/2020/08/28/cuYKIpgwVQS38v6.png" alt="image.png"></p><p>MoCo是一种建立动态对比学习词典的机制，可以与各种各样的<strong><a href="https://blog.csdn.net/u013303408/article/details/103657043" target="_blank" rel="noopener">前置任务(pretext task)</a></strong>一起使用。在本文中，我们使用一个简单的识别任务进行讲解：如果它们是同一图像(例如同一张图片的不同裁剪区域)的编码，那么query将给它们匹配同一个key。利用这个前置任务，MoCo在ImageNet数据集中展现了有力的结果。</p><h1 id="2-Related-Work"><a href="#2-Related-Work" class="headerlink" title="2    Related Work"></a>2    Related Work</h1><p>无监督/自监督学习方法一般包括两个方面：前置任务和损失函数。“前置”意味着正在解决的任务并不是我们最终要解决的任务，而是为了更好地学习数据的表示。损失函数通常可以独立于前置任务进行研究。MoCo专注于损失函数方面。接下来我们就这两个方面的相关研究进行讨论。</p><p><strong>损失函数</strong>。损失函数是一种用于衡量模型的预测和固定目标值之间差距的方式。其中，对比损失(Contrastive losses)用于衡量两个样本在一个空间中的相似性。相比于将输入匹配到一个固定的目标，对比损失公式的目标可以在训练期间变化。对比学习是最近几篇关于无监督学习的研究的核心内容，我们将在后面对此进行阐述。</p><p><strong>前置任务</strong>。前置任务的种类多种多样。例如修复遭到损坏的输入，包括：去噪自动编码器( denoising auto-encoders)，上下文自动编码器(context autoencoders)，或是用于着色的跨通道自动编码器(cross-channel auto-encoders)；还有一些前置任务用于形成伪标签，例如，对图像进行转换（数据增强）、patch排序、视频目标的跟踪、分割、聚类。</p><h1 id="3-Method"><a href="#3-Method" class="headerlink" title="3    Method"></a>3    Method</h1><h2 id="3-1-Contrastive-Learning-as-Dictionary-Look-up"><a href="#3-1-Contrastive-Learning-as-Dictionary-Look-up" class="headerlink" title="3.1 Contrastive Learning as Dictionary Look-up"></a>3.1 Contrastive Learning as Dictionary Look-up</h2><p>对比学习(Contrastive learning)可以被看作是训练一个encoder进行字典查找任务。</p><p>假设已有一个已编码的查询$q$，和一组已编码的样本（即字典中的keys）：${k_0, k_1,  k_2, …}$，$q$匹配到了字典中的一个key(表示为k)。$q$和其对 应的$k_+$越相似且与其它的keys相差越大，对比损失函数值越小。一种和点积度量相似，被称为<strong>InfoNCE</strong>的对比损失函数在本文中被使用：<br>$$<br>L_q=-log \frac{exp(q\cdot k_+/\tau)}{\sum^K_{i=0}exp(q\cdot k_i/\tau)}<br>$$<br>其中$\tau$是一个超参数，sum运算的对象是1个正样本和K个负样本。直观地说，这种损失是基于K+1类softmax分类器的对数损失，用于将$q$分类为$k_+$类中的其中一类。对比损失函数也可以基于其他形式，如margin-based losses和NCE loss的变体。</p><p>对比损失函数作为无监督的目标函数，用于训练encoder。一般来说，query表示为$q = f_q(x^q)$（同理，$k=f_k(x^k)$），其中$f_a$是一个encoder，$x^q$是一个query样本。它们的实例化，取决于特定的前置任务。输入$x^q$和$x^k$可以是图像、patch、或者是由一组patch组成的context。网络$f_q$和$f_k$可以是相同的、部分共享的、或是完全不同的。</p><p><img src="https://i.loli.net/2020/08/31/uPQV7TlifsoB1Dy.png" alt="image.png"></p><p>上图是<strong>三种对比损失机制的概念上的比较</strong>。这里我们会解释对于一对query和key，这三种机制在如何维护keys和如何更新keys encoder方面有所不同。(a):计算query和key的encoder通过反向传播端到端更新，这两个encoder可以是不同的。(b):密钥表示从存储库中采样。(c): MoCo通过动量更新encoder对新的keys进行动态编码。并维护keys的队列(图中没有说明)。</p><h2 id="3-2-Momentum-Contrast"><a href="#3-2-Momentum-Contrast" class="headerlink" title="3.2 Momentum Contrast"></a>3.2 Momentum Contrast</h2><p>从上面的观点来看，对比学习是一种在高维连续输入(如图像)上构建离散字典的方法。这个字典是动态的，因为键是随机采样的，而且key encoder在训练过程中会进化。我们的假设是，好的特征可以通过包含大量负样本的大字典来学习。而字典key的encoder则尽可能保持一致，不管它的发展。基于这个动机，我们现在的动量对比描述如下。</p><p><strong>字典元素队列(Dictionary as a queue)</strong>。我们方法的核心是将字典作为一个数据样本队列来维护，这允许我们重用实时的keys。<strong>队列的引入将字典大小与batch大小解耦，所以字典大小可以比batch大小大得多。</strong>并且可以将字典的大小独立地设置为超参数。<br>当前batch被编入字典时，队列中最老的batch被删除。由于字典表示所有数据的抽样子集，因此维护字典的额外计算量是可控的。此外，<strong>删除最老的batch能够有效地保持一致性，因为其编码的keys是最过时的，与最新的keys最不一致。</strong></p><p><strong>动量更新(Momentum update)</strong>。使用队列可能会使字典变大，但它也使得通过反向传播(梯度应该传播到队列中的所有样本)来更新key encoder变得棘手。一个简单的解决方案是从query encoder$f_q$复制key encoder$f_k$，忽略这个梯度。但是这种解决方案在实验中产生的结果很差。我们假设这种故障是由于encoder的快速变化，降低了key的一致性造成的。于是我们提出了动量更新来解决这个问题。<br>形式上，我们将参数$f_k$、$f_q$指定为$\theta_k$、$\theta_q$，并通过如下公式更新$\theta_k$：<br>$$<br>\theta_k \leftarrow m\theta_k+(1-m)\theta_q<br>$$<br>在这个公式中，$m\in [0,1)$为动量系数。只有$\theta_q$通过反向传播更新。动量更新公式使得$\theta_k$能够比$\theta_q$更加顺滑地进化。<strong>因此，虽然字典队列中不同batch的keys是由不同的encoder编码出来的，但编码器之间的差别很小。</strong>实验中通常使用相关性较大的动量(0.999)效果会比小动量(0.9)来带的效果好很多，这表明缓慢进化的key encoder是使得队列起作用的核心。</p><p>略过一些不是很重要的部分。</p><h2 id="3-3-Pretext-Task"><a href="#3-3-Pretext-Task" class="headerlink" title="3.3 Pretext Task"></a>3.3 Pretext Task</h2><p>对比学习可以驱动各种各样的前置任务。由于本文的重点不是设计一个新的前置任务，所以我们使用了一个简单的前置任务。</p><p>我们将来自同一张图像的query和key视为正样本对，否则视为负样本对。于是我们对同一幅图像进行随机数据增强生成两个新图像，形成正样本对。query和key分别由其各自的encoder进行编码，encoder可以是任意卷积神经网络。</p><p><img src="https://i.loli.net/2020/08/31/v9jVwGRBfrMmHni.png" alt="image.png"></p><p>上图中的算法用来给前置任务生成伪标签。</p><p><strong>Technical details.</strong> 我们采用最后全局平均池化后面的全连接层的ResNet作为encoder，其具有固定维度的输出(128-D)。该输出向量使用L2-norm归一化，得到query或key的表示。动量公式中的温度$\tau$设为0.07。数据增强设置如下：随机resize后的图像中crop一个分辨率224×224的子图，然后经过随机颜色抖动(random color jittering)、随机的水平翻转(random horizontal flop)和随机的灰度转换(random grayscale conversion)，这些都可以在PyTorch的torchvision包中导入使用。</p><p><strong>Shuffling BN.</strong> 在实验中，我们发现使用BN对模型的训练有不利的影响。模型使用BN后会在前置任务中作弊，迅速找到低loss的解决方案。这可能是因为<strong>batch内的样本之间互相通信(由BN引起)，泄露了信息</strong>。<br>于是我们提出了Shuffling BN来解决这个问题。由于使用多个GPU进行训练，每个GPU独立地对样本执行BN。对于key encoder，我们先对当前batch中的样本顺序进行洗牌，然后再将其分配给GPU进行编码，将输出的编码恢复原本的顺序；而query encoder的样本顺序不变。这确保用于计算query及positive key的batch统计信息来自两个不同的子集，有效地解决了作弊的问题，并允许训练受益于BN。</p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://www.cnblogs.com/gaopursuit/p/12242946.html" target="_blank" rel="noopener">对比自监督学习</a><br>[2]<a href="https://zhuanlan.zhihu.com/p/140908341" target="_blank" rel="noopener">CVPR 2020 | MoCo自监督学习或成为CV领域的启明灯</a><br>[3]<a href="https://www.cnblogs.com/xytpai/p/12575735.html" target="_blank" rel="noopener">何凯明组自监督方法MoCo开颅（1）</a><br>[4]<a href="https://blog.csdn.net/u013303408/article/details/103657043" target="_blank" rel="noopener">Self-Supervised Learning 自监督学习中Pretext task的理解</a><br>[5]<a href="https://www.thepaper.cn/newsDetail_forward_5575423" target="_blank" rel="noopener">数据太少怎么办？试试自监督学习</a><br>[6]<a href="https://zhuanlan.zhihu.com/p/150224914?utm_source=wechat_session&utm_medium=social&utm_oi=73454221000704" target="_blank" rel="noopener">自监督学习的一些思考</a>（入门向，推荐）</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;论文地址：&lt;a href=&quot;https://arxiv.org/pdf/1911.05722.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Momentum Contrast for Unsupervised Visual Representati
-      
-    
-    </summary>
-    
-      <category term="计算机视觉" scheme="http://a-kali.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="计算机视觉" scheme="http://a-kali.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-      <category term="论文翻译" scheme="http://a-kali.github.io/tags/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/"/>
-    
-      <category term="无监督学习" scheme="http://a-kali.github.io/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="MoCo" scheme="http://a-kali.github.io/tags/MoCo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hourglass &amp; CornerNet &amp; CenterNet</title>
-    <link href="http://a-kali.github.io/2020/08/11/Hourglass-CornerNet-CenterNet/"/>
-    <id>http://a-kali.github.io/2020/08/11/Hourglass-CornerNet-CenterNet/</id>
-    <published>2020-08-10T16:26:01.000Z</published>
-    <updated>2020-08-13T15:10:29.156Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近get到一个project做停车位检测，参考了几篇论文之后决定用关键点检测的方法，于是顺便读了如下几篇关键点检测相关的神经网络论文。</p><h1 id="Hourglass"><a href="#Hourglass" class="headerlink" title="Hourglass"></a>Hourglass</h1><p>论文链接：<a href="https://arxiv.org/abs/1603.06937" target="_blank" rel="noopener">Stacked Hourglass Networks for Human Pose Estimation</a></p><p>Stacked Hourglass Neworks（以下简称Hourglass）由多个Hourglass模块堆叠而成，其模块对特征图进行下采样后，将特征图上采样到原来的大小，形似沙漏，故名Hourglass。</p><p>Hourglass原本是用于做<strong>人体姿态估计（Human pose estimation）</strong>，其中比较关键的一步就是检测人体上的关键点。人体不同的部位特征不同，所需要的特征图大小也不一样。Hourglass网络能够处理各种尺寸的人体特征，以此来捕捉人体各部位之间的空间关系。</p><p><img src="https://i.loli.net/2020/08/07/YBgedQokvwPlhHV.png" alt="image.png"></p><p><img src="https://i.loli.net/2020/08/10/hvftgsOw6VFiXIE.png" alt="image.png"></p><p>每个Hourglass模块采用encoder-decoder结构，对输入图下采样提取特征后进行上采样，输出原图大小的heatmap作为关键点的标记。encoder和decoder之间使用残差结构融合前后特征。</p><p><img src="https://i.loli.net/2020/08/11/i2rt3GMlKbUakPN.png" alt="image.png"></p><p>该网络的思想和结构后被其它检测网络广泛采用。</p><h1 id="CornerNet"><a href="#CornerNet" class="headerlink" title="CornerNet"></a>CornerNet</h1><p>论文链接：<a href="https://arxiv.org/abs/1808.01244" target="_blank" rel="noopener">CornerNet: Detecting Objects as Paired Keypoints</a><br>代码链接：<a href="https://github.com/umich-vl/CornerNet" target="_blank" rel="noopener">https://github.com/umich-vl/CornerNet</a></p><p>CornerNet是一个通过检测对角来进行目标检测的网络。主要原理是采用Hourglass作为基本结构，输出检测框对角的Heatmap。</p><p>这个设计真的很<del>反人类</del>反人工智能，因为对角上应该是没有什么特征的。但是该网络的设计思想非常有意思，给后来的Anchor Free类型的目标检测网络提供了思路。</p><p><img src="https://i.loli.net/2020/08/10/GrVdznPJ1qT9pw5.png" alt="image.png"></p><p>CornerNet的整体结构如下图所示，其骨干部分使用Hourglass，输出部分有两个分支模块，分别表示<strong>左上角点预测分支</strong>和<strong>右下角点预测分支</strong>，每个分支模块包含一个<strong>corner pooling</strong>层和3个输出：<strong>heatmaps、embeddings和offsets</strong>。</p><p><img src="https://i.loli.net/2020/08/10/gDtnTWBj3PkXozR.png" alt="image.png"></p><h2 id="1-输出端"><a href="#1-输出端" class="headerlink" title="1    输出端"></a>1    输出端</h2><ul><li><p><strong>Heatmaps</strong>对角点的位置进行预测，最有可能是角点的位置输出值越高。其gt是基于角点的高斯值；</p></li><li><p><strong>Offset</strong>输出取整计算时丢失的精度信息（感觉用处不是很大）；</p><p><img src="https://i.loli.net/2020/08/11/cpO1Ueq6WPazGK3.png" alt="image.png"></p></li><li><p><strong>Embedding</strong>用来对左上角点和右下角点进行匹配。其输出一个vector，当两个角点的vector距离较小时，则认为这两点为成对点（这个和人脸匹配有点像）。这部分由两个损失函数实现，第一部分用来缩小成对点向量的距离，第二部分用来放大非成对点向量之间的距离。</p><p><img src="https://i.loli.net/2020/08/11/WBEQnLpIN2qCHx3.png" alt="image.png"></p></li></ul><h2 id="2-Corner-Pooling"><a href="#2-Corner-Pooling" class="headerlink" title="2    Corner Pooling"></a>2    Corner Pooling</h2><p>因为CornerNet是预测左上角和右下角两个角点，但是这两个角点在不同目标上没有相同规律可循，如果采用普通池化操作，那么在训练预测角点支路时会比较困难。考虑到对于每一个左上角点，其所有的特征都在其右下方。因此如果左上角角点经过池化操作后能有其右下方的信息，那么就有利于该点的预测。右下角点同理。</p><p>Corner Pooling便是一种对某个像素的右下方（或左上方）的所有像素进行池化的操作。</p><p><img src="https://i.loli.net/2020/08/11/2lW4Oi1k6qhzF3f.png" alt="image.png"></p><h1 id="CenterNet"><a href="#CenterNet" class="headerlink" title="CenterNet"></a>CenterNet</h1><p>论文地址：<a href="https://arxiv.org/abs/1904.07850" target="_blank" rel="noopener">Objects as Points</a><br>Github：<a href="https://github.com/xingyizhou/CenterNet" target="_blank" rel="noopener">https://github.com/xingyizhou/CenterNet</a></p><p>CenterNet有两篇发布时间十分接近的两篇论文，这里我们讲其中开源项目Star比较多、受认可度比较高的<a href="https://arxiv.org/abs/1904.07850" target="_blank" rel="noopener">Objects as Points</a>。</p><p>单从网络的结构和损失函数来看，这个模型是非常符合当代神经网络设计思想的模型：设定简约，输入输出端到端，且能够适应多种任务。堪称神经网络中的艺术品。</p><h2 id="1-Abstract"><a href="#1-Abstract" class="headerlink" title="1    Abstract"></a>1    Abstract</h2><p>在普通的<strong>目标检测</strong>任务中，CenterNet的思想和CornerNet十分接近。只不过CornerNet输出的是边框两个角点的坐标，而CenterNet输出的是<strong>中心点的坐标及其到边框的距离</strong>。</p><p><img src="https://i.loli.net/2020/08/12/WhrlemckSsBZEpH.png" alt="image.png"></p><p>CenterNet还能用于<strong>3D目标检测(3D object detection)</strong>和<strong>多人人体姿态估计(multi-person human pose estimation)</strong>。在3D目标检测任务中，网络预测目标中心点的位置和深度、3D检测框的长宽以及目标的方向；在多人姿态估计任务中，网络预测中心点的位置以及各个关键的对中心点的偏置(offset)。</p><h2 id="2-Related-work"><a href="#2-Related-work" class="headerlink" title="2    Related work"></a>2    Related work</h2><p>CenterNet的改变和优势：</p><ul><li><p>在<strong>目标检测</strong>任务中，相比于RCNN系列网络，没有使用RPN、Anchor、NMS技术，没有使用阈值做前后景分类。仅仅提取特征图上的局部峰值点作为中心；</p></li><li><p>在<strong>通过关键点做目标检测</strong>的任务中，相比于CornerNet等网络，不需要对关键点进行配对操作；</p></li><li><p>在<strong>单目3D目标检测</strong>任务中，相比于Deep3Dbox等网络，同样更加简洁快速。</p><p><img src="https://i.loli.net/2020/08/13/svJWj2Np7aSlu3o.png" alt="image.png"></p></li></ul><h2 id="3-Method"><a href="#3-Method" class="headerlink" title="3     Method"></a>3     Method</h2><p>这部分和CornerNet差不多，主要讲了下输出gt的格式，公式比较多，结合源码看比较容易懂。</p><p>挑几个比较有看点的：</p><ol><li><p>在中心点位置生成<strong>和目标大小相同的高斯核</strong>，得到heatmap。而CornerNet仅仅在对角生成固定大小的高斯核；</p></li><li><p>损失函数是针对CenterNet的性质根据FocalLoss改进的<strong>像素级惩罚衰减逻辑回归FocalLoss(penalty-reduced pixel-wise logistic regression with focal loss)</strong>，中文是我瞎翻译的，感觉这么长的名字可以用来当日本轻小说的题目了。</p><p><img src="https://i.loli.net/2020/08/13/K2UojbPhNxGIVs3.png" alt="image.png"></p><p>其中的N是预测出的关键点的数量，剩下的都是FocalLoss里的超参数。其实就是像素级的FocalLoss没啥区别。</p></li><li><p>值得一提的是CenterNet对每个中心点做了<strong>偏差预测</strong>，为了弥补模型在下采样过程中造成的定位误差。</p></li></ol><p>后面的感觉都半斤八两了，佛系更新。</p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://blog.csdn.net/u014380165/article/details/83032273" target="_blank" rel="noopener">CornerNet 算法笔记</a><br>[2]<a href="https://blog.csdn.net/c20081052/article/details/89358658" target="_blank" rel="noopener">论文精读——CenterNet :Objects as Points</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近get到一个project做停车位检测，参考了几篇论文之后决定用关键点检测的方法，于是顺便读了如下几篇关键点检测相关的神经网络论文。&lt;/p&gt;
-&lt;h1 id=&quot;Hourglass&quot;&gt;&lt;a href=&quot;#Hourglass&quot; class=&quot;headerlink&quot; title
-      
-    
-    </summary>
-    
-      <category term="计算机视觉" scheme="http://a-kali.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="计算机视觉" scheme="http://a-kali.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-      <category term="深度学习" scheme="http://a-kali.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="关键点检测" scheme="http://a-kali.github.io/tags/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/"/>
-    
-      <category term="Hourglass" scheme="http://a-kali.github.io/tags/Hourglass/"/>
-    
-      <category term="目标检测" scheme="http://a-kali.github.io/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SPFCN：全卷积网络实现停车位检测</title>
-    <link href="http://a-kali.github.io/2020/08/04/SPFCN%EF%BC%9A%E5%85%A8%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E5%81%9C%E8%BD%A6%E4%BD%8D%E6%A3%80%E6%B5%8B/"/>
-    <id>http://a-kali.github.io/2020/08/04/SPFCN：全卷积网络实现停车位检测/</id>
-    <published>2020-08-04T15:33:29.000Z</published>
-    <updated>2020-08-07T13:00:42.460Z</updated>
-    
-    <content type="html"><![CDATA[<p>论文：SPFCN: Select and Prune the Fully Convolutional Networks for Real-time Parking Slot Detection</p><p>Github：<a href="https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection" target="_blank" rel="noopener">https://github.com/tjiiv-cprg/SPFCN-ParkingSlotDetection</a></p><h1 id="1-Abstract"><a href="#1-Abstract" class="headerlink" title="1    Abstract"></a>1    Abstract</h1><p>摘要：对于配备自动停车系统的车辆，车位检测的准确性和速度是至关重要的。本文提出了一个基于FCN的检测器，在保证准确性的同时实现更快的速度和更小的模型尺寸。作者制定了一个策略来选择最佳感受野的卷积核，并在每次训练epoch结束后自动删除冗余通道。该模型能够联合检测停车位的角和线特征，并能在常规的处理器上有效地实时运行。该模型在2.3 GHz的CPU上能达到 30 FPS，车位角定位误差1.51±2.14 cm (std. err)，车位检测精度98%，总体满足车载移动终端速度和精度要求。</p><h1 id="2-Method"><a href="#2-Method" class="headerlink" title="2    Method"></a>2    Method</h1><p>该模型使用<a href="https://blog.csdn.net/wangzi371312/article/details/81174452" target="_blank" rel="noopener">Stacked Hourglass Network</a>作为基本结构，同时输出标志点、入口线、边界线的heatmap。此处原理和CenterNet类似。</p><p><img src="https://i.loli.net/2020/08/04/PQqr8x3LBTjpStO.png" alt="image.png"></p><p>该模型的主要特点在于其<strong>SP模块（Select-Prune Module）</strong>，SP模块分为Select模块和Prune模块两部分：</p><ul><li><p><strong>Select Module</strong>：Select模块主要用于选择拥有更合适的感受野的卷积核。考虑到移动端使用类Inception结构对算力要求过大，不能满足实时性。Select模块使用<strong>贡献评估网络（Contribution Evaluation Networks, CEN）</strong>对不同感受野的卷积核进行评估，选择贡献度最高的的卷积核。CEN只是一个简单的MLP模块，接收不同卷积核的输出作为输入，并输出一个贡献值，最终只留下平均贡献值最高的卷积核。即训练阶段结束后，整个模块最终会退化成一个卷积核。</p><p><img src="https://i.loli.net/2020/08/04/JGntQPWVTpEKy2H.png" alt="image.png"></p></li><li><p><strong>Prune Module</strong>：Prune模块负责修剪卷积核中的通道。网络交替进行训练和修剪，在修剪阶段会自动评估每个卷积通道的贡献度，并剔除贡献度低于定值的通道。其贡献度由通道的权重计算得出。如果某个卷积核没有低于定值的通道，则会自动剔除贡献值最低的通道。</p><p><img src="https://i.loli.net/2020/08/04/Us6pSbQlrJyvOE4.png" alt="image.png"></p><p><img src="https://i.loli.net/2020/08/04/snCaumJKZ2qb9Ve.png" alt="image.png"></p></li></ul><p>最后对<strong>鸟瞰图（bird eye view, BEV）</strong>进行输入网络进行分割，输出BEV的heatmap。</p><h1 id="3-Experiments"><a href="#3-Experiments" class="headerlink" title="3    Experiments"></a>3    Experiments</h1><p>数据集使用的是<a href="https://cslinzhang.github.io/deepps/" target="_blank" rel="noopener">DeepPS数据集</a>，该数据集中包含 9527(training)+2138(validating) 张BEV图像。作者将训练样本转化为224<em>×</em>224的灰度图作为网络的输入，点线标记作为labels。</p><p>整个训练过程分为三个阶段，分别为<strong>预训练阶段</strong>、<strong>选择阶段</strong>和<strong>修剪阶段</strong>，不同阶段使用不同的损失函数。</p><p><img src="https://i.loli.net/2020/08/05/6zqsPuD5icKgjZx.png" alt="image.png"></p><p>预训练阶段的前5个epoch只用heatmaps的FocalLoss用来预热（warm-up），随后10个epoch使用完整的损失函数；在选择阶段，从第一层到最后一层逐层进行选择，每层选择结束后微调2-3个epoch；在修剪阶段，损失函数再次恢复到只有heatmap的FocalLoss，训练100个epoch的同时进行修剪；最后再去掉两个正则化操作，微调15个epoch。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;论文：SPFCN: Select and Prune the Fully Convolutional Networks for Real-time Parking Slot Detection&lt;/p&gt;
-&lt;p&gt;Github：&lt;a href=&quot;https://github.co
-      
-    
-    </summary>
-    
-      <category term="计算机视觉" scheme="http://a-kali.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="计算机视觉" scheme="http://a-kali.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-      <category term="全卷积网络" scheme="http://a-kali.github.io/tags/%E5%85%A8%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="自动驾驶" scheme="http://a-kali.github.io/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/"/>
     
   </entry>
   
