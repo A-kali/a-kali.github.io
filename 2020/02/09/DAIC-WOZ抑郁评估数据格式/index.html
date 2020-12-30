@@ -393,7 +393,6 @@
         <p>DAIC-WOZ数据库是抑郁分析访谈语料库(Distress Analysis Interview Corpus, DAIC) 的一部分，该语料库主要包含临床访谈记录，旨在支持对焦虑、抑郁和创伤后应激障碍等心理困扰状况的诊断。这些访谈数据被收集起来，作为训练一个计算机代理的数据。该代理能够自动对人们进行访谈，并在语言(verbal)和非语言(nonverbal)指标上识别精神疾病。收集的数据包括音频和视频记录以及大量的的问卷回答；这部分语料库包括一个名为Ellie的动画虚拟面试官主持的Oz访谈，由另一个房间里的真人面试官控制。数据已被转录和注释的各种语言的和非语言的特征。</p>
 <h1 id="Data-description"><a href="#Data-description" class="headerlink" title="Data description"></a>Data description</h1><p>数据包中包含<strong>编号300-492、共189个数据样本</strong>（其中 342,394,398,460 因技术原因被移除）。数据包格式如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Pack\</span><br><span class="line">	300_P</span><br><span class="line">	301_P</span><br><span class="line">	...</span><br><span class="line">	492_P</span><br><span class="line">	util</span><br><span class="line">	documents</span><br><span class="line">	train_split.csv</span><br><span class="line">	dev_split.csv</span><br><span class="line">	test_split.csv</span><br></pre></td></tr></table></figure>
-
 <p>部分样本需要提醒：</p>
 <ul>
 <li>373 - 在5:52-7:00有一个中断，助手进入房间解决一个小的技术问题，会议继续进行并结束。</li>
@@ -406,10 +405,8 @@
 <p><strong>test_split_Depression_AVEC2017.csv</strong>：仅包含id和性别。</p>
 <p>每个样本文件夹下文件组织如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">XXX_P\ </span><br><span class="line">  XXX_CLNF_features.txt </span><br><span class="line">  XXX_CLNF_features3D.txt </span><br><span class="line">  XXX_CLNF_gaze.txt </span><br><span class="line">  XXX_CLNF_hog.bin </span><br><span class="line">  XXX_CLNF_pose.txt </span><br><span class="line">  XXX_CLNF_AUs.csv   </span><br><span class="line">  XXX_AUDIO.wav </span><br><span class="line">  XXX_COVAREP.csv </span><br><span class="line">  XXX_FORMANT.csv </span><br><span class="line">  XXX_TRANSCRIPT.csv</span><br></pre></td></tr></table></figure>
-
 <p>util文件夹组织如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">util\ </span><br><span class="line">  runHOGread_example.m </span><br><span class="line">  Read_HOG_files.m</span><br></pre></td></tr></table></figure>
-
 <h1 id="File-description-and-feature-documentation"><a href="#File-description-and-feature-documentation" class="headerlink" title="File  description  and  feature  documentation"></a>File  description  and  feature  documentation</h1><p>这部分表述的是每个样本文件夹下各个文件的作用。</p>
 <h2 id="1-CLNF-framework-output"><a href="#1-CLNF-framework-output" class="headerlink" title="1    CLNF framework output"></a>1    CLNF framework output</h2><p>这部分是由CLNF人脸关键点检测算法输出的数据，包括以下文件：</p>
 <ul>
@@ -439,7 +436,7 @@
 </ul>
 </li>
 <li>XXX.CLNF_pose.txt<ul>
-<li>pose文件包含两个坐标，X,Y,Z是位置坐标，Rx,Ry,Rz是头部旋转坐标。位置是以毫米为单位的世界坐标，旋转是以弧度和欧拉角为单位的(为了得到一个合适的旋转矩阵，使用R= Rx * Ry * Rz)。</li>
+<li>pose文件包含两个坐标，X,Y,Z是位置坐标，Rx,Ry,Rz是头部旋转坐标。位置是以毫米为单位的世界坐标，旋转是以弧度和欧拉角为单位的(为了得到一个合适的旋转矩阵，使用R= Rx <em> Ry </em> Rz)。</li>
 <li>文件格式：frame_number,  timestamp(seconds),  confidence,  detection_success,  X,  Y,  Z,  Rx,  Ry,  Rz</li>
 </ul>
 </li>
@@ -602,7 +599,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -624,7 +621,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -728,7 +725,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">86.7k</span>
+    <span title="Site words total count">86.8k</span>
   
 </div>
 

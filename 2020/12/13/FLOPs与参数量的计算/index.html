@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="FLOPs,参数量,面试,">
+  <meta name="keywords" content="面试,FLOPs,参数量,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="FLOPsFLOPs(floating point operations)，意指浮点运算数，理解为计算量。可以用来衡量算法/模型的复杂度。注意不要和FLOPS(floating point operations per second)搞混。 拿卷积操作举例。这里需要注意，卷积的计算量如果从output map size考虑的话，是可以与input map size无关的。因为卷积的每一次矩阵相乘都">
-<meta name="keywords" content="FLOPs,参数量,面试">
+<meta name="keywords" content="面试,FLOPs,参数量">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【面试向】FLOPs与参数量的计算">
 <meta property="og:url" content="http://a-kali.github.io/2020/12/13/FLOPs与参数量的计算/index.html">
@@ -392,11 +392,15 @@
       
         <h1 id="FLOPs"><a href="#FLOPs" class="headerlink" title="FLOPs"></a>FLOPs</h1><p><strong>FLOPs(floating point operations)</strong>，意指浮点运算数，理解为计算量。可以用来衡量算法/模型的复杂度。注意不要和FLOPS(floating point operations per second)搞混。</p>
 <p>拿卷积操作举例。这里需要注意，卷积的计算量如果从output map size考虑的话，是可以与input map size无关的。因为卷积的每一次矩阵相乘都一定输出output map的一个像素点，但如果从input map下手的话，还需要考虑stride和padding。</p>
-<p>所以<strong>卷积层</strong>的FLOPs计算公式为：<br>$$<br>FLOPs=(2×C_i×K^2)×(H×W×C_o)<br>$$<br>其中Ci和Co分别为输入输出的通道数，K为卷积核大小，H和W分别为output map的高和宽。</p>
+<p>所以<strong>卷积层</strong>的FLOPs计算公式为：</p>
+<script type="math/tex; mode=display">
+FLOPs=(2×C_i×K^2)×(H×W×C_o)</script><p>其中Ci和Co分别为输入输出的通道数，K为卷积核大小，H和W分别为output map的高和宽。</p>
 <p>这个公式前半部分的运算就是每计算一个输出元素所需要的计算量，就是output map的元素数量。之所以要×2是因为一次卷积运算需要进行乘法和加法两种操作（相乘后求和），比如说两个3×3大小的矩阵相乘求和得到一个元素值，需要进行3×3次乘法操作和3×3-1次加法操作，再加上神经网络中的bias，运算量一共为2×3×3。</p>
-<p>同理可得<strong>全连接层</strong>的FLOPs计算公式为：<br>$$<br>FLOPs=2×I×O<br>$$</p>
-<h1 id="参数量"><a href="#参数量" class="headerlink" title="参数量"></a>参数量</h1><p>卷积参数量的计算比较简单，这里带过一下：<br>$$<br>params=(K^2×C_i+1)×C_o<br>$$</p>
-<p>实际工程上要计算这两个值的话的话，感觉github上有挺多包的……</p>
+<p>同理可得<strong>全连接层</strong>的FLOPs计算公式为：</p>
+<script type="math/tex; mode=display">
+FLOPs=2×I×O</script><h1 id="参数量"><a href="#参数量" class="headerlink" title="参数量"></a>参数量</h1><p>卷积参数量的计算比较简单，这里带过一下：</p>
+<script type="math/tex; mode=display">
+params=(K^2×C_i+1)×C_o</script><p>实际工程上要计算这两个值的话的话，感觉github上有挺多包的……</p>
 
       
     </div>
@@ -423,11 +427,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          
             <a href="/tags/FLOPs/" rel="tag"><i class="fa fa-tag"></i> FLOPs</a>
           
             <a href="/tags/参数量/" rel="tag"><i class="fa fa-tag"></i> 参数量</a>
-          
-            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
           
         </div>
       
@@ -546,7 +550,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -568,7 +572,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -672,7 +676,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">86.7k</span>
+    <span title="Site words total count">86.8k</span>
   
 </div>
 
