@@ -177,9 +177,9 @@
     <link href="http://a-kali.github.io/2020/12/21/MaxPooling%E5%92%8CAveragePooling/"/>
     <id>http://a-kali.github.io/2020/12/21/MaxPooling和AveragePooling/</id>
     <published>2020-12-21T00:10:42.000Z</published>
-    <updated>2020-12-21T00:11:25.161Z</updated>
+    <updated>2020-12-30T09:32:08.922Z</updated>
     
-    <content type="html"><![CDATA[<p>在CNN中，通常用来下采样的池化操作都是使用Max Pooling。因为Max Pooling选择了<strong>辨识度更高的特征</strong>，并且提供了<strong>非线性</strong>。</p><p>而Average Pooling通常用来做特征对齐，在<strong>减小特征图尺寸</strong>的同时，保证特征的<strong>完整性</strong>。比如说DenseNet的模块之间大多采用Average Pooling进行连接。或者是用于网络的最后一层，<strong>代替平铺操作</strong>，将三维特征图转化为一维向量。</p>]]></content>
+    <content type="html"><![CDATA[<p>在CNN中，通常用来下采样的池化操作都是使用Max Pooling。因为Max Pooling选择了<strong>辨识度更高的特征</strong>，并且提供了<strong>非线性</strong>。</p><p>而Average Pooling通常用来做特征对齐，在<strong>减小特征图尺寸</strong>的同时，保证特征的<strong>完整性</strong>。比如说DenseNet的模块之间大多采用Average Pooling进行连接。或者是用于网络的最后一层，<strong>代替平铺操作</strong>，将三维特征图转化为一维向量。</p><p><strong>Q：MaxPooling的反向传播是如何进行的？</strong></p><p>梯度正常传播给最大值，并将其余非最大值的损失/梯度置零。</p>]]></content>
     
     <summary type="html">
     
