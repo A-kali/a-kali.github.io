@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/08/12/WhrlemckSsBZEpH.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/13/svJWj2Np7aSlu3o.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/13/K2UojbPhNxGIVs3.png">
-<meta property="og:updated_time" content="2020-08-13T15:10:29.156Z">
+<meta property="og:updated_time" content="2021-01-15T03:03:28.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hourglass &amp; CornerNet &amp; CenterNet">
 <meta name="twitter:description" content="最近get到一个project做停车位检测，参考了几篇论文之后决定用关键点检测的方法，于是顺便读了如下几篇关键点检测相关的神经网络论文。 Hourglass论文链接：Stacked Hourglass Networks for Human Pose Estimation Stacked Hourglass Neworks（以下简称Hourglass）由多个Hourglass模块堆叠而成，其模块对特">
@@ -440,12 +440,12 @@
 <p>CornerNet的整体结构如下图所示，其骨干部分使用Hourglass，输出部分有两个分支模块，分别表示<strong>左上角点预测分支</strong>和<strong>右下角点预测分支</strong>，每个分支模块包含一个<strong>corner pooling</strong>层和3个输出：<strong>heatmaps、embeddings和offsets</strong>。</p>
 <p><img src="https://i.loli.net/2020/08/10/gDtnTWBj3PkXozR.png" alt="image.png"></p>
 <h2 id="1-输出端"><a href="#1-输出端" class="headerlink" title="1    输出端"></a>1    输出端</h2><ul>
-<li><p><strong>Heatmaps</strong>对角点的位置进行预测，最有可能是角点的位置输出值越高。其gt是基于角点的高斯值；</p>
+<li><p><strong>Heatmaps</strong>对角点的位置进行预测，即对每个像素点进行角点概率预测，最有可能是角点的位置输出值越高。其gt是以角点位置为中心的范围为n×n的高斯核；</p>
 </li>
-<li><p><strong>Offset</strong>输出取整计算时丢失的精度信息（感觉用处不是很大）；</p>
+<li><p><strong>Offset</strong>输出取整计算时丢失的精度信息，看起来用处可能没那么直观，但通常能有效提高精度上限；</p>
 <p><img src="https://i.loli.net/2020/08/11/cpO1Ueq6WPazGK3.png" alt="image.png"></p>
 </li>
-<li><p><strong>Embedding</strong>用来对左上角点和右下角点进行匹配。其输出一个vector，当两个角点的vector距离较小时，则认为这两点为成对点（这个和人脸匹配有点像）。这部分由两个损失函数实现，第一部分用来缩小成对点向量的距离，第二部分用来放大非成对点向量之间的距离。</p>
+<li><p><strong>Embedding</strong>用来对左上角点和右下角点进行匹配。其对每个角点输出一个vector，当两个角点的vector距离较小时，则认为这两点为成对点（这个和人脸匹配有点像）。这部分由两个损失函数实现，第一部分用来缩小成对点向量的距离，第二部分用来放大非成对点向量之间的距离。</p>
 <p><img src="https://i.loli.net/2020/08/11/WBEQnLpIN2qCHx3.png" alt="image.png"></p>
 </li>
 </ul>
@@ -746,7 +746,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

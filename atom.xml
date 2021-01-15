@@ -400,9 +400,9 @@
     <link href="http://a-kali.github.io/2020/11/12/DB%EF%BC%9A%E5%9F%BA%E4%BA%8E%E5%8F%AF%E5%BE%AE%E4%BA%8C%E5%80%BC%E5%8C%96%E7%9A%84%E5%AE%9E%E6%97%B6%E5%9C%BA%E6%99%AF%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/"/>
     <id>http://a-kali.github.io/2020/11/12/DB：基于可微二值化的实时场景文本检测/</id>
     <published>2020-11-11T16:36:11.000Z</published>
-    <updated>2020-12-01T16:38:24.931Z</updated>
+    <updated>2021-01-15T03:15:22.431Z</updated>
     
-    <content type="html"><![CDATA[<p>论文地址：<a href="https://arxiv.org/abs/1911.08947" target="_blank" rel="noopener">Real-time Scene Text Detection with Differentiable Binarization</a></p><p>Github：<a href="https://github.com/MhLiao/DB（代码结构很复杂）" target="_blank" rel="noopener">https://github.com/MhLiao/DB（代码结构很复杂）</a></p><p><strong>Structure</strong></p><p>DB(Differentiable Binarization)是一个轻量级的、基于分割的场景文本检测(Scene Text Detection, STD)模型。该模型的原理简洁易懂，在本文中就简单介绍一下。</p><p><img src="https://i.loli.net/2020/11/04/MF73kDbCcueraNL.png" alt="image.png"></p><p>上图展示了DB的模型结构。前半部分是常见的32倍下采样+8倍上采样+特征融合，比较特殊的是该模型使用了后四层卷积的输出concat到一起进行预测。图中的pred是3×3卷积，输出两张map分别用来表示概率和阈值。使用阈值map对概率map进行二值化后，就将输出结果分为了前景（文本域）和背景。</p><p>这个自适应阈值能把分布比较密集的文本域给隔开，避免混淆成一个文本域。</p><p>值得一提的是阈值map只在训练的时候使用，在测试时仅使用固定阈值。估计在测试时使用DB并不能得到比较有效的提升，出于运算量的考虑决定去掉这部分。</p><p><strong>Loss</strong></p><p>损失函数分为三部分：概率图损失，阈值损失，二值图损失。其中概率图和二值图都使用交叉熵损失函数，而阈值损失使用的是L1损失函数。</p>]]></content>
+    <content type="html"><![CDATA[<p>论文地址：<a href="https://arxiv.org/abs/1911.08947" target="_blank" rel="noopener">Real-time Scene Text Detection with Differentiable Binarization</a></p><p>Github：<a href="https://github.com/MhLiao/DB（代码结构很复杂）" target="_blank" rel="noopener">https://github.com/MhLiao/DB（代码结构很复杂）</a></p><p><strong>Structure</strong></p><p>DB(Differentiable Binarization)是一个轻量级的、基于分割的场景文本检测(Scene Text Detection, STD)模型。该模型的原理简洁易懂，在本文中就简单介绍一下。</p><p><img src="https://i.loli.net/2020/11/04/MF73kDbCcueraNL.png" alt="image.png"></p><p>上图展示了DB的模型结构。前半部分是常见的32倍下采样+8倍上采样+特征融合，以及参考FPN采用了后四层反卷积的输出concat到一起进行预测。图中的pred是3×3卷积，输出两张map分别用来表示概率和阈值。使用阈值map对概率map进行二值化后，就将输出结果分为了前景（文本域）和背景。</p><p>这个自适应阈值能把分布比较密集的文本域给隔开，避免混淆成一个文本域。</p><p>值得一提的是阈值map只在训练的时候使用，在测试时仅使用固定阈值。估计在测试时使用DB并不能得到比较有效的提升，出于运算量的考虑决定去掉这部分。</p><p><strong>Loss</strong></p><p>损失函数分为三部分：概率图损失，阈值损失，二值图损失。其中概率图和二值图都使用交叉熵损失函数，而阈值损失使用的是L1损失函数。</p>]]></content>
     
     <summary type="html">
     
