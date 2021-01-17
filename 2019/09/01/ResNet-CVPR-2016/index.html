@@ -98,7 +98,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/01/nS6Rc8.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/04/UGQOuIRvWEr6Khp.png">
-<meta property="og:updated_time" content="2019-12-04T06:38:48.128Z">
+<meta property="og:image" content="https://i.loli.net/2021/01/17/TDbCignGadM9qvs.png">
+<meta property="og:updated_time" content="2021-01-17T03:51:21.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ResNet &amp; DenseNet">
 <meta name="twitter:description" content="ResNet论文地址：Deep Residual Learning for Image Recognition 引言​    众所周知，深度的网络使各层特征和分类器在一个端到端多层网络中融为一个整体，最近的研究也表明网络的深度非常重要。但网络的学习是否像堆积更深层的网络那么简单呢？一个阻碍深层网络学习的阻碍就是臭名昭著的梯度消失和梯度爆炸问题，严重妨碍到神经网络的收敛。这个问题由于归一初始化和中间">
@@ -341,7 +342,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.4k字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.5k字</span>
 
           
 
@@ -356,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  1.5k
                 </span>
               
 
@@ -372,7 +373,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  40分钟
+                  50分钟
                 </span>
               
             </div>
@@ -414,7 +415,7 @@ y=F(x,W_i)+W_sx</script><p>​    <strong>残差函数 F 的形式时可变的�
 <li>从函数角度来看，残差结构直接构建了一个更接近“绝对不比浅层网络差”的结构。</li>
 </ul>
 <h1 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h1><p>论文地址：<a href="https://arxiv.org/abs/1608.06993" target="_blank" rel="noopener">Densely Connected Convolutional Networks</a></p>
-<p>作为CVPR2017年的Best Paper，DenseNet脱离了加深网络层数(ResNet)和加宽网络结构(Inception)来提升网络性能的定式思维，从特征的角度考虑，通过旁路(Bypass)设置来实现特征重用的目的。相比于之前的神经网络，DenseNet有以下几个优点：</p>
+<p>作为CVPR2017年的Best Paper，DenseNet脱离了加深网络层数(ResNet)和加宽网络结构(Inception)来提升网络性能的定式思维，从特征的角度考虑，通过旁路(Bypass)设置来实现<strong>特征重用</strong>的目的。相比于之前的神经网络，DenseNet有以下几个优点：</p>
 <ul>
 <li>减轻了梯度弥散带来的问题</li>
 <li>增加了特征的重用和传播</li>
@@ -422,9 +423,9 @@ y=F(x,W_i)+W_sx</script><p>​    <strong>残差函数 F 的形式时可变的�
 </ul>
 <p><img src="https://i.loli.net/2019/12/04/UGQOuIRvWEr6Khp.png" alt="png"></p>
 <p>相比于ResNet，DenseNet没有使用特征求和的方式将各个通路结合到一个图层中，而是使用了通道叠加的组合方式。相比于传统卷积网络，这种密集连接模式在参数量较小的情况下也能起到很好的效果，因为它没有必要重新学习冗余的特征图。</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://hellozhaozheng.github.io/z_post/计算机视觉-ResNet-CVPR2016" target="_blank" rel="noopener">从零开始的BLOG</a></p>
-<p>[2]<a href="https://blog.csdn.net/Quincuntial/article/details/77263562?locationNum=6" target="_blank" rel="noopener">ResNet 论文翻译</a></p>
-<p>[3]<a href="https://www.jianshu.com/p/08a2a1f2a814" target="_blank" rel="noopener">Densely Connected Convolutional Networks翻译总结</a></p>
+<p>值得注意的是上图仅仅是DenseNet中的一个Dense Block，完整的DenseNet结构如下，不同的Dense Block之间是没有越级连接的。</p>
+<p><img src="https://i.loli.net/2021/01/17/TDbCignGadM9qvs.png" alt="image.png"></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://hellozhaozheng.github.io/z_post/计算机视觉-ResNet-CVPR2016" target="_blank" rel="noopener">从零开始的BLOG</a><br>[2]<a href="https://blog.csdn.net/Quincuntial/article/details/77263562?locationNum=6" target="_blank" rel="noopener">ResNet 论文翻译</a><br>[3]<a href="https://www.jianshu.com/p/08a2a1f2a814" target="_blank" rel="noopener">Densely Connected Convolutional Networks翻译总结</a><br>[4]<a href="https://zhuanlan.zhihu.com/p/37189203" target="_blank" rel="noopener">DenseNet：比ResNet更优的CNN模型</a></p>
 <h1 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h1><p><strong>Q：为什么 DenseNet 比 ResNet 更耗显存？</strong></p>
 <p>A：因为 DenseNet 对更多的特征进行重用，需要将特征图保存在显存中。</p>
 <p>恺明大佬牛逼！</p>
@@ -709,7 +710,7 @@ y=F(x,W_i)+W_sx</script><p>​    <strong>残差函数 F 的形式时可变的�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">86.9k</span>
+    <span title="Site words total count">87k</span>
   
 </div>
 
