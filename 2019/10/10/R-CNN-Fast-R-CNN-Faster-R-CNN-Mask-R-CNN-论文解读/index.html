@@ -483,12 +483,8 @@
 </ol>
 <p>另外值得一提的是，Fast R-CNN 采用的是固定大小的输入，而不像SPPnet使用任意大小的输入。</p>
 <h3 id="RoI-池化层"><a href="#RoI-池化层" class="headerlink" title="RoI 池化层"></a>RoI 池化层</h3><p>RoI 池化层实质上就是单层的 SPP 模块。其将一个候选窗口划分为 H×W 的网格，对每个网格内进行最大池化，最后输出一个长度为 H×W 的特征。超参数 H 和 W 视具体网络结构而定。</p>
-<h3 id="多任务损失"><a href="#多任务损失" class="headerlink" title="多任务损失"></a>多任务损失</h3><p>多任务损失由分类任务损失和边框回归任务损失线性组合而成：</p>
-<script type="math/tex; mode=display">
-L=L_{cls}(p,u)+\lambda [u\geq 1]L_{loc}(t^u,v)\\</script><p>其中：</p>
-<script type="math/tex; mode=display">
-L_{cls}(p,u)=-\log p_u\\
-L_{loc}(t^u,v)=\sum smooth_{L_1}(t^u_i-v_i)</script><h3 id="Mini-batch-sampling"><a href="#Mini-batch-sampling" class="headerlink" title="Mini-batch sampling"></a>Mini-batch sampling</h3><p>（其实这一段我没看太懂，以下仅作参考）</p>
+<h3 id="多任务损失"><a href="#多任务损失" class="headerlink" title="多任务损失"></a>多任务损失</h3><p>多任务损失由分类任务损失和边框回归任务损失线性组合而成：<br>$$<br>L=L_{cls}(p,u)+\lambda [u\geq 1]L_{loc}(t^u,v)\<br>$$<br>其中：<br>$$<br>L_{cls}(p,u)=-\log p_u\<br>L_{loc}(t^u,v)=\sum smooth_{L_1}(t^u_i-v_i)<br>$$</p>
+<h3 id="Mini-batch-sampling"><a href="#Mini-batch-sampling" class="headerlink" title="Mini-batch sampling"></a>Mini-batch sampling</h3><p>（其实这一段我没看太懂，以下仅作参考）</p>
 <p>在调优(fine tuning)训练时，每个mini-batch中首先加入 N 张完整图片，从 N 张图片中选出一共 R 个 IoU&gt;0.5 的候选区域，然后将这 R 个候选区域作为训练样本放入网络训练。</p>
 <h1 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h1><p>论文地址：<a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</a></p>
 <p>发布时间：2016.1.6</p>
@@ -680,7 +676,7 @@ L_{loc}(t^u,v)=\sum smooth_{L_1}(t^u_i-v_i)</script><h3 id="Mini-batch-sampling"
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -806,7 +802,7 @@ L_{loc}(t^u,v)=\sum smooth_{L_1}(t^u_i-v_i)</script><h3 id="Mini-batch-sampling"
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">87k</span>
+    <span title="Site words total count">87.7k</span>
   
 </div>
 
