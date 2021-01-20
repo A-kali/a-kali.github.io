@@ -433,10 +433,15 @@
 <h3 id="2-3-2-查准率、查全率与-F1"><a href="#2-3-2-查准率、查全率与-F1" class="headerlink" title="2.3.2 查准率、查全率与 F1"></a>2.3.2 查准率、查全率与 F1</h3><p>在信息检索等应用场景中经常出现如下的需求，比如想知道“检索出的信息中有多少比例是用户感兴趣的”“用户感兴趣的信息中有多少被检索出来了”。此时用<strong>查准率</strong>（precision）和<strong>查全率</strong>（recall，也被称为召回率）更为适合此类需求。</p>
 <p>混淆矩阵：</p>
 <p><a href="https://imgchr.com/i/nfoRB9" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/16/nfoRB9.png" alt="nfoRB9.png"></a></p>
-<p>查准率 P 和查全率 R 分别被定义为<br>$$<br>P=\frac{TP}{TP+FP}\<br>R=\frac{TP}{TP+FN}<br>$$<br>查全率和查准率是一对矛盾的度量。一般来说，查全率高时查准率低，查准率高时查全率低。</p>
+<p>查准率 P 和查全率 R 分别被定义为</p>
+<script type="math/tex; mode=display">
+P=\frac{TP}{TP+FP}\\
+R=\frac{TP}{TP+FN}</script><p>查全率和查准率是一对矛盾的度量。一般来说，查全率高时查准率低，查准率高时查全率低。</p>
 <p>P-R曲线、ROC和AUC可参考<a href="https://a-kali.github.io/2019/09/03/机器学习中的评价指标/">机器学习中的评价指标</a>。</p>
 <h3 id="2-3-4-代价敏感错误率与代价曲线"><a href="#2-3-4-代价敏感错误率与代价曲线" class="headerlink" title="2.3.4 代价敏感错误率与代价曲线"></a>2.3.4 代价敏感错误率与代价曲线</h3><p>不同类型的错误所造成的后果不同，为权衡不同类型错误所造成的不同损失，可以为错误赋予<strong>非均等代价</strong>。</p>
-<p>在非均等代价下，我们所希望的不再是简单地最小化错误次数，而是希望最小化<strong>总体代价</strong>。以二分类为例，其代价敏感错误率为：<br>$$<br>E = \frac{1}{m}(\sum_{x_i\in D^+}I(f(x_i)\not=y_i)\times cost_{01}+\sum_{x_i\in D^-}I(f(x_i)\not=y_i)\times cost_{10})<br>$$<br>其中$I(·)$为指示函数，$cost$为错误的权重（即代价）。</p>
+<p>在非均等代价下，我们所希望的不再是简单地最小化错误次数，而是希望最小化<strong>总体代价</strong>。以二分类为例，其代价敏感错误率为：</p>
+<script type="math/tex; mode=display">
+E = \frac{1}{m}(\sum_{x_i\in D^+}I(f(x_i)\not=y_i)\times cost_{01}+\sum_{x_i\in D^-}I(f(x_i)\not=y_i)\times cost_{10})</script><p>其中$I(·)$为指示函数，$cost$为错误的权重（即代价）。</p>
 <p><strong>代价曲线</strong>可以直接反映非均等代价下学习器的期望总体代价。代价曲线的绘制很简单：ROC曲线上的每一点对应了代价平面上的一条线段，根据ROC曲线上的每一点的状态绘制一条从(0,FPR) 到 (1, FNR) 的线段，线段下的面积即表示了该条件下的期望总体代价。</p>
 <p><img src="https://s2.ax1x.com/2019/09/18/n7Ri7j.png" alt="n7Ri7j.png"></p>
 <h1 id="第-3-章-线性模型"><a href="#第-3-章-线性模型" class="headerlink" title="第 3 章    线性模型"></a>第 3 章    线性模型</h1>
@@ -710,7 +715,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">87.7k</span>
+    <span title="Site words total count">87.3k</span>
   
 </div>
 
