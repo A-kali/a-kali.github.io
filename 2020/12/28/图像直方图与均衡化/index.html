@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/12/21/KpfIYFsvorSGyRT.png">
 <meta property="og:image" content="https://i.loli.net/2020/12/21/k1VlTa9vjCKhszf.png">
 <meta property="og:image" content="https://i.loli.net/2020/12/21/Bep6arx71ok8FLb.png">
-<meta property="og:updated_time" content="2020-12-28T10:22:58.770Z">
+<meta property="og:updated_time" content="2021-02-09T00:57:44.693Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像直方图与均衡化">
 <meta name="twitter:description" content="图像直方图图像直方图即对图像中每个像素值出现次数的统计直方图。  OpenCV：cv2.calcHist(images, channels, mask, histSize, ranges)  images：输入图像； channels：输入一个包含[0, 1, 2]的列表选择通道，全选表示BGR，[0]表示灰度图； mask：与images对齐的掩码，用于标记需要统计的像素，全选则输入None；">
@@ -619,7 +619,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -968,11 +968,31 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

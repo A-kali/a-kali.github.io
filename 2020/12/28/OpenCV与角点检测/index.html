@@ -98,7 +98,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2020/12/24/ZGvlFgDmr7i1yOT.png">
 <meta property="og:image" content="https://i.loli.net/2020/12/24/8YvEOeaNGot7qSz.png">
-<meta property="og:updated_time" content="2020-12-28T10:25:13.604Z">
+<meta property="og:updated_time" content="2021-02-09T00:54:56.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV与角点检测">
 <meta name="twitter:description" content="Harris角点检测原理Harris角点检测的基本原理：类似于边缘检测，只不过边缘检测只判断单个方向的梯度，而角点检测判断多个方向的梯度/相似性。 对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：$$c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2$$W(x, y)表示以点(x, y)">
@@ -601,7 +601,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -950,11 +950,31 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

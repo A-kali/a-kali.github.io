@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="SIFT,">
 
 
 
@@ -89,6 +89,7 @@
 
 
 <meta name="description" content="SIFT，即尺度不变特征变换（Scale-invariant feature transform，SIFT），是用于图像处理领域对局部特征的一种描述方法。主要原理是通过一些数学计算得到图像中特征点的坐标，并根据该点周围像素点的值生成一个用于稳定描述该特征点的向量。该算法常用于特征匹配领域。 SIFT算法具有如下一些特点：  SIFT特征是图像的局部特征，其对旋转、尺度缩放、亮度变化保持不变性，对视">
+<meta name="keywords" content="SIFT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SIFT特征提取和描述">
 <meta property="og:url" content="http://a-kali.github.io/2020/12/28/SIFT特征提取和描述/index.html">
@@ -102,7 +103,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/12/28/qjAZ2HrOoeJ8law.png">
 <meta property="og:image" content="https://i.loli.net/2020/12/28/26wiWJ8cZzmL9aV.png">
 <meta property="og:image" content="https://i.loli.net/2020/12/28/rKe1gRlLtJNPi4k.png">
-<meta property="og:updated_time" content="2020-12-30T09:12:19.343Z">
+<meta property="og:updated_time" content="2021-02-09T00:58:41.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SIFT特征提取和描述">
 <meta name="twitter:description" content="SIFT，即尺度不变特征变换（Scale-invariant feature transform，SIFT），是用于图像处理领域对局部特征的一种描述方法。主要原理是通过一些数学计算得到图像中特征点的坐标，并根据该点周围像素点的值生成一个用于稳定描述该特征点的向量。该算法常用于特征匹配领域。 SIFT算法具有如下一些特点：  SIFT特征是图像的局部特征，其对旋转、尺度缩放、亮度变化保持不变性，对视">
@@ -330,6 +331,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/图像处理/" itemprop="url" rel="index">
+                    <span itemprop="name">图像处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -453,6 +476,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SIFT/" rel="tag"><i class="fa fa-tag"></i> SIFT</a>
+          
+        </div>
       
 
       
@@ -591,7 +620,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -940,11 +969,31 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
