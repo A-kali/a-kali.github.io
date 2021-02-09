@@ -397,8 +397,8 @@
         <h1 id="CSPDarknet53"><a href="#CSPDarknet53" class="headerlink" title="CSPDarknet53"></a>CSPDarknet53</h1><p>在Darknet53的基础上参考CSPNet加入了CSP(Cross Stage Paritial)结构。整个backbone划分为5个模块，每个模块下采样2倍。</p>
 <p>如下图所示，CSP结构仅仅是将特征的一部分直接concat到block的末尾，这个操作使得该block中的每个dense layer的梯度不再直接参与更浅层的梯度计算，而是新计算出一个值（于是可以在反向传播到浅层时，清除深层的dense layer梯度信息），大量减少了内存的消耗和计算瓶颈。</p>
 <p><img src="https://i.loli.net/2020/12/21/hrMEojey9fZ13LR.png" alt="image-20201219060045088.png"></p>
-<h1 id="Mish激活函数"><a href="#Mish激活函数" class="headerlink" title="Mish激活函数"></a>Mish激活函数</h1><script type="math/tex; mode=display">
-Mish = x*tanh(ln(1+e^x))</script><p><img src="https://i.loli.net/2020/12/19/7AFq31YoTClmSDt.png" alt="image.png"></p>
+<h1 id="Mish激活函数"><a href="#Mish激活函数" class="headerlink" title="Mish激活函数"></a>Mish激活函数</h1><p>$$<br>Mish = x*tanh(ln(1+e^x))<br>$$</p>
+<p><img src="https://i.loli.net/2020/12/19/7AFq31YoTClmSDt.png" alt="image.png"></p>
 <p>可以看出Mish比ReLU更加平滑，在每个点上都是可微的，优化效果更好；同时允许了较小的负梯度流入，更好地保证信息的流动。在YOLOv4中仅backbone使用了Mish，其它地方都用的Leaky ReLU。</p>
 <h1 id="Dropblock"><a href="#Dropblock" class="headerlink" title="Dropblock"></a>Dropblock</h1><p>Dropblock与Dropout类似。Dropout会随机丢弃网络中的一些信息，但卷积层对随机丢弃的信息并不敏感，即使随机丢弃一些像素，卷积也能从相邻的像素学到相同的信息。</p>
 <p>于是Dropblock对整个局部区域进行丢弃，相当于对特征图进行CutOut操作。</p>
@@ -550,7 +550,7 @@ Mish = x*tanh(ln(1+e^x))</script><p><img src="https://i.loli.net/2020/12/19/7AFq
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -572,7 +572,7 @@ Mish = x*tanh(ln(1+e^x))</script><p><img src="https://i.loli.net/2020/12/19/7AFq
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -676,7 +676,7 @@ Mish = x*tanh(ln(1+e^x))</script><p><img src="https://i.loli.net/2020/12/19/7AFq
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">87.3k</span>
+    <span title="Site words total count">92.5k</span>
   
 </div>
 

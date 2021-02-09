@@ -395,9 +395,7 @@
       
         <h1 id="Center-Loss"><a href="#Center-Loss" class="headerlink" title="Center Loss"></a>Center Loss</h1><p>对于常见的图像分类问题，我们通常使用交叉熵损失函数监督神经网络。下图为神经网络在MNIST数据集上进行手写体数字分类任务得到的特征分布，在类与类之间能看到很明显的界限，能够便于softmax对特征进行分类。但是仍然可以看出部分不同类的样本距离很近，而同类的样本分布距离较远，这有可能对最终的分类结果有影响。</p>
 <p><img src="https://i.loli.net/2020/12/02/4M5jQxUcpW3H6G1.png" alt="image.png"></p>
-<p>而<strong>Center Loss</strong>的提出就是为了<strong>缩小类内(intra-class)距离</strong>。其公式表示如下：</p>
-<script type="math/tex; mode=display">
-L_c=\frac{1}{2}\sum^m_{i=1}‖x_i-c_{yi}‖^2_2</script><p>其中$c_{yi}$表示第y个类别的特征中心，$x_i$表示全连接层之前的特征，$m$表示mini-batch的大小。该损失函数试图使每个样本的特征向其类别中心靠近。</p>
+<p>而<strong>Center Loss</strong>的提出就是为了<strong>缩小类内(intra-class)距离</strong>。其公式表示如下：<br>$$<br>L_c=\frac{1}{2}\sum^m_{i=1}‖x_i-c_{yi}‖^2_2<br>$$<br>其中$c_{yi}$表示第y个类别的特征中心，$x_i$表示全连接层之前的特征，$m$表示mini-batch的大小。该损失函数试图使每个样本的特征向其类别中心靠近。</p>
 <p>至于类中心怎么更新迭代，这里就不写了（公式太复杂了yingyingying）。反正最终得到的特征分布如下：</p>
 <p><img src="https://i.loli.net/2020/12/02/pdn8rZzMEN7OaoA.png" alt="image.png"></p>
 
@@ -545,7 +543,7 @@ L_c=\frac{1}{2}\sum^m_{i=1}‖x_i-c_{yi}‖^2_2</script><p>其中$c_{yi}$表示�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +565,7 @@ L_c=\frac{1}{2}\sum^m_{i=1}‖x_i-c_{yi}‖^2_2</script><p>其中$c_{yi}$表示�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -671,7 +669,7 @@ L_c=\frac{1}{2}\sum^m_{i=1}‖x_i-c_{yi}‖^2_2</script><p>其中$c_{yi}$表示�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">87.3k</span>
+    <span title="Site words total count">92.5k</span>
   
 </div>
 

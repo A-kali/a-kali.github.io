@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/12/15/tqhbdGpKZIwgf8A.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/16/bHvnI59LjUo3JcQ.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/16/1UiclraR5NuOVvz.png">
-<meta property="og:updated_time" content="2019-12-17T08:59:29.078Z">
+<meta property="og:updated_time" content="2021-01-20T01:12:48.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DeepLab全家桶（From v1 to v3+）">
 <meta name="twitter:description" content="DeepLabv1论文地址：Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs 其实挺烦看这种远古论文的，引用的算法现在都不太常见，使用的措辞也和现在不太一样。该论文主要引入了空洞卷积(Astrous/Dilated Convolution)和条件随机场(Conditional Rand">
@@ -368,7 +368,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 582字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 709字</span>
 
           
 
@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  582
+                  709
                 </span>
               
 
@@ -399,7 +399,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  20分钟
+                  30分钟
                 </span>
               
             </div>
@@ -430,7 +430,9 @@
 <p>比起v1，v2的主要改动是增加了<strong>带孔空间金字塔池化(ASPP)</strong>模块，其思想来源于SPPnet。但是文中对ASPP的阐述非常少，完全没有讲清楚ASPP的机制，只能通过论文中的图片和网上的博客来猜。</p>
 <p><img src="https://i.loli.net/2019/12/15/MgRpErQ4utse9ND.png" alt="YM_ISX2ECM53ZW3_4T7HNYJ.png"></p>
 <p><img src="https://i.loli.net/2019/12/15/6S7hpAo3ZiefQBN.png" alt="_H7RQ3P@__TYL_4_87Z0H05.png"></p>
-<p>可以看出，ASPP使用了几种不同采样率的空洞卷积，对一张特征图得出多个分支后，最终concat到一起。我到现在也没搞明白为啥叫“空间金字塔池化”而不是“空间金字塔卷积”。</p>
+<p>可以看出，ASPP使用了几种不同采样率的空洞卷积，对一张特征图得出多个分支后，最终concat到一起。可以借助代码理解一下这部分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#without bn version</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ASPP</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_channel=<span class="number">512</span>, depth=<span class="number">256</span>)</span>:</span></span><br><span class="line">        super(ASPP,self).__init__()</span><br><span class="line">        self.mean = nn.AdaptiveAvgPool2d((<span class="number">1</span>, <span class="number">1</span>)) <span class="comment">#(1,1)means ouput_dim</span></span><br><span class="line">        self.conv = nn.Conv2d(in_channel, depth, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">        self.atrous_block1 = nn.Conv2d(in_channel, depth, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">        self.atrous_block6 = nn.Conv2d(in_channel, depth, <span class="number">3</span>, <span class="number">1</span>, padding=<span class="number">6</span>, dilation=<span class="number">6</span>)</span><br><span class="line">        self.atrous_block12 = nn.Conv2d(in_channel, depth, <span class="number">3</span>, <span class="number">1</span>, padding=<span class="number">12</span>, dilation=<span class="number">12</span>)</span><br><span class="line">        self.atrous_block18 = nn.Conv2d(in_channel, depth, <span class="number">3</span>, <span class="number">1</span>, padding=<span class="number">18</span>, dilation=<span class="number">18</span>)</span><br><span class="line">        self.conv_1x1_output = nn.Conv2d(depth * <span class="number">5</span>, depth, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        size = x.shape[<span class="number">2</span>:]</span><br><span class="line"> </span><br><span class="line">        image_features = self.mean(x)</span><br><span class="line">        image_features = self.conv(image_features)</span><br><span class="line">        image_features = F.upsample(image_features, size=size, mode=<span class="string">'bilinear'</span>)</span><br><span class="line"> </span><br><span class="line">        atrous_block1 = self.atrous_block1(x)</span><br><span class="line">        atrous_block6 = self.atrous_block6(x)</span><br><span class="line">        atrous_block12 = self.atrous_block12(x)</span><br><span class="line">        atrous_block18 = self.atrous_block18(x)</span><br><span class="line"> </span><br><span class="line">        net = self.conv_1x1_output(torch.cat([image_features, atrous_block1, atrous_block6,</span><br><span class="line">                                              atrous_block12, atrous_block18], dim=<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> net</span><br></pre></td></tr></table></figure>
+
 <h1 id="DeepLabv3"><a href="#DeepLabv3" class="headerlink" title="DeepLabv3"></a>DeepLabv3</h1><p>论文地址：<a href="https://arxiv.org/abs/1706.05587" target="_blank" rel="noopener">Rethinking Atrous Convolution for Semantic Image Segmentation</a></p>
 <p>提出了串联(cascade)和并联(parallel)两种格式，并指出并联效果更好。</p>
 <p><img src="https://i.loli.net/2019/12/16/3PZxML24biRdpGj.png" alt="YF@__L_0M@_0RUKBG_N_O6C.png"></p>
@@ -443,7 +445,7 @@
 <p><img src="https://i.loli.net/2019/12/16/1UiclraR5NuOVvz.png" alt="__ZDD_GOD~3NX9_P_L@HSWA.png"></p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
 <li><a href="https://blog.csdn.net/qq_31622015/article/details/90551107" target="_blank" rel="noopener">【语义分割系列：一】DeepLab v1 / v2 论文阅读翻译笔记</a></li>
-<li><a href="https://blog.csdn.net/qq_21997625/article/details/87080576" target="_blank" rel="noopener">语义分割(semantic segmentation)—DeepLabV3之ASPP(Atrous Spatial Pyramid Pooling)代码详解</a></li>
+<li><a href="https://blog.csdn.net/qq_21997625/article/details/87080576" target="_blank" rel="noopener">语义分割(semantic segmentation)–DeepLabV3之ASPP(Atrous Spatial Pyramid Pooling)代码详解</a></li>
 <li><a href="https://blog.csdn.net/guo_rongxin/article/details/79842895" target="_blank" rel="noopener">deeplab v3论文翻译 Rethinking Atrous Convolution for Semantic Image Segmentation</a></li>
 <li><a href="https://blog.csdn.net/fish_like_apple/article/details/82787705" target="_blank" rel="noopener">Deeplab相关改进的阅读记录（Deeplab V3和Deeplab V3+）</a></li>
 </ol>
@@ -602,7 +604,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -624,7 +626,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -728,7 +730,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">87.3k</span>
+    <span title="Site words total count">92.5k</span>
   
 </div>
 

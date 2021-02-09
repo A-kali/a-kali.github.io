@@ -88,20 +88,20 @@
 
 
 
-<meta name="description" content="Harris角点检测原理Harris角点检测的基本原理：类似于边缘检测，只不过边缘检测只判断单个方向的梯度，而角点检测判断多个方向的梯度/相似性。 对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：  c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2W(x, y)表示以点(x, y)为中">
+<meta name="description" content="Harris角点检测原理Harris角点检测的基本原理：类似于边缘检测，只不过边缘检测只判断单个方向的梯度，而角点检测判断多个方向的梯度/相似性。 对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：$$c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2$$W(x, y)表示以点(x, y)">
 <meta name="keywords" content="图像处理,OpenCV,角点检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenCV与角点检测">
 <meta property="og:url" content="http://a-kali.github.io/2020/12/28/OpenCV与角点检测/index.html">
 <meta property="og:site_name" content="某科学のBLOG">
-<meta property="og:description" content="Harris角点检测原理Harris角点检测的基本原理：类似于边缘检测，只不过边缘检测只判断单个方向的梯度，而角点检测判断多个方向的梯度/相似性。 对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：  c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2W(x, y)表示以点(x, y)为中">
+<meta property="og:description" content="Harris角点检测原理Harris角点检测的基本原理：类似于边缘检测，只不过边缘检测只判断单个方向的梯度，而角点检测判断多个方向的梯度/相似性。 对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：$$c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2$$W(x, y)表示以点(x, y)">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2020/12/24/ZGvlFgDmr7i1yOT.png">
 <meta property="og:image" content="https://i.loli.net/2020/12/24/8YvEOeaNGot7qSz.png">
 <meta property="og:updated_time" content="2020-12-28T10:25:13.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV与角点检测">
-<meta name="twitter:description" content="Harris角点检测原理Harris角点检测的基本原理：类似于边缘检测，只不过边缘检测只判断单个方向的梯度，而角点检测判断多个方向的梯度/相似性。 对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：  c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2W(x, y)表示以点(x, y)为中">
+<meta name="twitter:description" content="Harris角点检测原理Harris角点检测的基本原理：类似于边缘检测，只不过边缘检测只判断单个方向的梯度，而角点检测判断多个方向的梯度/相似性。 对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：$$c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2$$W(x, y)表示以点(x, y)">
 <meta name="twitter:image" content="https://i.loli.net/2020/12/24/ZGvlFgDmr7i1yOT.png">
 
 
@@ -363,7 +363,7 @@
             </span>
 			
 			<span class="post-meta-divider">|</span>
-			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 498字</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 502字</span>
 
           
 
@@ -378,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  498
+                  502
                 </span>
               
 
@@ -416,25 +416,12 @@
 
       
         <h1 id="Harris角点检测原理"><a href="#Harris角点检测原理" class="headerlink" title="Harris角点检测原理"></a>Harris角点检测原理</h1><p>Harris角点检测的基本原理：类似于边缘检测，只不过边缘检测只判断单个方向的梯度，而角点检测判断多个方向的梯度/相似性。</p>
-<p>对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：</p>
-<script type="math/tex; mode=display">
-c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2</script><p>W(x, y)表示以点(x, y)为中心的窗口；而w(x, y)是每个像素的权重，既可以是常数，也可以是高斯加权函数；P(u, v)表示坐标为(u, v)的像素值。上述公式表示计算窗口滑动前后，窗口中的每个像素及其对应像素的差值加权总和。</p>
-<p>对平移后的像素点进行泰勒一阶展开，可得：</p>
-<script type="math/tex; mode=display">
-P(u+Δx, v+Δy)\approx P(u,v)+P_x(u,v)Δx+P_y(u,v)Δy</script><p>于是相似性c简化后如下，此时可以看出这是一个椭圆函数：</p>
-<script type="math/tex; mode=display">
-c(x, y;Δx, Δy)\approx\ AΔx^2+2CΔxΔy+BΔy^2</script><p>其中</p>
-<script type="math/tex; mode=display">
-A=I_x(x,y)^2\\
-B=I_y(x,y)^2\\
-C=I_x(x,y)I_y(x,y)</script><p>经过对角化消除C后得：</p>
-<script type="math/tex; mode=display">
-c(x, y;Δx, Δy)\approx\ \lambda_1Δx^2+\lambda_2Δy^2</script><p>可以看出λ越大，表示平移前后的滑窗灰度值差别越大。λ1大表示在横坐标上相差较大，λ2大表示在纵坐标上相差较大。当λ1和λ2的值都很大且值相近时，判断(x, y)为物体角点。</p>
+<p>对于一张灰度图，计算在点(x, y)处平移(Δx, Δy)后的自相似性c：<br>$$<br>c(x, y;Δx, Δy)=\sum_{(u, v)\in W(x,y)}w(u,v)(P(u,v)-P(u+Δx, v+Δy))^2<br>$$<br>W(x, y)表示以点(x, y)为中心的窗口；而w(x, y)是每个像素的权重，既可以是常数，也可以是高斯加权函数；P(u, v)表示坐标为(u, v)的像素值。上述公式表示计算窗口滑动前后，窗口中的每个像素及其对应像素的差值加权总和。</p>
+<p>对平移后的像素点进行泰勒一阶展开，可得：<br>$$<br>P(u+Δx, v+Δy)\approx P(u,v)+P_x(u,v)Δx+P_y(u,v)Δy<br>$$<br>于是相似性c简化后如下，此时可以看出这是一个椭圆函数：<br>$$<br>c(x, y;Δx, Δy)\approx\ AΔx^2+2CΔxΔy+BΔy^2<br>$$<br>其中<br>$$<br>A=I_x(x,y)^2\<br>B=I_y(x,y)^2\<br>C=I_x(x,y)I_y(x,y)<br>$$<br>经过对角化消除C后得：<br>$$<br>c(x, y;Δx, Δy)\approx\ \lambda_1Δx^2+\lambda_2Δy^2<br>$$<br>可以看出λ越大，表示平移前后的滑窗灰度值差别越大。λ1大表示在横坐标上相差较大，λ2大表示在纵坐标上相差较大。当λ1和λ2的值都很大且值相近时，判断(x, y)为物体角点。</p>
 <p><img src="https://i.loli.net/2020/12/24/ZGvlFgDmr7i1yOT.png" alt="image.png"></p>
-<p>于是可以通过计算<strong>角点响应值</strong>R来判断该点是否为角点。</p>
-<script type="math/tex; mode=display">
-R=\lambda_1\lambda_2-k (\lambda_1+\lambda_2)^2</script><p>其中k为系数，通常取值0.04 ~ 0.06。R&gt;&gt;0表示该点为角点，R≈0表示该点为平坦区，R&lt;&lt;0表示该点为边界。</p>
+<p>于是可以通过计算<strong>角点响应值</strong>R来判断该点是否为角点。<br>$$<br>R=\lambda_1\lambda_2-k (\lambda_1+\lambda_2)^2<br>$$<br>其中k为系数，通常取值0.04 ~ 0.06。R&gt;&gt;0表示该点为角点，R≈0表示该点为平坦区，R&lt;&lt;0表示该点为边界。</p>
 <h1 id="OpenCV"><a href="#OpenCV" class="headerlink" title="OpenCV"></a>OpenCV</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.cornerHarris(img, blockSize, ksize, k)</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>img：输入图像；</li>
 <li>blockSize：滑动窗口的大小；</li>
@@ -592,7 +579,7 @@ R=\lambda_1\lambda_2-k (\lambda_1+\lambda_2)^2</script><p>其中k为系数，通
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -614,7 +601,7 @@ R=\lambda_1\lambda_2-k (\lambda_1+\lambda_2)^2</script><p>其中k为系数，通
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -718,7 +705,7 @@ R=\lambda_1\lambda_2-k (\lambda_1+\lambda_2)^2</script><p>其中k为系数，通
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">87.3k</span>
+    <span title="Site words total count">92.5k</span>
   
 </div>
 
