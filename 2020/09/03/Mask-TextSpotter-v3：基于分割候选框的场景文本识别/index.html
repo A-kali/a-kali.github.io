@@ -442,8 +442,12 @@
 <p><strong>Hard RoI masking将二值多边形掩码与RoI特征相乘，以抑制背景噪声或邻近文本实例</strong>，大大降低了检测和识别模块的执行难度和出错概率。</p>
 <h2 id="2-3-Detection-and-recognition"><a href="#2-3-Detection-and-recognition" class="headerlink" title="2.3    Detection and recognition"></a>2.3    Detection and recognition</h2><p>我们遵循Mask TextSpotter v2的文本检测和识别模块的主要设计，原因如下:(1)Mask TextSpotter v2是目前最先进的、具有竞争力的检测和识别模块。(2)由于Mask TextSpotter v2是基于RPN的场景文本检测中一种具有代表性的方法，我们可以控制变量，来验证我们所提出的SPN的有效性和鲁棒性。</p>
 <p>检测时，将Hard RoI masking生成的masked RoI特征输入到Fast R-CNN模块以进一步细化定位，并使用文本实例分割模块进行精确分割。采用字符分割模块和空间注意力模块进行识别。</p>
-<h2 id="2-4-Optimization"><a href="#2-4-Optimization" class="headerlink" title="2.4    Optimization"></a>2.4    Optimization</h2><p>损失函数$L$定义如下：<br>$$<br>L=L_s+\alpha_1L_{rcnn}+\alpha_2L_{mask}.<br>$$<br>$L_{rcnn}$和$ L_{mask}$分别在Fast R-CNN和Mask TextSpotter v2中有过明确定义。$L_{mask}$由文本分割损失、字符分割损失、空间注意力解码器损失组成。$L_s$表示SPN的损失。根据Mask TextSpotter v2，我们将$\alpha_1$和$\alpha_2$设为1.0。</p>
-<p>我们采用dice loss计算SPN的损失。设$S$和$G$分别为分割结果mask和目标mask，则$L_s$可由如下公式计算：<br>$$<br>L_s=1-\frac{2.0×\sum(S*G)}{\sum S + \sum G}<br>$$<br>（大概意思就是两个mask重合率越高，损失越小）</p>
+<h2 id="2-4-Optimization"><a href="#2-4-Optimization" class="headerlink" title="2.4    Optimization"></a>2.4    Optimization</h2><p>损失函数$L$定义如下：</p>
+<script type="math/tex; mode=display">
+L=L_s+\alpha_1L_{rcnn}+\alpha_2L_{mask}.</script><p>$L<em>{rcnn}$和$ L</em>{mask}$分别在Fast R-CNN和Mask TextSpotter v2中有过明确定义。$L_{mask}$由文本分割损失、字符分割损失、空间注意力解码器损失组成。$L_s$表示SPN的损失。根据Mask TextSpotter v2，我们将$\alpha_1$和$\alpha_2$设为1.0。</p>
+<p>我们采用dice loss计算SPN的损失。设$S$和$G$分别为分割结果mask和目标mask，则$L_s$可由如下公式计算：</p>
+<script type="math/tex; mode=display">
+L_s=1-\frac{2.0×\sum(S*G)}{\sum S + \sum G}</script><p>（大概意思就是两个mask重合率越高，损失越小）</p>
 
       
     </div>
@@ -591,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -613,7 +617,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -717,7 +721,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">92.5k</span>
+    <span title="Site words total count">99.9k</span>
   
 </div>
 

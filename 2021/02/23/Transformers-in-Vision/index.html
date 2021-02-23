@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Transformer,论文翻译,综述,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="某科学のBLOG" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="论文地址：Transformers in Vision: A Survey AbstractTransformer模型在NLP任务中的惊人表现激起了视觉界对其在CV中应用与研究的兴趣，这在许多任务上带来了令人兴奋的进展。本综述的目的是提供一个Transformer在计算机视觉领域的全面概述该。 我们首先介绍Transformer成功背后的基本概念，即自监督(self-supervision)和自注">
+<meta name="keywords" content="Transformer,论文翻译,综述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformers in Vision">
+<meta property="og:url" content="http://a-kali.github.io/2021/02/23/Transformers-in-Vision/index.html">
+<meta property="og:site_name" content="某科学のBLOG">
+<meta property="og:description" content="论文地址：Transformers in Vision: A Survey AbstractTransformer模型在NLP任务中的惊人表现激起了视觉界对其在CV中应用与研究的兴趣，这在许多任务上带来了令人兴奋的进展。本综述的目的是提供一个Transformer在计算机视觉领域的全面概述该。 我们首先介绍Transformer成功背后的基本概念，即自监督(self-supervision)和自注">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2021/01/23/94nurIVURWOKyXQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/24/KgJjw1BaUnWmcA4.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/26/p3nLMkT24v7SoVg.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/26/2jGgIyf5zwWJXLc.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/2QrSRUmwdalpjix.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/x27bXc4Qk9WtFmi.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/31/39RgIYcZDxGtrbn.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/11/IT5ucxoKOQR3Ukf.png">
+<meta property="og:updated_time" content="2021-02-23T08:58:48.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Transformers in Vision">
+<meta name="twitter:description" content="论文地址：Transformers in Vision: A Survey AbstractTransformer模型在NLP任务中的惊人表现激起了视觉界对其在CV中应用与研究的兴趣，这在许多任务上带来了令人兴奋的进展。本综述的目的是提供一个Transformer在计算机视觉领域的全面概述该。 我们首先介绍Transformer成功背后的基本概念，即自监督(self-supervision)和自注">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/23/94nurIVURWOKyXQ.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":18,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://a-kali.github.io/2021/02/23/Transformers-in-Vision/">
+
+
+
+
+
+  <title>Transformers in Vision | 某科学のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/A-kali/a-kali.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">某科学のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">与其感慨路难行，不如马上出发</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://a-kali.github.io/2021/02/23/Transformers-in-Vision/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hsaki">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某科学のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Transformers in Vision</h1>
+        
+
+        <div class="post-meta">
+		          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-23T16:57:54+08:00">
+                2021-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+			
+			<span class="post-meta-divider">|</span>
+			<span title="字数统计"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 7.4k字</span>
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  260分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>论文地址：<a href="http://xxx.itp.ac.cn/pdf/2101.01169v1" target="_blank" rel="noopener">Transformers in Vision: A Survey</a></p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Transformer模型在NLP任务中的惊人表现激起了视觉界对其在CV中应用与研究的兴趣，这在许多任务上带来了令人兴奋的进展。本综述的目的是提供一个Transformer在计算机视觉领域的全面概述该。</p>
+<p>我们首先介绍Transformer成功背后的基本概念，即自监督(self-supervision)和自注意力(self-attention)机制。Transformer架构利用自注意力机制在对输入进行编码获取<strong>长程依赖关系(long-range dependencies)</strong>，这使得它们具有较强的表达能力。</p>
+<p>研究者们假定对问题的结构缺乏先验知识，在前置任务(pretext tasks)上使用Transformer模型作在大规模未标记数据集上的自监督地进行预训练。然后，在下游任务(downstream tasks)上对学习到的表示进行微调。由于编码后的特征的具有较强的泛化性和表现力，通常可得到出色的性能。</p>
+<p>本文将涵盖Transformer在CV领域中的主流方向，包括：</p>
+<ul>
+<li>识别任务（图像分类、目标检测、动作识别、分割）；</li>
+<li>生成模型；</li>
+<li>多模态任务（视觉问答、视觉推理和视觉定位）；</li>
+<li>视频处理（活动识别、视频预测）；</li>
+<li>低级视觉（图像超分辨率、图像增强和彩色化）；</li>
+<li>3D分析（点云分类和分割）。</li>
+</ul>
+<p>我们从结构设计和实验结果两方面比较了当前主流技术各自的优势和局限性。最后，对开放研究的方向和未来可能的工作进行了分析，希望能激发社会对Transformer在CV领域的兴趣。</p>
+<blockquote>
+<p>low-level version: which concerns the extraction of image properties from the retinal image.<br>低级视觉：主要关注的是从视网膜图像中提取图像的特性。</p>
+</blockquote>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1    Introduction"></a>1    Introduction</h1><p>最近Transformer模型在多种语言任务中表现优异，例如文本分类、机器翻译和问答系统。在这些模型中，以BERT、GPT、RoBERTa和T5最为流行。Transformer模型的可扩展性对大型模型产生了极其深远的影响。</p>
+<p>Transformer在NLP领域的突破引起了CV社区在多模态学习任务中应用该模型的兴趣。最终，Transformer被成功应用于图像识别、目标检测、分割、图像超分辨率、视频理解、图像生成、视觉问答等方向。这篇综述旨在涵盖最近这些方面的研究成果，给感兴趣的读者一个综合性的理解。</p>
+<p>Transformer的成功因素主要包括自监督和自注意力。在大型数据集上的自监督能够在不消耗标注成本的情况下训练出复杂的模型，对给定数据集中实体之间有用的关联进行编码，得到抽象的表示。这点十分重要，因为与其他形式的深度学习模型（如卷积神经网络和递归神经网络）相比，自注意力机制能够得到最小的归纳偏置(Inductive bias)。自注意层通过学习元素集之间的关系（比如语言中单词之间的关系，图像中像素集之间的关系），以给定的顺序考虑广泛的上下文。在本综述中，我们首先介绍了Transformer中使用的这些重要概念，然后详细介绍了最近视觉Transformer的发展现状。</p>
+<blockquote>
+<p>CNN的inductive bias应该是locality和spatial invariance，即空间相近的grid elements有联系而远的没有，和空间不变性（kernel权重共享）</p>
+<p>RNN的inductive bias是sequentiality和time invariance，即序列顺序上的timesteps有联系，和时间变换的不变性（rnn权重共享）</p>
+</blockquote>
+<h1 id="2-Foundations"><a href="#2-Foundations" class="headerlink" title="2    Foundations"></a>2    Foundations</h1><p>有两个思想对Transformer的发展起到了至关重要的作用。第一种是自监督，用于在大型无标记语料库上预训练Transformer模型，然后应用于小的有标记数据集。第二个关键思想是自注意力，它能够捕获长程信息和序列元素之间的依赖关系，而传统的RNN模型很难做到这一点。下面，我们提供了关于这两个思想的简要教程，以及开创性应用这些思想的Transformer网络的摘要。这个背景将帮助我们更好地理解即将在计算机视觉领域中使用的基于Transformer的模型。</p>
+<h2 id="2-1-Self-supervision"><a href="#2-1-Self-supervision" class="headerlink" title="2.1    Self-supervision"></a>2.1    Self-supervision</h2><p><strong>自监督学习(Self-supervised learning, SSL)</strong>是与Transformer一起使用的核心概念，用于从大规模的未标记数据集学习。一种SSL基本思想是<strong>填空(fill in the blanks)</strong>，例如预测数据图像中被遮挡的部分，预测时序视频的上一帧或下一帧；亦或者对前置任务进行预测：比如输入图像应用了多少旋转度数，对原图中划分出来的图像补丁进行排列，给灰度图上色。</p>
+<p>另一种自监督约束的方法是通过<strong>对比学习(contrastive learning)</strong>，该方法包含两种类型的转换。第一种转换不改变图像基本语义（如风格迁移、图像裁剪），另一种转换是对语义的变化（例如将一个物体置于另一个场景，或对图像使用对抗方法稍微修改图像的类别）。随后，对模型进行训练，使其不受转换影响，并注重对可能改变语义标签的微小变化进行建模。</p>
+<p>自监督学习提供了一种很有前景的学习模式，因为它可以从大量现成的无注释数据中进行学习。SSL的执行分为两个阶段：首先，通过解决前置任务、训练模型来学习底层数据中有意义的表示。前置任务的伪标签是根据数据属性和任务定义自动生成的(不需要任何昂贵的手工注释)。在第二阶段，使用标记数据对第一阶段训练过的模型在下游任务上进行微调。下游任务包括图像分类、目标检测和动作识别等。</p>
+<p>SSL的核心是定义前置任务。因此，我们可以根据前置任务将现有的SSL方法广泛地分类为合成图像或视频的<strong>生成方法</strong>，利用图像补丁或视频帧之间的关系的<strong>基于上下文的方法</strong>，以及利用多种数据模态的<strong>跨模态方法</strong>。生成方法的例子包括条件生成任务，如图像着色、超分辨率、未完成的图像、以及基于GANs的方法。基于上下文的方法包括图像补丁拼图、预测几何变换、核查视频帧的时间序列等。跨模态方法检查两种输入模态的对应关系。</p>
+<h2 id="2-2-Self-Attention"><a href="#2-2-Self-Attention" class="headerlink" title="2.2    Self-Attention"></a>2.2    Self-Attention</h2><p>自注意机制是Transformer的一个组成部分，它对序列的所有实体之间进行交互建模。自注意力层通过聚合完整输入序列的全局信息来更新序列的每个组成部分。</p>
+<p>自注意力通过定义三个可学习的三个权重矩阵Q, K , V分别对Queries, Keys, Values进行转换。对于序列中的给定实体，自注意力计算所有键和查询的点积，然后使用softmax操作对其进行归一化，得到注意力分数。然后，每个实体成为序列中所有实体的加权和，权重由注意力分数计算得到。</p>
+<p><strong>Masked Self-Attention</strong>：标准的自我注意层关注所有的实体。对于训练用来预测序列下一个实体的Transformer来说，其解码器中使用Masked Self-Attention，对预测元素后方的实体进行遮挡，以防止关注序列后方的未来实体。</p>
+<h2 id="2-3-Multi-Head-Attention"><a href="#2-3-Multi-Head-Attention" class="headerlink" title="2.3    Multi-Head Attention"></a>2.3    Multi-Head Attention</h2><p>为了得到序列中不同位置之间的多种复杂关系，Multi-Head Attention模块由多个自注意力模块组成，每个Multi-Head Attention模块都独立地包含一组Q, K , V权重矩阵。</p>
+<p>自注意力与卷积操作的主要区别是，其权重是动态计算的，而不是像卷积中那样静态的权重（对任何输入都保持不变）。此外，自注意能保持输入点的排列和数量不变。因此，与需要网格结构的标准卷积相比，它可以轻松地应用于不规则的输入上。</p>
+<h2 id="2-4-Transformer-Model"><a href="#2-4-Transformer-Model" class="headerlink" title="2.4    Transformer Model"></a>2.4    Transformer Model</h2><p><img src="https://i.loli.net/2021/01/23/94nurIVURWOKyXQ.png" alt="image.png"></p>
+<p>Transformer的结构如图所示。它有一个Encoder-Decoder结构。Encoder由六个相同的层组成，每一层有两个子层：一个Multi-Head Attention，和一个对位置敏感的(position-wise)全连接层。在每一层之后使用残差连接(Residual connections)和层归一化(layer normalization)。注意，不同于一般的卷积网络特性聚合和特征转换同时执行(例如卷积层后跟一个非线性)，这两个步骤在Transformer中是解耦的，即self-attention层只执行聚合而前馈层执行转换。与Encoder类似，Decoder由六个相同的层组成。每个Decoder层有三个子层，前两个子层(多头自注意，前馈)类似于Encoder，第三个子层对相应Encoder层的输出进行多头自注意力处理。</p>
+<h2 id="2-5-Bidirectional-Representations"><a href="#2-5-Bidirectional-Representations" class="headerlink" title="2.5    Bidirectional Representations"></a>2.5    Bidirectional Representations</h2><p>原Transformer模型的训练策略只能关注句子中给定单词左侧的上下文。而在大多数语言任务中，左右两边的上下文信息都很重要。BERT(Bidirectional Encoder Representations from Transformers)的提出对句子的左右上下文进行联合编码，以无监督的方式学习文本数据的特征表示。为了实现双向训练，其引入了两个前置任务：</p>
+<ul>
+<li>掩码语言模型(Masked Language Model, MLM)：即在句子中随机屏蔽15%的固定比例的词，并使用交叉熵损失对模型进行训练以预测这些屏蔽词。在预测掩蔽词时，该模型学习结合双向语境；</li>
+<li>预测下一个句子(Next Sentence Prediction, NSP)：该模型预测一个二值标签，即这对句子是否在原文档中相邻。该训练数据可以很容易地从任何文本语料库中生成。这样就形成了一对句子A和B，有50%概率B是真实的句子(在A旁边)，否则B是一个随机的句子。NSP使模型能够捕获句子到句子的关系，这在许多语言建模任务中是至关重要的。</li>
+</ul>
+<h1 id="3-Transformers-amp-Self-Attention-in-Vision"><a href="#3-Transformers-amp-Self-Attention-in-Vision" class="headerlink" title="3    Transformers &amp; Self-Attention in Vision"></a>3    Transformers &amp; Self-Attention in Vision</h1><p><img src="https://i.loli.net/2021/01/24/KgJjw1BaUnWmcA4.png" alt="image.png"></p>
+<p>上图概述了Transformer在CV领域中的主要应用。我们将以任务类型进行分组分别解释这些研究方向。</p>
+<h2 id="3-1-Transformers-for-Image-Recognition"><a href="#3-1-Transformers-for-Image-Recognition" class="headerlink" title="3.1    Transformers for Image Recognition"></a>3.1    Transformers for Image Recognition</h2><p>卷积运算是计算机视觉中传统深度神经网络的主力军，它解决了复杂图像分类等问题。但是，<strong>卷积也有缺点：</strong></p>
+<ol>
+<li><strong>卷积在固定大小的窗口上运行，无法捕获长程依赖性，例如视频中不同时域的像素之间的联系；</strong></li>
+<li><strong>卷积滤波器权重在训练后保持固定，因此操作无法动态适应输入的任何变化。</strong></li>
+</ol>
+<p>在本节中，我们将介绍如何通过使用Self-attention和Transformer网络来缓解常规神经网络中上述问题。 有两种主要的Self-attention设计方法：</p>
+<ol>
+<li>不受输入要素大小限制的全局Self-attention； </li>
+<li>局部Self-attention对给定邻域内的关系建模。</li>
+</ol>
+<p>最近，NLP Transformer编码器直接在图像块上成功应用了全局Self-attention，从而减少了对手工网络设计的需求。 但Transformer本质上是数据密集型的，像ImageNet这样的大型数据集都不足以完整地训练CV Transformer，有研究指出可以将教师CNN的知识提炼为给学生Transformer，这使得ImageNet已经足够完成Transformer训练。 </p>
+<h3 id="3-1-1-Non-local-Neural-Networks"><a href="#3-1-1-Non-local-Neural-Networks" class="headerlink" title="3.1.1    Non-local Neural Networks"></a>3.1.1    Non-local Neural Networks</h3><p>非局部神经网络(Non-local Neural Networks)的方法的灵感来自于非局部均值运算(non-local means operation)，该运算主要用于图像去噪。 此操作使用图像中其他像素值的加权和来修改给定像素。 但是，它根据小块之间的相似度选择任意距离的像素作为滤波器返回值，而不是像素周围固定大小的窗口。而非局部运算模型能够对图像空间中的长期依赖关系进行建模。基于此，Wang等人提出了<strong>基于深度神经网络的可微非局部运算（1×1卷积+高斯相似性计算），通过前馈的方式捕获空间和时间上的长程依赖性。非局部运算能够捕获特征图中任意两个位置之间的关联，而不考虑它们之间的距离。</strong>视频分类是像素之间在空间和时间上存在远距离相互关联的一个例子。</p>
+<blockquote>
+<p>非局部均值运算(non-local means operation)与Self-attention十分类似，其核心思想是在计算每个像素位置对应的输出的时候，不再只和邻域计算，而是和图像中所有位置计算相关性，然后将相关性作为一个权重表示其他位置和当前待计算位置的相似度。可以简单认为采用了一个和原图一样大的kernel进行卷积计算。</p>
+<p>但是实际上如果采用逐点计算方式，不仅计算速度非常慢，而且抗干扰能力不太好，故非局部均值运算实际上是计算图像子图和子图之间的相关性。该方法可以用于计算视频流中不同帧图像的子图相关性，所以可用于目标追踪等领域。</p>
+<p>该方法的缺点是完全忽略了像素、子图之间的距离。</p>
+</blockquote>
+<h3 id="3-1-2-Criss-cross-Attention"><a href="#3-1-2-Criss-cross-Attention" class="headerlink" title="3.1.2    Criss-cross Attention"></a>3.1.2    Criss-cross Attention</h3><p>虽然Self-attention机制能够对全图像的上下文信息进行建模，但这个过程对存储和算力的要求都很高。如下图(a)所示，为了对给定像素位置的全局上下文进行编码，非局部子图需要计算大量的注意力关联（图中绿色部分），复杂度高达$O(N^2)$，其中N为输入特征映射的个数。为了减少计算负担，Huang等人提出了<strong>交叉注意模块(criss-cross attention module)，对于每个像素位置只在交叉路径上生成稀疏的注意力权重</strong>，如下图(b)所示。此外，<strong>通过反复应用交叉注意力，每个像素位置可以从所有其他像素捕获上下文</strong>。与非局部模块相比，交叉注意力模块使用的显存仅为1/11，复杂度为$O(2\sqrt N)$。</p>
+<p><img src="https://i.loli.net/2021/01/26/p3nLMkT24v7SoVg.png" alt="image.png"></p>
+<h3 id="3-1-3-Stand-alone-Self-Attention"><a href="#3-1-3-Stand-alone-Self-Attention" class="headerlink" title="3.1.3    Stand-alone Self-Attention"></a>3.1.3    Stand-alone Self-Attention</h3><p>如上所述，卷积层具有<strong>平移同变性(translation equivariance)</strong>，但不能对感受野进行缩放，因此不能捕捉长程关联。Ramachandran等人提出用<strong>局部自注意层(local self-attention layer)</strong>代替深度神经网络中的卷积层，该层可以对感受野进行缩放，并且不增加计算成本。在基本层面上，自我注意层考虑给定像素周围特定窗口大小的所有像素位置，计算这些像素的query、key和value，然后聚合该窗口内的空间信息。将query和key的softmax分数投影后，将value向量进行聚合。对所有给定像素重复此过程，并将输出像素连接起来。</p>
+<blockquote>
+<p>卷积层的平移同变性：当图像中的物体的位置移动后，该图像再输入卷积层将输出与原图不同的表示。</p>
+<p>Stand-alone Self-Attention虽然可以缩放感受野，但损失了平移同变性。</p>
+</blockquote>
+<h3 id="3-1-4-Local-Relation-Networks"><a href="#3-1-4-Local-Relation-Networks" class="headerlink" title="3.1.4    Local Relation Networks"></a>3.1.4    Local Relation Networks</h3><p>卷积操作的另一个缺点是权重在训练后保持固定，而不考虑输入的任何变化。Hu等人提出在局部窗口中自适应合成像素。他们引入了一个新的可微层（如下图），该层<strong>基于局部窗口内像素/特征之间的关联（相似性）来自适应其权重</strong>。这种自适应权重将几何先验引入到网络中，这对识别任务很重要。卷积被认为是一种自上而下的操作，因为它在不同位置上保持固定，而非局部的运算；该方法中的局部关系层(local relation layer)属于自底向上方法的范畴，但它被限制在一个固定的窗口大小。</p>
+<p><img src="https://i.loli.net/2021/01/26/2jGgIyf5zwWJXLc.png" alt="image.png"></p>
+<h3 id="3-1-5-Attention-Augmented-Convolutional-Networks"><a href="#3-1-5-Attention-Augmented-Convolutional-Networks" class="headerlink" title="3.1.5    Attention Augmented Convolutional Networks"></a>3.1.5    Attention Augmented Convolutional Networks</h3><p>Bello等人探讨使用Self-attention替代卷积的可能性。他们提出<strong>在二维中使用相对位置编码(relative position encoding)来开发一种新的Self-attention机制来保持平移同变性</strong>。大量的实验表明，对于各种现有的架构，注意力增强可以使得图像分类和目标检测系统的性能提高。</p>
+<h3 id="3-1-6-Vectorized-Self-Attention"><a href="#3-1-6-Vectorized-Self-Attention" class="headerlink" title="3.1.6    Vectorized Self-Attention"></a>3.1.6    Vectorized Self-Attention</h3><p>Zhao等人注意到传统的卷积操作通过一个卷积核和一个非线性层来共同进行特征聚合和转换。他们提出将聚合和转换分离，使用self-attention来进行特征聚合，然后使用元素感知器层(element-wise perceptron layer)进行转换。为此，他们提出了两种可供选择的特征聚合策略：成对的self-attention和成片的self-attention。</p>
+<h3 id="3-1-7-Vision-Transformer"><a href="#3-1-7-Vision-Transformer" class="headerlink" title="3.1.7    Vision Transformer"></a>3.1.7    <a href="https://zhuanlan.zhihu.com/p/266311690" target="_blank" rel="noopener">Vision Transformer</a></h3><p>ViT(Vision Transformer)是第一项展示Transformer如何在大规模计算机视觉数据集上“完全”替代深度神经网络中的标准卷积的研究。他们在图像数据上应用了原始的Transformer模型（与用于NLP任务的版本相比变化极小）。Transformer在谷歌收集的大量的图像数据集上进行了预训练，然后对下游识别基准（如ImageNet）进行微调。这是一个重要的步骤，因为使用中等大小数据集对ViT进行预训练得到最先进的结果。这是因为CNN对图像域中的先验知识进行编码，减少了对数据的需求；而<strong>Transformer必须从大规模的数据集中发现这些知识</strong>。为此作者使用了包含3亿的图像的JFT数据集对模型进行预训练，使其性能提高到最先进的CNN模型的水准。值得注意的是，iGPT模型也将Transformer应用于完整尺寸的图像，但将训练作为生成任务执行，而ViT使用监督分类任务对模型进行预训练（尽管也探索了自监督变体，导但效果较差）。</p>
+<p>模型的主要架构（如下图）非常类似于语言Transformer。与一维语言嵌入序列不同，二维图像分割为多个子图，每个子图都平铺成一个向量，以序列的形式输入Transformer。然后利用线性映射将这些向量化的子图映射为子图嵌入(patch embedding)，并附加位置嵌入(position embedding)用来编码位置信息。重要的是，一个[cls]符号（类标记）附加在Transformer输入的开头，相对应的第一个位置的输出用作图像的全局表示，反应整张图的信息。这个类别表示最终会被MLP被分为一个具体类别。</p>
+<p><img src="https://i.loli.net/2021/01/27/2QrSRUmwdalpjix.png" alt="image.png"></p>
+<h3 id="3-1-8-Data-efficient-Image-Transformers"><a href="#3-1-8-Data-efficient-Image-Transformers" class="headerlink" title="3.1.8    Data-efficient Image Transformers"></a>3.1.8    <a href="https://mp.weixin.qq.com/s?__biz=MzU4OTg3Nzc3MA==&amp;mid=2247484771&amp;idx=1&amp;sn=d8e3fa7a86b9ae1316ae831bc3270b12&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">Data-efficient Image Transformers</a></h3><p>DeiT(Data-efficient Image Transformers)没有使用任何外部的大规模数据集，这证明了与精心调整的CNN设计相比，Transformer更具潜力。由于与CNN设计不同，Transformer体系结构并不采取图像结构的先验知识，这通常会导致更长的训练时间，并且需要更大的数据集。然而，DeiT演示了如何在中等规模的数据集。除了使用CNN中常见的数据增强和正则化以外，最主要的是一种新颖的Transformer自我蒸馏(native distillation)方法。</p>
+<p>蒸馏过程使用RegNetY-16GF作为教师模型，其输出用于训练Transformer。CNN的输出有助于Transformer有效地为输入图像找出有用的表示。子图嵌入前后分别被附加类标记（见3.1.7）和蒸馏标记。Self-Attention层对这些标记进行操作，获取它们的相互依赖性，并输出所学到的类、子图和蒸馏标记。模型使用定义在输出类标记上的交叉熵损失和匹配蒸馏标记与教师输出的蒸馏损失来训练网络。作者对蒸馏的软标签和硬标签的选择进行了探索，发现硬标签的性能更好。有趣的是，所学习的类和蒸馏标记并没有表现出高相关性，这表明它们具有互补性。其比性能最好的CNN架构（如EfficientNet）学到了更好的表示，并且对于一些下游识别任务也有很好的泛化。</p>
+<blockquote>
+<p>ViT中的类标记只是个初始值，而DeiT带的类标记和蒸馏标记都通过训练学习得到。</p>
+<p>类标记受正确类别监督，蒸馏标记受教师模型的硬标签监督。</p>
+</blockquote>
+<h2 id="3-2-Transformers-for-Object-Detection"><a href="#3-2-Transformers-for-Object-Detection" class="headerlink" title="3.2    Transformers for Object Detection"></a>3.2    Transformers for Object Detection</h2><p>与图像分类类似，Transformer应用于一组从CNN backbone获得的图像特征，以预测精确的目标边框和相应的类标签。下面将要介绍的第一种方法首次将Transformer用于检测问题，第二种方法主要将第一种方法扩展到多尺度体系结构，注重提高计算效率。</p>
+<h3 id="3-2-1-Detection-Transformer-DETR"><a href="#3-2-1-Detection-Transformer-DETR" class="headerlink" title="3.2.1    Detection Transformer - DETR"></a>3.2.1    Detection Transformer - DETR</h3><p>DETR将目标检测视为一个使用Transformer预测问题的集合和一个损失函数集合。第一部分（transformer模型）对一组对象进行预测(一次性完成)，并对其关系进行建模。第二部分（集合损失）对预测结果和GT边框进行匹配。DETR的主要优点是它消除了对人工设计模块和运算的依赖，例如在目标检测中常用的RPN (region proposal network)和NMS (nonmaximal suppression)。这样，对于目标检测等复杂的结构化任务，就不需要依赖先验知识和精心的工程设计。</p>
+<p><img src="https://i.loli.net/2021/01/27/x27bXc4Qk9WtFmi.png" alt="image.png"></p>
+<p>首先通过CNN backbone的空间特征映射得到一个特征集合，将其平铺，如上图所示。然后，这些特征被多头self-attention模块进行编码和解码。解码阶段的主要区别是，所有边框都是并行预测的，而不是使用RNN逐个预测序列元素。DETR获得了与Faster RCNN相当的性能，这是一个令人印象深刻的壮举，因为它的设计十分简洁。</p>
+<h3 id="3-2-2-Deformable-DETR"><a href="#3-2-2-Deformable-DETR" class="headerlink" title="3.2.2    Deformable - DETR"></a>3.2.2    Deformable - DETR</h3><p>上述DETR 成功地将CNN与Transformer相结合，消除了人工设计的需求。然而，它很难检测到小的物体，并且收敛速度慢，计算成本高。在使用Transformer进行关系建模之前，DETR将图像映射到特征空间。因此，Self-attention的计算代价随feature map的空间大小呈二次增长。这限制了DETR对多尺度特征的使用，这对小目标检测至关重要。此外，在训练开始时，Attention模块简单地将统一的Attention权重投射到特征图的所有位置，这需要大量的时间才能使Attention权重收敛到有意义的稀疏位置，使得该方法收敛速度较慢。为了缓解上述问题，作者提出了可形变注意模块(deformable attention module)来处理特征图。<strong>受可形变卷积的启发，可形变注意模块只关注整个feature map中元素的稀疏集，而不考虑其空间大小。</strong>能够在不显著增加计算成本的情况下，利用多尺度注意模块实现跨尺度的特征图聚合。Deformable DETR不仅性能更好，训练时间也仅为DETR的十分之一。</p>
+<h2 id="3-3-Transformers-for-Segmentation"><a href="#3-3-Transformers-for-Segmentation" class="headerlink" title="3.3    Transformers for Segmentation"></a>3.3    Transformers for Segmentation</h2><p>像图像分割到和实例分割这样的密集型预测任务，需要对像素之间的相互作用进行建模。在这里，我们将讲述一种旨在降低Self-Attention复杂性的轴向自注意(axial self-attention)操作和一种跨模态方法，对给定语义进行分割。</p>
+<h3 id="3-3-1-Axial-attention-for-Panoptic-Segmentation"><a href="#3-3-1-Axial-attention-for-Panoptic-Segmentation" class="headerlink" title="3.3.1    Axial-attention for Panoptic Segmentation"></a>3.3.1    Axial-attention for Panoptic Segmentation</h3><p>全景分割(Panoptic segmentation)旨在通过为图像的每个像素分配语义标签和实例id来解决语义分割和实例分割这两种截然不同的任务。全局上下文可以为处理这种复杂的视觉理解任务提供有用的线索。Self-Attention十分擅长获取长程上下文信息，但将它应用于密集预测任务（如全景分割）的大型输入需要非常大的运算量。一个简单的解决方案是将Self-Attention应用于下采样输入或每个像素周围的有限区域。即使在引入这些约束后，Self-Attention仍然具有二次方复杂度，并且牺牲了全局信息。</p>
+<p>为缓解上述问题，Wang等人提出了位敏axial-attention。该方法<strong>将二维self-attention转化为两个一维axial-attention层，分别应用于宽和高两个轴</strong>。axial-attention具有较高的计算效率，并使模型能够捕捉整张图的上下文信息。该方法在多个数据集表现SOTA。</p>
+<p><img src="https://i.loli.net/2021/01/31/39RgIYcZDxGtrbn.png" alt="image.png"></p>
+<h3 id="3-3-2-CMSA-Cross-modal-Self-Attention"><a href="#3-3-2-CMSA-Cross-modal-Self-Attention" class="headerlink" title="3.3.2    CMSA: Cross-modal Self-Attention"></a>3.3.2    CMSA: Cross-modal Self-Attention</h3><p>跨模态自我注意(Cross-modal Self-attention, CMSA)编码语言和视觉域特征之间的长程多模态依赖关系，用于<strong>参考图像分割(referring image segmentation task)</strong>任务。参考图像分割问题的目的是对语言表达式所引用的图像实体进行分割。为此，将图像特征与每个词嵌入和空间坐标特征相连接，得到一组跨模态特征。Self-Attention在这个丰富的特征上运作，并对句子中每个单词对应的图像区域产生注意力。分割网络在多个空间层次上进行Self-Attention，并使用门控多级融合模块对多个分辨率的特征信息进行交换来细化分割掩码。使用BCE损失来训练整体模型，在UNC、G-Ref和Referlt数据集上取得了较大的提升。</p>
+<h2 id="3-4-Transformers-for-Image-Generation"><a href="#3-4-Transformers-for-Image-Generation" class="headerlink" title="3.4    Transformers for Image Generation"></a>3.4    Transformers for Image Generation</h2><p>从生成建模的角度来看，图像生成任务很有趣，因为以无监督方式学习的表示可以用于下游任务。在这里，我们总结了一些基于Transformer的架构，用于图像生成(image generation)、条件生成(conditional generation)和高分辨率图像生成(high-resolution image generation)任务。我们还概述了一个结构化的生成任务，使用场景对象对给定的房间布局进行填充。</p>
+<h3 id="3-4-1-Image-GPT"><a href="#3-4-1-Image-GPT" class="headerlink" title="3.4.1    Image GPT"></a>3.4.1    Image GPT</h3><p>Image GPT (iGPT)证明了Transformer也可以用于图像生成任务，并为下游视觉任务学习强特征。具体来说，iGPT使用GPT v2模型在平铺图像序列（一维像素数组）上进行训练，并表明它可以在没有任何外部监督的情况下生成可信的图像输出。生成的样本表现出了该模型具有理解像素和高级属性（如对象类别、纹理和比例）之间的空间关系的能力。</p>
+<h3 id="3-4-2-Image-Transformer"><a href="#3-4-2-Image-Transformer" class="headerlink" title="3.4.2    Image Transformer"></a>3.4.2    Image Transformer</h3><p>Parmar等人开发了一个图像生成模型，该模型可以根据之前生成的像素顺序预测输出图像的每个像素。他们的方法通过将图像像素分解为像素条件分布(pixel-wise conditional distributions)的乘积来连接其像素分布。先前开发的用于这项任务的自回归模型（如PixelCNN）受到了感受野的局限，这妨碍了在图像中建模长程关系，如部分关系或遮挡。通过使用self-attention，Image Transformer增强了神经网络的感受野，而不会产生很高的计算成本。在条件生成任务如图像超分辨率、图像补全、去噪等方面进行了测试。</p>
+<p>核心方法有两个主要亮点（见下图）:</p>
+<ul>
+<li>(a)图展示了key、query和value三元组在图像中的使用。使用之前生成的像素的特征表示来生成value和key嵌入，而当前像素的特征嵌入被用作query。第一层采用位置嵌入技术对位置信息进行编码。</li>
+<li>(b)图表示该模型比起自然语言任务中使用了更多的self-attention。局部注意（1D和2D变量）仅在query位置周围的局部邻域使用。出于实际原因，我们为每个query定义了一个固定的内存块，而不是为每个像素动态计算不同的内存邻域。采用最大似然损失对生成模型进行训练。</li>
+</ul>
+<p><img src="https://i.loli.net/2021/02/11/IT5ucxoKOQR3Ukf.png" alt="image.png"></p>
+<p>看不下去了看不下去了→_→，等实际使用巩固、对Transformer有更深的了解之后再来看吧。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]<a href="https://blog.csdn.net/alawaka2018/article/details/80570537" target="_blank" rel="noopener">high-level vision和low-lever vision的解释</a></p>
+<p>[2]<a href="https://www.zhihu.com/question/264264203/answer/492568154" target="_blank" rel="noopener">如何理解Inductive bias？</a></p>
+<p>[3]<a href="https://zhuanlan.zhihu.com/p/53010734" target="_blank" rel="noopener">Non-local Neural Networks及自注意力机制思考</a></p>
+<p>[4]<a href="https://www.sohu.com/a/226611009_633698" target="_blank" rel="noopener">看完这篇，别说你还不懂Hinton大神的胶囊网络</a></p>
+<p>[5]<a href="https://zhuanlan.zhihu.com/p/266311690" target="_blank" rel="noopener">用Transformer完全替代CNN</a></p>
+<p>[6]<a href="https://mp.weixin.qq.com/s?__biz=MzU4OTg3Nzc3MA==&amp;mid=2247484771&amp;idx=1&amp;sn=d8e3fa7a86b9ae1316ae831bc3270b12&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">媲美CNN！Facebook提出DeiT</a></p>
+
+      
+    </div>
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Transformer/" rel="tag"><i class="fa fa-tag"></i> Transformer</a>
+          
+            <a href="/tags/论文翻译/" rel="tag"><i class="fa fa-tag"></i> 论文翻译</a>
+          
+            <a href="/tags/综述/" rel="tag"><i class="fa fa-tag"></i> 综述</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/09/经济心理学/" rel="next" title="经济心理学">
+                <i class="fa fa-chevron-left"></i> 经济心理学
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/23/BoTNet简述/" rel="prev" title="BoTNet简述">
+                BoTNet简述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Hsaki">
+            
+              <p class="site-author-name" itemprop="name">Hsaki</p>
+              <p class="site-description motion-element" itemprop="description">橘猫最爱的煎饼狗子!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/a-kali" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hsaki@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/hsakizero" target="_blank" title="Kaggle">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>Kaggle</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-number">2.</span> <span class="nav-text">1    Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Foundations"><span class="nav-number">3.</span> <span class="nav-text">2    Foundations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Self-supervision"><span class="nav-number">3.1.</span> <span class="nav-text">2.1    Self-supervision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Self-Attention"><span class="nav-number">3.2.</span> <span class="nav-text">2.2    Self-Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Multi-Head-Attention"><span class="nav-number">3.3.</span> <span class="nav-text">2.3    Multi-Head Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Transformer-Model"><span class="nav-number">3.4.</span> <span class="nav-text">2.4    Transformer Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-Bidirectional-Representations"><span class="nav-number">3.5.</span> <span class="nav-text">2.5    Bidirectional Representations</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Transformers-amp-Self-Attention-in-Vision"><span class="nav-number">4.</span> <span class="nav-text">3    Transformers &amp; Self-Attention in Vision</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Transformers-for-Image-Recognition"><span class="nav-number">4.1.</span> <span class="nav-text">3.1    Transformers for Image Recognition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-Non-local-Neural-Networks"><span class="nav-number">4.1.1.</span> <span class="nav-text">3.1.1    Non-local Neural Networks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-Criss-cross-Attention"><span class="nav-number">4.1.2.</span> <span class="nav-text">3.1.2    Criss-cross Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-Stand-alone-Self-Attention"><span class="nav-number">4.1.3.</span> <span class="nav-text">3.1.3    Stand-alone Self-Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-Local-Relation-Networks"><span class="nav-number">4.1.4.</span> <span class="nav-text">3.1.4    Local Relation Networks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-5-Attention-Augmented-Convolutional-Networks"><span class="nav-number">4.1.5.</span> <span class="nav-text">3.1.5    Attention Augmented Convolutional Networks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-6-Vectorized-Self-Attention"><span class="nav-number">4.1.6.</span> <span class="nav-text">3.1.6    Vectorized Self-Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-7-Vision-Transformer"><span class="nav-number">4.1.7.</span> <span class="nav-text">3.1.7    Vision Transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-8-Data-efficient-Image-Transformers"><span class="nav-number">4.1.8.</span> <span class="nav-text">3.1.8    Data-efficient Image Transformers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Transformers-for-Object-Detection"><span class="nav-number">4.2.</span> <span class="nav-text">3.2    Transformers for Object Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-Detection-Transformer-DETR"><span class="nav-number">4.2.1.</span> <span class="nav-text">3.2.1    Detection Transformer - DETR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-Deformable-DETR"><span class="nav-number">4.2.2.</span> <span class="nav-text">3.2.2    Deformable - DETR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Transformers-for-Segmentation"><span class="nav-number">4.3.</span> <span class="nav-text">3.3    Transformers for Segmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-Axial-attention-for-Panoptic-Segmentation"><span class="nav-number">4.3.1.</span> <span class="nav-text">3.3.1    Axial-attention for Panoptic Segmentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-CMSA-Cross-modal-Self-Attention"><span class="nav-number">4.3.2.</span> <span class="nav-text">3.3.2    CMSA: Cross-modal Self-Attention</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-Transformers-for-Image-Generation"><span class="nav-number">4.4.</span> <span class="nav-text">3.4    Transformers for Image Generation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-Image-GPT"><span class="nav-number">4.4.1.</span> <span class="nav-text">3.4.1    Image GPT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-Image-Transformer"><span class="nav-number">4.4.2.</span> <span class="nav-text">3.4.2    Image Transformer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hsaki</span>
+<div class="powered-by">
+</div>
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">99.9k</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

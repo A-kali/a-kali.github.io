@@ -430,7 +430,6 @@
 <li>ranges：像素值范围，默认为[0, 256]</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">'cat.jpg'</span>)</span><br><span class="line">color = (<span class="string">'b'</span>, <span class="string">'g'</span>, <span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> i, col <span class="keyword">in</span> enumerate(color):</span><br><span class="line">    hist = cv2.calcHist([img], [i], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">    plt.plot(hist, color=col)</span><br><span class="line">    plt.xlim([<span class="number">0</span>, <span class="number">256</span>])</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.loli.net/2020/12/21/c4CFThHt6OUIVZr.png" alt="image.png"></p>
 <h1 id="直方图均衡化"><a href="#直方图均衡化" class="headerlink" title="直方图均衡化"></a>直方图均衡化</h1><p><strong>直方图均衡化</strong>是将原图像通过某种变换，得到一幅灰度直方图为均匀分布的新图像的方法。其基本思想是对在图像中像素个数多的灰度级进行展宽，而对像素个数少的灰度级进行缩减。从而达到清晰图像的目的。</p>
 <p><img src="https://i.loli.net/2020/12/21/DfW9auiAH875oBJ.png" alt="image.png"></p>
@@ -442,8 +441,8 @@
 <li>计算累加概率（将低灰度级的概率累加到高灰度级的概率上）；</li>
 <li>根据公式求映射结果：</li>
 </ol>
-<p>$$<br>SS(i)=int((max(pix)-min(pix))*S(i)+0.5)<br>$$</p>
-<p><img src="https://i.loli.net/2020/12/21/k1VlTa9vjCKhszf.png" alt="image.png"></p>
+<script type="math/tex; mode=display">
+SS(i)=int((max(pix)-min(pix))*S(i)+0.5)</script><p><img src="https://i.loli.net/2020/12/21/k1VlTa9vjCKhszf.png" alt="image.png"></p>
 <p>OpenCV代码：<code>cv2.equalizeHist(img)</code></p>
 <p>虽然直方图均衡化后能让图像整体更加清晰，但有时候会使得原本突出的局部特征变得模糊（如图中的人脸）。</p>
 <p><img src="https://i.loli.net/2020/12/21/Bep6arx71ok8FLb.png" alt="image.png"></p>
@@ -597,7 +596,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -619,7 +618,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -723,7 +722,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">92.5k</span>
+    <span title="Site words total count">99.9k</span>
   
 </div>
 

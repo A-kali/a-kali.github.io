@@ -430,7 +430,11 @@
 <li>可扩展性，可以很方便的与其他形式的特征向量进行联合。</li>
 </ol>
 <h1 id="一、图像尺度空间"><a href="#一、图像尺度空间" class="headerlink" title="一、图像尺度空间"></a>一、图像尺度空间</h1><p>在一定范围内，无论物体是大还是小，人眼都能分辨出来；但计算机对不同尺度下的物体分辨能力却很低。所以要让机器能够对物体在不同尺度下有一个统一的认知，就需要考虑图像在不同尺度下都存在的特点。</p>
-<p>不同尺度的图像可以通过<strong>高斯模糊</strong>（或称为<a href="https://a-kali.github.io/2020/12/13/OpenCV%E4%B8%AD%E7%9A%84%E5%B9%B3%E6%BB%91%E3%80%81%E8%85%90%E8%9A%80%E8%86%A8%E8%83%80%E5%92%8C%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/">高斯滤波</a>）来模拟：<br>$$<br>L(x, y, \sigma)=G(x, y, \sigma)*I(x, y)<br>$$<br>其中I为图像，G为高斯函数：<br>$$<br>G(x, y, \sigma)=\frac{1}{2\pi\sigma^2}e^{\frac{x^2+y^2}{2\sigma^2}}<br>$$<br>其中σ用于控制滤波器权重，σ越大，权重数值分布越均匀，即周边值更大、中心值更小，得到的图像越模糊。</p>
+<p>不同尺度的图像可以通过<strong>高斯模糊</strong>（或称为<a href="https://a-kali.github.io/2020/12/13/OpenCV%E4%B8%AD%E7%9A%84%E5%B9%B3%E6%BB%91%E3%80%81%E8%85%90%E8%9A%80%E8%86%A8%E8%83%80%E5%92%8C%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/">高斯滤波</a>）来模拟：</p>
+<script type="math/tex; mode=display">
+L(x, y, \sigma)=G(x, y, \sigma)*I(x, y)</script><p>其中I为图像，G为高斯函数：</p>
+<script type="math/tex; mode=display">
+G(x, y, \sigma)=\frac{1}{2\pi\sigma^2}e^{\frac{x^2+y^2}{2\sigma^2}}</script><p>其中σ用于控制滤波器权重，σ越大，权重数值分布越均匀，即周边值更大、中心值更小，得到的图像越模糊。</p>
 <p><img src="https://i.loli.net/2020/12/27/LU4sBYMQXWIb8Fx.png" alt="image.png"></p>
 <p>通过这个方法可以得到不同尺度空间的图像，图像越模糊，就相当于得到了更远距离/更小尺度空间的图像。</p>
 <h1 id="二、高斯差分金字塔"><a href="#二、高斯差分金字塔" class="headerlink" title="二、高斯差分金字塔"></a>二、高斯差分金字塔</h1><p>对于一张图像进行n-1次上/下采样操作，得到的n个不同分辨率的结果可以组合成一个<strong>图像金字塔</strong>。对金字塔的每一层进行m次不同程度的高斯模糊，最终得到n×m张图像。</p>
@@ -438,8 +442,12 @@
 <p>之后对金字塔每一层得到的模糊结果分别求差，得到n×(m-1)个二维数组，得到的这个结果就是<strong>高斯差分金字塔（Difference of Gaussian, DOG）</strong>。DOG中较大的值表示该点对于不同的模糊程度变化更大，该点更有可能是特征的关键点/边缘。找出<strong>局部极值点</strong>需要对每个点与其周围的26个点（同平面8个，上下各9个）点进行比较。</p>
 <p><img src="https://i.loli.net/2020/12/28/9HfCAV4gOTuz57l.png" alt="image.png"></p>
 <p><img src="https://i.loli.net/2020/12/28/QX2VGIU7OmFjH98.png" alt="image.png"></p>
-<p>DOG用数学公式表示如下：<br>$$<br>D(x,y,\sigma)=L(x, y, k\sigma)-L(x, y, \sigma)<br>$$</p>
-<h1 id="三、特征描述"><a href="#三、特征描述" class="headerlink" title="三、特征描述"></a>三、特征描述</h1><h2 id="1-特征点的方向"><a href="#1-特征点的方向" class="headerlink" title="1    特征点的方向"></a>1    特征点的方向</h2><p>每个像素点L(x, y)的梯度的模m(x, y)以及方向θ(x, y)计算如下：<br>$$<br>m(x,y)=\sqrt{[L(x+1,y)-L(x-1,y)]^2+[L(x,y+1)-L{(x,y-1)}]^2}\<br>\theta(x,y)=arctan \frac{L(x,y+1)-L(x,y-1)}{L(x+1,y)-L(x-1,y)}<br>$$<br>每个像素点可以得到<strong>位置(x, y)、尺度m和方向θ</strong>三个信息。对于每个特征点，统计其邻域所有像素点在8个方向上的尺度和，尺度和最大的方向视为该特征点的<strong>主方向</strong>，占比超过主方向80%的视为<strong>辅方向</strong>。具有多个方向的关键点可以被复制成多份，然后将方向值分别赋给复制后的特征点，于是一个特征点就产生了多个坐标、尺度相同，但方向不同的特征点。</p>
+<p>DOG用数学公式表示如下：</p>
+<script type="math/tex; mode=display">
+D(x,y,\sigma)=L(x, y, k\sigma)-L(x, y, \sigma)</script><h1 id="三、特征描述"><a href="#三、特征描述" class="headerlink" title="三、特征描述"></a>三、特征描述</h1><h2 id="1-特征点的方向"><a href="#1-特征点的方向" class="headerlink" title="1    特征点的方向"></a>1    特征点的方向</h2><p>每个像素点L(x, y)的梯度的模m(x, y)以及方向θ(x, y)计算如下：</p>
+<script type="math/tex; mode=display">
+m(x,y)=\sqrt{[L(x+1,y)-L(x-1,y)]^2+[L(x,y+1)-L{(x,y-1)}]^2}\\
+\theta(x,y)=arctan \frac{L(x,y+1)-L(x,y-1)}{L(x+1,y)-L(x-1,y)}</script><p>每个像素点可以得到<strong>位置(x, y)、尺度m和方向θ</strong>三个信息。对于每个特征点，统计其邻域所有像素点在8个方向上的尺度和，尺度和最大的方向视为该特征点的<strong>主方向</strong>，占比超过主方向80%的视为<strong>辅方向</strong>。具有多个方向的关键点可以被复制成多份，然后将方向值分别赋给复制后的特征点，于是一个特征点就产生了多个坐标、尺度相同，但方向不同的特征点。</p>
 <p><img src="https://i.loli.net/2020/12/28/qjAZ2HrOoeJ8law.png" alt="image.png"></p>
 <h2 id="2-生成特征描述"><a href="#2-生成特征描述" class="headerlink" title="2    生成特征描述"></a>2    生成特征描述</h2><p>本部分将使用邻域像素的方向和尺度为该特征点生成一个唯一的指纹，称为<strong>描述符</strong>。首先在关键点周围采用16×16的邻域，将该16×16区域进一步划分为4×4子块。由于子块中的每一个像素都具有8个方向中的一个，并且具有尺度。于是对于每一个子块都能用一个长度为8的向量来表示该子块所有像素在8个方向上的尺度和。</p>
 <p>最终对于每一个特征点，我们得到了一个总长度为4×4×8=128的特征描述符。</p>
@@ -449,10 +457,7 @@
 <h1 id="四、OpenCV中的SIFT算法"><a href="#四、OpenCV中的SIFT算法" class="headerlink" title="四、OpenCV中的SIFT算法"></a>四、OpenCV中的SIFT算法</h1><p>由于算法版权问题，SIFT算法只能在OpenCV3.4及以下版本才能使用。</p>
 <p>特征描述：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sift = cv2.xfeatures2d.SIFT_create()  <span class="comment"># 创建一个SIFT对象</span></span><br><span class="line">kp, des = sift.detectAndCompute(img_gray, <span class="literal">None</span>) <span class="comment"># 返回关键点对象和以及每个关键点的特征向量</span></span><br><span class="line">show_kp_img = cv2.drawKeypoints(img_gray, kp, img)  <span class="comment"># 在图像中标出关键点</span></span><br></pre></td></tr></table></figure>
-
-<p>特征匹配：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一对一匹配</span></span><br><span class="line">bf = cv2.BFMatcher(crossCheck=<span class="literal">True</span>)  </span><br><span class="line">matchs = bf.match(des1, des2)</span><br><span class="line">matches.sort(key=<span class="keyword">lambda</span> x: x.distance)</span><br><span class="line"><span class="comment"># 可视化匹配结果</span></span><br><span class="line">matched_img = cv2.drawMatches(img1, kp1, img2, kp2, matches[:<span class="number">10</span>], <span class="literal">None</span>, flags=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
+<p>特征匹配：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一对一匹配</span></span><br><span class="line">bf = cv2.BFMatcher(crossCheck=<span class="literal">True</span>)  </span><br><span class="line">matchs = bf.match(des1, des2)</span><br><span class="line">matches.sort(key=<span class="keyword">lambda</span> x: x.distance)</span><br><span class="line"><span class="comment"># 可视化匹配结果</span></span><br><span class="line">matched_img = cv2.drawMatches(img1, kp1, img2, kp2, matches[:<span class="number">10</span>], <span class="literal">None</span>, flags=<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -598,7 +603,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -620,7 +625,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -724,7 +729,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">92.5k</span>
+    <span title="Site words total count">99.9k</span>
   
 </div>
 
